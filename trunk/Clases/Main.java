@@ -7,29 +7,13 @@
  * and open the template in the editor.
  */
 
-package tp_v1;
-
 import java.io.IOException;
-import java.util.ArrayList;
 
-
-/**
- *
- * @author rocio
- */
 public class Main {
     
-    /** Creates a new instance of Main */
-    public Main() {
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
    public static void main(String[] args) throws IOException {
         // TODO code application logic here
-       Controlador controler;
-       controler =new Controlador();
+       Controlador controller = new Controlador();
        System.out.println("Ingrese el test que desea:");
        System.out.println("1 para Validar que no haya mas de 15 jugadores");
        System.out.println("2 para Validar que no haya mas de 2 jugadores por posicion");
@@ -37,9 +21,9 @@ public class Main {
        int num=1;
       
        switch (caracter){
-           case '1':controler.checkCantJugadoresPorEquipo();
+           case '1':
            break;
-           case '2':controler.validarPosicion();
+           case '2':
            break;
            default: System.out.println("Eligio NADA!!!");
         }     

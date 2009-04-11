@@ -1,6 +1,6 @@
 public class EstadisticasJugadorFecha {
  
-	private int idJugador; 
+	private Jugador jugador; 
 	private int goles;	 
 	private boolean ganoFecha;	 
 	private int penalesConvertidos;	 
@@ -9,88 +9,71 @@ public class EstadisticasJugadorFecha {
 	private int tiempoRoja;	 
 	private int tiempoAmarilla;	 
 	private int tiempoReemplazado;	 
-	private Jugador JugadorEstrella;	 
-	private Fecha fecha;
-	 
-	 
-	public void getIdJugador() {
-	 
+	private Jugador JugadorEstrella;
+	
+	public EstadisticasJugadorFecha() {
+		// TODO Auto-generated constructor stub
 	}
-	 
-	public void getGoles() {
-	 
+	
+	public Jugador getJugador() {
+		return jugador;
 	}
-	 
-	public void getGanoFecha() {
-	 
+	public void setJugador(Jugador jugador) {
+		this.jugador = jugador;
 	}
-	 
-	public void getPenalesConvertidos() {
-	 
+	public int getGoles() {
+		return goles;
 	}
-	 
-	public void getAmarillas() {
-	 
+	public void setGoles(int goles) {
+		this.goles = goles;
 	}
-	 
-	public void getRojas() {
-	 
+	public boolean isGanoFecha() {
+		return ganoFecha;
 	}
-	 
-	public void getTiempoRoja() {
-	 
+	public void setGanoFecha(boolean ganoFecha) {
+		this.ganoFecha = ganoFecha;
 	}
-	 
-	public void getTiempoAmarilla() {
-	 
+	public int getPenalesConvertidos() {
+		return penalesConvertidos;
 	}
-	 
-	public int getTiempoReemplazo() {
-		return 0;
+	public void setPenalesConvertidos(int penalesConvertidos) {
+		this.penalesConvertidos = penalesConvertidos;
 	}
-	 
-	public void setIdJugador() {
-	 
+	public int getAmarillas() {
+		return amarillas;
 	}
-	 
-	public void setGoles() {
-	 
+	public void setAmarillas(int amarillas) {
+		this.amarillas = amarillas;
 	}
-	 
-	public void setGanoFecha() {
-	 
+	public int getRojas() {
+		return rojas;
 	}
-	 
-	public void setPenalesConvertidos() {
-	 
+	public void setRojas(int rojas) {
+		this.rojas = rojas;
 	}
-	 
-	public void setAmarillas() {
-	 
+	public int getTiempoRoja() {
+		return tiempoRoja;
 	}
-	 
-	public void setRojas() {
-	 
+	public void setTiempoRoja(int tiempoRoja) {
+		this.tiempoRoja = tiempoRoja;
 	}
-	 
-	public void setTiempoRoja() {
-	 
+	public int getTiempoAmarilla() {
+		return tiempoAmarilla;
 	}
-	 
-	public void setTiempoAmarilla() {
-	 
+	public void setTiempoAmarilla(int tiempoAmarilla) {
+		this.tiempoAmarilla = tiempoAmarilla;
 	}
-	 
-	public void setTiempoReemplazado() {
-	 
+	public int getTiempoReemplazado() {
+		return tiempoReemplazado;
 	}
-	 
+	public void setTiempoReemplazado(int tiempoReemplazado) {
+		this.tiempoReemplazado = tiempoReemplazado;
+	}
+	public Jugador getJugadorEstrella() {
+		return JugadorEstrella;
+	}
 	public void setJugadorEstrella(Jugador jugadorEstrella) {
-	 
-	}
-	 
-	public Jugador getJugadorEstella() {
-		return null;
+		JugadorEstrella = jugadorEstrella;
 	}
 	 
 }

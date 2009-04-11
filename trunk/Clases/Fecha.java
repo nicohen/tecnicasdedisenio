@@ -1,25 +1,25 @@
 import java.util.ArrayList;
 
-protected class Fecha {
+public class Fecha {
  
 	private int fecha;
 	 
-	private ArrayList estadisticasJugadores;
+	private ArrayList<EstadisticasJugadorFecha> estadisticasJugadores;
 	 
-	private Equipo equipo;
-	 
-	private Partidos partidos;
-	 
-	private EstadisticasJugadorFecha estadisticasJugadorFecha;
-	 
-	private EstadisticasJugadorFecha estadisticasJugadorFecha;
-	 
+	public void setFecha(int fecha) {
+		this.fecha = fecha;
+	}
+	
 	public int getFecha() {
-		return 0;
+		return fecha;
 	}
 	 
-	public ArrayList getEstadisticasJugadores() {
-		return null;
+	public void addEstadisticaJugadores(EstadisticasJugadorFecha estadisticasJugador) {
+		this.estadisticasJugadores.add(estadisticasJugador);
+	}
+	
+	public ArrayList<EstadisticasJugadorFecha> getEstadisticasJugadores() {
+		return estadisticasJugadores;
 	}
 	 
 }

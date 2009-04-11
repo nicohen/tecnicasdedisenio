@@ -1,37 +1,40 @@
 
 public class Controlador {
  
-	private int idParticipante;
-	 
-	private Participante[] participante;
-	 
+	private Participante participante;
 	private Equipo equipo;
-	 
-	public int getIdParticipante() {
-		return idParticipante;
+	
+	public Participante getParticipante() {
+		return participante;
 	}
-	 
-	public void setIdParticipante() {
-	 
+
+	public void setParticipante(Participante participante) {
+		this.participante = participante;
 	}
-	 
+
+	public Equipo getEquipo() {
+		return equipo;
+	}
+
+	public void setEquipo(Equipo equipo) {
+		this.equipo = equipo;
+	}
+
 	public boolean validarPassword() {
-            
 		return false;
 	}
 	 
-	public void crearUsuario(String nombre) {
-            
-	 
+	public void crearNuevoUsuario(String nombre) {
+		
 	}
 	 
-	public boolean validarExistencia() {
+	public boolean validarExistenciaDeJugador() {
 		return false;
 	}
 	 
 	public void crearEquipo() {
-              Equipo equipo=new Equipo();
-	 
+		Equipo equipo = new Equipo();
+		this.equipo = equipo;
 	}
 	 
 }
