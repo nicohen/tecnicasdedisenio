@@ -1,23 +1,22 @@
 public class Arquero extends Jugador {
  
-	private int CantAtajaPenal; 
-	private int CantGolesRecibidos;	 
-	private int CantGolesMetidos;
+	private int cantPenalesAtajados; 
+	private int cantGolesRecibidos;	 
 	 
-	public void setAtajaPenal(int Cantidad) {
-            this.CantAtajaPenal= Cantidad;
+	public void setAtajaPenal(int cantidad) {
+            this.cantPenalesAtajados= cantidad;
 	}
 	 
 	public int getAtajaPenal() {
-		return CantAtajaPenal;
+		return cantPenalesAtajados;
 	}
 	 
-	public void setCantGolesRecibidos(int Cantidad) {
-                CantGolesRecibidos=Cantidad;
+	public void setCantGolesRecibidos(int cantidad) {
+		cantGolesRecibidos=cantidad;
 	}
 	 
 	public int getCantGolesRecibidos() {
-		return CantGolesRecibidos;
+		return cantGolesRecibidos;
 	}
 	 
 }

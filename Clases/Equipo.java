@@ -1,137 +1,116 @@
-import java.util.ArrayList;
+import java.util.List;
 
 public class Equipo {
  
-	private String nombre;
-	 
-	private double precio;
-	 
-	private ArrayList jugadores;
-	 
 	private int idEquipo;
-	 
-	private Participante[] participante;
-	 
-	private Jugador jugador;
-	 
-	private Fecha fecha;
-	 
-	private Controlador controlador;
-	 
-	public double getPrecio() {
-		return 0;
+	private String nombre;
+	private double precio;
+	List<Jugador> jugadores;
+	
+	public void cambiarJugador(Jugador jugadorActual, Jugador nuevoJugador) {
+		
 	}
 	 
-	public void setPrecio(double precio) {
-	 
+	public void eliminarJugador(Jugador jugador) {
 	}
 	 
-	public string getNombre() {
-		return null;
-	}
-	 
-	public ArrayList getJugadores() {
-		return null;
-	}
-	 
-	public void agregarJugador() {
-	 
-	}
-	 
-	public void cambiarJugador() {
-	 
-	}
-	 
-	public void eliminarJugador() {
-	 
-	}
-	 
-	public void almacenarEquipo(jugadores lista jugadores) {
-	 
-	}
-	 
-	public boolean validarSaldoDisponible() {
+	public boolean haySaldoDisponible() {
 		return false;
 	}
 	 
-	public void validarCostoEquipo(Equipo equipo) {
-            if (equipo.getPrecio()>100000)
-                return false;
-            else
-                return true;
+	public boolean validarCostoDelEquipo() {
+        if (getPrecio()>100000)
+            return false;
+        else
+            return true;
 	}
 	 
-	public void validarJugadores(Equipo equipo) {
+	public void validarJugadores() {
 	 
 	}
 	 
-	public boolean validarCantJugadoresxEquip() {
-            if (equipo.getJugadores().size()!=15)               
-                   return false;
-                else 
-                    return true;
+	public boolean validarCantidadJugadoresTotal() {
+        if (jugadores.size()<15) {               
+        	return false;
+        } else { 
+        	return true;
+        }
 	}
 	 
 	public boolean validarCambiosPermitidos() {
 		return false;
 	}
 	 
-	public setIdEquipo() {
-	 
-	}
-	 
-	public getIdEquipo() {
-	 
-	}
-	 
-	public validarCantDeJugadoresXPosicion(Equipo equipo) {
-             List list = new ArrayList();
-            int cantDef=0;
-            int cantMed=0;
-            int cantDel=0;
-            int cantArq=0;
-            int cantDefSup=0;
-            int cantMedSup=0;
-            int cantDelSup=0;
-            int cantArqSup=0;
-            list=equipo.getJugadores();
-            Iterator iter=list.iterator();
-            while (iter.hasNext())
-                {
-                    AbstractJugador jug=(AbstractJugador) iter.next();
-                    switch (jug.getPosicion()){
-                        case 0: 
-                            if (jug.getIsSuplente())
-                            cantArqSup=cantArqSup+1;
-                            else
-                            cantArq=cantArq+1;  
-                            break;
-                        case 1: 
-                            if (jug.getIsSuplente())
-                            cantDefSup=cantDefSup+1;
-                            else
-                            cantDef=cantDef+1;   
-                            break;
-                         case 2: 
-                            if (jug.getIsSuplente())
-                            cantMedSup=cantMedSup+1;
-                            else
-                            cantMed=cantMed+1;   
-                            break;
-                         default: 
-                            if (jug.getIsSuplente())
-                            cantDelSup=cantDelSup+1;
-                            else
-                            cantDel=cantDel+1;     
-                    }
+	public void validarCantidadDeJugadoresPorPosicion() {
+        int cantDef=0;
+        int cantMed=0;
+        int cantDel=0;
+        int cantArq=0;
+        int cantDefSup=0;
+        int cantMedSup=0;
+        int cantDelSup=0;
+        int cantArqSup=0;
+            
+        for (Jugador jugador : jugadores) {
+            if(jugador.getPosicion()==Jugador.ARQUERO) {
+                if (jugador.isSuplente()) {
+                	cantArqSup=cantArqSup+1;
+                } else {
+                	cantArq=cantArq+1;
                 }
-            if (cantDel<2||cantArq<1||cantMed<2||cantDef<2||cantDel<2||cantDelSup<1||cantArqSup<1||cantMedSup<1||cantDefSup<2 )
-                return false;
-            else
-                return true;
-	
-	 
+            } else if (jugador.getPosicion()==Jugador.DEFENSOR) {
+            	if (jugador.isSuplente()) {
+                    cantDefSup=cantDefSup+1;
+            	} else {
+                    cantDef=cantDef+1;
+            	}
+            } else if (jugador.getPosicion()==Jugador.MEDIOCAMPISTA) {
+            	if (jugador.isSuplente()) {
+            		cantMedSup=cantMedSup+1;
+            	} else {
+            		cantMed=cantMed+1;
+            	}
+            } else {
+                if (jugador.isSuplente()) {
+                	cantDelSup=cantDelSup+1;
+                } else {
+                	cantDel=cantDel+1;
+                }
+            }
+        }
 	}
-	 
+
+	public void setIdEquipo(int idEquipo) {
+		this.idEquipo = idEquipo;
+	}
+
+	public int getIdEquipo() {
+		return idEquipo;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void addJugador(Jugador jugador) {
+		this.jugadores.add(jugador);
+	}
+	
+	public List<Jugador> getJugadores() {
+		return jugadores;
+	}
+
 }
  
