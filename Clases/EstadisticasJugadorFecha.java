@@ -9,10 +9,10 @@ public class EstadisticasJugadorFecha {
 	private int tiempoRoja;	 
 	private int tiempoAmarilla;	 
 	private int tiempoReemplazado;	 
-	private Jugador JugadorEstrella;
+	private boolean esEstrella;
 	
 	public EstadisticasJugadorFecha() {
-		// TODO Auto-generated constructor stub
+	
 	}
 	
 	public Jugador getJugador() {
@@ -69,11 +69,11 @@ public class EstadisticasJugadorFecha {
 	public void setTiempoReemplazado(int tiempoReemplazado) {
 		this.tiempoReemplazado = tiempoReemplazado;
 	}
-	public Jugador getJugadorEstrella() {
-		return JugadorEstrella;
+	public boolean getEsEstrella() {
+		return esEstrella;
 	}
-	public void setJugadorEstrella(Jugador jugadorEstrella) {
-		JugadorEstrella = jugadorEstrella;
+	public void setEsEstrella(boolean value) {
+		esEstrella=value;
 	}
 	 
 }
