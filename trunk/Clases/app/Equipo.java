@@ -25,34 +25,34 @@ public class Equipo {
 		jugadores.remove(jugador);
 	}
 	 
-	public void haySaldoDisponible() throws SaldoInsuficienteException {
+	public void haySaldoDisponible() throws ValidationException {
 		//se toma como que hay saldo disponible el monto del precio del jugador mas barato
 		double saldo=Constantes.LIMITE_COSTO_EQUIPO-precio;
 		
 		if (saldo<Constantes.COSTO_INICIAL_JUGADOR)
-			throw new SaldoInsuficienteException();
+			throw new ValidationException("Saldo insuficiente");
 		
 	}
 	 
-	public void validarCostoDelEquipo() throws LimiteCostoException {
+	public void validarCostoDelEquipo() throws ValidationException {
         if (getPrecio()>Constantes.LIMITE_COSTO_EQUIPO)
-            throw new LimiteCostoException();
+            throw new ValidationException("Se alcanzó el límite de costo del equipo");
 	}
 	 
 	public void validarJugadores() {
 	 
 	}
 	 
-	public void validarCantidadJugadoresTotal() throws CantidadMaximaJugadoresException {
+	public void validarCantidadJugadoresTotal() throws ValidationException {
         if (jugadores.size()>Constantes.MAXIMA_CANTIDAD_JUGADORES)               
-        	throw new CantidadMaximaJugadoresException();
+        	throw new ValidationException("Se superó la cantidad máxima de jugadores");
 	}
 	 
 	public boolean validarCambiosPermitidos() {
 		return false;
 	}
 	 
-	public void validarCantidadDeJugadoresPorPosicion() throws JugadoresPorPosicionException {
+	public void validarCantidadDeJugadoresPorPosicion() throws ValidationException {
         int cantDefensores=0;
         int cantMediocampistas=0;
         int cantDelanteros=0;
@@ -74,7 +74,7 @@ public class Equipo {
             }
         }
         if(cantArqueros<minimo || cantDelanteros<minimo || cantDefensores<minimo || cantMediocampistas<minimo){
-        	throw new JugadoresPorPosicionException();
+        	throw new ValidationException("No se alcanzó el mínimo de jugadores por posición");
         }
 	}
 

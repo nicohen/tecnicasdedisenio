@@ -23,8 +23,12 @@ public class Jugador {
 	public static final int MEDIOCAMPISTA = 3;
 	public static final int DELANTERO = 4;
 	
-	public Jugador() {
+	public Jugador(String nombre,int posicion,boolean isSuplente,String club) {
 		precio=Constantes.COSTO_INICIAL_JUGADOR;
+		this.nombre=nombre;
+		this.posicion=posicion;
+		this.isSuplente=isSuplente;
+		this.club=club;
 	}
 	
 	public void actualizarDatos(EstadisticasJugadorFecha estadisticas) {
