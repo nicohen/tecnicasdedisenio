@@ -1,6 +1,8 @@
 package app;
 import java.util.ArrayList;
 
+import exceptions.SaldoInsuficienteException;
+
 public class Participante {
  
 	private int idParticipante;
@@ -102,6 +104,13 @@ public class Participante {
 	}
 	 
 	public void comprarJugador(Jugador jugador) {
+		try{
+			this.equipo.haySaldoDisponible(jugador.getPrecio());
+			this.equipo.addJugador(jugador);
+		}
+		catch (SaldoInsuficienteException e){
+			//ver que hacer aca
+		}
 	 
 	}
 }
