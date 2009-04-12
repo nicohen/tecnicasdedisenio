@@ -1,3 +1,5 @@
+import utiles.Constantes;
+
 public class Jugador {
  
 	private int idJugador;
@@ -21,6 +23,7 @@ public class Jugador {
 	public static final int DELANTERO = 4;
 	
 	public Jugador() {
+		precio=Constantes.COSTO_INICIAL_JUGADOR;
 	}
 	
 	public void actualizarDatos(EstadisticasJugadorFecha estadisticas) {

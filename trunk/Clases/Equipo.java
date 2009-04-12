@@ -20,7 +20,7 @@ public class Equipo {
 	}
 	 
 	public boolean validarCostoDelEquipo() {
-        if (getPrecio()>Constantes.LIMITE_COSTO)
+        if (getPrecio()>Constantes.LIMITE_COSTO_EQUIPO)
             return false;
         else
             return true;
