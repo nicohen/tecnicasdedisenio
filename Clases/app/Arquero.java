@@ -1,3 +1,5 @@
+package app;
+
 public class Arquero extends Jugador {
  
 	private int cantPenalesAtajados; 

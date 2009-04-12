@@ -1,3 +1,4 @@
+package app;
 public class EstadisticasJugadorFecha {
  
 	private Jugador jugador; 
