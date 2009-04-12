@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.List;
 import utiles.Constantes;
+import exceptions.*;
 
 public class Equipo {
  
@@ -8,6 +10,12 @@ public class Equipo {
 	private double precio;
 	List<Jugador> jugadores;
 	
+	public Equipo(String nombre,List<Jugador> jugadores){
+		this.nombre=nombre;
+		this.precio=0;
+		this.jugadores=jugadores;
+		
+	}
 	public void cambiarJugador(Jugador jugadorActual, Jugador nuevoJugador) {
 		
 	}
@@ -16,73 +24,56 @@ public class Equipo {
 		jugadores.remove(jugador);
 	}
 	 
-	public boolean haySaldoDisponible() {
-		if (precio > 0){
-			return true;
-		}
-		else
-			return false;
+	public void haySaldoDisponible() throws SaldoInsuficienteException {
+		//se toma como que hay saldo disponible el monto del precio del jugador mas barato
+		double saldo=Constantes.LIMITE_COSTO_EQUIPO-precio;
+		
+		if (saldo<Constantes.COSTO_INICIAL_JUGADOR)
+			throw new SaldoInsuficienteException();
+		
 	}
 	 
-	public boolean validarCostoDelEquipo() {
+	public void validarCostoDelEquipo() throws LimiteCostoException {
         if (getPrecio()>Constantes.LIMITE_COSTO_EQUIPO)
-            return false;
-        else
-            return true;
+            throw new LimiteCostoException();
 	}
 	 
 	public void validarJugadores() {
 	 
 	}
 	 
-	public boolean validarCantidadJugadoresTotal() {
-        if (jugadores.size()<Constantes.MAXIMA_CANTIDAD_JUGADORES) {               
-        	return false;
-        } else { 
-        	return true;
-        }
+	public void validarCantidadJugadoresTotal() throws CantidadMaximaJugadoresException {
+        if (jugadores.size()>Constantes.MAXIMA_CANTIDAD_JUGADORES)               
+        	throw new CantidadMaximaJugadoresException();
 	}
 	 
 	public boolean validarCambiosPermitidos() {
 		return false;
 	}
 	 
-	public void validarCantidadDeJugadoresPorPosicion() {
-        int cantDef=0;
-        int cantMed=0;
-        int cantDel=0;
-        int cantArq=0;
-        int cantDefSup=0;
-        int cantMedSup=0;
-        int cantDelSup=0;
-        int cantArqSup=0;
-            
+	public void validarCantidadDeJugadoresPorPosicion() throws JugadoresPorPosicionException {
+        int cantDefensores=0;
+        int cantMediocampistas=0;
+        int cantDelanteros=0;
+        int cantArqueros=0;
+        int minimo=Constantes.MIN_JUGADORES_POSICION;
+        
         for (Jugador jugador : jugadores) {
-            if(jugador.getPosicion()==Jugador.ARQUERO) {
-                if (jugador.isSuplente()) {
-                	cantArqSup=cantArqSup+1;
-                } else {
-                	cantArq=cantArq+1;
-                }
-            } else if (jugador.getPosicion()==Jugador.DEFENSOR) {
-            	if (jugador.isSuplente()) {
-                    cantDefSup=cantDefSup+1;
-            	} else {
-                    cantDef=cantDef+1;
-            	}
-            } else if (jugador.getPosicion()==Jugador.MEDIOCAMPISTA) {
-            	if (jugador.isSuplente()) {
-            		cantMedSup=cantMedSup+1;
-            	} else {
-            		cantMed=cantMed+1;
-            	}
-            } else {
-                if (jugador.isSuplente()) {
-                	cantDelSup=cantDelSup+1;
-                } else {
-                	cantDel=cantDel+1;
-                }
+            switch (jugador.getPosicion()){
+            
+            case Jugador.ARQUERO: cantArqueros++;
+           	  break;
+            case Jugador.DELANTERO: cantDelanteros++;
+			  break;
+            case Jugador.DEFENSOR: cantDefensores++;
+			  break;
+            case Jugador.MEDIOCAMPISTA: cantMediocampistas++;
+			  break;
+			 
             }
+        }
+        if(cantArqueros<minimo || cantDelanteros<minimo || cantDefensores<minimo || cantMediocampistas<minimo){
+        	throw new JugadoresPorPosicionException();
         }
 	}
 
