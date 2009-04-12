@@ -1,5 +1,6 @@
 package app;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import utiles.Constantes;
 import exceptions.*;
@@ -17,12 +18,26 @@ public class Equipo {
 		this.jugadores=jugadores;
 		
 	}
-	public void cambiarJugador(Jugador jugadorActual, Jugador nuevoJugador) {
+	public void cambiarJugador(Jugador jugadorActual, Jugador nuevoJugador) throws JugadorInexistenteException {
+		Iterator<Jugador> it=jugadores.iterator();
+		int i=0;
 		
+		while(it.hasNext()){
+			Jugador jugador=it.next();
+			if (jugador.getIdJugador()==jugadorActual.getIdJugador()){
+				jugadores.set(i, nuevoJugador);
+				return;
+			}
+			i++;		
+		}
+		throw new JugadorInexistenteException("No se encontró el jugador a cambiar");
 	}
 	 
-	public void eliminarJugador(Jugador jugador) {
+	public void eliminarJugador(Jugador jugador) throws JugadorInexistenteException {
+		if (jugadores.contains(jugador))
 		jugadores.remove(jugador);
+		else
+		throw new JugadorInexistenteException("No se encontró el jugador a borrar");
 	}
 	 
 	public void haySaldoDisponible() throws ValidationException {
@@ -40,7 +55,7 @@ public class Equipo {
 	}
 	 
 	public void validarJugadores() {
-	 
+	 //TODO: este no se que hace
 	}
 	 
 	public void validarCantidadJugadoresTotal() throws ValidationException {
@@ -49,6 +64,7 @@ public class Equipo {
 	}
 	 
 	public boolean validarCambiosPermitidos() {
+		//Esto no lo pide el enunciado...
 		return false;
 	}
 	 

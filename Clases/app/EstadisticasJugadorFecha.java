@@ -12,7 +12,19 @@ public class EstadisticasJugadorFecha {
 	private int tiempoReemplazado;	 
 	private boolean esEstrella;
 	
-	public EstadisticasJugadorFecha() {
+	public EstadisticasJugadorFecha(Jugador jugador,int goles,boolean ganoFecha,int penalesConvertidos,int amarillas,
+									int rojas,int tiempoRoja,int tiempoAmarilla,int tiempoReemplazado,boolean esEstrella){
+	
+		this.jugador=jugador;
+		this.goles=goles;
+		this.ganoFecha=ganoFecha;
+		this.penalesConvertidos=penalesConvertidos;
+		this.amarillas=amarillas;
+		this.rojas=rojas;
+		this.tiempoRoja=tiempoRoja;
+		this.tiempoAmarilla=tiempoAmarilla;
+		this.tiempoReemplazado=tiempoReemplazado;
+		this.esEstrella=esEstrella;
 	
 	}
 	

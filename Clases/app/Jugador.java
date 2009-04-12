@@ -30,9 +30,11 @@ public class Jugador {
 		this.isSuplente=isSuplente;
 		this.club=club;
 	}
+
 	
 	public void actualizarDatos(EstadisticasJugadorFecha estadisticas) {
-	
+		//TODO:implementar
+		
 	}
 
 	public int getIdJugador() {
