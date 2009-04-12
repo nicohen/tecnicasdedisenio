@@ -1,4 +1,5 @@
 import java.util.List;
+import utiles.Constantes;
 
 public class Equipo {
  
@@ -19,7 +20,7 @@ public class Equipo {
 	}
 	 
 	public boolean validarCostoDelEquipo() {
-        if (getPrecio()>100000)
+        if (getPrecio()>Constantes.LIMITE_COSTO)
             return false;
         else
             return true;
@@ -30,7 +31,7 @@ public class Equipo {
 	}
 	 
 	public boolean validarCantidadJugadoresTotal() {
-        if (jugadores.size()<15) {               
+        if (jugadores.size()<Constantes.MAXIMA_CANTIDAD_JUGADORES) {               
         	return false;
         } else { 
         	return true;
