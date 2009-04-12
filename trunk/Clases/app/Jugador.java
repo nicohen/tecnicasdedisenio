@@ -1,3 +1,4 @@
+package app;
 import utiles.Constantes;
 
 public class Jugador {
