@@ -17,24 +17,9 @@ public class Participante {
 		this.equipo=equipo;	 
 		puntosAcumulados=0;	 
 		puntosFechaActual=0;	
+		
 	}
-	
-	public int iniciarSesion(String nombre, String apellido, String password) {
-		 
-	}
-	 
-	public void cerrarSesion() {
-	 
-	}
-	 
-	public void armarEquipo() {
-	 
-	}
-	 
-	public void comprarJugador(Jugador jugador) {
-	 
-	}
-	 
+
 	public int getIdParticipante() {
 		return idParticipante;
 	}
@@ -98,6 +83,23 @@ public class Participante {
 	public void setPuntosFechaActual(int puntosFechaActual) {
 		this.puntosFechaActual = puntosFechaActual;
 	}
- 
+	
+	//faltantes de implementacion.
+	public int iniciarSesion(String nombre, String apellido, String password) {
+		return 0; 
+	}
+	 
+	public void cerrarSesion() {
+	 
+	}
+	/* crea la instancia de un nuevo equipo a crear por el usuario deberia devolver un equipo dicho armar equipo un equipo vacio y recibe elnombre del equipo*/ 
+	public Equipo armarEquipo(Equipo equipo)) {
+		Equipo equipo;
+	return equipo; 
+	}
+	 
+	public void comprarJugador(Jugador jugador) {
+	 
+	}
 }
  
