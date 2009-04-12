@@ -40,12 +40,14 @@ public class Equipo {
 		throw new JugadorInexistenteException("No se encontró el jugador a borrar");
 	}
 	 
-	public void haySaldoDisponible(double costoJugador) throws SaldoInsuficienteException {
+	public boolean haySaldoDisponible(double costoJugador) throws SaldoInsuficienteException {
 		
 		double saldo=Constantes.LIMITE_COSTO_EQUIPO-precio;
 		
 		if (saldo<costoJugador)
-			throw new SaldoInsuficienteException("Saldo insuficiente");
+			return false;
+		else
+			return true;
 		
 	}
 	 
