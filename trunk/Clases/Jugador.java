@@ -27,7 +27,7 @@ public class Jugador {
 	}
 	
 	public void actualizarDatos(EstadisticasJugadorFecha estadisticas) {
-	 
+	
 	}
 
 	public int getIdJugador() {
@@ -37,7 +37,7 @@ public class Jugador {
 	public void setIdJugador(int idJugador) {
 		this.idJugador = idJugador;
 	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}

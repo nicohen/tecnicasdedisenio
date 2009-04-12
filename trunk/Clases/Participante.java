@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Participante {
  
 	private int idParticipante;
@@ -93,9 +95,9 @@ public class Participante {
 	 
 	}
 	/* crea la instancia de un nuevo equipo a crear por el usuario deberia devolver un equipo dicho armar equipo un equipo vacio y recibe elnombre del equipo*/ 
-	public Equipo armarEquipo(Equipo equipo)) {
-		Equipo equipo;
-	return equipo; 
+	public void armarEquipo(String nombreEquipo) {
+		ArrayList<Jugador> jugadores=new ArrayList<Jugador>(); 
+		this.equipo=new Equipo(nombreEquipo,jugadores);
 	}
 	 
 	public void comprarJugador(Jugador jugador) {
