@@ -13,10 +13,15 @@ public class Equipo {
 	}
 	 
 	public void eliminarJugador(Jugador jugador) {
+		jugadores.remove(jugador);
 	}
 	 
 	public boolean haySaldoDisponible() {
-		return false;
+		if (precio > 0){
+			return true;
+		}
+		else
+			return false;
 	}
 	 
 	public boolean validarCostoDelEquipo() {
