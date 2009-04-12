@@ -1,7 +1,6 @@
 public class Participante {
  
 	private int idParticipante;
-	private String apodo;
 	private String password;
 	private int dni;	 
 	private String nombre; 
@@ -10,11 +9,17 @@ public class Participante {
 	private int puntosAcumulados;	 
 	private int puntosFechaActual;	 
 
-	public Participante() {
-		// TODO Auto-generated constructor stub
+	public Participante(String nombre, String apellido, String password, int dni,Equipo equipo ) {
+		this.password= password;
+		this.dni=dni;	 
+		this.nombre=nombre; 
+		this.apellido=apellido;	 
+		this.equipo=equipo;	 
+		puntosAcumulados=0;	 
+		puntosFechaActual=0;	
 	}
 	
-	public void IngresarSesion() {
+	public int iniciarSesion(String nombre, String apellido, String password) {
 		 
 	}
 	 
@@ -36,14 +41,6 @@ public class Participante {
 
 	public void setIdParticipante(int idParticipante) {
 		this.idParticipante = idParticipante;
-	}
-
-	public String getApodo() {
-		return apodo;
-	}
-
-	public void setApodo(String apodo) {
-		this.apodo = apodo;
 	}
 
 	public String getPassword() {
