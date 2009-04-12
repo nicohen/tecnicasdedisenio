@@ -8,7 +8,7 @@ public class Constantes {
 	public static final int MAX_JUGADORES_CLUB=4;
 	public static final int MAX_JUGADORES_POSICION=2;
 	public static final int ATAJA_PENAL_PUNTOS=5;
-	public static final int ERRA_PENAL_PUNTOS=4;
+	public static final int ERRA_PENAL_PUNTOS=-4;
 	public static final int NO_JUEGA_PUNTOS=-2;
 	public static final int NO_JUEGA_DOSTIEMPOS_PUNTOS=-1;
 	public static final int EXPULSADO_SEGUNDOTIEMPO_PUNTOS=-2;
