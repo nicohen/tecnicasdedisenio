@@ -13,10 +13,8 @@ public class Jugador {
 	private boolean juega;
 	private boolean isSuplente;
 	private int cantPenalesErrados;
-	private String club;
-	private int tiemposJugados;
+	private boolean completoPartido;
 	private boolean isEstrella;
-	private int tiempoReemplazado;
 	 
 	public static final int ARQUERO = 1;
 	public static final int DEFENSOR = 2;
@@ -28,12 +26,16 @@ public class Jugador {
 		this.nombre=nombre;
 		this.posicion=posicion;
 		this.isSuplente=isSuplente;
-		this.club=club;
 	}
 
 	
 	public void actualizarDatos(EstadisticasJugadorFecha estadisticas) {
-		//TODO:implementar
+		goles=estadisticas.getGoles();
+		amarillas=estadisticas.getAmarillas()- estadisticas.getTiempoAmarilla();
+		rojas=estadisticas.getRojas()- estadisticas.getTiempoRoja();
+		isEstrella=estadisticas.getEsEstrella();
+		cantPenalesErrados=estadisticas.getPenalesErrados();
+		completoPartido= estadisticas.getCompletoPartido();
 		
 	}
 
