@@ -16,7 +16,7 @@ public class Equipo {
 		this.nombre=nombre;
 		this.precio=0;
 		this.jugadores=jugadores;
-		
+		this.idEquipo=CampeonatoSingleton.getCampeonatoSingleton().getIdEquipoNuevo();
 	}
 	public void cambiarJugador(Jugador jugadorActual, Jugador nuevoJugador) throws JugadorInexistenteException {
 		Iterator<Jugador> it=jugadores.iterator();
