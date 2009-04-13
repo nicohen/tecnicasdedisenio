@@ -2,6 +2,9 @@ package test;
 
 import java.util.ArrayList;
 import java.util.List;
+import exceptions.JugadorInexistenteException;
+import exceptions.SaldoInsuficienteException;
+import exceptions.ValidationException;
 
 import junit.framework.TestCase;
 import app.Controlador;
@@ -9,14 +12,16 @@ import app.Equipo;
 import app.EstadisticasJugadorFecha;
 import app.Jugador;
 import app.Participante;
+import java.io.IOException;
 
 
 public class TestParticipante extends TestCase {
-	public void participanteTest() {
+	public void participanteTest() throws IOException, ValidationException, SaldoInsuficienteException {
 		Controlador controlador = new Controlador();
 		Participante tecnico = null;//new Participante("Nicolas", "Cohen", "123456", 31252197, null);
 		List<Jugador> jugadores = new ArrayList<Jugador>();
 		Equipo equipo = null;
+                int result;
 		//ingreso los datos del usuario.
 		tecnico.setDni(30598832);
 		tecnico.setApellido("Lambda");
@@ -25,7 +30,7 @@ public class TestParticipante extends TestCase {
 		tecnico.setEquipo(equipo);
 		
 		//inicio la sesion del usuario
-		result= tecnico.iniciarSesion("Nicolas", "Cohen", "123456",31252197,equipo);
+		result= tecnico.iniciarSesion("nombre","apellido","1234");
 		tecnico.armarEquipo("Pirulo");
 		/*creacion de algunos jugadores de prueba*/
 		Jugador jugador1 = new Jugador("ariel ortega",3,false,"River Plate");
@@ -178,13 +183,18 @@ public class TestParticipante extends TestCase {
 		
 		/*pido los puntajes de las fechas*/
 //		expectedResult= "El equipo no cuenta con la cantiad  minima de jugadores";
-		/*
-		if (expectedResult==0){
-			Assert.assertEquals(expectedResult, result);	
+		
+                System.out.println("1 Para ingresar 15 jugadores, 2 para ingresar mas");
+                char caracter = (char) System.in.read(); 
+                 switch (caracter){
+                case '1':equipo.validarCantidadJugadoresTotal();
+                break;
+                case '2':tecnico.comprarJugador(jugador27);
+                         EstadisticasJugadorFecha estadisticaJugador16 = new EstadisticasJugadorFecha(jugador27,0,true,0,0,0,0,0,true,false,0);
+                         jugador16.actualizarDatos(estadisticaJugador16);
+                         equipo.validarCantidadJugadoresTotal();
+                break;
+                default: System.out.println("Eligio NADA!!!");
 		}
-		else 
-			
-	
-		}*/
 	}
 }
