@@ -1,10 +1,6 @@
 package test;
 
-import app.Controlador;
-import app.Equipo;
-import app.Participante;
 import junit.framework.TestCase;
-import junit.framework.Assert;
 
 
 public class TestParticipante extends TestCase {

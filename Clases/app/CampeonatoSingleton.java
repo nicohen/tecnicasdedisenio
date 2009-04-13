@@ -1,5 +1,6 @@
 package app;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CampeonatoSingleton {
@@ -11,10 +12,10 @@ public class CampeonatoSingleton {
 	private static List<Participante> listaParticipantes;
 	private CampeonatoSingleton(){}
 	
-	static public CampeonatoSingleton getCampeonatoSingleton() {
+	static public CampeonatoSingleton getInstancia() {
 		if(singleton==null){
+			listaParticipantes = new ArrayList<Participante>();
 			singleton=new CampeonatoSingleton();
-			
 		}
 		return singleton;
 	}

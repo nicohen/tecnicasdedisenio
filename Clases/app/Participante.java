@@ -22,7 +22,7 @@ public class Participante {
 		this.equipo=equipo;	 
 		puntosAcumulados=0;	 
 		puntosFechaActual=0;	
-		this.idParticipante=CampeonatoSingleton.getCampeonatoSingleton().getIdParticipanteNuevo();
+		this.idParticipante=CampeonatoSingleton.getInstancia().getIdParticipanteNuevo();
 	}
 
 	public int getIdParticipante() {

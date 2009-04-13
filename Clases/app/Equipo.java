@@ -1,9 +1,10 @@
 package app;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import utiles.Constantes;
-import exceptions.*;
+import exceptions.JugadorInexistenteException;
+import exceptions.ValidationException;
 
 public class Equipo {
  
@@ -16,7 +17,7 @@ public class Equipo {
 		this.nombre=nombre;
 		this.precio=0;
 		this.jugadores=jugadores;
-		this.idEquipo=CampeonatoSingleton.getCampeonatoSingleton().getIdEquipoNuevo();
+		this.idEquipo=CampeonatoSingleton.getInstancia().getIdEquipoNuevo();
 	}
 	public void cambiarJugador(Jugador jugadorActual, Jugador nuevoJugador) throws JugadorInexistenteException {
 		Iterator<Jugador> it=jugadores.iterator();
@@ -61,7 +62,7 @@ public class Equipo {
 	}*/
 	 
 	public void validarCantidadJugadoresTotal() throws ValidationException {
-        if (jugadores.size()>Constantes.MAXIMA_CANTIDAD_JUGADORES)               
+        if (jugadores.size()>Constantes.MAXIMA_CANTIDAD_JUGADORES_EQUIPO)               
         	throw new ValidationException("Se superó la cantidad máxima de jugadores");
 	}
 	 
@@ -75,7 +76,7 @@ public class Equipo {
         int cantMediocampistas=0;
         int cantDelanteros=0;
         int cantArqueros=0;
-        int minimo=Constantes.MIN_JUGADORES_POSICION;
+        int minimo=Constantes.MINIMA_CANTIDAD_JUGADORES_POSICION;
         
         for (Jugador jugador : jugadores) {
             switch (jugador.getPosicion()){        
