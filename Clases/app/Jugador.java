@@ -24,8 +24,8 @@ public class Jugador {
 	public static final int MEDIOCAMPISTA = 3;
 	public static final int DELANTERO = 4;
 	
-	public Jugador(String nombre,int posicion,boolean isSuplente,String club) {
-		precio=Constantes.COSTO_INICIAL_JUGADOR;
+	public Jugador(String nombre, int posicion, boolean isSuplente, String club) {
+		precio = Constantes.COSTO_INICIAL_JUGADOR;
 		this.nombre=nombre;
 		this.posicion=posicion;
 		this.isSuplente=isSuplente;
@@ -77,7 +77,7 @@ public class Jugador {
 		jugoPartidoEntero=estadisticas.getCompletoPartido();
 		cantPenalesErrados=estadisticas.getPenalesErrados();
 		completoPartido= estadisticas.getCompletoPartido();
-		precio=(COSTO_INICIAL_JUGADOR + 100 * getPuntaje(goles,equipoGana,rojas, estadisticas.getTiempoRoja(),penalesAtajados,cantPenalesErrados,jugoPartidoEntero));
+		precio=(Constantes.COSTO_INICIAL_JUGADOR + 100 * getPuntaje(goles,equipoGana,rojas, estadisticas.getTiempoRoja(),penalesAtajados,cantPenalesErrados,jugoPartidoEntero));
 	}
 
 	public int getIdJugador() {
