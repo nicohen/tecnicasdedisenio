@@ -36,7 +36,7 @@ public class CampeonatoSingleton {
 				j++;//j para jugadores de equipo
 				k=0;
 			}
-			//TODO: actualizar precio del equipo y puntaje
+			//TODO: actualizar puntos del participante usando puntosFechaActual, y puntosAcumulados
 			i++;//i para participantes
 			j=0;
 		}
