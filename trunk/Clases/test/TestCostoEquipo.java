@@ -14,14 +14,13 @@ import app.Jugador;
 import app.Participante;
 import java.io.IOException;
 
-public class TestEquipo extends TestCase {
-	public void equipoTest() throws IOException, ValidationException, SaldoInsuficienteException {
+
+public class TestCostoEquipo extends TestCase {
+	public void participanteTest() throws IOException, ValidationException, SaldoInsuficienteException {
 		Controlador controlador = new Controlador();
 		Participante tecnico = null;//new Participante("Nicolas", "Cohen", "123456", 31252197, null);
-                Participante tecnico1 = null;
 		List<Jugador> jugadores = new ArrayList<Jugador>();
 		Equipo equipo = null;
-                Equipo equipo1 = null;
                 int result;
 		//ingreso los datos del usuario.
 		tecnico.setDni(30598832);
@@ -29,19 +28,10 @@ public class TestEquipo extends TestCase {
 		tecnico.setNombre("Lalo");	
 		tecnico.setPassword("123456");
 		tecnico.setEquipo(equipo);
-
-                tecnico1.setDni(30598832);
-		tecnico1.setApellido("Lambda");
-		tecnico1.setNombre("Lalo");	
-		tecnico1.setPassword("123456");
-		tecnico1.setEquipo(equipo);
-                
+		
 		//inicio la sesion del usuario
-		result= tecnico.iniciarSesion("nombre","apellido","123456");
+		result= tecnico.iniciarSesion("nombre","apellido","1234");
 		tecnico.armarEquipo("Pirulo");
-                
-                result= tecnico1.iniciarSesion("nombre1","apellido1","123456");
-		tecnico1.armarEquipo("Pirulo1");
 		/*creacion de algunos jugadores de prueba*/
 		Jugador jugador1 = new Jugador("ariel ortega",3,false,"River Plate");
 		Jugador jugador2 = new Jugador("Rolfi Montenegro",4,false,"Independiente");
@@ -73,14 +63,7 @@ public class TestEquipo extends TestCase {
 		Jugador jugador28 = new Jugador("Jose Bergesio",2,false,"San Martin de Tucuman");
 		Jugador jugador29 = new Jugador("Luli Rios",2,false,"San Lorenzo");
 		Jugador jugador30 = new Jugador("Lionel Messi",2,false,"Estudiantes de la Plata");
-                jugador1.setRojas(1);
-                jugador1.setGoles(4);
-                jugador1.setJuega(true);
-                
-                jugador2.setEstrella(true);
-                jugador2.setGoles(4);
-                jugador2.setJuega(true);
-                
+	
 		jugadores.add(jugador1);
 		jugadores.add(jugador2);
 		jugadores.add(jugador3);
@@ -115,7 +98,7 @@ public class TestEquipo extends TestCase {
 		equipo = new Equipo("Pirulo", jugadores);
 		
 		/*compro jugadores*/
-		tecnico.comprarJugador(jugador1);
+		tecnico.comprarJugador(jugador12);
 		tecnico.comprarJugador(jugador13);
 		tecnico.comprarJugador(jugador3);
 		tecnico.comprarJugador(jugador7);
@@ -131,25 +114,9 @@ public class TestEquipo extends TestCase {
 		tecnico.comprarJugador(jugador26);
 		tecnico.comprarJugador(jugador9);
 		
-                tecnico1.comprarJugador(jugador2);
-		tecnico1.comprarJugador(jugador13);
-		tecnico1.comprarJugador(jugador3);
-		tecnico1.comprarJugador(jugador7);
-		tecnico1.comprarJugador(jugador29);
-		tecnico1.comprarJugador(jugador30);
-		tecnico1.comprarJugador(jugador1);
-		tecnico1.comprarJugador(jugador16);
-		tecnico1.comprarJugador(jugador17);
-		tecnico1.comprarJugador(jugador19);
-		tecnico1.comprarJugador(jugador18);
-		tecnico1.comprarJugador(jugador24);
-		tecnico1.comprarJugador(jugador25);
-		tecnico1.comprarJugador(jugador26);
-		tecnico1.comprarJugador(jugador9);
-		
 		/*cargo estadisticas de fecha*/
 		
-		EstadisticasJugadorFecha estadisticaJugador1 = new EstadisticasJugadorFecha(jugador1,0,true,0,0,0,0,0,true,false,0);
+		EstadisticasJugadorFecha estadisticaJugador1 = new EstadisticasJugadorFecha(jugador12,0,true,0,0,0,0,0,true,false,0);
 		EstadisticasJugadorFecha estadisticaJugador2 = new EstadisticasJugadorFecha(jugador13,1,false,0,0,0,0,0,true,false,0);
 		EstadisticasJugadorFecha estadisticaJugador3 = new EstadisticasJugadorFecha(jugador3,0,true,0,0,0,0,0,true,false,0);
 		EstadisticasJugadorFecha estadisticaJugador4 = new EstadisticasJugadorFecha(jugador7,0,true,0,0,0,0,0,true,false,0);
@@ -164,7 +131,7 @@ public class TestEquipo extends TestCase {
 		EstadisticasJugadorFecha estadisticaJugador13 = new EstadisticasJugadorFecha(jugador25,2,true,0,0,0,0,0,true,false,1);
 		EstadisticasJugadorFecha estadisticaJugador14 = new EstadisticasJugadorFecha(jugador26,1,false,0,0,0,0,0,true,false,1);
 		EstadisticasJugadorFecha estadisticaJugador15 = new EstadisticasJugadorFecha(jugador9,0,true,0,0,0,0,0,true,false,1);
-		EstadisticasJugadorFecha estadisticaJugador16 = new EstadisticasJugadorFecha(jugador2,2,true,0,0,0,0,0,true,false,0);
+//		EstadisticasJugadorFecha estadisticaJugador16 = new EstadisticasJugadorFecha("Piojo Lopez",2,true,0,0,0,0,0,true,false,0);
 //		EstadisticasJugadorFecha estadisticaJugador17 = new EstadisticasJugadorFecha("Lucas Castroan",2,true,0,0,0,0,0,true,false,0);
 //		EstadisticasJugadorFecha estadisticaJugador18 = new EstadisticasJugadorFecha("Leopoldo lugone",0,true,0,0,0,0,0,true,false,0);
 //		EstadisticasJugadorFecha estadisticaJugador19 = new EstadisticasJugadorFecha("Lucas Jiemenz",2,false,0,0,0,0,0,true,false,0);
@@ -198,7 +165,7 @@ public class TestEquipo extends TestCase {
 		jugador13.actualizarDatos(estadisticaJugador13);
 		jugador14.actualizarDatos(estadisticaJugador14);
 		jugador15.actualizarDatos(estadisticaJugador15);
-		jugador16.actualizarDatos(estadisticaJugador16);
+//		jugador16.actualizarDatos(estadisticaJugador16);
 //		jugador17.actualizarDatos(estadisticaJugador17);
 //		jugador18.actualizarDatos(estadisticaJugador18);
 //		jugador19.actualizarDatos(estadisticaJugador19);
@@ -217,14 +184,21 @@ public class TestEquipo extends TestCase {
 		/*pido los puntajes de las fechas*/
 //		expectedResult= "El equipo no cuenta con la cantiad  minima de jugadores";
 		
-                System.out.println("El tecnico 2 debe tener mas puntaje por tener un jugador estrella y con mas goles");
-                
-                    System.out.println("el tecnico 1 tiene : ");
-                    System.out.println(tecnico.getPuntosAcumulados() );
-                    System.out.println("el tecnico 2 tiene : " );
-                    System.out.println(tecnico1.getPuntosAcumulados() );
+                System.out.println("1 Para superar los 100000 pesos, 2 para no superarlo");
+                char caracter = (char) System.in.read(); 
+                 switch (caracter){
+                case '1':equipo.validarCostoDelEquipo();
+                break;
+                case '2':tecnico.comprarJugador(jugador27);
+                         tecnico.comprarJugador(jugador4);
+                         tecnico.comprarJugador(jugador5);
+                         tecnico.comprarJugador(jugador6);
+                         tecnico.comprarJugador(jugador8);
+                         tecnico.comprarJugador(jugador21);
+                         tecnico.comprarJugador(jugador22);
+                         equipo.validarCostoDelEquipo();
+                break;
+                default: System.out.println("Eligio NADA!!!");
+		}
 	}
 }
-
-		
-

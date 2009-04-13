@@ -10,6 +10,7 @@ public class CampeonatoSingleton {
 	private static int ultimoIdEquipo=0;
 	private static int ultimoIdJugador=0;
 	private static List<Participante> listaParticipantes;
+	
 	private CampeonatoSingleton(){}
 	
 	static public CampeonatoSingleton getInstancia() {
@@ -28,29 +29,36 @@ public class CampeonatoSingleton {
 				for(EstadisticasJugadorFecha estadisticasJugador:estadisticasJugadores){
 					if (estadisticasJugador.getJugador().getIdJugador()==jugador.getIdJugador()){
 						jugador.actualizarDatos(estadisticasJugador);
+						participante.getEquipo().actualizarEstadisticasJugador(j,jugador);
+						participante.acumularPuntos(jugador.getPuntaje());
 						break;
 					}
-						
 					k++;//k para estadisticas	
 				}
 				j++;//j para jugadores de equipo
 				k=0;
 			}
-			//TODO: actualizar puntos del participante usando puntosFechaActual, y puntosAcumulados
+			//actualiza puntos del participante usando puntosFechaActual, y puntosAcumulados
+			listaParticipantes.set(i, participante);
 			i++;//i para participantes
 			j=0;
 		}
 	}
+	
 	public int getIdJugadorNuevo(){
 		return ultimoIdJugador++;
 	}
+	
 	public int getIdEquipoNuevo(){
 		return ultimoIdEquipo++;
 	}
+
 	public int getIdParticipanteNuevo(){
 		return ultimoIdParticipante++;
 	}
-	public List<Participante> getListaParticipantes(){
-		return this.listaParticipantes;
+
+	public void agregarParticipante(Participante participante) {
+		listaParticipantes.add(participante);		
 	}
+
 }

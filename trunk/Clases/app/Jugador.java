@@ -1,7 +1,7 @@
 package app;
 import utiles.Constantes;
 
-public class Jugador {
+public class Jugador implements Comparable<String> {
  
 	private int idJugador;
 	private String nombre;
@@ -19,54 +19,72 @@ public class Jugador {
 	private String club;
 	private boolean equipoGana;
 	private boolean jugoPartidoEntero;
+	private int puntaje;
+	
 	public static final int ARQUERO = 1;
 	public static final int DEFENSOR = 2;
 	public static final int MEDIOCAMPISTA = 3;
 	public static final int DELANTERO = 4;
 	
 	public Jugador(String nombre, int posicion, boolean isSuplente, String club) {
-		precio = Constantes.COSTO_INICIAL_JUGADOR;
-		this.nombre=nombre;
-		this.posicion=posicion;
-		this.isSuplente=isSuplente;
-		this.idJugador=CampeonatoSingleton.getInstancia().getIdJugadorNuevo();
+		this.idJugador = CampeonatoSingleton.getInstancia().getIdJugadorNuevo();
+		this.precio = Constantes.COSTO_INICIAL_JUGADOR;
+		this.nombre = nombre;
+		this.posicion = posicion;
+		this.isSuplente = isSuplente;
+		this.club = club;
 	}
-	public boolean getGana(){
+	public boolean ganoEquipo(){
 		return equipoGana;
 	}
-	private int getPuntaje(int goles,boolean equipoGana,int rojas,int tiempoRoja, int atajaPenal,int erraPenal,boolean jugoEntero){
-	int puntos=0;
-	int pos=getPosicion();
-	if(goles != 0){
-		switch (pos){        
-	    case ARQUERO: puntos=(puntos+4)*goles;
-	 	  break;
-	    case DELANTERO: puntos=(puntos+1)*goles;
-		  break;
-	    case DEFENSOR: puntos=(puntos+3)*goles;
-		  break;
-	    case MEDIOCAMPISTA: puntos=(puntos+2)*goles;
-	    	break;
+	private int getPuntaje(int golesRealizados, boolean ganoEquipo,int rojas, int tiempoRoja, int penalesAtajados, int penalesErrados, boolean juegaDosTiempos, boolean juega){
+		int puntos = 0;
+		
+		if(golesRealizados > 0){
+			switch (getPosicion()){        
+			    case ARQUERO: puntos=(puntos+Constantes.PUNTOS_GOL_ARQUERO)*golesRealizados; break;
+			    case DEFENSOR: puntos=(puntos+Constantes.PUNTOS_GOL_DEFENSOR)*golesRealizados; break;
+			    case MEDIOCAMPISTA: puntos=(puntos+Constantes.PUNTOS_GOL_MEDIOCAMPISTA)*golesRealizados; break;
+			    case DELANTERO: puntos=(puntos+Constantes.PUNTOS_GOL_DELANTERO)*golesRealizados; break;
+				default: break;
+			}
 		}
+		
+		if(ganoEquipo()) {
+			puntos += Constantes.PUNTOS_CLUB_GANA_PARTIDO;
+		} else {
+			puntos += Constantes.PUNTOS_CLUB_PIERDE_PARTIDO;
+		}
+		
+		if (rojas > 0) {
+			if (tiempoRoja==1) {
+				puntos += Constantes.PUNTOS_EXPULSADO_PRIMERTIEMPO;
+			} else {
+				puntos += Constantes.PUNTOS_EXPULSADO_SEGUNDOTIEMPO;
+			}
+		}
+		
+		//falta validar dos cosas la primera es que si es arquero y recibe un gol se le reste un punto.
+		//la segunda es qeu sea suplente o no juege esa fecha.
+		if (posicion==ARQUERO && penalesAtajados>0) puntos += Constantes.PUNTOS_PENAL_ATAJADO;
+		
+		if (penalesErrados > 0 ) puntos += Constantes.PUNTOS_PENAL_ERRADO;
+		
+		if(!juegaDosTiempos) puntos += Constantes.PUNTOS_NO_JUEGA_DOSTIEMPOS;
+		
+		if(!juega) puntos += Constantes.PUNTOS_NO_JUEGA_PARTIDO;
+		
+		if(posicion==ARQUERO) {
+			getCantidadGolesRecibidos();
+		}
+
+		return puntos;
 	}
-	if(getGana())
-		puntos= puntos+2;
-	else
-		puntos=puntos-1;
 	
-	if (rojas != 0){
-		if (tiempoRoja==1)
-			puntos=puntos-4;
-		else
-			puntos=puntos-2;	
+	protected int getCantidadGolesRecibidos() {
+		return 0;
 	}
-	//falta validar dos cosas la primera es que si es arquero y recibe un gol se le reste un punto.
-	//la segunda es qeu sea suplente o no juege esa fecha.
-	if (atajaPenal != 0) puntos=puntos+5;
-	if (erraPenal != 0 ) puntos=puntos-4;
-	if(!jugoEntero) puntos=puntos-1;
-	return puntos;
-	}
+	
 	public void actualizarDatos(EstadisticasJugadorFecha estadisticas) {
 		goles=estadisticas.getGoles();
 		equipoGana=estadisticas.isGanoFecha();
@@ -77,7 +95,8 @@ public class Jugador {
 		jugoPartidoEntero=estadisticas.getCompletoPartido();
 		cantPenalesErrados=estadisticas.getPenalesErrados();
 		completoPartido= estadisticas.getCompletoPartido();
-		precio=(Constantes.COSTO_INICIAL_JUGADOR + 100 * getPuntaje(goles,equipoGana,rojas, estadisticas.getTiempoRoja(),penalesAtajados,cantPenalesErrados,jugoPartidoEntero));
+		puntaje = getPuntaje(goles,equipoGana,rojas, estadisticas.getTiempoRoja(),penalesAtajados,cantPenalesErrados,jugoPartidoEntero,juega);
+		precio += 100 * puntaje;
 	}
 
 	public int getIdJugador() {
@@ -183,8 +202,16 @@ public class Jugador {
 	public void setEstrella(boolean isEstrella) {
 		this.isEstrella = isEstrella;
 	}
+	public void setPuntaje(int puntaje) {
+		this.puntaje = puntaje;
+	}
+	public int getPuntaje() {
+		return puntaje;
+	}
 
-	
+	public int compareTo(String o) {
+		return club.compareTo(o);
+	}
 	 
 }
  

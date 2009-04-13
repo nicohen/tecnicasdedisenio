@@ -5,27 +5,27 @@ public class Arquero extends Jugador {
 	private int cantPenalesAtajados; 
 	private int cantGolesRecibidos;	 
 	
-	public Arquero(String nombre,int posicion,boolean isSuplente,String club){
-		
-		super(nombre,posicion,isSuplente,club);
-		
+	public Arquero(String nombre, boolean isSuplente, String club){
+		super(nombre,Jugador.ARQUERO,isSuplente,club);
 	}
 	 
-	public void setAtajaPenal(int cantidad) {
-            this.cantPenalesAtajados= cantidad;
+	public void setCantidadPenalesAtajados(int cantidad) {
+		this.cantPenalesAtajados = cantidad;
 	}
 	 
-	public int getAtajaPenal() {
-		return cantPenalesAtajados;
+	public int getCantidadPenalesAtajados() {
+		return this.cantPenalesAtajados;
 	}
 	 
-	public void setCantGolesRecibidos(int cantidad) {
-		cantGolesRecibidos=cantidad;
+	public void setCantidadGolesRecibidos(int cantidad) {
+		this.cantGolesRecibidos = cantidad;
 	}
 	 
-	public int getCantGolesRecibidos() {
-		return cantGolesRecibidos;
+	protected int getCantidadGolesRecibidos() {
+		return this.cantGolesRecibidos;
 	}
+	
+	
 	 
 }
  
