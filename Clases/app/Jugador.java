@@ -38,7 +38,7 @@ public class Jugador {
 		isEstrella=estadisticas.getEsEstrella();
 		cantPenalesErrados=estadisticas.getPenalesErrados();
 		completoPartido= estadisticas.getCompletoPartido();
-		
+		//aca calcula nuevo precio de jugador
 	}
 
 	public int getIdJugador() {
