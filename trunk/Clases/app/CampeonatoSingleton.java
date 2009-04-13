@@ -8,6 +8,7 @@ public class CampeonatoSingleton {
 	private static int ultimoIdParticipante=0;
 	private static int ultimoIdEquipo=0;
 	private static int ultimoIdJugador=0;
+	private static List<Participante> listaParticipantes;
 	private CampeonatoSingleton(){}
 	
 	static public CampeonatoSingleton getCampeonatoSingleton() {
@@ -29,5 +30,8 @@ public class CampeonatoSingleton {
 	}
 	public int getIdParticipanteNuevo(){
 		return ultimoIdParticipante++;
+	}
+	public List<Participante> getListaParticipantes(){
+		return this.listaParticipantes;
 	}
 }
