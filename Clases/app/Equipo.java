@@ -35,30 +35,30 @@ public class Equipo {
 	 
 	public void eliminarJugador(Jugador jugador) throws JugadorInexistenteException {
 		if (jugadores.contains(jugador))
-		jugadores.remove(jugador);
+			jugadores.remove(jugador);
 		else
-		throw new JugadorInexistenteException("No se encontró el jugador a borrar");
+			throw new JugadorInexistenteException("No se encontró el jugador a borrar");
 	}
 	 
 	public boolean haySaldoDisponible(double costoJugador) {
 		
-		double saldo=Constantes.LIMITE_COSTO_EQUIPO-precio;
-		
+		double saldo=Constantes.LIMITE_COSTO_EQUIPO-precio;		
 		if (saldo<costoJugador)
 			return false;
 		else
-			return true;
-		
+			return true;		
 	}
 	 
 	public void validarCostoDelEquipo() throws ValidationException {
         if (getPrecio()>Constantes.LIMITE_COSTO_EQUIPO)
             throw new ValidationException("Se alcanzó el límite de costo del equipo");
 	}
-	 
+	
+	//Ver si es usado en algun lugar.
+	/* 
 	public void validarJugadores() {
-	 //TODO: este no se que hace
-	}
+	 
+	}*/
 	 
 	public void validarCantidadJugadoresTotal() throws ValidationException {
         if (jugadores.size()>Constantes.MAXIMA_CANTIDAD_JUGADORES)               
@@ -66,7 +66,7 @@ public class Equipo {
 	}
 	 
 	public boolean validarCambiosPermitidos() {
-		//Esto no lo pide el enunciado...
+		//Al menos en esta entrega no es necesario queda para futuros extansiones del tp.
 		return false;
 	}
 	 
@@ -78,8 +78,7 @@ public class Equipo {
         int minimo=Constantes.MIN_JUGADORES_POSICION;
         
         for (Jugador jugador : jugadores) {
-            switch (jugador.getPosicion()){
-            
+            switch (jugador.getPosicion()){        
             case Jugador.ARQUERO: cantArqueros++;
            	  break;
             case Jugador.DELANTERO: cantDelanteros++;

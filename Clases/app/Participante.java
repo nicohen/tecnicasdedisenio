@@ -95,7 +95,7 @@ public class Participante {
 	}
 	 
 	public void cerrarSesion() {
-	 
+		return;
 	}
 	/* crea la instancia de un nuevo equipo a crear por el usuario deberia devolver un equipo dicho armar equipo un equipo vacio y recibe elnombre del equipo*/ 
 	public void armarEquipo(String nombreEquipo) {
@@ -103,11 +103,10 @@ public class Participante {
 		this.equipo=new Equipo(nombreEquipo,jugadores);
 	}
 	 
-	public void comprarJugador(Jugador jugador) throws SaldoInsuficienteException {
-		
-		if (this.equipo.haySaldoDisponible(jugador.getPrecio()))
+	public void comprarJugador(Jugador jugador) throws SaldoInsuficienteException {	
+	if (this.equipo.haySaldoDisponible(jugador.getPrecio()))
 		this.equipo.addJugador(jugador);
-		else
+	else
 		throw new SaldoInsuficienteException("Saldo insuficiente para comprar jugador");
 	 
 	}

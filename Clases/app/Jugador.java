@@ -33,8 +33,8 @@ public class Jugador {
 	
 	public void actualizarDatos(EstadisticasJugadorFecha estadisticas) {
 		goles=estadisticas.getGoles();
-		amarillas=estadisticas.getAmarillas()- estadisticas.getTiempoAmarilla();
-		rojas=estadisticas.getRojas()- estadisticas.getTiempoRoja();
+		amarillas=estadisticas.getAmarillas()+ estadisticas.getTiempoAmarilla();
+		rojas=estadisticas.getRojas()+ estadisticas.getTiempoRoja();
 		isEstrella=estadisticas.getEsEstrella();
 		cantPenalesErrados=estadisticas.getPenalesErrados();
 		completoPartido= estadisticas.getCompletoPartido();

@@ -18,22 +18,20 @@ public class Controlador {
 		else
 			return false;
 	}
-	 
-	public boolean validarExistenciaDeJugador(Participante participante) {
-		//TODO: ver este metodo... para mi no sirve de nada
+	//TODO: ver este metodo... para mi no sirve de nada, creemos que ahora no sirve mas
+	/*public boolean validarExistenciaDeJugador() {
 		
-		/*int result;
-		
-		if (result= participante.getIdParticipante(participante)== 0){
+		int result;
+		if (result= participante.getIdParticipante(nombre)== 0){
 			return false;
 		}
 		else 
-			return true;*/
+			return true;
 		return true;
-	}
+	}*/
 	//falta implementar.
-	public void crearNuevoUsuario(String nombre) {
-		
+	public int crearNuevoUsuario() {
+		return participante.getIdParticipante();	
 	}
 	 
 }
