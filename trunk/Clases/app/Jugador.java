@@ -27,7 +27,7 @@ public class Jugador {
 		this.nombre=nombre;
 		this.posicion=posicion;
 		this.isSuplente=isSuplente;
-		this.idJugador=CampeonatoSingleton.getCampeonatoSingleton().getIdJugadorNuevo();
+		this.idJugador=CampeonatoSingleton.getInstancia().getIdJugadorNuevo();
 	}
 
 	
