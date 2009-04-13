@@ -2,7 +2,8 @@ package app;
 public class EstadisticasJugadorFecha {
  
 	private Jugador jugador; 
-	private int goles;	 
+	private int goles;	
+	private int penalesAtajados;
 	private boolean ganoFecha;	 
 	private int penalesConvertidos;	 
 	private int amarillas;	 
@@ -51,6 +52,9 @@ public class EstadisticasJugadorFecha {
 	}
 	public int getPenalesErrados(){
 		return penalesErrados;
+	}
+	public int getPenalesAtajados(){
+		return penalesAtajados;
 	}
 	public void setPenalesConvertidos(int penalesConvertidos) {
 		this.penalesConvertidos = penalesConvertidos;
