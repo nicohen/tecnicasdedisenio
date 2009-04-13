@@ -21,7 +21,25 @@ public class CampeonatoSingleton {
 	}
 
 	public void procesarFecha(List<EstadisticasJugadorFecha> estadisticasJugadores){
+		int i=0,j=0,k=0;
 		
+		for(Participante participante: listaParticipantes){
+			for(Jugador jugador:participante.getEquipo().getJugadores()){
+				for(EstadisticasJugadorFecha estadisticasJugador:estadisticasJugadores){
+					if (estadisticasJugador.getJugador().getIdJugador()==jugador.getIdJugador()){
+						jugador.actualizarDatos(estadisticasJugador);
+						break;
+					}
+						
+					k++;//k para estadisticas	
+				}
+				j++;//j para jugadores de equipo
+				k=0;
+			}
+			//TODO: actualizar precio del equipo y puntaje
+			i++;//i para participantes
+			j=0;
+		}
 	}
 	public int getIdJugadorNuevo(){
 		return ultimoIdJugador++;

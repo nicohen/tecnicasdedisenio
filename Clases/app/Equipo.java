@@ -1,4 +1,5 @@
 package app;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -70,7 +71,7 @@ public class Equipo {
 		//Al menos en esta entrega no es necesario queda para futuros extansiones del tp.
 		return false;
 	}
-	 
+
 	public void validarCantidadDeJugadoresPorPosicion() throws ValidationException {
         int cantDefensores=0;
         int cantMediocampistas=0;
