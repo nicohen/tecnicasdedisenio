@@ -15,7 +15,8 @@ public class Jugador {
 	private int cantPenalesErrados;
 	private boolean completoPartido;
 	private boolean isEstrella;
-	 
+	private String club;
+	
 	public static final int ARQUERO = 1;
 	public static final int DEFENSOR = 2;
 	public static final int MEDIOCAMPISTA = 3;
@@ -26,6 +27,7 @@ public class Jugador {
 		this.nombre=nombre;
 		this.posicion=posicion;
 		this.isSuplente=isSuplente;
+		this.idJugador=CampeonatoSingleton.getCampeonatoSingleton().getIdJugadorNuevo();
 	}
 
 	
@@ -127,12 +129,12 @@ public class Jugador {
 		this.club = club;
 	}
 
-	public int getTiemposJugados() {
-		return tiemposJugados;
+	public boolean getCompletoPartido() {
+		return completoPartido;
 	}
 
-	public void setTiemposJugados(int tiemposJugados) {
-		this.tiemposJugados = tiemposJugados;
+	public void setCompletoPartido(boolean completoPartido) {
+		this.completoPartido = completoPartido;
 	}
 
 	public boolean isEstrella() {
@@ -143,13 +145,7 @@ public class Jugador {
 		this.isEstrella = isEstrella;
 	}
 
-	public int getTiempoReemplazado() {
-		return tiempoReemplazado;
-	}
-
-	public void setTiempoReemplazado(int tiempoReemplazado) {
-		this.tiempoReemplazado = tiempoReemplazado;
-	}
+	
 	 
 }
  
