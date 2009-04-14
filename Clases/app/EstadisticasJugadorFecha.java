@@ -13,6 +13,8 @@ public class EstadisticasJugadorFecha {
 	private boolean esEstrella;
 	private boolean completoPartido;
 	private int penalesErrados;
+	private boolean juega;
+	
 	public EstadisticasJugadorFecha(
 			Jugador jugador,
 			int goles,
@@ -24,7 +26,8 @@ public class EstadisticasJugadorFecha {
 			int tiempoAmarilla,
 			boolean completoPartido,
 			boolean esEstrella,
-			int penalesErrados
+			int penalesErrados,
+			boolean juega
 			){
 	
 		this.jugador=jugador;
@@ -103,6 +106,12 @@ public class EstadisticasJugadorFecha {
 	}
 	public boolean getCompletoPartido(){
 		return completoPartido;
+	}
+	public void setJuega(boolean juega) {
+		this.juega = juega;
+	}
+	public boolean isJuega() {
+		return juega;
 	}
 	 
 }
