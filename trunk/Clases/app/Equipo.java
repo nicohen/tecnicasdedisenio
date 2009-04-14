@@ -30,6 +30,10 @@ public class Equipo {
 		}
 	}
 	 
+	public void setIdEquipo(int idEquipo) {
+		this.idEquipo = idEquipo;
+	}
+	
 	public int getIdEquipo() {
 		return idEquipo;
 	}
