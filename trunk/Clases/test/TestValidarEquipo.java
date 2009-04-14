@@ -37,7 +37,7 @@ public class TestValidarEquipo extends TestCase {
 		Jugador jugador18 = new JugadorDeCampo("Lucas Castroan",Jugador.DELANTERO,false,"Racing Club");
 		Jugador jugador19 = new JugadorDeCampo("Lucas Castroan",Jugador.DELANTERO,false,"Racing Club");
 		Jugador jugador20 = new JugadorDeCampo("Rubens Sambuesa",Jugador.DELANTERO,false,"Ferro");
-		Jugador jugador21 = new JugadorDeCampo("Diego Buonanote",Jugador.DELANTERO,false,"River Plate");
+		
 		
 		jugadores.add(jugador1);
 		jugadores.add(jugador2);
@@ -54,7 +54,7 @@ public class TestValidarEquipo extends TestCase {
 		jugadores.add(jugador18);
 		jugadores.add(jugador19);
 		jugadores.add(jugador20);
-		jugadores.add(jugador21);
+		
 		
 		Equipo equipoTest = new Equipo("Equipo de Nico");
 		try {
