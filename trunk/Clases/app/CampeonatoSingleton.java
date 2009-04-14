@@ -30,7 +30,7 @@ public class CampeonatoSingleton {
 					if (estadisticasJugador.getJugador().getIdJugador()==jugador.getIdJugador()){
 						jugador.actualizarDatos(estadisticasJugador);
 						participante.getEquipo().actualizarEstadisticasJugador(j,jugador);
-						participante.acumularPuntos(jugador.getPuntaje());
+						participante.acumularPuntos(jugador.getPuntaje(estadisticasJugador));
 						break;
 					}
 					k++;//k para estadisticas	
