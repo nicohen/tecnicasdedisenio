@@ -22,7 +22,7 @@ public class TestCalculoPuntaje extends TestCase {
 		Controlador controlador = new Controlador();
 
 	    Participante participante = controlador.crearNuevoParticipante(
-	    		   "Nicolas","Cohen","123456",31252197,"Equipo de Nico");
+	    		   "Roberto","Herman","123456",31252197,"Equipo de Nico");
 	       List<Jugador> jugadores = new ArrayList<Jugador>();
 
 		Jugador jugador1 = new Arquero("ariel ortega",false,"River Plate");
