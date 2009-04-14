@@ -56,8 +56,13 @@ public class TestCrearEquipo extends TestCase {
 		Equipo equipoTest = new Equipo("Equipo de Nico");
 		try {
 			equipoTest.armarEquipo(jugadores);
+			equipoTest.setIdEquipo(0);
+			
 			participante.crearEquipo(jugadores);
-			assertEquals(participante.getEquipo(), equipoTest);
+			assertEquals(participante.getEquipo().getIdEquipo(), equipoTest.getIdEquipo());
+			assertEquals(participante.getEquipo().getNombre(), equipoTest.getNombre());
+			assertEquals(participante.getEquipo().getPrecio(), equipoTest.getPrecio());
+			assertEquals(participante.getEquipo().getJugadores(), equipoTest.getJugadores());
 		} catch (ValidationException e) {
 			e.printStackTrace();
 		}
