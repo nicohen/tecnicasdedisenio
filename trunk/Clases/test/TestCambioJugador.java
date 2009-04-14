@@ -1,20 +1,13 @@
 package test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import exceptions.JugadorInexistenteException;
-
-import app.Arquero;
-import app.CampeonatoSingleton;
-import app.Controlador;
-import app.Equipo;
-import app.EstadisticasJugadorFecha;
-import app.Jugador;
-import app.JugadorDeCampo;
-import app.Participante;
 import junit.framework.Assert;
 import junit.framework.TestCase;
+import app.Arquero;
+import app.Equipo;
+import app.Jugador;
+import app.JugadorDeCampo;
+import exceptions.JugadorInexistenteException;
+import exceptions.SaldoInsuficienteException;
 
 public class TestCambioJugador extends TestCase {
 	
@@ -31,12 +24,17 @@ public class TestCambioJugador extends TestCase {
 		equipo.getJugadores().add(jugador1);
 		equipo.getJugadores().add(jugador2);
 		equipo.getJugadores().add(jugador3);
-		//Si se produce excepcion el test es correcto
+		//Si se produce excepcion de jugador inexistente el test es correcto
 		try {
-			equipo.cambiarJugador(jugador4, jugador5);
+			try {
+				equipo.cambiarJugador(jugador4, jugador5);
+			} catch (SaldoInsuficienteException e) {
+				
+			}
 		} catch (JugadorInexistenteException e) {
 			return;
 		}
+		
 		Assert.fail();
 		
 	}
