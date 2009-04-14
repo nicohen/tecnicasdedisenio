@@ -15,6 +15,7 @@ import app.Participante;
 import java.io.IOException;
 
 public class TestEquipo extends TestCase {
+	/*
 	public void equipoTest() throws IOException, ValidationException, SaldoInsuficienteException {
 		Controlador controlador = new Controlador();
 		Participante tecnico = null;//new Participante("Nicolas", "Cohen", "123456", 31252197, null);
@@ -42,7 +43,7 @@ public class TestEquipo extends TestCase {
                 
                 result= tecnico1.iniciarSesion("nombre1","apellido1","123456");
 		tecnico1.armarEquipo("Pirulo1");
-		/*creacion de algunos jugadores de prueba*/
+		creacion de algunos jugadores de prueba
 		Jugador jugador1 = new Jugador("ariel ortega",3,false,"River Plate");
 		Jugador jugador2 = new Jugador("Rolfi Montenegro",4,false,"Independiente");
 		Jugador jugador3 = new Jugador("dario Tula",2,false,"San Lorenzo");
@@ -114,7 +115,7 @@ public class TestEquipo extends TestCase {
 		
 		equipo = new Equipo("Pirulo", jugadores);
 		
-		/*compro jugadores*/
+		compro jugadores
 		tecnico.comprarJugador(jugador1);
 		tecnico.comprarJugador(jugador13);
 		tecnico.comprarJugador(jugador3);
@@ -147,7 +148,7 @@ public class TestEquipo extends TestCase {
 		tecnico1.comprarJugador(jugador26);
 		tecnico1.comprarJugador(jugador9);
 		
-		/*cargo estadisticas de fecha*/
+		cargo estadisticas de fecha
 		
 		EstadisticasJugadorFecha estadisticaJugador1 = new EstadisticasJugadorFecha(jugador1,0,true,0,0,0,0,0,true,false,0);
 		EstadisticasJugadorFecha estadisticaJugador2 = new EstadisticasJugadorFecha(jugador13,1,false,0,0,0,0,0,true,false,0);
@@ -181,7 +182,7 @@ public class TestEquipo extends TestCase {
 //		EstadisticasJugadorFecha estadisticaJugador30 = new EstadisticasJugadorFecha("Lionel Messi",0,true,0,1,0,2,0,true,false,0);
 		
 		
-		/*Actualizo los puntajes para cada jugador*/
+		Actualizo los puntajes para cada jugador
 		
 		jugador1.actualizarDatos(estadisticaJugador1);
 		jugador2.actualizarDatos(estadisticaJugador2);
@@ -214,7 +215,7 @@ public class TestEquipo extends TestCase {
 //		jugador29.actualizarDatos(estadisticaJugador29);
 //		jugador30.actualizarDatos(estadisticaJugador30);
 		
-		/*pido los puntajes de las fechas*/
+		pido los puntajes de las fechas
 //		expectedResult= "El equipo no cuenta con la cantiad  minima de jugadores";
 		
                 System.out.println("El tecnico 2 debe tener mas puntaje por tener un jugador estrella y con mas goles");
@@ -223,7 +224,7 @@ public class TestEquipo extends TestCase {
                     System.out.println(tecnico.getPuntosAcumulados() );
                     System.out.println("el tecnico 2 tiene : " );
                     System.out.println(tecnico1.getPuntosAcumulados() );
-	}
+	}*/
 }
 
 		

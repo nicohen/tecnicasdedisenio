@@ -14,6 +14,7 @@ import exceptions.ValidationException;
 
 
 public class TestEquipoVacio extends TestCase {
+	/*
 	public void participanteTest() throws IOException, ValidationException, SaldoInsuficienteException {
 		Controlador controlador = new Controlador();
 		Participante tecnico = null;//new Participante("Nicolas", "Cohen", "123456", 31252197, null);
@@ -31,6 +32,7 @@ public class TestEquipoVacio extends TestCase {
 		result= tecnico.iniciarSesion("nombre","apellido","1234");
 		tecnico.armarEquipo("Pirulo");
 		/*creacion de algunos jugadores de prueba*/
+	/*	
 		Jugador jugador1 = new Jugador("ariel ortega",3,false,"River Plate");
 		Jugador jugador2 = new Jugador("Rolfi Montenegro",4,false,"Independiente");
 		Jugador jugador3 = new Jugador("dario Tula",2,false,"San Lorenzo");
@@ -69,5 +71,5 @@ public class TestEquipoVacio extends TestCase {
 		
                 System.out.println("Se validara que el equipo no este vacio");
                 equipo.validarEquipoVacio();
-	}
+	}*/
 }
