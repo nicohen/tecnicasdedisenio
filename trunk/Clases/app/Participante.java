@@ -49,7 +49,10 @@ public class Participante {
 	public Equipo getEquipo() {
 		return equipo;
 	}
-
+	
+	public void setEquipo(Equipo equipo) {
+		this.equipo=equipo;
+	}
 	public int getPuntosAcumulados() {
 		return puntosAcumulados;
 	}
