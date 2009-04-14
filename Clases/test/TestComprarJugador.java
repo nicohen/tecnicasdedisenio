@@ -3,10 +3,9 @@ package test;
 import java.util.ArrayList;
 import java.util.List;
 
+import junit.framework.Assert;
 import junit.framework.TestCase;
-
 import app.Arquero;
-import app.CampeonatoSingleton;
 import app.Controlador;
 import app.EstadisticasJugadorFecha;
 import app.Jugador;
@@ -93,13 +92,12 @@ public class TestComprarJugador extends TestCase {
 	    	   participante.crearEquipo(jugadores);
 	    	   try {
 		    	   participante.comprarJugador(jugador15);
-		    	   CampeonatoSingleton.getInstancia().procesarFecha(estadisticasList);
-		    	   assertEquals(participante.getEquipo().getJugadores(),jugadores);
+		    	   
 	    	   } catch(SaldoInsuficienteException e) {
-	    		   e.printStackTrace();
+	    		   Assert.fail();
 	    	   }
 	       } catch (ValidationException e) {
-	    	   e.printStackTrace();
+	    	   Assert.fail();
 	       }
 	       
 

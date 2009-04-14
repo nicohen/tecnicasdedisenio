@@ -3,17 +3,15 @@ package test;
 import java.util.ArrayList;
 import java.util.List;
 
+import junit.framework.Assert;
+import junit.framework.TestCase;
 import app.Arquero;
 import app.CampeonatoSingleton;
 import app.Controlador;
 import app.Equipo;
 import app.EstadisticasJugadorFecha;
 import app.Jugador;
-import app.JugadorDeCampo;
 import app.Participante;
-import exceptions.ValidationException;
-import junit.framework.Assert;
-import junit.framework.TestCase;
 
 public class TestCalculoCosto extends TestCase {
 			
@@ -24,7 +22,6 @@ public class TestCalculoCosto extends TestCase {
 			//Instancio un participante de prueba
 			Participante participante = controlador.crearNuevoParticipante(
 		    		   "Roberto","Herman","123456",31252197,"Equipo de Nico");
-		       List<Jugador> jugadores = new ArrayList<Jugador>();
 
 		    //Instancio jugadores para el equipo del participante   
 			Jugador jugador1 = new Arquero("ariel ortega",false,"River Plate");

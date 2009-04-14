@@ -5,6 +5,7 @@ import java.util.List;
 
 import utiles.Constantes;
 import exceptions.JugadorInexistenteException;
+import exceptions.SaldoInsuficienteException;
 import exceptions.ValidationException;
 
 public class Equipo {
@@ -49,14 +50,18 @@ public class Equipo {
 	public void agregarJugador(Jugador jugador) throws ValidationException {
 		Controlador.validarNuevoJugador(this,jugador);
 		this.jugadores.add(jugador);
+		this.precio+=jugador.getPrecio();
 	}
 	
-	public void cambiarJugador(Jugador jugadorActual, Jugador nuevoJugador) throws JugadorInexistenteException {
+	public void cambiarJugador(Jugador jugadorActual, Jugador nuevoJugador) throws JugadorInexistenteException,SaldoInsuficienteException {
 		int i=0;
 		
 		for(Jugador jugador : jugadores) {
 			if (jugador.getIdJugador() == jugadorActual.getIdJugador()){
+				if(haySaldoDisponible(nuevoJugador.getPrecio()-jugadorActual.getPrecio()))
 				jugadores.set(i++, nuevoJugador);
+				else
+				throw new SaldoInsuficienteException("Saldo insuficiente para el cambio solicitado");
 				return;
 			}
 		}
@@ -66,6 +71,7 @@ public class Equipo {
 	public void eliminarJugador(Jugador jugador) throws JugadorInexistenteException {
 		if (jugadores.contains(jugador)) {
 			jugadores.remove(jugador);
+			this.precio-=jugador.getPrecio();
 		} else {
 			throw new JugadorInexistenteException("El jugador para eliminar "+jugador.getNombre()+" no se encontro en el equipo.");
 		}
@@ -78,6 +84,9 @@ public class Equipo {
 	public void armarEquipo(List<Jugador> jugadores) throws ValidationException {
 		if(this.jugadores.size()==0) {
 			this.jugadores = jugadores;
+			for(Jugador jugador:jugadores){
+				this.precio+=jugador.getPrecio();
+			}
 		} else {
 			throw new ValidationException("El equipo ya fue armado anteriormente");
 		}
