@@ -5,7 +5,4 @@ import dto.UserDto;
 
 public abstract class UserDao implements IDao<UserDto> {
 
-	public abstract int add(UserDto user);
-
-	public abstract UserDto get(int userId);
 }
