@@ -3,11 +3,11 @@ package domain.auctions;
 import domain.customers.User;
 import domain.products.Product;
 
-public class ReverseAuction implements IAuction<ReverseAuction>  {
+public class ReverseAuction implements IAuction<ReverseAuction> {
 
 	public void bid() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public ReverseAuction createAuction(Product product) {
@@ -17,7 +17,7 @@ public class ReverseAuction implements IAuction<ReverseAuction>  {
 
 	public void finalizeAuction() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public User getWinner() {

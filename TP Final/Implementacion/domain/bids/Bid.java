@@ -4,6 +4,7 @@ public class Bid {
 
 	public void getBid() {
 	}
+
 	public void storeBid() {
 	}
 

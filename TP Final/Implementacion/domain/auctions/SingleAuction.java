@@ -6,7 +6,7 @@ import domain.products.Product;
 public class SingleAuction implements IAuction<SingleAuction> {
 
 	/**
-	 * 1-  
+	 * 1-
 	 * 
 	 * */
 	public void bid() {
@@ -18,7 +18,7 @@ public class SingleAuction implements IAuction<SingleAuction> {
 
 	public void finalizeAuction() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public User getWinner() {

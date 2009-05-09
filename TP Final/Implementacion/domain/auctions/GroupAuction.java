@@ -7,7 +7,7 @@ public class GroupAuction implements IAuction<GroupAuction> {
 
 	public void bid() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public GroupAuction createAuction(Product product) {
@@ -17,7 +17,7 @@ public class GroupAuction implements IAuction<GroupAuction> {
 
 	public void finalizeAuction() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public User getWinner() {

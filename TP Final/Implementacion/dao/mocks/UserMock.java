@@ -5,9 +5,9 @@ import java.util.List;
 import dto.UserDto;
 
 public class UserMock {
-	
-private static List<UserDto> userList; 
-	
+
+	private static List<UserDto> userList;
+
 	public int add(UserDto user) {
 		userList.add(user);
 		return userList.size();
