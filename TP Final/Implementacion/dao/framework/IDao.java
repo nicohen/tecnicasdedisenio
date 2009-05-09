@@ -1,4 +1,4 @@
-package mocks;
+package dao.framework;
 
 
 public interface IDao<T> {

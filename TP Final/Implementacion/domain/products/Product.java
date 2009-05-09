@@ -1,7 +1,7 @@
 package domain.products;
 
+import dao.ProductDao;
 import dto.ProductDto;
-import mocks.ProductDao;
 
 public class Product {
 	

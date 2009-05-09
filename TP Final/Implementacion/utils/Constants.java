@@ -1,4 +1,4 @@
-package mocks;
+package utils;
 
 public class Constants {
 
