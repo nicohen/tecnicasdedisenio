@@ -8,7 +8,7 @@ public class AuctionMock<T> {
 
 	public int add(T auction) {
 		auctionList.add(auction);
-		return auctionList.size();
+		return auctionList.size()-1;
 	}
 
 	public T get(int auctionId) {
