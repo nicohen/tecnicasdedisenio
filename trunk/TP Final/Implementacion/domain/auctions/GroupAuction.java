@@ -1,20 +1,17 @@
 package domain.auctions;
 
+import dao.GroupAuctionDao;
 import domain.customers.User;
-import domain.products.Product;
+import dto.GroupAuctionDto;
 
-public class GroupAuction implements IAuction<GroupAuction> {
+public class GroupAuction implements IAuction<GroupAuctionDto> {
 
-	public void bid() {
-		// TODO Auto-generated method stub
-
+	GroupAuctionDao dao;
+	
+	public GroupAuction(GroupAuctionDao dao) {
+		this.dao = dao;
 	}
-
-	public GroupAuction createAuction(Product product) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	public void finalizeAuction() {
 		// TODO Auto-generated method stub
 
@@ -23,6 +20,16 @@ public class GroupAuction implements IAuction<GroupAuction> {
 	public User getWinner() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void bid() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int createAuction(GroupAuctionDto auction) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
