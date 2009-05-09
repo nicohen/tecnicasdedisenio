@@ -2,21 +2,19 @@ package mocks;
 
 import java.util.List;
 
-import domain.products.Product;
+import dto.ProductDto;
 
 public class ProductMock extends ProductDao  {
-
 	
-	private static List<Product> productList; 
+	private static List<ProductDto> productList; 
 	
-	@Override
-	public void add(Product product) {
-		ProductMock.productList.add(product);
+	public int add(ProductDto product) {
+		productList.add(product);
+		return productList.size();
 	}
 
-	@Override
-	public Product get(int productId) {
-		return ProductMock.productList.get(productId);
+	public ProductDto get(int productId) {
+		return productList.get(productId);
 	}
 
 }

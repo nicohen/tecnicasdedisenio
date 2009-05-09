@@ -1,12 +1,13 @@
 package mocks;
 
-import domain.products.Product;
+import dto.ProductDto;
 
-public abstract class ProductDao implements IDao<Product> {
+
+public abstract class ProductDao implements IDao<ProductDto> {
 	
-	public abstract void add(Product product);
+	public abstract int add(ProductDto product);
 	
-	public abstract Product get(int productId);
+	public abstract ProductDto get(int productId);
 	
 	
 	
