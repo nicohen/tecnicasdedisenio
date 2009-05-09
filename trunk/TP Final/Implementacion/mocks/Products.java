@@ -2,7 +2,8 @@ package mocks;
 import java.util.ArrayList;
 import java.util.List;
 
-import bo.Product;
+import domain.products.Product;
+
 
 
 
