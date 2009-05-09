@@ -8,12 +8,12 @@ public class UserMock {
 	
 private static List<UserDto> userList; 
 	
-	public int add(UserDto product) {
-		userList.add(product);
+	public int add(UserDto user) {
+		userList.add(user);
 		return userList.size();
 	}
 
-	public UserDto get(int productId) {
-		return userList.get(productId);
+	public UserDto get(int userId) {
+		return userList.get(userId);
 	}
 }
