@@ -10,7 +10,7 @@ public class AuctionMock {
 
 	public int add(AuctionDto auction) {
 		auctionList.add(auction);
-		return auctionList.size();
+		return auctionList.size()-1;
 	}
 
 	public AuctionDto get(int auctionId) {
