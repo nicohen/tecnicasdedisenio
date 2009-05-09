@@ -8,12 +8,12 @@ public class AuctionMock {
 
 	private static List<AuctionDto> auctionList;
 
-	public int add(AuctionDto product) {
-		auctionList.add(product);
+	public int add(AuctionDto auction) {
+		auctionList.add(auction);
 		return auctionList.size();
 	}
 
-	public AuctionDto get(int productId) {
-		return auctionList.get(productId);
+	public AuctionDto get(int auctionId) {
+		return auctionList.get(auctionId);
 	}
 }
