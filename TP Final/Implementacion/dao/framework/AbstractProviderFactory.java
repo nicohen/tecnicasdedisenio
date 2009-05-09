@@ -7,7 +7,7 @@ public abstract class AbstractProviderFactory {
 	public static AbstractProviderFactory create(int providerType) {
 		switch (providerType) {
 		case Constants.MOCK:
-			return MockFactory.create(providerType);
+			return new MockFactory();
 
 		default:
 			return null;
