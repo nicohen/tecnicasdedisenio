@@ -1,5 +1,6 @@
 package dao.mocks;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.BidDao;
@@ -9,7 +10,9 @@ public class BidMock extends BidDao {
 	
 	private static List<BidDto> bidList;
 	
-	
+	public BidMock() {
+		bidList = new ArrayList<BidDto>();
+	}
 
 	public int add(BidDto bid) {
 		bidList.add(bid);

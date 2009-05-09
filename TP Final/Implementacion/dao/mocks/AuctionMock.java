@@ -2,18 +2,16 @@ package dao.mocks;
 
 import java.util.List;
 
-import dto.AuctionDto;
+public class AuctionMock<T> {
 
-public class AuctionMock {
+	protected List<T> auctionList;
 
-	private static List<AuctionDto> auctionList;
-
-	public int add(AuctionDto auction) {
+	public int add(T auction) {
 		auctionList.add(auction);
-		return auctionList.size()-1;
+		return auctionList.size();
 	}
 
-	public AuctionDto get(int auctionId) {
+	public T get(int auctionId) {
 		return auctionList.get(auctionId);
 	}
 }
