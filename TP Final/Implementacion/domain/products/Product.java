@@ -12,7 +12,7 @@ public class Product {
 	}
 	
 	public int createProduct(String marca, String modelo) {
-		dto.ProductDto p = new dto.ProductDto();
+		dto.ProductDto p = new dto.ProductDto(marca, modelo);
 		return productDao.add(p);
 	}
 	
