@@ -1,19 +1,22 @@
 package domain.auctions;
 
+import dao.SingleAuctionDao;
 import domain.customers.User;
-import domain.products.Product;
+import dto.SingleAuctionDto;
 
-public class SingleAuction implements IAuction<SingleAuction> {
+public class SingleAuction implements IAuction<SingleAuctionDto> {
 
-	/**
-	 * 1-
-	 * 
-	 * */
+	SingleAuctionDao dao;
+	
+	public SingleAuction(SingleAuctionDao dao) {
+		this.dao = dao;
+	}
+	
 	public void bid() {
 	}
 
-	public SingleAuction createAuction(Product product) {
-		return this;
+	public int createAuction(SingleAuctionDto auction) {
+		return dao.add(auction);
 	}
 
 	public void finalizeAuction() {
