@@ -4,7 +4,7 @@ import java.util.List;
 
 import domain.products.Product;
 
-public class ProductMock extends ProductDao implements IMock<Product>  {
+public class ProductMock extends ProductDao  {
 
 	
 	private static List<Product> productList; 
