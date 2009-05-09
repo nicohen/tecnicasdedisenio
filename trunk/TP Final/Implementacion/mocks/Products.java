@@ -1,5 +1,9 @@
+package mocks;
 import java.util.ArrayList;
 import java.util.List;
+
+import bo.Product;
+
 
 
 public class Products {

@@ -1,4 +1,7 @@
+package bo;
+
 import java.util.Date;
+
 
 
 public class Auction {
