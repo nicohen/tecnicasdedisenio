@@ -1,7 +1,7 @@
+import utils.Constants;
+import dao.framework.AbstractProviderFactory;
+import dao.framework.MockFactory;
 import domain.products.Product;
-import mocks.AbstractProviderFactory;
-import mocks.Constants;
-import mocks.MockFactory;
 
 
 public class Test {

@@ -1,4 +1,4 @@
-package mocks;
+package dao.mocks;
 
 import domain.auctions.IAuction;
 

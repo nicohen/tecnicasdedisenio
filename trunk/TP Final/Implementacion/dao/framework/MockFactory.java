@@ -1,4 +1,6 @@
-package mocks;
+package dao.framework;
+
+import dao.mocks.ProductMock;
 
 public class MockFactory extends AbstractProviderFactory {
 		

@@ -1,5 +1,6 @@
-package mocks;
+package dao;
 
+import dao.framework.IDao;
 import dto.ProductDto;
 
 

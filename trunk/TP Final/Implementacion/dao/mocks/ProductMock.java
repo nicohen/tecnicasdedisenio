@@ -1,7 +1,8 @@
-package mocks;
+package dao.mocks;
 
 import java.util.List;
 
+import dao.ProductDao;
 import dto.ProductDto;
 
 public class ProductMock extends ProductDao  {
