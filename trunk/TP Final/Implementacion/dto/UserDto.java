@@ -1,73 +1,73 @@
 package dto;
 
 public class UserDto {
-	private String Name;
-	private String LastName;
-	private int Telephone;
-	private int Point;
-	private int Avatar;
-	private int NickName;
-	private int Adress;
-	private int DateOfBirth;
+	private String name;
+	private String lastName;
+	private int telephone;
+	private int point;
+	private int avatar;
+	private int nickName;
+	private int adress;
+	private int dateOfBirth;
 
 	public UserDto(String name,String lastname,int telephone,int tel,int point,int avatar,int nickname,int adress,int dateofbirth){
-		this.Name= name;
-		this.LastName=lastname;
-		this.Telephone= telephone;
-		this.Point=point;
-		this.Avatar=avatar;
-		this.NickName=nickname;
-		this.Adress=adress;
-		this.DateOfBirth=dateofbirth;
+		this.name= name;
+		this.lastName=lastname;
+		this.telephone= telephone;
+		this.point=point;
+		this.avatar=avatar;
+		this.nickName=nickname;
+		this.adress=adress;
+		this.dateOfBirth=dateofbirth;
 	}
 	public String getName(){
-		return Name;
+		return name;
 	}
 	public String getLastName(){
-		return LastName;
+		return lastName;
 	}
 	public int getTelephone(){
-		return Telephone;
+		return telephone;
 	}
 	public int getAvatar(){
-		return Avatar;
+		return avatar;
 	}
 	public int getNickName(){
-		return NickName;
+		return nickName;
 	}
 	public int getDateOfBirth(){
-		return DateOfBirth;
+		return dateOfBirth;
 	}
 	public int getPoint(){
-		return Point;
+		return point;
 	}
 	public int getAdress(){
-		return Adress;
+		return adress;
 	}
 	
 	public void setName(String name){
-		 this.Name=name;
+		 this.name=name;
 	}
-	public void setLastName(String lastname){
-		this.LastName= lastname;
+	public void setLastName(String lastName){
+		this.lastName= lastName;
 	}
 	public void setTelephone(int telephone){
-		 this.Telephone= telephone;
+		 this.telephone= telephone;
 	}
 	public void setAvatar(int avatar){
-		 this.Avatar= avatar;
+		 this.avatar= avatar;
 	}
-	public void setNickName(int nickname){
-		 this.NickName= nickname;
+	public void setNickName(int nickName){
+		 this.nickName= nickName;
 	}
-	public void setDateOfBirth(int dateofbirth){
-		 this.DateOfBirth=dateofbirth;
+	public void setDateOfBirth(int dateOfBirth){
+		 this.dateOfBirth=dateOfBirth;
 	}
 	public void setPoint(int point){
-		 this.Point= point;
+		 this.point= point;
 	}
 	public void setAdress(int adr){
-		 this.Adress=adr;
+		 this.adress=adr;
 	}
 	
 	
