@@ -24,4 +24,9 @@ public class ProductTest extends TestCase {
 		assertEquals("W540", dto2.getModel());
 	}
 
+	private void assertEquals(String string, String brand) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
