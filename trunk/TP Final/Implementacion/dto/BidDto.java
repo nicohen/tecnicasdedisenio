@@ -36,4 +36,22 @@ public class BidDto {
 	public BidDto getBid(){
 		return this;
 	}
+	
+	
+	public void setDate(Date date){
+		this.date=date;
+	}
+	
+	public void setUser(User user){
+		this.user=user;
+	}
+	
+	public void setPoint(int point){
+		this.point=point;
+	}
+	
+	public void setId(int id){
+		this.id=id;
+	}
+	
 }
