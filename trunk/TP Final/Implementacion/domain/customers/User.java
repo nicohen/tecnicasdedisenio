@@ -3,15 +3,15 @@ package domain.customers;
 import java.util.Date;
 
 public class User {
-	private int Dni;
-	private String Name;
-	private String LastName;
-	private Date BirthDate;
-	private int Points;
+	private int dni;
+	private String name;
+	private String lastName;
+	private Date birthDate;
+	private int points;
 
 	public User createUser(int dni, String name, String lastName, Date birthDate) {
 		this.setDni(dni);
-		this.Name=name;
+		this.name=name;
 		this.setLastName(lastName);
 		this.setBirthDate(birthDate);
 		return this;
@@ -25,7 +25,7 @@ public class User {
 
 	}
 	public String getName(){
-		return Name;
+		return name;
 	}
 
 	public void declineGroupInvitation(int idGrupo) {
@@ -33,34 +33,34 @@ public class User {
 	}
 
 	public void setBirthDate(Date birthDate) {
-		BirthDate = birthDate;
+		this.birthDate = birthDate;
 	}
 
 	public Date getBirthDate() {
-		return BirthDate;
+		return birthDate;
 	}
 
 	public void setPoints(int points) {
-		Points = points;
+		this.points = points;
 	}
 
 	public int getPoints() {
-		return Points;
+		return points;
 	}
 
 	public void setLastName(String lastName) {
-		LastName = lastName;
+		this.lastName = lastName;
 	}
 
 	public String getLastName() {
-		return LastName;
+		return lastName;
 	}
 
 	public void setDni(int dni) {
-		Dni = dni;
+		this.dni = dni;
 	}
 
 	public int getDni() {
-		return Dni;
+		return dni;
 	}
 }
