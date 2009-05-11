@@ -8,10 +8,12 @@ public class UserDto {
 	private int avatar;
 	private int nickName;
 	private int adress;
+	private boolean userInGroup;
 	private int dateOfBirth;
 
 	public UserDto(String name,String lastname,int telephone,int tel,int point,int avatar,int nickname,int adress,int dateofbirth){
 		this.name= name;
+		this.setUserInGroup(false);
 		this.lastName=lastname;
 		this.telephone= telephone;
 		this.point=point;
@@ -54,9 +56,7 @@ public class UserDto {
 	public void setTelephone(int telephone){
 		 this.telephone= telephone;
 	}
-	public void setAvatar(int avatar){
-		 this.avatar= avatar;
-	}
+
 	public void setNickName(int nickName){
 		 this.nickName= nickName;
 	}
@@ -70,5 +70,21 @@ public class UserDto {
 		 this.adress=adr;
 	}
 	
+	public void loadPoints(int points){
+		this.point +=points;
+	}
 	
+	public void changeAvatarUser(int avatar){
+		this.avatar=avatar;
+	}
+	
+	public void aceptInvitationGroup(){
+		setUserInGroup(true);
+	}
+	public void setUserInGroup(boolean userInGroup) {
+		this.userInGroup = userInGroup;
+	}
+	public boolean isUserInGroup() {
+		return userInGroup;
+	}
 }

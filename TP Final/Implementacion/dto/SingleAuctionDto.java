@@ -1,10 +1,37 @@
 package dto;
 
-public class SingleAuctionDto extends AuctionDto {
+import domain.customers.User;
 
+public class SingleAuctionDto extends AuctionDto {
+	private User winner;
+	private int id;
+	private AuctionDto auction;
+	
 	public SingleAuctionDto(ProductDto product) {
 		super(product);
-		// TODO Auto-generated constructor stub
+	}
+	
+	public void publicAution(){
+		
+	}
+	public User getUserWinner(){
+		return winner;
+		
+	}
+	 public void toOffer(){
+		 
+	 }
+	 
+	 public AuctionDto getAuction(){
+		return auction;
+		 
+	 }
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
+	public int getId() {
+		return id;
+	}
 }

@@ -36,8 +36,7 @@ public class BidDto {
 	public BidDto getBid(){
 		return this;
 	}
-	
-	
+		
 	public void setDate(Date date){
 		this.date=date;
 	}
