@@ -9,48 +9,48 @@ public class BidDto {
 	private User user;
 	private int point;
 	private int id;
-	
-	public BidDto(Date date,User user,int point,int id){
-		this.date=date;
-		this.user=user;
-		this.point=point;
-		this.id=id;
+
+	public BidDto(Date date, User user, int point, int id) {
+		this.date = date;
+		this.user = user;
+		this.point = point;
+		this.id = id;
 	}
-	
-	public Date getDate(){
+
+	public Date getDate() {
 		return date;
 	}
-	
-	public User getUser(){
+
+	public User getUser() {
 		return user;
 	}
-	
-	public int getPoint(){
+
+	public int getPoint() {
 		return point;
 	}
-	
-	public int getId(){
+
+	public int getId() {
 		return id;
 	}
-	
-	public BidDto getBid(){
+
+	public BidDto getBid() {
 		return this;
 	}
-		
-	public void setDate(Date date){
-		this.date=date;
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
-	
-	public void setUser(User user){
-		this.user=user;
+
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
-	public void setPoint(int point){
-		this.point=point;
+
+	public void setPoint(int point) {
+		this.point = point;
 	}
-	
-	public void setId(int id){
-		this.id=id;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	
+
 }

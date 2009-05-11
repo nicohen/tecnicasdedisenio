@@ -13,10 +13,10 @@ public class UserMock extends UserDao {
 	public UserMock() {
 		userList = new ArrayList<UserDto>();
 	}
-	
+
 	public int add(UserDto user) {
 		userList.add(user);
-		return userList.size()-1;
+		return userList.size() - 1;
 	}
 
 	public UserDto get(int userId) {

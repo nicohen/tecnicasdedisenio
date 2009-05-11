@@ -6,71 +6,58 @@ import java.util.List;
 import domain.customers.User;
 
 public class GroupDto {
-	
-	private List <User> listUsers;
+
+	private List<User> users;
 	private String nickName;
-	private int avatar;
+	private String avatar;
 	private int point;
-	private int idGroup;
-	
-	public GroupDto(int avatar,int point,int idGroup,String nickName){
-		this.avatar=avatar;
-		this.idGroup=idGroup;
-		this.nickName=nickName;
-		this.point=point;
-		this.listUsers= new ArrayList <User>();
+	private int groupId;
+
+	public GroupDto(String avatar, int point, int groupId, String nickName) {
+		this.avatar = avatar;
+		this.groupId = groupId;
+		this.nickName = nickName;
+		this.point = point;
+		this.users = new ArrayList<User>();
 	}
-	
-	public int idGroup(){
-		return idGroup;
+
+	public int getGroupId() {
+		return groupId;
 	}
-	
-	public void idGroup(int grupo){
-		this.idGroup= grupo;
+
+	public void setGroupId(int groupId) {
+		this.groupId = groupId;
 	}
-	
-	public int getAvatar(){
+
+	public String getAvatar() {
 		return avatar;
 	}
-	
-	public String getNickName(){
+
+	public String getNickName() {
 		return nickName;
 	}
-	
-	public void changeAvatarGroup(int avatar){
-		this.avatar=avatar;
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
-	
-	public void changeNickNameGroup(String nickname){
-		this.nickName=nickname;
+
+	public void setNickname(String nickname) {
+		this.nickName = nickname;
 	}
-	
-	public List <User> getUser(){
-		return listUsers;
-		
+
+	public List<User> getUsers() {
+		return users;
 	}
-	
-	public int getPoint(){
+
+	public int getPoint() {
 		return point;
 	}
-	
-	public void setPoint(int point){
-		this.point=point;
+
+	public void setPoint(int point) {
+		this.point = point;
 	}
-	
-	public void setListUsers(List <User> listUsers) {
-		this.listUsers = listUsers;
+
+	public void setUsers(List<User> listUsers) {
+		this.users = listUsers;
 	}
-	
-	public List <User> getListUsers() {
-		return listUsers;
-	}
-	
-	/*public sendInvitationToUser(){
-	
-	}
-	
-	public arePlace(){
-		
-	}*/
 }

@@ -11,7 +11,7 @@ public class User {
 
 	public User createUser(int dni, String name, String lastName, Date birthDate) {
 		this.setDni(dni);
-		this.name=name;
+		this.name = name;
 		this.setLastName(lastName);
 		this.setBirthDate(birthDate);
 		return this;
@@ -24,7 +24,8 @@ public class User {
 	public void acceptGroupInvitation(int idGrupo) {
 
 	}
-	public String getName(){
+
+	public String getName() {
 		return name;
 	}
 

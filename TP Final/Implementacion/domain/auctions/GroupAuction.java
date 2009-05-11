@@ -7,11 +7,11 @@ import dto.GroupAuctionDto;
 public class GroupAuction implements IAuction<GroupAuctionDto> {
 
 	GroupAuctionDao dao;
-	
+
 	public GroupAuction(GroupAuctionDao dao) {
 		this.dao = dao;
 	}
-	
+
 	public void finalizeAuction() {
 		// TODO Auto-generated method stub
 
@@ -24,7 +24,7 @@ public class GroupAuction implements IAuction<GroupAuctionDto> {
 
 	public void bid() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public int createAuction(GroupAuctionDto auction) {

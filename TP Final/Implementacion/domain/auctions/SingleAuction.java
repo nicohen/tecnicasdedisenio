@@ -7,11 +7,11 @@ import dto.SingleAuctionDto;
 public class SingleAuction implements IAuction<SingleAuctionDto> {
 
 	SingleAuctionDao dao;
-	
+
 	public SingleAuction(SingleAuctionDao dao) {
 		this.dao = dao;
 	}
-	
+
 	public void bid() {
 	}
 
