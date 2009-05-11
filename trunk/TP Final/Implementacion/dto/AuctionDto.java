@@ -12,32 +12,23 @@ public class AuctionDto {
 	private List<BidDto> bids;
 	private boolean active;
 	private User winner;
-	
+
+	public AuctionDto(ProductDto product) {
+		this.product = product;
+		this.bids = new ArrayList<BidDto>();
+		this.setIsActive(true);
+	}
+
 	public int getId() {
 		return id;
 	}
-	
-	
-	public User getWinner(){
+
+	public User getWinner() {
 		return winner;
-	}
-	
-	
-	public AuctionDto(ProductDto product) {
-		this.product = product;
-		this.bids=new ArrayList <BidDto>();
-		this.setIsActive(true);
 	}
 
 	public ProductDto getProduct() {
 		return product;
-	}
-	
-	public void publishAuction(){
-		
-	}
-	public void finalizeAuction(){
-		this.setIsActive(false);	
 	}
 
 	public void setIsActive(boolean activeAuction) {
@@ -47,5 +38,5 @@ public class AuctionDto {
 	public boolean isActive() {
 		return active;
 	}
-	
+
 }

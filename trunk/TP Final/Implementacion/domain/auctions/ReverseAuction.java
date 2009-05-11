@@ -7,11 +7,11 @@ import dto.ReverseAuctionDto;
 public class ReverseAuction implements IAuction<ReverseAuctionDto> {
 
 	ReverseAuctionDao dao;
-	
+
 	public ReverseAuction(ReverseAuctionDao dao) {
 		this.dao = dao;
 	}
-	
+
 	public void bid() {
 		// TODO Auto-generated method stub
 	}

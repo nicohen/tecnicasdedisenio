@@ -1,6 +1,5 @@
 package dto;
 
-
 public class SingleAuctionDto extends AuctionDto {
 
 	public SingleAuctionDto(ProductDto product) {
