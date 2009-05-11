@@ -3,32 +3,49 @@ package dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import domain.customers.User;
+
 public class AuctionDto {
 
+	private int id;
 	private ProductDto product;
 	private List<BidDto> bids;
-	private boolean activeAuction;
+	private boolean active;
+	private User winner;
+	
+	public int getId() {
+		return id;
+	}
+	
+	
+	public User getWinner(){
+		return winner;
+	}
+	
 	
 	public AuctionDto(ProductDto product) {
 		this.product = product;
 		this.bids=new ArrayList <BidDto>();
-		this.setActiveAuction(true);
+		this.setIsActive(true);
 	}
 
 	public ProductDto getProduct() {
 		return product;
 	}
 	
+	public void publishAuction(){
+		
+	}
 	public void finalizeAuction(){
-		this.setActiveAuction(false);	
+		this.setIsActive(false);	
 	}
 
-	public void setActiveAuction(boolean activeAuction) {
-		this.activeAuction = activeAuction;
+	public void setIsActive(boolean activeAuction) {
+		this.active = activeAuction;
 	}
 
-	public boolean isActiveAuction() {
-		return activeAuction;
+	public boolean isActive() {
+		return active;
 	}
 	
 }
