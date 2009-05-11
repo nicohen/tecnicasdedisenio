@@ -37,11 +37,11 @@ public class GroupDto {
 		return nickName;
 	}
 	
-	public void setAvatar(int avatar){
+	public void changeAvatarGroup(int avatar){
 		this.avatar=avatar;
 	}
 	
-	public void setNickName(String nickname){
+	public void changeNickNameGroup(String nickname){
 		this.nickName=nickname;
 	}
 	
@@ -57,11 +57,20 @@ public class GroupDto {
 	public void setPoint(int point){
 		this.point=point;
 	}
+	
 	public void setListUsers(List <User> listUsers) {
 		this.listUsers = listUsers;
 	}
+	
 	public List <User> getListUsers() {
 		return listUsers;
 	}
-
+	
+	/*public sendInvitationToUser(){
+	
+	}
+	
+	public arePlace(){
+		
+	}*/
 }

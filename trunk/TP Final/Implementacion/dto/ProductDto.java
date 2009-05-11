@@ -10,6 +10,10 @@ public class ProductDto {
 		this.model = model;
 	}
 
+	public ProductDto getProduct(){
+		return this;
+	}
+	
 	public String getBrand() {
 		return brand;
 	}
