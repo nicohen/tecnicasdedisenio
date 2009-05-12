@@ -1,33 +1,25 @@
 package domain.auctions;
 
-import dao.ReverseAuctionDao;
 import domain.customers.User;
-import dto.ReverseAuctionDto;
+import domain.products.Product;
+import domain.utils.VariationRateFunction;
 
-public class ReverseAuction implements IAuction<ReverseAuctionDto> {
-
-	ReverseAuctionDao dao;
-
-	public ReverseAuction(ReverseAuctionDao dao) {
-		this.dao = dao;
+public class ReverseAuction extends Auction {
+	
+	
+	
+	public ReverseAuction(Product prize, VariationRateFunction varFunction) {
+		super(prize, varFunction);
 	}
 
-	public void bid() {
+	@Override
+	public void takeNewBid(Bid aBid) {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
 	public void finalizeAuction() {
 		// TODO Auto-generated method stub
-	}
-
-	public User getWinner() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public int createAuction(ReverseAuctionDto auction) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }
