@@ -1,32 +1,31 @@
 package domain.auctions;
 
-import dao.GroupAuctionDao;
+import java.util.Stack;
+
 import domain.customers.User;
+import domain.products.Product;
+import domain.utils.VariationRateFunction;
 import dto.GroupAuctionDto;
 
-public class GroupAuction implements IAuction<GroupAuctionDto> {
+public class GroupAuction extends IncrementalAuction {
+	
+	private Stack<Bid> bids;
 
-	GroupAuctionDao dao;
-
-	public GroupAuction(GroupAuctionDao dao) {
-		this.dao = dao;
+	public GroupAuction(Product prize, VariationRateFunction varFunction) {
+		super(prize, varFunction);
 	}
 
+	@Override
 	public void finalizeAuction() {
 		// TODO Auto-generated method stub
-
 	}
-
-	public User getWinner() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	@Override
+	public void takeNewBid(Bid aBid) {
+		// TODO: Check that aBid's owner is a group
+		super.takeNewBid(aBid);
 	}
-
-	public void bid() {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	public int createAuction(GroupAuctionDto auction) {
 		// TODO Auto-generated method stub
 		return 0;

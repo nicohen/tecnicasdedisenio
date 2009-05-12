@@ -1,32 +1,27 @@
 package domain.auctions;
 
-import dao.SingleAuctionDao;
+import java.util.Stack;
+
 import domain.customers.User;
-import dto.SingleAuctionDto;
+import domain.products.Product;
+import domain.utils.VariationRateFunction;
 
-public class SingleAuction implements IAuction<SingleAuctionDto> {
-
-	SingleAuctionDao dao;
-
-	public SingleAuction(SingleAuctionDao dao) {
-		this.dao = dao;
+public class SingleAuction extends IncrementalAuction {
+	
+	public SingleAuction (Product product, VariationRateFunction varFunction){
+		super(product, varFunction);
+		this.bids = new Stack<Bid> ();
 	}
-
-	public void bid() {
+	
+	@Override
+	public void takeNewBid(Bid aBid) {
+		// TODO: Check that aBid's owner is a user
+		super.takeNewBid(aBid);
 	}
-
-	public int createAuction(SingleAuctionDto auction) {
-		return dao.add(auction);
-	}
-
+	
+	@Override
 	public void finalizeAuction() {
 		// TODO Auto-generated method stub
-
-	}
-
-	public User getWinner() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
