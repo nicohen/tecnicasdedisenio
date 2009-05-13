@@ -11,7 +11,7 @@ public class UserDto {
 	private boolean userInGroup;
 	private int dateOfBirth;
 
-	public UserDto(String name, String lastname, int telephone, int tel,
+	public UserDto(String name, String lastname, int telephone,
 			int point, int avatar, int nickname, int adress, int dateofbirth) {
 		this.name = name;
 		this.setUserInGroup(false);
