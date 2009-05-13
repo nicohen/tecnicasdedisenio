@@ -10,6 +10,7 @@ public class IncrementalAuction extends Auction {
 
 	protected int nextBidValue;
 	private Stack<Bid> bids;
+	private AuctionType type;
 
 	public IncrementalAuction(Product prize, AuctionType type,
 			VariationRateFunction varFunction, int startUpValue) {
@@ -22,6 +23,7 @@ public class IncrementalAuction extends Auction {
 	public void takeNewBid(Bid newBid) {
 		try {
 			newBid.getOwner().validateAuctionType(getType());
+
 		} catch (Throwable e) {
 			// TODO: ver manejo de exepcion
 			return;
