@@ -10,22 +10,29 @@ public abstract class Auction {
 	protected Bidder winner;
 	protected AuctionStatus status;
 	protected VariationRateFunction variationRateFunction;
+	protected int value;
 
-	public Auction(Product prize, VariationRateFunction varFunction) {
+	public Auction(Product prize, VariationRateFunction varFunction, int startUpValue) {
 		this.prize = prize;
 		this.variationRateFunction = varFunction;
 		this.winner = null;
 		this.status = AuctionStatus.ACTIVE;
+		this.value = startUpValue;
 	}
 
 	public abstract void finish();
+	public abstract int getAmountForNextBid();
+	public abstract void takeNewBid(Bid newBid);
 
 	public Bidder getWinner() {
 		return winner;
 	}
+	
+	
 
 	public Product getPrize() {
 		return this.prize;
 	}
+
 
 }

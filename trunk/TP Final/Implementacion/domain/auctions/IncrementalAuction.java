@@ -8,14 +8,16 @@ import domain.utils.VariationRateFunction;
 
 public class IncrementalAuction extends Auction {
 
+	protected int nextBidValue;
 	private Stack<Bid> bids;
 	private AuctionType type;
 
 	public IncrementalAuction(Product prize, AuctionType type,
-			VariationRateFunction varFunction) {
-		super(prize, varFunction);
+			VariationRateFunction varFunction, int startUpValue) {
+		super(prize, varFunction, 0);
 		this.bids = new Stack<Bid>();
 		this.type = type;
+		this.nextBidValue = startUpValue;
 	}
 
 	public void takeNewBid(Bid newBid) {
@@ -26,10 +28,11 @@ public class IncrementalAuction extends Auction {
 				// TODO: poner exepcion mas copada!
 				throw new IllegalArgumentException();
 			this.bids.push(newBid);
+			this.value = this.nextBidValue;
+			this.nextBidValue += this.variationRateFunction.nextDelta();
 		} catch (Throwable e) {
 			// TODO: ver manejo de exepcion
-		}
-
+		} 
 	}
 
 	public void finish() {
@@ -47,5 +50,10 @@ public class IncrementalAuction extends Auction {
 
 	public AuctionType getType() {
 		return type;
+	}
+
+	@Override
+	public int getAmountForNextBid() {
+		return this.nextBidValue;
 	}
 }
