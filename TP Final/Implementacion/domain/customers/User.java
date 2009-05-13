@@ -1,6 +1,11 @@
 package domain.customers;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import domain.auctions.Auction;
+import domain.auctions.AuctionType;
 
 public class User implements Bidder {
 	private int dni;
@@ -8,12 +13,14 @@ public class User implements Bidder {
 	private String lastName;
 	private Date birthDate;
 	private int points;
+	private Set<Auction> wonAuctions;
 
 	public User(int dni, String name, String lastName, Date birthDate) {
 		this.dni = dni;
 		this.name = name;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
+		this.wonAuctions = new HashSet<Auction>();
 	}
 
 	public void addPoints(int points) {
@@ -54,7 +61,25 @@ public class User implements Bidder {
 		return dni;
 	}
 
+	public Set<Auction> getWonAuctions() {
+		return wonAuctions;
+	}
+
 	public void bid() {
 	}
 
+	public void win(Auction auction) {
+		this.wonAuctions.add(auction);
+	};
+
+	public void validateAuctionType(AuctionType type) throws Throwable {
+		if (!type.equals(AuctionType.SINGLE)) {
+			// TODO: crear excepcion
+			throw new Throwable();
+		}
+	}
+
+	public boolean isAllowedToWin() {
+		return getWonAuctions().isEmpty();
+	}
 }
