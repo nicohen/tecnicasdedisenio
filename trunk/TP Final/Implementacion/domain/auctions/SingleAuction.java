@@ -2,7 +2,6 @@ package domain.auctions;
 
 import java.util.Stack;
 
-import domain.customers.User;
 import domain.products.Product;
 import domain.utils.VariationRateFunction;
 

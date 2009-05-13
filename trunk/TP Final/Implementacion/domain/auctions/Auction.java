@@ -1,7 +1,5 @@
 package domain.auctions;
 
-import java.util.Set;
-
 import domain.customers.User;
 import domain.products.Product;
 import domain.utils.VariationRateFunction;
@@ -10,7 +8,6 @@ public abstract class Auction {
 
 	private Product prize;
 	private User winner;
-	private Set<Bid> bids;
 
 	protected VariationRateFunction variationRateFunction;
 
@@ -25,7 +22,7 @@ public abstract class Auction {
 	public abstract void takeNewBid(Bid aBid);
 
 	public User getWinner() {
-		return this.getWinner();
+		return winner;
 	}
 
 	public Product getPrize() {
