@@ -21,13 +21,14 @@ public class IncrementalAuction extends Auction {
 	}
 
 	public void takeNewBid(Bid newBid) {
-		try {
+		/*try {
+			//MIERRRDAAAAAA, el Owner siempre es un User, el AuctionType siempre va a ser SINGLE! esto esta MAL!
 			newBid.getOwner().validateAuctionType(getType());
 
 		} catch (Throwable e) {
 			// TODO: ver manejo de exepcion
 			return;
-		}
+		}*/
 		if(!this.bids.isEmpty()){//para el caso de no ser la primer oferta
 			Bid bestBid = this.bids.peek();
 			if (newBid.compareTo(bestBid) < 1)

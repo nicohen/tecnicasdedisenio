@@ -1,40 +1,26 @@
 package domain.customers;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
 
-public class User implements Bidder {
+public class User extends Bidder {
 	private int dni;
 	private String name;
 	private String lastName;
 	private Date birthDate;
-	private int points;
-	private Set<Auction> wonAuctions;
-
+	
 	public User(int dni, String name, String lastName, Date birthDate) {
+		super();
 		this.dni = dni;
 		this.name = name;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
-		this.wonAuctions = new HashSet<Auction>();
 	}
 
-	public void addPoints(int points) {
-		this.points += points;
-	}
-
-	public void spendPoints(int points) {
-		if (this.points < points)
-			throw new IllegalArgumentException();
-		this.points -= points;
-	}
-
-	public void acceptGroupInvitation(int idGrupo) {
+	public void acceptGroupInvitation(int idGrupo){
 
 	}
 
@@ -50,10 +36,6 @@ public class User implements Bidder {
 		return birthDate;
 	}
 
-	public int getPoints() {
-		return points;
-	}
-
 	public String getLastName() {
 		return lastName;
 	}
@@ -62,15 +44,11 @@ public class User implements Bidder {
 		return dni;
 	}
 
-	public Set<Auction> getWonAuctions() {
-		return  new HashSet<Auction>(this.wonAuctions);
-	}
-
 	@Override
 	public void bid(Auction anAuction) {
 		
 		int amount = anAuction.getAmountForNextBid();
-		if(this.points < amount){
+		if(super.getPoints() < amount){
 			throw new IllegalArgumentException(); // TODO: cambiar excepciones
 		}
 		try { // TODO: Esta excepción debería mandarse para arriba, pero hay que definir las clases excepciones necesarias.
@@ -84,11 +62,7 @@ public class User implements Bidder {
 		anAuction.takeNewBid(myBid);
 		
 	}
-	@Override
-	public void win(Auction auction) {
-		//TODO: restar puntos!
-		this.wonAuctions.add(auction);
-	};
+		
 	@Override
 	public void validateAuctionType(AuctionType type) throws Throwable {
 		if (!type.equals(AuctionType.SINGLE)) {
@@ -96,8 +70,5 @@ public class User implements Bidder {
 			throw new Throwable();
 		}
 	}
-	@Override
-	public boolean isAllowedToWin() {
-		return getWonAuctions().isEmpty();
-	}
+	
 }
