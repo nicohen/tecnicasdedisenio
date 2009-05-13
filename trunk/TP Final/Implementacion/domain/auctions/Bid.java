@@ -7,8 +7,8 @@ public class Bid {
 
 	private Bidder owner;
 	private int value;
-	
-	public Bid (User owner, int amountToBid) {
+
+	public Bid(User owner, int amountToBid) {
 		this.owner = owner;
 		this.value = amountToBid;
 	}
@@ -27,9 +27,10 @@ public class Bid {
 	 */
 	public int compareTo(Bid anotherBid) {
 		int res = 0;
-		if(this.value<anotherBid.value) res = -1;
-		if(this.value>anotherBid.value) res = 1;
-		return res; 
+		if (this.value < anotherBid.value)
+			res = -1;
+		if (this.value > anotherBid.value)
+			res = 1;
+		return res;
 	}
-	
 }
