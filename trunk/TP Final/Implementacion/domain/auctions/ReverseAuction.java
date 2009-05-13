@@ -2,6 +2,8 @@ package domain.auctions;
 
 import java.util.Date;
 
+import domain.customers.Bidder;
+import domain.customers.User;
 import domain.products.Product;
 import domain.utils.VariationRateFunction;
 
@@ -23,7 +25,9 @@ public class ReverseAuction extends Auction {
 	
 	@Override
 	public void finish() {
-		
+		this.status = AuctionStatus.CLOSED;
+		Bidder bidder =  this.firstBid.getOwner();
+		bidder.win(this);
 	}
 
 	@Override
