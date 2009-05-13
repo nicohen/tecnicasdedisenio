@@ -35,7 +35,7 @@ public class User implements Bidder {
 	}
 
 	public void acceptGroupInvitation(int idGrupo) {
-		
+
 	}
 
 	public String getName() {
@@ -84,12 +84,11 @@ public class User implements Bidder {
 		anAuction.takeNewBid(myBid);
 		
 	}
-
 	@Override
 	public void win(Auction auction) {
+		//TODO: restar puntos!
 		this.wonAuctions.add(auction);
 	};
-
 	@Override
 	public void validateAuctionType(AuctionType type) throws Throwable {
 		if (!type.equals(AuctionType.SINGLE)) {
@@ -97,7 +96,6 @@ public class User implements Bidder {
 			throw new Throwable();
 		}
 	}
-
 	@Override
 	public boolean isAllowedToWin() {
 		return getWonAuctions().isEmpty();
