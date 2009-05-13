@@ -2,27 +2,27 @@ package domain.customers;
 
 import java.util.Date;
 
-public class User implements Bidder{
+public class User implements Bidder {
 	private int dni;
 	private String name;
 	private String lastName;
 	private Date birthDate;
 	private int points;
 
-	public User createUser(int dni, String name, String lastName, Date birthDate) {
+	public User(int dni, String name, String lastName, Date birthDate) {
 		this.dni = dni;
 		this.name = name;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
-		return this;
 	}
 
 	public void addPoints(int points) {
 		this.points += points;
 	}
-	
+
 	public void spendPoints(int points) {
-		if(this.points < points) throw new IllegalArgumentException ();
+		if (this.points < points)
+			throw new IllegalArgumentException();
 		this.points -= points;
 	}
 
@@ -54,10 +54,7 @@ public class User implements Bidder{
 		return dni;
 	}
 
-	@Override
 	public void bid() {
-		// TODO Auto-generated method stub
-		
 	}
-	
+
 }
