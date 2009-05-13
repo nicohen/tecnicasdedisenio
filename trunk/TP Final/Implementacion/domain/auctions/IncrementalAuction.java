@@ -10,7 +10,6 @@ public class IncrementalAuction extends Auction {
 
 	protected int nextBidValue;
 	private Stack<Bid> bids;
-	private AuctionType type;
 
 	public IncrementalAuction(Product prize, AuctionType type,
 			VariationRateFunction varFunction, int startUpValue) {
@@ -23,16 +22,17 @@ public class IncrementalAuction extends Auction {
 	public void takeNewBid(Bid newBid) {
 		try {
 			newBid.getOwner().validateAuctionType(getType());
-			Bid bestBid = this.bids.peek();
-			if (newBid.compareTo(bestBid) < 1)
-				// TODO: poner exepcion mas copada!
-				throw new IllegalArgumentException();
-			this.bids.push(newBid);
-			this.value = this.nextBidValue;
-			this.nextBidValue += this.variationRateFunction.nextDelta();
 		} catch (Throwable e) {
 			// TODO: ver manejo de exepcion
-		} 
+			return;
+		}
+		Bid bestBid = this.bids.peek();
+		if (newBid.compareTo(bestBid) < 1)
+			// TODO: poner exepcion mas copada!
+			throw new IllegalArgumentException();
+		this.bids.push(newBid);
+		this.value = this.nextBidValue;
+		this.nextBidValue += this.variationRateFunction.nextDelta();
 	}
 
 	public void finish() {

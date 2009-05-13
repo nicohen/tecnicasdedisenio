@@ -1,5 +1,6 @@
 package domain.customers;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import domain.auctions.Auction;
@@ -9,7 +10,8 @@ public class Group implements Bidder {
 
 	private Set<Auction> wonAuctions;
 
-	public void bid() {
+	public void bid(Auction anAuction) {
+		
 	}
 
 	public void validateAuctionType(AuctionType type) throws Throwable {
@@ -20,7 +22,7 @@ public class Group implements Bidder {
 	}
 
 	public Set<Auction> getWonAuctions() {
-		return wonAuctions;
+		return  new HashSet<Auction>(this.wonAuctions);
 	}
 
 	public boolean isAllowedToWin() {

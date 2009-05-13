@@ -6,6 +6,7 @@ import java.util.Set;
 
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
+import domain.auctions.Bid;
 
 public class User implements Bidder {
 	private int dni;
@@ -34,7 +35,7 @@ public class User implements Bidder {
 	}
 
 	public void acceptGroupInvitation(int idGrupo) {
-
+		
 	}
 
 	public String getName() {
@@ -62,16 +63,34 @@ public class User implements Bidder {
 	}
 
 	public Set<Auction> getWonAuctions() {
-		return wonAuctions;
+		return  new HashSet<Auction>(this.wonAuctions);
 	}
 
-	public void bid() {
+	@Override
+	public void bid(Auction anAuction) {
+		
+		int amount = anAuction.getAmountForNextBid();
+		if(this.points < amount){
+			throw new IllegalArgumentException(); // TODO: cambiar excepciones
+		}
+		try { // TODO: Esta excepción debería mandarse para arriba, pero hay que definir las clases excepciones necesarias.
+			this.validateAuctionType(anAuction.getType());
+		} catch (Throwable e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		Bid myBid = new Bid(this, amount);
+		anAuction.takeNewBid(myBid);
+		
 	}
 
+	@Override
 	public void win(Auction auction) {
 		this.wonAuctions.add(auction);
 	};
 
+	@Override
 	public void validateAuctionType(AuctionType type) throws Throwable {
 		if (!type.equals(AuctionType.SINGLE)) {
 			// TODO: crear excepcion
@@ -79,6 +98,7 @@ public class User implements Bidder {
 		}
 	}
 
+	@Override
 	public boolean isAllowedToWin() {
 		return getWonAuctions().isEmpty();
 	}
