@@ -2,11 +2,9 @@ package domain.products;
 
 public class Product {
 
-	public Product() {
-	}
+	private String description;
 
-	public int createProduct(String marca, String modelo) {
-		return 0;
+	public Product(String description) {
+		this.description = description;
 	}
-
 }

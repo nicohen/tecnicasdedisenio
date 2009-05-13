@@ -10,13 +10,7 @@ public class ReverseAuction extends Auction {
 	}
 
 	@Override
-	public void takeNewBid(Bid aBid) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void finalizeAuction() {
-		// TODO Auto-generated method stub
+	public void finish() {
 	}
 
 }
