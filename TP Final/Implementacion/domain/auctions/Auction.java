@@ -11,6 +11,7 @@ public abstract class Auction {
 	protected AuctionStatus status;
 	protected VariationRateFunction variationRateFunction;
 	protected int value;
+	protected AuctionType type;
 
 	public Auction(Product prize, VariationRateFunction varFunction, int startUpValue) {
 		this.prize = prize;
@@ -27,11 +28,13 @@ public abstract class Auction {
 	public Bidder getWinner() {
 		return winner;
 	}
-	
-	
 
 	public Product getPrize() {
 		return this.prize;
+	}
+
+	public AuctionType getType() {
+		return type;
 	}
 
 
