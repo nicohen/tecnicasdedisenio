@@ -1,14 +1,14 @@
 package domain.auctions;
 
 import domain.customers.Bidder;
-import domain.customers.User;
+
 
 public class Bid {
 
 	private Bidder owner;
 	private int value;
 
-	public Bid(User owner, int amountToBid) {
+	public Bid(Bidder owner, int amountToBid) {
 		this.owner = owner;
 		this.value = amountToBid;
 	}

@@ -3,7 +3,6 @@ package domain.auctions;
 import java.util.Date;
 
 import domain.customers.Bidder;
-import domain.customers.User;
 import domain.products.Product;
 import domain.utils.VariationRateFunction;
 
