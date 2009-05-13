@@ -9,6 +9,8 @@ public abstract class Auction {
 	protected Product prize;
 	protected Bidder winner;
 	protected AuctionStatus status;
+	
+
 	protected VariationRateFunction variationRateFunction;
 	protected int value;
 	protected AuctionType type;
@@ -36,6 +38,9 @@ public abstract class Auction {
 	public AuctionType getType() {
 		return type;
 	}
-
+	
+	public AuctionStatus getStatus() {
+		return status;
+	}
 
 }

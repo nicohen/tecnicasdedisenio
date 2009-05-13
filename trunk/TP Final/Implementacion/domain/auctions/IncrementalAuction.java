@@ -28,13 +28,15 @@ public class IncrementalAuction extends Auction {
 			// TODO: ver manejo de exepcion
 			return;
 		}
-		Bid bestBid = this.bids.peek();
-		if (newBid.compareTo(bestBid) < 1)
-			// TODO: poner exepcion mas copada!
-			throw new IllegalArgumentException();
+		if(!this.bids.isEmpty()){//para el caso de no ser la primer oferta
+			Bid bestBid = this.bids.peek();
+			if (newBid.compareTo(bestBid) < 1)
+				// TODO: poner exepcion mas copada!
+				throw new IllegalArgumentException();
+		}
 		this.bids.push(newBid);
 		this.value = this.nextBidValue;
-		this.nextBidValue += this.variationRateFunction.nextDelta();
+		//this.nextBidValue += this.variationRateFunction.nextDelta();
 	}
 
 	public void finish() {
