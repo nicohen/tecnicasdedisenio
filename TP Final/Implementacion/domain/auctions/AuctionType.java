@@ -2,5 +2,5 @@ package domain.auctions;
 
 public enum AuctionType {
 
-	SINGLE, GROUP;
+	SINGLE, GROUP, REVERSE;
 }

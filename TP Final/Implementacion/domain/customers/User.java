@@ -5,13 +5,14 @@ import java.util.Date;
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
+import domain.auctions.InvalidAuctionTypeException;
 
 public class User extends Bidder {
 	private int dni;
 	private String name;
 	private String lastName;
 	private Date birthDate;
-	
+
 	public User(int dni, String name, String lastName, Date birthDate) {
 		super();
 		this.dni = dni;
@@ -20,16 +21,33 @@ public class User extends Bidder {
 		this.birthDate = birthDate;
 	}
 
-	public void acceptGroupInvitation(int idGrupo){
+	@Override
+	public void bid(Auction anAuction) {
+
+		int amount = anAuction.getAmountForNextBid();
+		if (super.getPoints() < amount) {
+			throw new IllegalArgumentException(); // TODO: cambiar excepciones
+		}
+		try { // TODO: Esta excepción debería mandarse para arriba, pero hay que
+			// definir las clases excepciones necesarias.
+			this.validateAuctionType(anAuction.getType());
+		} catch (InvalidAuctionTypeException e) {
+			e.printStackTrace();
+		}
+
+		Bid myBid = new Bid(this, amount);
+		anAuction.takeNewBid(myBid);
 
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void declineGroupInvitation(int idGrupo) {
-
+	@Override
+	public void validateAuctionType(AuctionType type)
+			throws InvalidAuctionTypeException {
+		if (!type.equals(AuctionType.SINGLE)
+				&& !type.equals(AuctionType.REVERSE)) {
+			throw new InvalidAuctionTypeException(
+					"El Remate no es del tipo correcto");
+		}
 	}
 
 	public Date getBirthDate() {
@@ -44,31 +62,7 @@ public class User extends Bidder {
 		return dni;
 	}
 
-	@Override
-	public void bid(Auction anAuction) {
-		
-		int amount = anAuction.getAmountForNextBid();
-		if(super.getPoints() < amount){
-			throw new IllegalArgumentException(); // TODO: cambiar excepciones
-		}
-		try { // TODO: Esta excepción debería mandarse para arriba, pero hay que definir las clases excepciones necesarias.
-			this.validateAuctionType(anAuction.getType());
-		} catch (Throwable e) {
-			e.printStackTrace();
-			return;
-		}
-		
-		Bid myBid = new Bid(this, amount);
-		anAuction.takeNewBid(myBid);
-		
+	public String getName() {
+		return name;
 	}
-		
-	@Override
-	public void validateAuctionType(AuctionType type) throws Throwable {
-		if (!type.equals(AuctionType.SINGLE)) {
-			// TODO: crear excepcion
-			throw new Throwable();
-		}
-	}
-	
 }

@@ -8,34 +8,33 @@ import domain.utils.VariationRateFunction;
 
 public class IncrementalAuction extends Auction {
 
-	protected int nextBidValue;
+	private int nextBidValue;
 	private Stack<Bid> bids;
-	private AuctionType type;
 
 	public IncrementalAuction(Product prize, AuctionType type,
 			VariationRateFunction varFunction, int startUpValue) {
-		super(prize, varFunction, 0);
+		super(prize, varFunction, type, 0);
 		this.bids = new Stack<Bid>();
-		this.type = type;
 		this.nextBidValue = startUpValue;
 	}
 
-	public void takeNewBid(Bid newBid) {
-
+	public void takeNewBid(Bid newBid) throws InvalidBidException {
 		try {
 			newBid.getOwner().validateAuctionType(getType());
-		} catch (Throwable e) {
-
+			// para la primera oferta
+			if (!this.bids.isEmpty()) {
+				Bid bestBid = this.bids.peek();
+				if (newBid.compareTo(bestBid) < 1) {
+					throw new InvalidBidException(
+							"El valor de la oferta debe superar "
+									+ bestBid.getValue());
+				}
+			}
+			this.bids.push(newBid);
+			this.value = this.nextBidValue;
+		} catch (InvalidAuctionTypeException e) {
+			e.printStackTrace();
 		}
-		if (!this.bids.isEmpty()) {// para el caso de no ser la primer oferta
-			Bid bestBid = this.bids.peek();
-			if (newBid.compareTo(bestBid) < 1)
-				// TODO: poner exepcion mas copada!
-				throw new IllegalArgumentException();
-		}
-		this.bids.push(newBid);
-		this.value = this.nextBidValue;
-		// this.nextBidValue += this.variationRateFunction.nextDelta();
 	}
 
 	public void finish() {
@@ -50,10 +49,6 @@ public class IncrementalAuction extends Auction {
 			}
 		}
 	};
-
-	public AuctionType getType() {
-		return type;
-	}
 
 	@Override
 	public int getAmountForNextBid() {

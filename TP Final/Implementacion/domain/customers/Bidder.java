@@ -7,8 +7,10 @@ import java.util.Set;
 
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
+import domain.auctions.InvalidAuctionTypeException;
 
 public abstract class Bidder {
+
 	protected int points;
 	protected Set<Auction> wonAuctions;
 
@@ -41,17 +43,8 @@ public abstract class Bidder {
 	 * 
 	 * @param type
 	 */
-	abstract public void validateAuctionType(AuctionType type) throws Throwable; // TODO:
-
-	// throw
-	// tiene
-	// que
-	// tirar
-	// una
-	// excepción
-	// mucho
-	// más
-	// definida
+	abstract public void validateAuctionType(AuctionType type)
+			throws InvalidAuctionTypeException;
 
 	public boolean isAllowedToWin() {
 		return getWonAuctions().isEmpty();
