@@ -38,14 +38,15 @@ public class IncrementalAuction extends Auction {
 	}
 
 	public void finish() {
-		while (this.status.equals(AuctionStatus.ACTIVE) && !this.bids.isEmpty()) {
+		this.status = AuctionStatus.CLOSED;
+		boolean finish = false;
+		while (!finish && !this.bids.isEmpty()) {
 			Bid bid = this.bids.peek();
 			Bidder bidder = bid.getOwner();
 			if (bidder.isAllowedToWin()) {
-				this.status = AuctionStatus.CLOSED;
 				this.winner = bidder;
 				bidder.win(this);
-				// TODO: restar puntos
+				finish = true;
 			}
 		}
 	};
