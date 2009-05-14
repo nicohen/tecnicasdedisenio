@@ -83,6 +83,20 @@ public class FinishAuctionTest {
 
 	@Test
 	public void finishIncrementalAuctionWithSecondBid() {
+			//agrego dos usuarios, el primero lo hago ganar en el primer remate y al segundo en el siguiente remate.
+			User aUser2 = new User(31733445, "Aníbal", "Lovaglio", dateOfBirth);
+			aUser.addPoints(15000);
+			aUser2.addPoints(15000);
+			Product prize = null;
+			VariationRateFunction variationFunction= new VariationRateFunction(null);
+			int value= 1000;
+			Auction anAuction = new IncrementalAuction(prize, AuctionType.SINGLE, variationFunction, value);
+			aUser.win(anAuction);
+			Auction anAuction2 = new IncrementalAuction(prize, AuctionType.SINGLE, variationFunction, value);
+			aUser2.bid(anAuction2);
+			aUser.bid(anAuction2);
+			//assertTrue(anAuction2.getWinner()== aUser2.getName());
+
 
 	}
 }
