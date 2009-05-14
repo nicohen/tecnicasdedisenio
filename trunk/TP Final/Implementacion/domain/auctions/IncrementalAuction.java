@@ -18,7 +18,8 @@ public class IncrementalAuction extends Auction {
 		this.nextBidValue = startUpValue;
 	}
 
-	protected void takeNewBid(Bid newBid) throws InvalidBidException {
+	/* package visibility */
+	void takeNewBid(Bid newBid) throws InvalidBidException {
 		try {
 			newBid.getOwner().validateAuctionType(getType());
 			// para la primera oferta
@@ -29,9 +30,11 @@ public class IncrementalAuction extends Auction {
 							"El valor de la oferta debe superar "
 									+ bestBid.getValue());
 				}
+				bestBid.getOwner().acknowledgeBidOvercame(bestBid);
 			}
 			this.bids.push(newBid);
 			this.value = this.nextBidValue;
+			this.nextBidValue += this.variationRateFunction.nextDelta();
 		} catch (InvalidAuctionTypeException e) {
 			e.printStackTrace();
 		}
@@ -41,15 +44,21 @@ public class IncrementalAuction extends Auction {
 		this.status = AuctionStatus.CLOSED;
 		boolean finish = false;
 		while (!finish && !this.bids.isEmpty()) {
-			Bid bid = this.bids.peek();
+			Bid bid = this.bids.pop();
 			Bidder bidder = bid.getOwner();
 			if (bidder.isAllowedToWin()) {
+				/*
+				 * TODO: esta debería ser una llamada asíncrona, donde el
+				 * ganador, como había sido desplazado, debe confirmar si
+				 * todavía quiere y tiene los puntos para obtener este premio.
+				 */
 				this.winner = bidder;
-				bidder.win(this);
+				bidder.win(this, bid);
+				/* hasta acá corresponde el TO-DO anterior */
 				finish = true;
 			}
 		}
-	};
+	}
 
 	@Override
 	public int getAmountForNextBid() {

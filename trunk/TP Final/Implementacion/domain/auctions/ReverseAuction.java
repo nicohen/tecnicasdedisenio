@@ -27,7 +27,8 @@ public class ReverseAuction extends Auction {
 	public void finish() {
 		this.status = AuctionStatus.CLOSED;
 		Bidder bidder = this.firstBid.getOwner();
-		bidder.win(this);
+		bidder.win(this, this.firstBid);
+		this.winner = this.firstBid.getOwner();
 	}
 
 	@Override
@@ -47,7 +48,8 @@ public class ReverseAuction extends Auction {
 	}
 
 	@Override
-	public void takeNewBid(Bid newBid) throws InvalidBidException {
+	/*package visibility*/ 
+	void takeNewBid(Bid newBid) throws InvalidBidException {
 		if (newBid.getValue() != this.value)
 			throw new InvalidBidException("El valor ofertado es incorrecto");
 		if (!newBid.getOwner().isAllowedToWin()) {

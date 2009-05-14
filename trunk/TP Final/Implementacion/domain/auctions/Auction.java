@@ -27,7 +27,8 @@ public abstract class Auction {
 
 	public abstract int getAmountForNextBid();
 
-	protected abstract void takeNewBid(Bid newBid) throws InvalidBidException;
+	/*package visibility*/ 
+	abstract void takeNewBid(Bid newBid) throws InvalidBidException;
 
 	public Bidder getWinner() {
 		return winner;
