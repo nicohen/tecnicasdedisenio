@@ -1,22 +1,25 @@
 package domain.customers;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 
 public abstract class Bidder {
-	private int points;
-	private Set<Auction> wonAuctions;
-	
-	public Bidder(){
+	protected int points;
+	protected Set<Auction> wonAuctions;
+
+	public Bidder() {
 		this.wonAuctions = new HashSet<Auction>();
 	}
-	
-	public int getPoints(){
+
+	public int getPoints() {
 		return this.points;
 	}
+
 	public void addPoints(int points) {
 		this.points += points;
 	}
@@ -26,10 +29,11 @@ public abstract class Bidder {
 			throw new IllegalArgumentException();
 		this.points -= points;
 	}
-	public Set<Auction> getWonAuctions() {
-		return  new HashSet<Auction>(this.wonAuctions);
+
+	public List<Auction> getWonAuctions() {
+		return new ArrayList<Auction>(this.wonAuctions);
 	}
-	
+
 	abstract public void bid(Auction anAuction);
 
 	/**
@@ -37,15 +41,25 @@ public abstract class Bidder {
 	 * 
 	 * @param type
 	 */
-	abstract public void validateAuctionType(AuctionType type) throws Throwable; // TODO: throw tiene que tirar una excepción mucho más definida
+	abstract public void validateAuctionType(AuctionType type) throws Throwable; // TODO:
+
+	// throw
+	// tiene
+	// que
+	// tirar
+	// una
+	// excepción
+	// mucho
+	// más
+	// definida
 
 	public boolean isAllowedToWin() {
 		return getWonAuctions().isEmpty();
 	}
 
 	public void win(Auction auction) {
-		//TODO: restar puntos!
+		// TODO: restar puntos!
 		this.wonAuctions.add(auction);
 	}
-	
+
 }

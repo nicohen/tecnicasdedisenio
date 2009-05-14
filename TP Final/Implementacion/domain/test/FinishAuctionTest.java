@@ -1,9 +1,10 @@
 package domain.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import domain.auctions.Auction;
@@ -19,57 +20,69 @@ import domain.utils.VariationRateFunction;
 
 public class FinishAuctionTest {
 
-	@Test
-	public void finishReverseAuction(){
-		Date dateOfBirth = new Date();
-		User aUser = new User(31733445, "Aníbal", "Lovaglio", dateOfBirth);
+	private Date dateOfBirth;
+	private User aUser;
+	private Product prize;
+	Group aGroup;
+
+	@Before
+	public void setUp() {
+		dateOfBirth = new Date();
+		aUser = new User(31733445, "Aníbal", "Lovaglio", dateOfBirth);
+		prize = new Product("Malboro");
+		aGroup = new Group(aUser);
 		aUser.addPoints(15000);
-		Product prize = null;
-		VariationRateFunction variationFunction=null;
+	}
+
+	@Test
+	public void finishReverseAuction() {
+		VariationRateFunction variationFunction = null;
 		int value = 1000;
-		Auction anReverseAuction = new ReverseAuction(prize, variationFunction, value);
+		Auction anReverseAuction = new ReverseAuction(prize, variationFunction,
+				value);
 		Bid myBid = new Bid(aUser, value);
-		anReverseAuction.takeNewBid(myBid);//aca adentro se llama al finish
-		
+		anReverseAuction.takeNewBid(myBid);// aca adentro se llama al finish
+
 		assertTrue(anReverseAuction.getStatus().equals(AuctionStatus.CLOSED));
 		assertTrue(!aUser.getWonAuctions().isEmpty());
 	}
-	
+
 	@Test
-	public void finishIncrementalSingleAuction(){
-		Date dateOfBirth = new Date();
-		User aUser = new User(31733445, "Aníbal", "Lovaglio", dateOfBirth);
-		aUser.addPoints(15000);
-		Product prize = null;
-		VariationRateFunction variationFunction=null;
+	public void finishIncrementalSingleAuction() {
+		VariationRateFunction variationFunction = null;
 		int value = 1000;
-		Auction anIncrementalAuction = new IncrementalAuction(prize, AuctionType.SINGLE, variationFunction, value);
+		Auction anIncrementalAuction = new IncrementalAuction(prize,
+				AuctionType.SINGLE, variationFunction, value);
 		Bid myBid = new Bid(aUser, value);
-		anIncrementalAuction.takeNewBid(myBid);//HAY Q COMENTAR EL CALCULO DEL nextBidValue para q ande este test, por ahora..
+		anIncrementalAuction.takeNewBid(myBid);// HAY Q COMENTAR EL CALCULO DEL
+		// nextBidValue para q ande este
+		// test, por ahora..
 		anIncrementalAuction.finish();
-		
-		assertTrue(anIncrementalAuction.getStatus().equals(AuctionStatus.CLOSED));
+
+		assertTrue(anIncrementalAuction.getStatus()
+				.equals(AuctionStatus.CLOSED));
 		assertTrue(!aUser.getWonAuctions().isEmpty());
 	}
+
 	@Test
-	public void finishIncrementalGroupAuction(){
-		Date dateOfBirth = new Date();
-		User anOwnerUser = new User(31733445, "Aníbal", "Lovaglio", dateOfBirth);
-		Group aGroup = new Group(anOwnerUser);
+	public void finishIncrementalGroupAuction() {
 		aGroup.addPoints(15000);
-		Product prize = null;
-		VariationRateFunction variationFunction=null;
+		VariationRateFunction variationFunction = null;
 		int value = 1000;
-		Auction anIncrementalAuction = new IncrementalAuction(prize, AuctionType.GROUP, variationFunction, value);
-		Bid myBid = new Bid(anOwnerUser, value);
-		anIncrementalAuction.takeNewBid(myBid);//HAY Q COMENTAR EL CALCULO DEL nextBidValue para q ande este test, por ahora..
+		Auction anIncrementalAuction = new IncrementalAuction(prize,
+				AuctionType.GROUP, variationFunction, value);
+
+		Bid myBid = new Bid(aGroup, value);
+		anIncrementalAuction.takeNewBid(myBid);
 		anIncrementalAuction.finish();
-		
-		assertTrue(anIncrementalAuction.getStatus().equals(AuctionStatus.CLOSED));
+
+		assertTrue(anIncrementalAuction.getStatus()
+				.equals(AuctionStatus.CLOSED));
 		assertTrue(!aGroup.getWonAuctions().isEmpty());
 	}
+
 	@Test
-	public void finishIncrementalAuctionWithSecondBid(){
-		
+	public void finishIncrementalAuctionWithSecondBid() {
+
 	}
 }
