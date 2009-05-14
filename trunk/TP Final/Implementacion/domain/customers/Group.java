@@ -35,7 +35,7 @@ public class Group extends Bidder {
 				return;
 			}
 
-			Bid myBid = new Bid(this.owner, amount);
+			Bid myBid = new Bid(this.owner, anAuction, amount);
 			anAuction.takeNewBid(myBid);
 		} else {
 			throw new InvalidBidException(
