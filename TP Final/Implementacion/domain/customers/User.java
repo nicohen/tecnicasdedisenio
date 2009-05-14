@@ -35,9 +35,7 @@ public class User extends Bidder {
 			e.printStackTrace();
 		}
 
-		Bid myBid = new Bid(this, anAuction, amount);
-		anAuction.takeNewBid(myBid);
-
+		new Bid(this, anAuction, amount);
 	}
 
 	@Override

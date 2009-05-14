@@ -121,7 +121,7 @@ public class FinishAuctionTest {
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
 
-		Bid myBid = new Bid(aUser, anIncrementalAuction, value);
+		new Bid(aUser, anIncrementalAuction, value);
 
 		User user = new User(31936280, "Agustina", "Bazzano", dateOfBirth);
 		user.addPoints(value);
@@ -130,8 +130,9 @@ public class FinishAuctionTest {
 
 		Auction anIncrementalAuction2 = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
-
-		anIncrementalAuction2.takeNewBid(myBid);
-
+		new Bid(user, anIncrementalAuction2, value * 2);
+		
+		anIncrementalAuction2.finish();
+		assertNull(anIncrementalAuction.getWinner());
 	}
 }
