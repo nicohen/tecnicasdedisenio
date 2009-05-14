@@ -18,7 +18,7 @@ public class IncrementalAuction extends Auction {
 		this.nextBidValue = startUpValue;
 	}
 
-	public void takeNewBid(Bid newBid) throws InvalidBidException {
+	protected void takeNewBid(Bid newBid) throws InvalidBidException {
 		try {
 			newBid.getOwner().validateAuctionType(getType());
 			// para la primera oferta
