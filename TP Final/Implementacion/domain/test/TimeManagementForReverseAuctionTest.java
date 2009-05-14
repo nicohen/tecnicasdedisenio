@@ -12,10 +12,10 @@ import domain.utils.VariationRateFunction;
 
 public class TimeManagementForReverseAuctionTest {
 
-	@Test
+	
 	public void testGetAmountForNextBid() {
 		Auction rAuction = new ReverseAuction(null, new VariationRateFunction(
-				null), 1000);
+				null), 100);
 		int amount = rAuction.getAmountForNextBid();
 		while (amount > 0) {
 			Date startDate = new Date();

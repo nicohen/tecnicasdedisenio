@@ -36,6 +36,8 @@ public class User extends Bidder {
 		}
 
 		new Bid(this, anAuction, amount);
+		this.compromisedPoints += amount;
+		this.avaliablePoints -= amount;
 	}
 
 	@Override

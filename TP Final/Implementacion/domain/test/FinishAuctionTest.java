@@ -49,7 +49,7 @@ public class FinishAuctionTest {
 
 	@Test
 	public void finishIncrementalSingleAuction() {
-		VariationRateFunction variationFunction = null;
+		VariationRateFunction variationFunction = new VariationRateFunction(null);
 		int value = 1000;
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
@@ -65,7 +65,7 @@ public class FinishAuctionTest {
 	@Test
 	public void finishIncrementalGroupAuction() {
 		aGroup.addPoints(15000);
-		VariationRateFunction variationFunction = null;
+		VariationRateFunction variationFunction = new VariationRateFunction(null);
 		int value = 1000;
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.GROUP, variationFunction, value);
@@ -81,7 +81,7 @@ public class FinishAuctionTest {
 
 	@Test
 	public void finishIncrementalAuctionWithSecondBid() {
-		VariationRateFunction variationFunction = null;
+		VariationRateFunction variationFunction = new VariationRateFunction(null);
 		int value = 1000;
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
@@ -102,7 +102,7 @@ public class FinishAuctionTest {
 
 	@Test
 	public void testFinishIncrementalAuctionWithNoBid() {
-		VariationRateFunction variationFunction = null;
+		VariationRateFunction variationFunction = new VariationRateFunction(null);
 		int value = 1000;
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
@@ -116,23 +116,22 @@ public class FinishAuctionTest {
 
 	@Test
 	public void testFinishIncrementalAuctionWithNoWinner() {
-		VariationRateFunction variationFunction = null;
+		VariationRateFunction variationFunction = new VariationRateFunction(null);
 		int value = 1000;
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
 
-		new Bid(aUser, anIncrementalAuction, value);
-
 		User user = new User(31936280, "Agustina", "Bazzano", dateOfBirth);
-		user.addPoints(value);
+		user.addPoints(value*100);
 		new Bid(user, anIncrementalAuction, value * 2);
 		anIncrementalAuction.finish();
 
 		Auction anIncrementalAuction2 = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
-		new Bid(user, anIncrementalAuction2, value * 2);
+		new Bid(user, anIncrementalAuction2, value);
+		
 		
 		anIncrementalAuction2.finish();
-		assertNull(anIncrementalAuction.getWinner());
+		assertNull(anIncrementalAuction2.getWinner());
 	}
 }
