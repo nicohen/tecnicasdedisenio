@@ -5,13 +5,17 @@ import java.util.Date;
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
+import domain.auctions.Donation;
 import domain.auctions.InvalidAuctionTypeException;
+import domain.auctions.InvalidDonationException;
+
 
 public class User extends Bidder {
 	private int dni;
 	private String name;
 	private String lastName;
 	private Date birthDate;
+	private Group memberGroup;
 
 	public User(int dni, String name, String lastName, Date birthDate) {
 		super();
@@ -19,6 +23,7 @@ public class User extends Bidder {
 		this.name = name;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
+		memberGroup=null;
 	}
 
 	@Override
@@ -45,10 +50,30 @@ public class User extends Bidder {
 			throws InvalidAuctionTypeException {
 		if (!type.equals(AuctionType.SINGLE)
 				&& !type.equals(AuctionType.REVERSE)) {
-			throw new InvalidAuctionTypeException(
-					"El Remate no es del tipo correcto");
+			throw new InvalidAuctionTypeException("El Remate no es del tipo correcto");
 		}
 	}
+	
+
+	public void donate(User user,int points) {
+		if (user.isMemberaGroup()){
+			Group group=user.getGroupOfUsser();
+			//if(group.getAmountOfMembersOfGroup() >= Constants.MinAmountOfGroup){
+				if (user.getPoints()>= points){
+					new Donation(user, group, points);
+					group.addCredits(points);
+					user.addPoints(-points);
+				}
+				else
+					throw new InvalidDonationException("El credito es insuficiente para ser donado");
+			//}
+			//else 
+			//	throw new InvalidDonationException("Para poder donar a un grupo deben existir mas de dos integrantes en el mismo");
+		}
+		else 
+			throw new InvalidDonationException("El usuario no pertenece a ningun grupo"); 
+	}
+
 
 	public Date getBirthDate() {
 		return birthDate;
@@ -64,5 +89,20 @@ public class User extends Bidder {
 
 	public String getName() {
 		return name;
+	}
+	
+	public boolean isMemberaGroup(){
+		if(memberGroup != null)
+			return true;
+		return false;
+	}
+	
+	public Group getGroupOfUsser(){
+		return memberGroup;
+	}
+	
+	public void suscribeToGroup(Group group){
+		this.memberGroup=group;
+		
 	}
 }

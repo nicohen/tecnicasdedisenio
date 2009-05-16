@@ -1,13 +1,13 @@
 package domain.test;
 
 import static org.junit.Assert.*;
+
 import java.util.Date;
 
 import org.junit.Test;
 
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
-import domain.auctions.Bid;
 import domain.auctions.IncrementalAuction;
 import domain.customers.User;
 import domain.products.Product;
