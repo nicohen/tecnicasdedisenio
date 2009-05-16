@@ -41,7 +41,7 @@ public class IncrementalAuction extends Auction {
 	}
 
 	public void finish() {
-		this.status = AuctionStatus.CLOSED;
+		this.setStatus(AuctionStatus.CLOSED);
 		boolean finish = false;
 		while (!finish && !this.bids.isEmpty()) {
 			Bid bid = this.bids.pop();
@@ -52,12 +52,21 @@ public class IncrementalAuction extends Auction {
 				 * ganador, como había sido desplazado, debe confirmar si
 				 * todavía quiere y tiene los puntos para obtener este premio.
 				 */
-				this.winner = bidder;
+				this.setWinner(bidder);
 				bidder.win(this, bid);
 				/* hasta acá corresponde el TO-DO anterior */
 				finish = true;
 			}
 		}
+	}
+
+	private void setStatus(AuctionStatus status) {
+		this.status= status;
+		
+	}
+
+	private void setWinner(Bidder bidder) {
+		this.winner = bidder;
 	}
 
 	@Override
