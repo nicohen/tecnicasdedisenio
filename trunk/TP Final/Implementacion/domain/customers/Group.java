@@ -13,11 +13,13 @@ public class Group extends Bidder {
 
 	private User owner;
 	private List<User> members;
-
+	private int credits;
+	
 	public Group(User owner) {
 		super();
 		this.owner = owner;
 		this.members = new ArrayList<User>();
+		this.credits=0;
 	}
 
 	public void bid(Auction anAuction) {
@@ -37,21 +39,32 @@ public class Group extends Bidder {
 
 			new Bid(this.owner, anAuction, amount);
 		} else {
-			throw new InvalidBidException(
-					"El grupo no esta apto para ofertar. No tiene miembros");
+			throw new InvalidBidException("El grupo no esta apto para ofertar. No tiene miembros");
 		}
 	}
 
 	public void validateAuctionType(AuctionType type)
 			throws InvalidAuctionTypeException {
 		if (!type.equals(AuctionType.GROUP)) {
-			throw new InvalidAuctionTypeException(
-					"El remate deberia ser para grupo");
+			throw new InvalidAuctionTypeException("El remate deberia ser para grupo");
 		}
 	}
 
 	public void addMember(User member) {
 		this.members.add(member);
+	}
+	
+	public int getAmountOfMembersOfGroup(){
+		int amount=0;
+		amount=members.size();
+		return amount;
+	}
+	
+	public void addCredits(int credits){
+		this.credits=credits;
+	}
+	public int getCredits() {
+		return credits;
 	}
 
 }

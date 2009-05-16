@@ -3,13 +3,13 @@ package domain.customers;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Queue;
 import java.util.Set;
 
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
 import domain.auctions.InvalidAuctionTypeException;
+
 
 public abstract class Bidder {
 
@@ -50,7 +50,7 @@ public abstract class Bidder {
 	 */
 	abstract public void validateAuctionType(AuctionType type)
 			throws InvalidAuctionTypeException;
-
+	
 	public boolean isAllowedToWin() {
 		return getWonAuctions().isEmpty();
 	}
