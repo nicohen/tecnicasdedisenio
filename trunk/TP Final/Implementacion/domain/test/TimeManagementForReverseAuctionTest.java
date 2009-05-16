@@ -12,7 +12,7 @@ import domain.utils.VariationRateFunction;
 
 public class TimeManagementForReverseAuctionTest {
 
-	
+	@Test
 	public void testGetAmountForNextBid() {
 		Auction rAuction = new ReverseAuction(null, new VariationRateFunction(
 				null), 100);
