@@ -1,4 +1,4 @@
-package domain.products;
+package domain.auctions;
 
 public class Product {
 

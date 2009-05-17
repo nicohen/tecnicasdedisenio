@@ -1,7 +1,7 @@
 package domain.auctions;
 
 import domain.customers.Bidder;
-import domain.products.Product;
+import domain.customers.NotEnoughMembersInGroupForBidException;
 import domain.utils.VariationRateFunction;
 
 public abstract class Auction {
@@ -28,7 +28,7 @@ public abstract class Auction {
 	public abstract int getAmountForNextBid();
 
 	/*package visibility*/ 
-	abstract void takeNewBid(Bid newBid) throws InvalidBidException;
+	abstract void takeNewBid(Bid newBid) throws NotEnoughMembersInGroupForBidException;
 
 	public Bidder getWinner() {
 		return winner;

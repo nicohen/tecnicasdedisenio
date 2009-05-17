@@ -41,7 +41,7 @@ public abstract class Bidder {
 		return new ArrayList<Auction>(this.wonAuctions);
 	}
 
-	abstract public void bid(Auction anAuction);
+	abstract public void bid(Auction anAuction) throws InvalidAuctionTypeException, notEnoughPointsToBidException, NotEnoughMembersInGroupForBidException;
 
 	/**
 	 * Valida que el tipo de remate este permitido para el bidder

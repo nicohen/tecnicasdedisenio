@@ -1,13 +1,14 @@
 package domain.auctions;
 
 import domain.customers.Bidder;
+import domain.customers.NotEnoughMembersInGroupForBidException;
 
 public class Bid {
 
 	private Bidder owner;
 	private int value;
 
-	public Bid(Bidder owner, Auction auction, int amountToBid) {
+	public Bid(Bidder owner, Auction auction, int amountToBid) throws NotEnoughMembersInGroupForBidException {
 		this.owner = owner;
 		this.value = amountToBid;
 		auction.takeNewBid(this);

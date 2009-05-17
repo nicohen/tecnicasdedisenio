@@ -2,6 +2,7 @@ package domain.test;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Date;
 
@@ -13,10 +14,12 @@ import domain.auctions.AuctionStatus;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
 import domain.auctions.IncrementalAuction;
+import domain.auctions.Product;
 import domain.auctions.ReverseAuction;
 import domain.customers.Group;
 import domain.customers.User;
-import domain.products.Product;
+import domain.customers.UserAlreadyInGroupException;
+import domain.customers.notEnoughPointsToBidException;
 import domain.utils.VariationRateFunction;
 
 public class FinishAuctionTest {
@@ -31,7 +34,11 @@ public class FinishAuctionTest {
 		dateOfBirth = new Date();
 		aUser = new User(31733445, "Aníbal", "Lovaglio", dateOfBirth);
 		prize = new Product("Malboro");
-		aGroup = new Group(aUser);
+		try {
+			aGroup = new Group(aUser);
+		} catch (UserAlreadyInGroupException e) {
+			fail("Unexpected UserAlreadyInGroupException thrown");
+		}
 		aUser.addPoints(15000);
 	}
 
@@ -41,8 +48,11 @@ public class FinishAuctionTest {
 		int value = 1000;
 		Auction anReverseAuction = new ReverseAuction(prize, variationFunction,
 				value);
-		new Bid(aUser, anReverseAuction, value);
-
+		try {
+			aUser.bid(anReverseAuction);
+		} catch (notEnoughPointsToBidException e) {
+			fail("Unexpected notEnoughPointsToBidException thrown");
+		}
 		assertTrue(anReverseAuction.getStatus().equals(AuctionStatus.CLOSED));
 		assertTrue(!aUser.getWonAuctions().isEmpty());
 	}
@@ -53,7 +63,11 @@ public class FinishAuctionTest {
 		int value = 1000;
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
-		new Bid(aUser, anIncrementalAuction, value);
+		try {
+			aUser.bid(anIncrementalAuction);
+		} catch (notEnoughPointsToBidException e) {
+			fail("Unexpected notEnoughPointsToBidException thrown");
+		}
 
 		anIncrementalAuction.finish();
 
@@ -70,7 +84,11 @@ public class FinishAuctionTest {
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.GROUP, variationFunction, value);
 
-		new Bid(aGroup, anIncrementalAuction, value);
+		try {
+			aUser.bid(anIncrementalAuction);
+		} catch (notEnoughPointsToBidException e) {
+			fail("Unexpected notEnoughPointsToBidException thrown");
+		}
 
 		anIncrementalAuction.finish();
 
@@ -86,12 +104,19 @@ public class FinishAuctionTest {
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
 
-		new Bid(aUser, anIncrementalAuction, value);
-
+		try {
+			aUser.bid(anIncrementalAuction);
+		} catch (notEnoughPointsToBidException e) {
+			fail("Unexpected notEnoughPointsToBidException thrown");
+		}
 		User user = new User(31936280, "Agustina", "Bazzano", dateOfBirth);
 		user.addPoints(value);
-		new Bid(user, anIncrementalAuction, value * 2);
-
+		try {
+			aUser.bid(anIncrementalAuction);
+		} catch (notEnoughPointsToBidException e) {
+			fail("Unexpected notEnoughPointsToBidException thrown");
+		}
+		
 		anIncrementalAuction.finish();
 
 		assertTrue(anIncrementalAuction.getStatus()
@@ -123,13 +148,19 @@ public class FinishAuctionTest {
 
 		User user = new User(31936280, "Agustina", "Bazzano", dateOfBirth);
 		user.addPoints(value*100);
-		new Bid(user, anIncrementalAuction, value * 2);
-		anIncrementalAuction.finish();
+		try {
+			aUser.bid(anIncrementalAuction);
+		} catch (notEnoughPointsToBidException e) {
+			fail("Unexpected notEnoughPointsToBidException thrown");
+		}		anIncrementalAuction.finish();
 
 		Auction anIncrementalAuction2 = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
-		new Bid(user, anIncrementalAuction2, value);
-		
+		try {
+			aUser.bid(anIncrementalAuction);
+		} catch (notEnoughPointsToBidException e) {
+			fail("Unexpected notEnoughPointsToBidException thrown");
+		}		
 		
 		anIncrementalAuction2.finish();
 		assertNull(anIncrementalAuction2.getWinner());

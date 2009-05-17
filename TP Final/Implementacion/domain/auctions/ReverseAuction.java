@@ -3,7 +3,7 @@ package domain.auctions;
 import java.util.Date;
 
 import domain.customers.Bidder;
-import domain.products.Product;
+import domain.customers.NotEnoughMembersInGroupForBidException;
 import domain.utils.VariationRateFunction;
 
 public class ReverseAuction extends Auction {
@@ -49,11 +49,11 @@ public class ReverseAuction extends Auction {
 
 	@Override
 	/*package visibility*/ 
-	void takeNewBid(Bid newBid) throws InvalidBidException {
+	void takeNewBid(Bid newBid) throws NotEnoughMembersInGroupForBidException {
 		if (newBid.getValue() != this.value)
-			throw new InvalidBidException("El valor ofertado es incorrecto");
+			throw new NotEnoughMembersInGroupForBidException("El valor ofertado es incorrecto");
 		if (!newBid.getOwner().isAllowedToWin()) {
-			throw new InvalidBidException(
+			throw new NotEnoughMembersInGroupForBidException(
 					"El usuario no esta habilitado para ofertar");
 		}
 		this.firstBid = newBid;
