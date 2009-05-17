@@ -15,7 +15,7 @@ public class TimeManagementForReverseAuctionTest {
 	@Test
 	public void testGetAmountForNextBid() {
 		Auction rAuction = new ReverseAuction(null, new VariationRateFunction(
-				null), 100);
+				null), 10);
 		int amount = rAuction.getAmountForNextBid();
 		while (amount > 0) {
 			Date startDate = new Date();

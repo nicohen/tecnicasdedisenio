@@ -40,6 +40,8 @@ public class BiddingTesting {
 			aUser.bid(anAuction);
 		} catch (notEnoughPointsToBidException e1) {
 			fail("Unexpected exception");
+		} catch (InvalidAuctionTypeException e) {
+			fail("Unexpected InvalidAuctionTypeException thrown");
 		}
 		int bidAmount = anAuction.getAmountForNextBid();
 		assertTrue(bidAmount > 1000);
@@ -151,6 +153,8 @@ public class BiddingTesting {
 			fail("User - expected: notEnoughPointsToBidException | actual: none");
 		} catch (notEnoughPointsToBidException e) {
 			assertTrue(true);
+		} catch (InvalidAuctionTypeException e) {
+			fail("Unexpected InvalidAuctionTypeException thrown");
 		}
 	}
 	
@@ -171,6 +175,8 @@ public class BiddingTesting {
 			aUser1.bid(anAuction);
 		} catch (notEnoughPointsToBidException e) {
 			fail("Unexpected notEnoughPointsToBidException thrown");
+		} catch (InvalidAuctionTypeException e) {
+			fail("Unexpected InvalidAuctionTypeException thrown");
 		}
 		assertEquals(1000-bidAmount, aUser1.getPoints());
 		
@@ -179,6 +185,8 @@ public class BiddingTesting {
 			aUser2.bid(anAuction);
 		} catch (notEnoughPointsToBidException e) {
 			fail("Unexpected exception thrown");
+		} catch (InvalidAuctionTypeException e) {
+			fail("Unexpected InvalidAuctionTypeException thrown");
 		}
 		assertEquals(1000, aUser1.getPoints());
 		assertEquals(1000-secondBidAmount, aUser2.getPoints());

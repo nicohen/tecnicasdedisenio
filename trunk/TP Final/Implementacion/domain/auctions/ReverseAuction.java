@@ -41,8 +41,9 @@ public class ReverseAuction extends Auction {
 		long diff = (actualMS - startingMS) / 60000;
 		diff /= ReverseAuction.STEP_SIZE_IN_MINUTES;
 
-		for (long i = 0; i < diff; i++) {
-			this.value -= this.variationRateFunction.nextDelta();
+		for (long i = 0; (i < diff) && (this.value>0); i++) {
+			int tmp=this.variationRateFunction.nextDelta();
+			this.value = (tmp < this.value)? this.value-tmp : 0;
 		}
 		return this.value;
 	}
