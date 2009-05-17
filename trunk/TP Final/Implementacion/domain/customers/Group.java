@@ -12,7 +12,6 @@ public class Group extends Bidder {
 
 	private User owner;
 	private List<User> members;
-	private int credits;
 	
 	public Group(User owner) throws UserAlreadyInGroupException {
 		super();
@@ -20,7 +19,6 @@ public class Group extends Bidder {
 		this.owner = owner;
 		owner.setAsGroupOwner(this);
 		this.members = new ArrayList<User>();
-		this.credits=0;
 	}
 
 	@Override
@@ -51,12 +49,8 @@ public class Group extends Bidder {
 	
 	public int getAmountOfMembersOfGroup(){
 		int amount=1; // El primero es el Owner
-		amount=members.size();
+		amount+=members.size();
 		return amount;
-	}
-	
-	public int getCredits() {
-		return credits;
 	}
 
 }

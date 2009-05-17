@@ -77,7 +77,7 @@ public class GroupingTest {
 			fail("Unexpected InvalidDonationException thrown");
 		}
 		assertTrue(aUser1.getPoints() == 9000);
-		assertTrue(aGroup.getCredits() == 1000);
+		assertTrue(aGroup.getPoints() == 1000);
 	}
         
     @Test
