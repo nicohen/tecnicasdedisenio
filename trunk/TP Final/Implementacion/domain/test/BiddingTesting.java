@@ -2,8 +2,6 @@ package domain.test;
 
 import static org.junit.Assert.*;
 
-import java.util.Date;
-
 import org.junit.Test;
 
 import domain.auctions.Auction;
@@ -16,6 +14,7 @@ import domain.auctions.Product;
 import domain.auctions.ReverseAuction;
 import domain.customers.Bidder;
 import domain.customers.Group;
+import domain.customers.GroupSizeExceededException;
 import domain.customers.NotEnoughMembersInGroupForBidException;
 import domain.customers.User;
 import domain.customers.UserAlreadyInGroupException;
@@ -26,8 +25,7 @@ public class BiddingTesting {
 
 	@Test
 	public void bidOnIncrementalAuctionTest() {
-		Date dateOfBirth = new Date();
-		User aUser = new User(31733445, "Aníbal", "Lovaglio", dateOfBirth);
+		User aUser = new User(31733445, "Aníbal", "Lovaglio");
 		aUser.addPoints(15000);
 		
 		Product prize = null;
@@ -66,9 +64,9 @@ public class BiddingTesting {
 	@Test
 	public void takeNewBidFailureTest_IncompatibleBidder() {
 		Auction anAuction = new ReverseAuction(null, new VariationRateFunction(null), 1000);
-		User owner = new User(31733442, "Charles", "Rain", new Date());
+		User owner = new User(31733442, "Charles", "Rain");
 		owner.addPoints(10000);
-		User member = new User(45456587, "Lois", "Lane", null);
+		User member = new User(45456587, "Lois", "Lane");
 		Bidder bidder = null;
 		try {
 			bidder = new Group(owner);
@@ -78,6 +76,8 @@ public class BiddingTesting {
 			fail("Unexpected UserAlreadyInGroupException thrown");
 		} catch (InvalidDonationException e1) {
 			fail("Unexpected InvalidDonationException thrown");
+		}catch (GroupSizeExceededException e2){
+			fail("Unexpected GroupSizeExceededException thrown");
 		}
 		try {
 			bidder.bid(anAuction);
@@ -96,7 +96,7 @@ public class BiddingTesting {
 	public void takeNewBidFailureTest_EmptyGroupBidder() {
 		Auction anAuction = new IncrementalAuction(null, AuctionType.GROUP, new VariationRateFunction(null), 100);
 
-		User owner = new User(31733442, "Charles", "Rain", new Date());
+		User owner = new User(31733442, "Charles", "Rain");
 		owner.addPoints(10000);
 		
 		Bidder bidder = null;
@@ -126,14 +126,16 @@ public class BiddingTesting {
 	@Test
 	public void takeNewBidFailureTest_NotEnoughCredit() {
 		Auction anAuction = new IncrementalAuction(null, AuctionType.GROUP, new VariationRateFunction(null), 1000);
-		User owner = new User(31733442, "Charles", "Rain", new Date());
-		User member = new User(54314564, "Mario", "Ledesma", null);
+		User owner = new User(31733442, "Charles", "Rain");
+		User member = new User(54314564, "Mario", "Ledesma");
 		Group bidder = null;
 		try {
 			bidder = new Group(owner);
 			member.suscribeToGroup(bidder);
 		} catch (UserAlreadyInGroupException e1) {
 			fail("Unexpected UserAlreadyInGroupException thrown");
+		}catch (GroupSizeExceededException e2){
+			fail("Unexpected GroupSizeExceededException thrown");
 		}
 		
 		try {
@@ -160,9 +162,9 @@ public class BiddingTesting {
 	
 	@Test
 	public void takeNewBidTest_ReleaseingCompromisedPoints() {
-		User aUser1 = new User(31733445, "Aníbal", "Lovaglio", null);
-		User aUser2 = new User(31733445, "German", "Mendez", null);
-		User aUser3 = new User(31733445, "Martin", "De luca", null);
+		User aUser1 = new User(31733445, "Aníbal", "Lovaglio");
+		User aUser2 = new User(31733445, "German", "Mendez");
+		User aUser3 = new User(31733445, "Martin", "De luca");
 		aUser1.addPoints(1000);
 		aUser2.addPoints(1000);
 		aUser3.addPoints(1000);

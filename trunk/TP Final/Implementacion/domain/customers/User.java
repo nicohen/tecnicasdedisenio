@@ -1,7 +1,5 @@
 package domain.customers;
 
-import java.util.Date;
-
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
@@ -13,15 +11,13 @@ public class User extends Bidder {
 	private int dni;
 	private String name;
 	private String lastName;
-	private Date birthDate;
 	private Group memberGroup;
 
-	public User(int dni, String name, String lastName, Date birthDate) {
+	public User(int dni, String name, String lastName) {
 		super();
 		this.dni = dni;
 		this.name = name;
 		this.lastName = lastName;
-		this.birthDate = birthDate;
 		memberGroup=null;
 	}
 
@@ -66,11 +62,6 @@ public class User extends Bidder {
 			throw new InvalidDonationException("El usuario no pertenece a ningun grupo"); 
 	}
 
-
-	public Date getBirthDate() {
-		return birthDate;
-	}
-
 	public String getLastName() {
 		return lastName;
 	}
@@ -93,10 +84,16 @@ public class User extends Bidder {
 		return memberGroup;
 	}
 	
-	public void suscribeToGroup(Group group) throws UserAlreadyInGroupException{
+	public void suscribeToGroup(Group group) throws UserAlreadyInGroupException, GroupSizeExceededException{
 		if(this.memberGroup != null) throw new UserAlreadyInGroupException();
-		group.addMember(this);
-		this.memberGroup=group;
+		try {
+			group.addMember(this);
+			this.memberGroup=group;
+		} catch (GroupSizeExceededException e) {
+			throw e;
+			//e.printStackTrace();
+		}
+		
 	}
 	
 	void setAsGroupOwner(Group group) {

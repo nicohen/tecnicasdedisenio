@@ -43,8 +43,12 @@ public class Group extends Bidder {
 		}
 	}
 
-	public void addMember(User member) {
-		this.members.add(member);
+	public void addMember(User member) 
+			throws GroupSizeExceededException{
+		if(this.members.size()>= 9){
+			throw new GroupSizeExceededException("Cantidad máxima de miembros superada");
+		}else
+			this.members.add(member);
 	}
 	
 	public int getAmountOfMembersOfGroup(){
