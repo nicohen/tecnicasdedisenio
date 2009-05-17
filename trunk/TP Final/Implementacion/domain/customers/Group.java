@@ -7,7 +7,6 @@ import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
 import domain.auctions.InvalidAuctionTypeException;
-import domain.auctions.InvalidBidException;
 
 public class Group extends Bidder {
 
@@ -15,31 +14,27 @@ public class Group extends Bidder {
 	private List<User> members;
 	private int credits;
 	
-	public Group(User owner) {
+	public Group(User owner) throws UserAlreadyInGroupException {
 		super();
+		if (owner.isMemberOfGroup()) throw new UserAlreadyInGroupException();
 		this.owner = owner;
+		owner.setAsGroupOwner(this);
 		this.members = new ArrayList<User>();
 		this.credits=0;
 	}
 
-	public void bid(Auction anAuction) {
-		if (members.size() >= 1) {// no puede ofertar un grupo de un solo
-			// miembro
+	@Override
+	public void bid(Auction anAuction) throws NotEnoughMembersInGroupForBidException, InvalidAuctionTypeException, notEnoughPointsToBidException {
+		if (members.size() >= 1) {// no puede ofertar un grupo de un solo miembro
 			int amount = anAuction.getAmountForNextBid();
 			if (super.getPoints() < amount) {
-				throw new IllegalArgumentException(); // TODO: cambiar
-				// excepciones
+				throw new notEnoughPointsToBidException();
 			}
-			try {
-				this.validateAuctionType(anAuction.getType());
-			} catch (InvalidAuctionTypeException e) {
-				e.printStackTrace();
-				return;
-			}
+			this.validateAuctionType(anAuction.getType());
 
 			new Bid(this.owner, anAuction, amount);
 		} else {
-			throw new InvalidBidException("El grupo no esta apto para ofertar. No tiene miembros");
+			throw new NotEnoughMembersInGroupForBidException("El grupo no esta apto para ofertar. No tiene miembros");
 		}
 	}
 
@@ -55,14 +50,11 @@ public class Group extends Bidder {
 	}
 	
 	public int getAmountOfMembersOfGroup(){
-		int amount=0;
+		int amount=1; // El primero es el Owner
 		amount=members.size();
 		return amount;
 	}
 	
-	public void addCredits(int credits){
-		this.credits=credits;
-	}
 	public int getCredits() {
 		return credits;
 	}

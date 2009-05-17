@@ -3,7 +3,7 @@ package domain.auctions;
 import java.util.Stack;
 
 import domain.customers.Bidder;
-import domain.products.Product;
+import domain.customers.NotEnoughMembersInGroupForBidException;
 import domain.utils.VariationRateFunction;
 
 public class IncrementalAuction extends Auction {
@@ -19,14 +19,14 @@ public class IncrementalAuction extends Auction {
 	}
 
 	/* package visibility */
-	void takeNewBid(Bid newBid) throws InvalidBidException {
+	void takeNewBid(Bid newBid) throws NotEnoughMembersInGroupForBidException {
 		try {
 			newBid.getOwner().validateAuctionType(getType());
 			// para la primera oferta
 			if (!this.bids.isEmpty()) {
 				Bid bestBid = this.bids.peek();
 				if (newBid.compareTo(bestBid) < 1) {
-					throw new InvalidBidException(
+					throw new NotEnoughMembersInGroupForBidException(
 							"El valor de la oferta debe superar "
 									+ bestBid.getValue());
 				}
@@ -67,6 +67,13 @@ public class IncrementalAuction extends Auction {
 
 	private void setWinner(Bidder bidder) {
 		this.winner = bidder;
+	}
+	
+	public Bidder getHighestBidder () throws NoBiddersException{
+		if(this.bids.isEmpty()){
+			throw new NoBiddersException();
+		}
+		return this.bids.peek().getOwner();
 	}
 
 	@Override

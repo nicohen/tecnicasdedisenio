@@ -5,7 +5,6 @@ import java.util.Date;
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
-import domain.auctions.Donation;
 import domain.auctions.InvalidAuctionTypeException;
 import domain.auctions.InvalidDonationException;
 
@@ -27,11 +26,11 @@ public class User extends Bidder {
 	}
 
 	@Override
-	public void bid(Auction anAuction) {
+	public void bid(Auction anAuction) throws notEnoughPointsToBidException {
 
 		int amount = anAuction.getAmountForNextBid();
 		if (super.getPoints() < amount) {
-			throw new IllegalArgumentException(); // TODO: cambiar excepciones
+			throw new notEnoughPointsToBidException();
 		}
 		try { // TODO: Esta excepción debería mandarse para arriba, pero hay que
 			// definir las clases excepciones necesarias.
@@ -40,7 +39,11 @@ public class User extends Bidder {
 			e.printStackTrace();
 		}
 
-		new Bid(this, anAuction, amount);
+		try {
+			new Bid(this, anAuction, amount);
+		} catch (NotEnoughMembersInGroupForBidException e) {
+			// Este caso no se se puede dar ya que el bidder es un user y no un group
+		}
 		this.compromisedPoints += amount;
 		this.avaliablePoints -= amount;
 	}
@@ -55,20 +58,14 @@ public class User extends Bidder {
 	}
 	
 
-	public void donate(User user,int points) {
-		if (user.isMemberaGroup()){
-			Group group=user.getGroupOfUsser();
-			//if(group.getAmountOfMembersOfGroup() >= Constants.MinAmountOfGroup){
-				if (user.getPoints()>= points){
-					new Donation(user, group, points);
-					group.addCredits(points);
-					user.addPoints(-points);
-				}
-				else
-					throw new InvalidDonationException("El credito es insuficiente para ser donado");
-			//}
-			//else 
-			//	throw new InvalidDonationException("Para poder donar a un grupo deben existir mas de dos integrantes en el mismo");
+	public Donation donate(int points) throws InvalidDonationException {
+		if (this.isMemberOfGroup()){
+			Group group=this.getGroupOfUser();
+			if (this.getPoints()>= points){
+				return new Donation(this, group, points);
+			}
+			else
+				throw new InvalidDonationException("El credito es insuficiente para ser donado");
 		}
 		else 
 			throw new InvalidDonationException("El usuario no pertenece a ningun grupo"); 
@@ -91,18 +88,23 @@ public class User extends Bidder {
 		return name;
 	}
 	
-	public boolean isMemberaGroup(){
+	public boolean isMemberOfGroup(){
 		if(memberGroup != null)
 			return true;
 		return false;
 	}
 	
-	public Group getGroupOfUsser(){
+	public Group getGroupOfUser(){
 		return memberGroup;
 	}
 	
-	public void suscribeToGroup(Group group){
+	public void suscribeToGroup(Group group) throws UserAlreadyInGroupException{
+		if(this.memberGroup != null) throw new UserAlreadyInGroupException();
+		group.addMember(this);
 		this.memberGroup=group;
-		
+	}
+	
+	void setAsGroupOwner(Group group) {
+		this.memberGroup = group;
 	}
 }
