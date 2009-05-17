@@ -26,18 +26,13 @@ public class User extends Bidder {
 	}
 
 	@Override
-	public void bid(Auction anAuction) throws notEnoughPointsToBidException {
+	public void bid(Auction anAuction) throws notEnoughPointsToBidException, InvalidAuctionTypeException {
 
 		int amount = anAuction.getAmountForNextBid();
 		if (super.getPoints() < amount) {
 			throw new notEnoughPointsToBidException();
 		}
-		try { // TODO: Esta excepción debería mandarse para arriba, pero hay que
-			// definir las clases excepciones necesarias.
-			this.validateAuctionType(anAuction.getType());
-		} catch (InvalidAuctionTypeException e) {
-			e.printStackTrace();
-		}
+		this.validateAuctionType(anAuction.getType());
 
 		try {
 			new Bid(this, anAuction, amount);

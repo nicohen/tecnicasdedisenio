@@ -32,7 +32,7 @@ public class Group extends Bidder {
 			}
 			this.validateAuctionType(anAuction.getType());
 
-			new Bid(this.owner, anAuction, amount);
+			new Bid(this, anAuction, amount);
 		} else {
 			throw new NotEnoughMembersInGroupForBidException("El grupo no esta apto para ofertar. No tiene miembros");
 		}
