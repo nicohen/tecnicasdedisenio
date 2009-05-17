@@ -4,7 +4,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,12 +11,12 @@ import org.junit.Test;
 import domain.auctions.Auction;
 import domain.auctions.AuctionStatus;
 import domain.auctions.AuctionType;
-import domain.auctions.Bid;
 import domain.auctions.IncrementalAuction;
 import domain.auctions.InvalidAuctionTypeException;
 import domain.auctions.Product;
 import domain.auctions.ReverseAuction;
 import domain.customers.Group;
+import domain.customers.GroupSizeExceededException;
 import domain.customers.NotEnoughMembersInGroupForBidException;
 import domain.customers.User;
 import domain.customers.UserAlreadyInGroupException;
@@ -26,16 +25,14 @@ import domain.utils.VariationRateFunction;
 
 public class FinishAuctionTest {
 
-	private Date dateOfBirth;
 	private User aUser, anotherUser;
 	private Product prize;
 	Group aGroup;
 
 	@Before
 	public void setUp() {
-		dateOfBirth = new Date();
-		aUser = new User(31733445, "Aníbal", "Lovaglio", dateOfBirth);
-		anotherUser = new User(31733445, "Aníbal", "Lovaglio", null);
+		aUser = new User(31733445, "Aníbal", "Lovaglio");
+		anotherUser = new User(31733445, "Aníbal", "Lovaglio");
 		prize = new Product("Malboro");
 		try {
 			aGroup = new Group(aUser);
@@ -46,6 +43,8 @@ public class FinishAuctionTest {
 			anotherUser.suscribeToGroup(aGroup);
 		} catch (UserAlreadyInGroupException e) {
 			// ain't gonna happen
+		}catch (GroupSizeExceededException e2){
+			fail("Unexpected GroupSizeExceededException thrown");
 		}
 		aUser.addPoints(15000);
 	}
@@ -126,7 +125,7 @@ public class FinishAuctionTest {
 		} catch (InvalidAuctionTypeException e) {
 			fail("Unexpected InvalidAuctionTypeException thrown");
 		}
-		User user = new User(31936280, "Agustina", "Bazzano", dateOfBirth);
+		User user = new User(31936280, "Agustina", "Bazzano");
 		user.addPoints(value+100); // le sumo una cantidad que seguro va a ser más que lo que se incermente el value del remate
 		try {
 			user.bid(anIncrementalAuction);
@@ -165,28 +164,28 @@ public class FinishAuctionTest {
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
 
-		User user = new User(31936280, "Agustina", "Bazzano", dateOfBirth);
+		User user = new User(31936280, "Agustina", "Bazzano");
 		user.addPoints(value*100);
 		try {
-			aUser.bid(anIncrementalAuction);
+			user.bid(anIncrementalAuction);
 		} catch (notEnoughPointsToBidException e) {
 			fail("Unexpected notEnoughPointsToBidException thrown");
 		} catch (InvalidAuctionTypeException e) {
 			fail("Unexpected InvalidAuctionTypeException thrown");
 		}
-		anIncrementalAuction.finish();
+		anIncrementalAuction.finish();//user gana 
 
 		Auction anIncrementalAuction2 = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
 		try {
-			aUser.bid(anIncrementalAuction);
+			user.bid(anIncrementalAuction);
 		} catch (notEnoughPointsToBidException e) {
 			fail("Unexpected notEnoughPointsToBidException thrown");
 		} catch (InvalidAuctionTypeException e) {
 			fail("Unexpected InvalidAuctionTypeException thrown");
 		}
 		
-		anIncrementalAuction2.finish();
+		anIncrementalAuction2.finish();//el user no puede ganar
 		assertNull(anIncrementalAuction2.getWinner());
 	}
 }
