@@ -1,14 +1,19 @@
 package domain.customers;
 
+import java.util.Date;
+
+import domain.querys.Transaction;
 
 
-public class Donation {
+
+public class Donation extends Transaction {
 	private Group beneficiaryGroup;
 	private User donorUser;
 	private int donatedCredits;
 
 	/** Creates a new instance of Donation */
 	public Donation(User user,Group group,int points) {
+		super(new Date());
 		if (user==null || group==null) throw new NullPointerException();
 		if(points<=0) throw new IllegalArgumentException();
 		beneficiaryGroup=group;
