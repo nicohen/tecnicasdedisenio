@@ -1,14 +1,18 @@
 package domain.auctions;
 
+import java.util.Date;
+
 import domain.customers.Bidder;
 import domain.customers.NotEnoughMembersInGroupForBidException;
+import domain.querys.Transaction;
 
-public class Bid {
+public class Bid extends Transaction {
 
 	private Bidder owner;
 	private int value;
 
 	public Bid(Bidder owner, Auction auction, int amountToBid) throws NotEnoughMembersInGroupForBidException {
+		super(new Date());
 		this.owner = owner;
 		this.value = amountToBid;
 		auction.takeNewBid(this);
