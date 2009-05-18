@@ -52,6 +52,7 @@ public class ExchangeKeyTest {
 		} catch (AlreadyUsedKeyException e) {
 			fail("Unexpected AlreadyUsedKeyException");
 		}
+		assertTrue(aUser.getPoints()==0);
 	}
 	
 	@Test
