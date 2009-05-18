@@ -91,12 +91,24 @@ public class User extends Bidder {
 			this.memberGroup=group;
 		} catch (GroupSizeExceededException e) {
 			throw e;
-			//e.printStackTrace();
 		}
 		
 	}
 	
 	void setAsGroupOwner(Group group) {
 		this.memberGroup = group;
+	}
+	public void exchangeKey(String code) throws NonExistentKeyException, AlreadyUsedKeyException{
+		KeyExchange exchange = new KeyExchange(code, this);
+		Key myKey = exchange.getKey();
+		if (myKey==null)
+			throw new NonExistentKeyException();
+		else{
+			try {
+				addPoints(myKey.getPointsToExchange());
+			} catch (AlreadyUsedKeyException e) {
+				throw e;
+			}
+		}
 	}
 }
