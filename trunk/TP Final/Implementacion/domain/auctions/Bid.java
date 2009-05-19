@@ -4,6 +4,7 @@ import java.util.Date;
 
 import domain.customers.Bidder;
 import domain.customers.NotEnoughMembersInGroupForBidException;
+import domain.querys.History;
 import domain.querys.Transaction;
 
 public class Bid extends Transaction {
@@ -16,6 +17,7 @@ public class Bid extends Transaction {
 		this.owner = owner;
 		this.value = amountToBid;
 		auction.takeNewBid(this);
+		History.getInstance().addBid(this);
 	}
 
 	public Bidder getOwner() {
