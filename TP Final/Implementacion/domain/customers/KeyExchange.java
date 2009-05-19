@@ -2,6 +2,7 @@ package domain.customers;
 
 import java.util.Date;
 
+import domain.querys.History;
 import domain.querys.Transaction;
 
 public class KeyExchange extends Transaction {
@@ -13,9 +14,8 @@ public class KeyExchange extends Transaction {
 	public KeyExchange(String code, User user) {
 		super(new Date());
 		this.user = user;
-		//if(Keys.getInstance().containsKey(code))
 		myKey = Keys.getInstance().getKeyForExchange(code);
-		
+		History.getInstance().addKeyExchange(this);
 	}
 	
 	public Key getKey(){

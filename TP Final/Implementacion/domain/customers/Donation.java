@@ -2,6 +2,7 @@ package domain.customers;
 
 import java.util.Date;
 
+import domain.querys.History;
 import domain.querys.Transaction;
 
 
@@ -21,6 +22,7 @@ public class Donation extends Transaction {
 		donatedCredits=points;
 		group.addPoints(points);
 		user.spendPoints(points);
+		History.getInstance().addDonation(this);
 	}
 
 	public Group getBenefeciary(){
