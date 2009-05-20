@@ -26,7 +26,7 @@ public class Auctions {
 	 * 
 	 * @return única instancia de la clase colección.
 	 */
-	public static Auctions getAuctions() {
+	public static Auctions getInstance() {
 		if (Auctions.instance == null)
 			Auctions.instance = new Auctions();
 		return Auctions.instance;
