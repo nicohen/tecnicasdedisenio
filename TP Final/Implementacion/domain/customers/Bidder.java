@@ -8,7 +8,7 @@ import java.util.Set;
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
-import domain.auctions.InvalidAuctionTypeException;
+import domain.exceptions.InvalidAuctionTypeException;
 import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.exceptions.notEnoughPointsToBidException;
 import domain.utils.BusinessRules;
