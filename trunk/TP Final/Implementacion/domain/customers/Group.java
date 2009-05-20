@@ -6,6 +6,7 @@ import java.util.List;
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
+import domain.auctions.IllegalBidAmount;
 import domain.auctions.InvalidAuctionTypeException;
 
 public class Group extends Bidder {
@@ -31,7 +32,12 @@ public class Group extends Bidder {
 			}
 			this.validateAuctionType(anAuction.getType());
 
-			new Bid(this, anAuction, amount);
+			try {
+				new Bid(this, anAuction, amount);
+			} catch (IllegalBidAmount e) {
+				// Este caso no se se puede dar ya que la cantidad pasada se acaba
+				// de pedir al remate
+			}
 		} else {
 			throw new NotEnoughMembersInGroupForBidException("El grupo no esta apto para ofertar. No tiene miembros");
 		}

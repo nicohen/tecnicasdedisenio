@@ -6,11 +6,29 @@ import domain.customers.Bidder;
 import domain.customers.NotEnoughMembersInGroupForBidException;
 import domain.utils.VariationRateFunction;
 
+/**
+ * Clase de remate incremental. Su costo irá subiendo con las sucesivas ofertas.
+ */
 public class IncrementalAuction extends Auction {
 
 	private int nextBidValue;
 	private Stack<Bid> bids;
 
+	/**
+	 * Inicializa las estructuras necesarias para la implementación de un remate
+	 * incremental, previa llamada al constructor de la clase ancestra que
+	 * inicializa los aspectos comunes a todos los remates.
+	 * 
+	 * @param prize
+	 *            {@link Product} a rematar
+	 * @param type
+	 *            {@link AuctionType} al que pertenece; grupal o single
+	 * @param varFunction
+	 *            {@link VariationRateFunction} que se usará para determinar los
+	 *            saltos discretos del valor del remate
+	 * @param startUpValue
+	 *            valor base para comenzar las ofertas
+	 */
 	public IncrementalAuction(Product prize, AuctionType type,
 			VariationRateFunction varFunction, int startUpValue) {
 		super(prize, varFunction, type, 0);
@@ -18,28 +36,39 @@ public class IncrementalAuction extends Auction {
 		this.nextBidValue = startUpValue;
 	}
 
-	/* package visibility */
-	void takeNewBid(Bid newBid) throws NotEnoughMembersInGroupForBidException {
+	/**
+	 * Acepta una nueva oferta. Puede lanzar excepciones por inconsistencias en
+	 * el monto ofertado
+	 * 
+	 * @throws IllegalBidAmount
+	 *             se lanzará una excepción en caso de que el monto ofertado no
+	 *             sea el esperado
+	 * @see Auction.takeNewBid
+	 */
+	void takeNewBid(Bid newBid) throws IllegalBidAmount {
 		try {
 			newBid.getOwner().validateAuctionType(getType());
 			// para la primera oferta
 			if (!this.bids.isEmpty()) {
 				Bid bestBid = this.bids.peek();
-				if (newBid.compareTo(bestBid) < 1) {
-					throw new NotEnoughMembersInGroupForBidException(
-							"El valor de la oferta debe superar "
-									+ bestBid.getValue());
-				}
+				if (newBid.getValue() != this.nextBidValue)
+					throw new IllegalBidAmount(
+							"El valor ofertado es incorrecto");
 				bestBid.getOwner().acknowledgeBidOvercame(bestBid);
 			}
 			this.bids.push(newBid);
 			this.value = this.nextBidValue;
 			this.nextBidValue += this.variationRateFunction.nextDelta();
 		} catch (InvalidAuctionTypeException e) {
-			e.printStackTrace();
+			// Para este entorno, este caso nunca se da. La excepción se lanza
+			// por pura pofilaxis en caso de tener que extender el modelo y
+			// agregar nuevas funciones que usen estas cosas
 		}
 	}
 
+	/**
+	 * Intenta cerrar el remate determinando el ganador.
+	 */
 	public void finish() {
 		this.setStatus(AuctionStatus.CLOSED);
 		boolean finish = false;
@@ -60,23 +89,49 @@ public class IncrementalAuction extends Auction {
 		}
 	}
 
+	/**
+	 * Modifica el estado actual del remate
+	 * 
+	 * @param status
+	 *            nuevo estado; {@link AuctionStatus}
+	 * @see AuctionStatus
+	 */
 	private void setStatus(AuctionStatus status) {
-		this.status= status;
-		
+		this.status = status;
+
 	}
 
+	/**
+	 * Establece un {@link Bidder} como ganador del remate. Es privado para que
+	 * no pueda alterarse inadecuadamente
+	 * 
+	 * @param bidder
+	 *            ofertor ganador del remate
+	 */
 	private void setWinner(Bidder bidder) {
 		this.winner = bidder;
 	}
-	
-	public Bidder getHighestBidder () throws NoBiddersException{
-		if(this.bids.isEmpty()){
+
+	/**
+	 * Devuelve el mejor postor hasta el momento o lanza una excepción en caso
+	 * de no haber ofertas
+	 * 
+	 * @return el mejor postor
+	 * @throws NoBiddersException
+	 *             lanza una excepción en caso de no habe ofertas
+	 */
+	public Bidder getHighestBidder() throws NoBiddersException {
+		if (this.bids.isEmpty()) {
 			throw new NoBiddersException();
 		}
 		return this.bids.peek().getOwner();
 	}
 
 	@Override
+	/**
+	 * Devuelve la cantidad apropiada para ser ofetada acontinuación.
+	 * @return cantidad a ofertar
+	 */
 	public int getAmountForNextBid() {
 		return this.nextBidValue;
 	}
