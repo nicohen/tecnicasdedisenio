@@ -33,12 +33,12 @@ public class Bid extends Transaction {
 	 * @throws NotEnoughMembersInGroupForBidException
 	 *             Un grupo que no tiene miembros estará inhabilitado para
 	 *             ofertar
-	 * @throws IllegalBidAmount
+	 * @throws IllegalBidAmountException
 	 *             La cantidad ofertada no coincide con la cantidad establecida
 	 *             por el remate.
 	 */
 	public Bid(Bidder owner, Auction auction, int amountToBid)
-			throws IllegalBidAmount,BidException {
+			throws IllegalBidAmountException,BidException {
 		super(new Date());
 		this.owner = owner;
 		this.value = amountToBid;

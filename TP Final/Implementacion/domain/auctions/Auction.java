@@ -73,12 +73,12 @@ public abstract class Auction {
 	 * @throws NotEnoughMembersInGroupForBidException
 	 *             en caso de ser un remate grupal, sólo pueden ofertar los
 	 *             grupos que tengan miembros aparte de su administrador
-	 * @throws IllegalBidAmount
+	 * @throws IllegalBidAmountException
 	 *             se debe chequear que se ofete la cantidad debida
 	 * @see Bid
 	 */
 	abstract void takeNewBid(Bid newBid)
-			throws IllegalBidAmount,BidException;
+			throws IllegalBidAmountException,BidException;
 
 	/**
 	 * De haberse definido un ganador, devuelve el usuario del que se trata, en

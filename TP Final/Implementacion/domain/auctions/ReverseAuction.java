@@ -93,11 +93,11 @@ public class ReverseAuction extends Auction {
 	 *             sea el esperado
 	 * @see Auction.takeNewBid
 	 */
-	void takeNewBid(Bid newBid) throws IllegalBidAmount,
+	void takeNewBid(Bid newBid) throws IllegalBidAmountException,
 	BidException
 			 {
 		if (newBid.getValue() != this.value)
-			throw new IllegalBidAmount("El valor ofertado es incorrecto");
+			throw new IllegalBidAmountException("El valor ofertado es incorrecto");
 		if (!newBid.getOwner().isAllowedToWin()) {
 			throw new NotEnoughMembersInGroupForBidException(
 					"El usuario no esta habilitado para ofertar");

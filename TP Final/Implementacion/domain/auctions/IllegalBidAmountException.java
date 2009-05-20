@@ -5,9 +5,9 @@ package domain.auctions;
  * el remate en cuestión. La cantidad debe ser deteminada por el remate mismo
  * que es el que sabe como quiere que su precio progrese.
  */
-public class IllegalBidAmount extends Exception {
+public class IllegalBidAmountException extends Exception {
 
-	public IllegalBidAmount(String string) {
+	public IllegalBidAmountException(String string) {
 		super(string);
 	}
 
