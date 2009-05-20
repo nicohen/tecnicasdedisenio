@@ -6,8 +6,8 @@ import org.junit.Test;
 
 import domain.auctions.InvalidDonationException;
 import domain.customers.Group;
-import domain.customers.GroupSizeExceededException;
 import domain.customers.User;
+import domain.exceptions.GroupSizeExceededException;
 
 public class GroupingTest {
 

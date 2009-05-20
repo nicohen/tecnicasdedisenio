@@ -10,14 +10,14 @@ import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.IncrementalAuction;
 import domain.auctions.InvalidAuctionTypeException;
-import domain.auctions.NoBiddersException;
 import domain.auctions.Product;
 import domain.auctions.ReverseAuction;
 import domain.customers.Bidder;
 import domain.customers.Group;
-import domain.customers.NotEnoughMembersInGroupForBidException;
 import domain.customers.User;
-import domain.customers.notEnoughPointsToBidException;
+import domain.exceptions.NoBiddersException;
+import domain.exceptions.NotEnoughMembersInGroupForBidException;
+import domain.exceptions.notEnoughPointsToBidException;
 import domain.utils.VariationRateFunction;
 
 public class BiddingTesting {

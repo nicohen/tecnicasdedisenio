@@ -6,6 +6,13 @@ import domain.auctions.Bid;
 import domain.auctions.IllegalBidAmount;
 import domain.auctions.InvalidAuctionTypeException;
 import domain.auctions.InvalidDonationException;
+import domain.exceptions.AlreadyUsedKeyException;
+import domain.exceptions.BidException;
+import domain.exceptions.GroupSizeExceededException;
+import domain.exceptions.NonExistentKeyException;
+import domain.exceptions.NotEnoughMembersInGroupForBidException;
+import domain.exceptions.UserAlreadyInGroupException;
+import domain.exceptions.notEnoughPointsToBidException;
 
 public class User extends Bidder {
 	private int dni;
@@ -33,9 +40,8 @@ public class User extends Bidder {
 
 		try {
 			new Bid(this, anAuction, amount);
-		} catch (NotEnoughMembersInGroupForBidException e) {
-			// Este caso no se se puede dar ya que el bidder es un user y no un
-			// group
+		} catch (BidException e) {
+			
 		} catch (IllegalBidAmount e) {
 			// Este caso no se se puede dar ya que la cantidad pasada se acaba
 			// de pedir al remate

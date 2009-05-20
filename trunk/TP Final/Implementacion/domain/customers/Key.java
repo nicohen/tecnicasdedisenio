@@ -1,5 +1,7 @@
 package domain.customers;
 
+import domain.exceptions.AlreadyUsedKeyException;
+
 public class Key {
 
 	private String code;

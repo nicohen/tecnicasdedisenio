@@ -2,8 +2,9 @@ package domain.auctions;
 
 import java.util.Date;
 
+import domain.exceptions.BidException;
 import domain.customers.Bidder;
-import domain.customers.NotEnoughMembersInGroupForBidException;
+import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.utils.VariationRateFunction;
 
 /**
@@ -92,8 +93,9 @@ public class ReverseAuction extends Auction {
 	 *             sea el esperado
 	 * @see Auction.takeNewBid
 	 */
-	void takeNewBid(Bid newBid) throws NotEnoughMembersInGroupForBidException,
-			IllegalBidAmount {
+	void takeNewBid(Bid newBid) throws IllegalBidAmount,
+	BidException
+			 {
 		if (newBid.getValue() != this.value)
 			throw new IllegalBidAmount("El valor ofertado es incorrecto");
 		if (!newBid.getOwner().isAllowedToWin()) {

@@ -1,4 +1,4 @@
-package domain.auctions;
+package domain.exceptions;
 
 /**
  * Esta excepción se lanza cuando se pide algún postor y este no existe. Puede

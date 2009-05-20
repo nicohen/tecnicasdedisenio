@@ -3,7 +3,8 @@ package domain.auctions;
 import java.util.Stack;
 
 import domain.customers.Bidder;
-import domain.customers.NotEnoughMembersInGroupForBidException;
+import domain.exceptions.NoBiddersException;
+import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.utils.VariationRateFunction;
 
 /**

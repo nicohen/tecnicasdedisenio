@@ -8,6 +8,10 @@ import domain.auctions.AuctionType;
 import domain.auctions.Bid;
 import domain.auctions.IllegalBidAmount;
 import domain.auctions.InvalidAuctionTypeException;
+import domain.exceptions.GroupSizeExceededException;
+import domain.exceptions.NotEnoughMembersInGroupForBidException;
+import domain.exceptions.UserAlreadyInGroupException;
+import domain.exceptions.notEnoughPointsToBidException;
 import domain.utils.BusinessRules;
 
 public class Group extends Bidder {
@@ -35,7 +39,7 @@ public class Group extends Bidder {
 	}
 
 	@Override
-	public void bid(Auction anAuction) throws NotEnoughMembersInGroupForBidException, InvalidAuctionTypeException, notEnoughPointsToBidException {
+	public void bid(Auction anAuction) throws  InvalidAuctionTypeException, notEnoughPointsToBidException,NotEnoughMembersInGroupForBidException {
 		if (members.size() > BusinessRules.BID_MINIMUM_GROUP_SIZE) {
 			int amount = anAuction.getAmountForNextBid();
 			if (super.getPoints() < amount) {
@@ -48,6 +52,8 @@ public class Group extends Bidder {
 			} catch (IllegalBidAmount e) {
 				// Este caso no se se puede dar ya que la cantidad pasada se acaba
 				// de pedir al remate
+			} catch (Exception e){
+			
 			}
 		} else {
 			throw new NotEnoughMembersInGroupForBidException("El grupo no esta apto para ofertar. No tiene miembros");
