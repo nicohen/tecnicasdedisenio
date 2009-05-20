@@ -3,6 +3,7 @@ package domain.auctions;
 import java.util.Date;
 
 import domain.exceptions.BidException;
+import domain.exceptions.IllegalBidAmountException;
 import domain.customers.Bidder;
 import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.utils.VariationRateFunction;

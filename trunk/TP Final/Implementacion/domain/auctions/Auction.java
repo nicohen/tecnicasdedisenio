@@ -2,6 +2,7 @@ package domain.auctions;
 
 import domain.customers.Bidder;
 import domain.exceptions.BidException;
+import domain.exceptions.IllegalBidAmountException;
 import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.utils.VariationRateFunction;
 
