@@ -3,9 +3,9 @@ package domain.customers;
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
+import domain.auctions.IllegalBidAmount;
 import domain.auctions.InvalidAuctionTypeException;
 import domain.auctions.InvalidDonationException;
-
 
 public class User extends Bidder {
 	private int dni;
@@ -18,11 +18,12 @@ public class User extends Bidder {
 		this.dni = dni;
 		this.name = name;
 		this.lastName = lastName;
-		memberGroup=null;
+		memberGroup = null;
 	}
 
 	@Override
-	public void bid(Auction anAuction) throws notEnoughPointsToBidException, InvalidAuctionTypeException {
+	public void bid(Auction anAuction) throws notEnoughPointsToBidException,
+			InvalidAuctionTypeException {
 
 		int amount = anAuction.getAmountForNextBid();
 		if (super.getPoints() < amount) {
@@ -33,7 +34,11 @@ public class User extends Bidder {
 		try {
 			new Bid(this, anAuction, amount);
 		} catch (NotEnoughMembersInGroupForBidException e) {
-			// Este caso no se se puede dar ya que el bidder es un user y no un group
+			// Este caso no se se puede dar ya que el bidder es un user y no un
+			// group
+		} catch (IllegalBidAmount e) {
+			// Este caso no se se puede dar ya que la cantidad pasada se acaba
+			// de pedir al remate
 		}
 		this.compromisedPoints += amount;
 		this.avaliablePoints -= amount;
@@ -44,22 +49,22 @@ public class User extends Bidder {
 			throws InvalidAuctionTypeException {
 		if (!type.equals(AuctionType.SINGLE)
 				&& !type.equals(AuctionType.REVERSE)) {
-			throw new InvalidAuctionTypeException("El Remate no es del tipo correcto");
+			throw new InvalidAuctionTypeException(
+					"El Remate no es del tipo correcto");
 		}
 	}
-	
 
 	public void donate(int points) throws InvalidDonationException {
-		if (this.isMemberOfGroup()){
-			Group group=this.getGroupOfUser();
-			if (this.getPoints()>= points){
+		if (this.isMemberOfGroup()) {
+			Group group = this.getGroupOfUser();
+			if (this.getPoints() >= points) {
 				new Donation(this, group, points);
-			}
-			else
-				throw new InvalidDonationException("El credito es insuficiente para ser donado");
-		}
-		else 
-			throw new InvalidDonationException("El usuario no pertenece a ningun grupo"); 
+			} else
+				throw new InvalidDonationException(
+						"El credito es insuficiente para ser donado");
+		} else
+			throw new InvalidDonationException(
+					"El usuario no pertenece a ningun grupo");
 	}
 
 	public String getLastName() {
@@ -73,37 +78,41 @@ public class User extends Bidder {
 	public String getName() {
 		return name;
 	}
-	
-	public boolean isMemberOfGroup(){
-		if(memberGroup != null)
+
+	public boolean isMemberOfGroup() {
+		if (memberGroup != null)
 			return true;
 		return false;
 	}
-	
-	public Group getGroupOfUser(){
+
+	public Group getGroupOfUser() {
 		return memberGroup;
 	}
-	
-	public void suscribeToGroup(Group group) throws UserAlreadyInGroupException, GroupSizeExceededException{
-		if(this.memberGroup != null) throw new UserAlreadyInGroupException();
+
+	public void suscribeToGroup(Group group)
+			throws UserAlreadyInGroupException, GroupSizeExceededException {
+		if (this.memberGroup != null)
+			throw new UserAlreadyInGroupException();
 		try {
 			group.addMember(this);
-			this.memberGroup=group;
+			this.memberGroup = group;
 		} catch (GroupSizeExceededException e) {
 			throw e;
 		}
-		
+
 	}
-	
+
 	void setAsGroupOwner(Group group) {
 		this.memberGroup = group;
 	}
-	public void exchangeKey(String code) throws NonExistentKeyException, AlreadyUsedKeyException{
+
+	public void exchangeKey(String code) throws NonExistentKeyException,
+			AlreadyUsedKeyException {
 		KeyExchange exchange = new KeyExchange(code, this);
 		Key myKey = exchange.getKey();
-		if (myKey==null)
+		if (myKey == null)
 			throw new NonExistentKeyException();
-		else{
+		else {
 			try {
 				addPoints(myKey.getPointsToExchange());
 			} catch (AlreadyUsedKeyException e) {
