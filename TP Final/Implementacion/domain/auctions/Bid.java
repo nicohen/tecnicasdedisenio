@@ -8,8 +8,8 @@ import domain.querys.History;
 import domain.querys.Transaction;
 
 /**
- * Las ofertas son una clase central para el modelo resuelto. Es la interacción
- * más importante de los usuario en los remates. Igualmente, se trata de una
+ * Las ofertas son una clase central para el modelo resuelto; es la interacción
+ * más importante de los usuarios en los remates. Igualmente, se trata de una
  * simple transacción entre un {@link Bidder} y un {@link Auction}. Como tales,
  * quedan todas registradas en el historial de movimientos para ser consultados
  * eventualmente.
