@@ -36,7 +36,6 @@ public class ReverseAuction extends Auction {
 	 * @param startUpValue
 	 *            Costo inicial del que empezar a disminuir
 	 * @see Auction
-	 * @see ReverseAuction.STEP_SIZE_IN_MINUTES
 	 * @see VariationRateFunction
 	 * @see Product
 	 */
