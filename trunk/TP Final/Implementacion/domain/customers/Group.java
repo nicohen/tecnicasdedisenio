@@ -40,7 +40,7 @@ public class Group extends Bidder {
 
 	@Override
 	public void bid(Auction anAuction) throws  InvalidAuctionTypeException, notEnoughPointsToBidException,NotEnoughMembersInGroupForBidException {
-		if (members.size() > BusinessRules.BID_MINIMUM_GROUP_SIZE) {
+		if (members.size() > BusinessRules.BID_MINIMUM_GROUP_SIZE-1) {
 			int amount = anAuction.getAmountForNextBid();
 			if (super.getPoints() < amount) {
 				throw new notEnoughPointsToBidException();
