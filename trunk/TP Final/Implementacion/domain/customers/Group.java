@@ -8,6 +8,7 @@ import domain.auctions.AuctionType;
 import domain.auctions.Bid;
 import domain.auctions.IllegalBidAmount;
 import domain.auctions.InvalidAuctionTypeException;
+import domain.utils.BusinessRules;
 
 public class Group extends Bidder {
 
@@ -15,6 +16,16 @@ public class Group extends Bidder {
 	private User owner;
 	private List<User> members;
 	
+	/**
+	 * Previa validación del usuario dueño del grupo a crear,inicializa las 
+	 * estructuras necesarias para la implementación de un grupo
+	 *
+	 * @param owner
+	 * 			dueño del grupo a crear
+	 * 
+	 * @throws UserAlreadyInGroupException
+	 * 					se lanzara si el usuario dueño es miembro de otro grupo
+	 */
 	public Group(User owner) throws UserAlreadyInGroupException {
 		super();
 		if (owner.isMemberOfGroup()) throw new UserAlreadyInGroupException();
@@ -25,7 +36,7 @@ public class Group extends Bidder {
 
 	@Override
 	public void bid(Auction anAuction) throws NotEnoughMembersInGroupForBidException, InvalidAuctionTypeException, notEnoughPointsToBidException {
-		if (members.size() >= 1) {// no puede ofertar un grupo de un solo miembro
+		if (members.size() > BusinessRules.BID_MINIMUM_GROUP_SIZE) {
 			int amount = anAuction.getAmountForNextBid();
 			if (super.getPoints() < amount) {
 				throw new notEnoughPointsToBidException();
