@@ -1,4 +1,4 @@
-package domain.auctions;
+package domain.exceptions;
 
 /**
  * Esta excepción se lanza cuando se quiere ofertar una cantidad inválida para

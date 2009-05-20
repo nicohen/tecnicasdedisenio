@@ -4,6 +4,7 @@ import java.util.Date;
 
 import domain.customers.Bidder;
 import domain.exceptions.BidException;
+import domain.exceptions.IllegalBidAmountException;
 import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.querys.History;
 import domain.querys.Transaction;
