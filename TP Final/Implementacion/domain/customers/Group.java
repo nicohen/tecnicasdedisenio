@@ -69,7 +69,7 @@ public class Group extends Bidder {
 
 	public void addMember(User member) 
 			throws GroupSizeExceededException{
-		if(this.members.size()>= 9){
+		if(this.members.size()>= BusinessRules.MAX_GROUP_SIZE){
 			throw new GroupSizeExceededException("Cantidad máxima de miembros superada");
 		}else
 			this.members.add(member);
