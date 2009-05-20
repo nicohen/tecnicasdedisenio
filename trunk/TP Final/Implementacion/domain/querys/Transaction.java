@@ -4,7 +4,7 @@ import java.util.Date;
 
 public abstract class Transaction {
 	
-	private Date occurrenceDate;
+	protected Date occurrenceDate;
 	
 	public Transaction (Date aDate){
 		this.occurrenceDate = aDate;

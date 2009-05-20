@@ -10,6 +10,7 @@ import domain.auctions.InvalidAuctionTypeException;
 
 public class Group extends Bidder {
 
+	@SuppressWarnings("unused")
 	private User owner;
 	private List<User> members;
 	
