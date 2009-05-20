@@ -1,7 +1,8 @@
 package domain.auctions;
 
 import domain.customers.Bidder;
-import domain.customers.NotEnoughMembersInGroupForBidException;
+import domain.exceptions.BidException;
+import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.utils.VariationRateFunction;
 
 /**
@@ -77,7 +78,7 @@ public abstract class Auction {
 	 * @see Bid
 	 */
 	abstract void takeNewBid(Bid newBid)
-			throws NotEnoughMembersInGroupForBidException, IllegalBidAmount;
+			throws IllegalBidAmount,BidException;
 
 	/**
 	 * De haberse definido un ganador, devuelve el usuario del que se trata, en

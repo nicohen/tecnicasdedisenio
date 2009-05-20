@@ -1,6 +1,7 @@
-package domain.customers;
+package domain.exceptions;
 
-public class NotEnoughMembersInGroupForBidException extends Exception {
+
+public class NotEnoughMembersInGroupForBidException extends BidException {
 
 	/**
 	 * 

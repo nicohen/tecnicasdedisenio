@@ -1,4 +1,4 @@
-package domain.customers;
+package domain.exceptions;
 
 public class InvalidAuctionForBiddingException extends Exception {
 

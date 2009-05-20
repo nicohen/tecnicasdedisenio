@@ -3,7 +3,8 @@ package domain.auctions;
 import java.util.Date;
 
 import domain.customers.Bidder;
-import domain.customers.NotEnoughMembersInGroupForBidException;
+import domain.exceptions.BidException;
+import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.querys.History;
 import domain.querys.Transaction;
 
@@ -37,7 +38,7 @@ public class Bid extends Transaction {
 	 *             por el remate.
 	 */
 	public Bid(Bidder owner, Auction auction, int amountToBid)
-			throws NotEnoughMembersInGroupForBidException, IllegalBidAmount {
+			throws IllegalBidAmount,BidException {
 		super(new Date());
 		this.owner = owner;
 		this.value = amountToBid;
