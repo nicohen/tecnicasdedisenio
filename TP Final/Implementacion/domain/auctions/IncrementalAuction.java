@@ -6,7 +6,6 @@ import domain.customers.Bidder;
 import domain.exceptions.IllegalBidAmountException;
 import domain.exceptions.InvalidAuctionTypeException;
 import domain.exceptions.NoBiddersException;
-import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.utils.VariationRateFunction;
 
 /**

@@ -10,7 +10,6 @@ import domain.exceptions.IllegalBidAmountException;
 import domain.exceptions.InvalidAuctionTypeException;
 import domain.exceptions.InvalidDonationException;
 import domain.exceptions.NonExistentKeyException;
-import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.exceptions.UserAlreadyInGroupException;
 import domain.exceptions.notEnoughPointsToBidException;
 
