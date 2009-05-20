@@ -3,10 +3,22 @@ package domain.querys;
 import java.util.ArrayList;
 import java.util.List;
 
+import domain.auctions.AuctionType;
 import domain.auctions.Bid;
+import domain.auctions.Product;
 import domain.customers.Donation;
 import domain.customers.KeyExchange;
-
+import domain.utils.VariationRateFunction;
+/**
+ * Clase singleton que representa al Historial del sistema, el cual registra 
+ * donaciones, canjeo de puntos por claves, ofertas y consultas
+ * 
+ * @see KeyExchange
+ * @see Donation
+ * @see Bid
+ * @see Query
+ * 
+ */
 public class History {
 	private List<KeyExchange> keyExchanges;
 	private List<Donation> donations;
@@ -15,6 +27,10 @@ public class History {
 	//singleton
 	static private History history = new History();
 	
+	/**
+	 * Inicializa las estructuras necesarias para la implementación del Historial,
+	 * clase de instancia única utilizando el patrón Singleton.
+	 */
 	private History(){
 		this.keyExchanges = new ArrayList<KeyExchange>();
 		this.donations = new ArrayList<Donation>();
