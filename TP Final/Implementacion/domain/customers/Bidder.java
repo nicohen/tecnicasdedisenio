@@ -9,26 +9,24 @@ import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
 import domain.auctions.InvalidAuctionTypeException;
-import domain.auctions.Product;
 import domain.utils.BusinessRules;
-import domain.utils.VariationRateFunction;
-
 
 public abstract class Bidder {
 
 	protected int avaliablePoints;
 	protected int compromisedPoints;
 	protected Set<Auction> wonAuctions;
-	
+
 	/**
-	 * Inicializa las estructuras necesarias para la implementación de un ofertante 
-	 *
+	 * Inicializa las estructuras necesarias para la implementación de un
+	 * ofertante
+	 * 
 	 * @see Auction
 	 */
 	public Bidder() {
 		this.wonAuctions = new HashSet<Auction>();
-		this.avaliablePoints=0;
-		this.compromisedPoints=0;
+		this.avaliablePoints = 0;
+		this.compromisedPoints = 0;
 	}
 
 	public int getPoints() {
@@ -38,6 +36,7 @@ public abstract class Bidder {
 	public void addPoints(int points) {
 		this.avaliablePoints += points;
 	}
+
 	/**
 	 * Descuenta los puntos pasados por parametro de la cuenta del ofertante
 	 * 
@@ -54,7 +53,9 @@ public abstract class Bidder {
 		return new ArrayList<Auction>(this.wonAuctions);
 	}
 
-	abstract public void bid(Auction anAuction) throws InvalidAuctionTypeException, notEnoughPointsToBidException, NotEnoughMembersInGroupForBidException;
+	abstract public void bid(Auction anAuction)
+			throws InvalidAuctionTypeException, notEnoughPointsToBidException,
+			NotEnoughMembersInGroupForBidException;
 
 	/**
 	 * Valida que el tipo de remate este permitido para el bidder
@@ -65,13 +66,13 @@ public abstract class Bidder {
 	 */
 	abstract public void validateAuctionType(AuctionType type)
 			throws InvalidAuctionTypeException;
-	
+
 	/**
 	 * Indica si el ofertante puede ganar el remate
 	 * 
 	 */
 	public boolean isAllowedToWin() {
-		return getWonAuctions().size()<BusinessRules.BIDDER_MAX_WINS;
+		return getWonAuctions().size() < BusinessRules.BIDDER_MAX_WINS;
 	}
 
 	/**
@@ -85,15 +86,15 @@ public abstract class Bidder {
 		this.avaliablePoints += overcameBid.getValue();
 		this.compromisedPoints -= overcameBid.getValue();
 	}
-	
+
 	/**
 	 * 
 	 * Se invoca cuando el ofertante gana el remate
 	 * 
 	 * @param auction
-	 * 				Remate ganado
+	 *            Remate ganado
 	 * @param winnerBid
-	 * 				Oferta ganadora
+	 *            Oferta ganadora
 	 * 
 	 * @see Bid
 	 * 
