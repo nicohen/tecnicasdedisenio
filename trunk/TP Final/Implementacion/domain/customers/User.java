@@ -3,7 +3,7 @@ package domain.customers;
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
-import domain.auctions.IllegalBidAmount;
+import domain.auctions.IllegalBidAmountException;
 import domain.exceptions.AlreadyUsedKeyException;
 import domain.exceptions.BidException;
 import domain.exceptions.GroupSizeExceededException;
@@ -42,7 +42,7 @@ public class User extends Bidder {
 			new Bid(this, anAuction, amount);
 		} catch (BidException e) {
 			
-		} catch (IllegalBidAmount e) {
+		} catch (IllegalBidAmountException e) {
 			// Este caso no se se puede dar ya que la cantidad pasada se acaba
 			// de pedir al remate
 		}

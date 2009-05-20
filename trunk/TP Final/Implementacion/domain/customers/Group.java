@@ -6,7 +6,7 @@ import java.util.List;
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
-import domain.auctions.IllegalBidAmount;
+import domain.auctions.IllegalBidAmountException;
 import domain.exceptions.GroupSizeExceededException;
 import domain.exceptions.InvalidAuctionTypeException;
 import domain.exceptions.NotEnoughMembersInGroupForBidException;
@@ -49,7 +49,7 @@ public class Group extends Bidder {
 
 			try {
 				new Bid(this, anAuction, amount);
-			} catch (IllegalBidAmount e) {
+			} catch (IllegalBidAmountException e) {
 				// Este caso no se se puede dar ya que la cantidad pasada se acaba
 				// de pedir al remate
 			} catch (Exception e){

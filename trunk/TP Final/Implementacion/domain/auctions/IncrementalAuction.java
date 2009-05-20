@@ -42,19 +42,19 @@ public class IncrementalAuction extends Auction {
 	 * Acepta una nueva oferta. Puede lanzar excepciones por inconsistencias en
 	 * el monto ofertado
 	 * 
-	 * @throws IllegalBidAmount
+	 * @throws IllegalBidAmountException
 	 *             se lanzará una excepción en caso de que el monto ofertado no
 	 *             sea el esperado
 	 * @see Auction.takeNewBid
 	 */
-	void takeNewBid(Bid newBid) throws IllegalBidAmount {
+	void takeNewBid(Bid newBid) throws IllegalBidAmountException {
 		try {
 			newBid.getOwner().validateAuctionType(getType());
 			// para la primera oferta
 			if (!this.bids.isEmpty()) {
 				Bid bestBid = this.bids.peek();
 				if (newBid.getValue() != this.nextBidValue)
-					throw new IllegalBidAmount(
+					throw new IllegalBidAmountException(
 							"El valor ofertado es incorrecto");
 				bestBid.getOwner().acknowledgeBidOvercame(bestBid);
 			}
