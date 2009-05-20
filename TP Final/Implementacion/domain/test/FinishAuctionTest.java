@@ -2,8 +2,6 @@ package domain.test;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,15 +10,10 @@ import domain.auctions.Auction;
 import domain.auctions.AuctionStatus;
 import domain.auctions.AuctionType;
 import domain.auctions.IncrementalAuction;
-import domain.auctions.InvalidAuctionTypeException;
 import domain.auctions.Product;
 import domain.auctions.ReverseAuction;
 import domain.customers.Group;
-import domain.customers.GroupSizeExceededException;
-import domain.customers.NotEnoughMembersInGroupForBidException;
 import domain.customers.User;
-import domain.customers.UserAlreadyInGroupException;
-import domain.customers.notEnoughPointsToBidException;
 import domain.utils.VariationRateFunction;
 
 public class FinishAuctionTest {
@@ -30,56 +23,35 @@ public class FinishAuctionTest {
 	Group aGroup;
 
 	@Before
-	public void setUp() {
+	public void setUp() throws Exception {
 		aUser = new User(31733445, "Aníbal", "Lovaglio");
 		anotherUser = new User(31733445, "Aníbal", "Lovaglio");
 		prize = new Product("Malboro");
-		try {
-			aGroup = new Group(aUser);
-		} catch (UserAlreadyInGroupException e) {
-			fail("Unexpected UserAlreadyInGroupException thrown");
-		}
-		try {
-			anotherUser.suscribeToGroup(aGroup);
-		} catch (UserAlreadyInGroupException e) {
-			// ain't gonna happen
-		}catch (GroupSizeExceededException e2){
-			fail("Unexpected GroupSizeExceededException thrown");
-		}
+		aGroup = new Group(aUser);
+		anotherUser.suscribeToGroup(aGroup);
 		aUser.addPoints(15000);
 	}
 
 	@Test
-	public void finishReverseAuction() {
+	public void finishReverseAuction() throws Exception{
 		VariationRateFunction variationFunction = null;
 		int value = 1000;
 		Auction anReverseAuction = new ReverseAuction(prize, variationFunction,
 				value);
-		try {
-			aUser.bid(anReverseAuction);
-		} catch (notEnoughPointsToBidException e) {
-			fail("Unexpected notEnoughPointsToBidException thrown");
-		} catch (InvalidAuctionTypeException e) {
-			fail("Unexpected InvalidAuctionTypeException thrown");
-		}
+		aUser.bid(anReverseAuction);
+
 		assertTrue(anReverseAuction.getStatus().equals(AuctionStatus.CLOSED));
 		assertTrue(!aUser.getWonAuctions().isEmpty());
 	}
 
 	@Test
-	public void finishIncrementalSingleAuction() {
-		VariationRateFunction variationFunction = new VariationRateFunction(null);
+	public void finishIncrementalSingleAuction() throws Exception{
+		VariationRateFunction variationFunction = new VariationRateFunction(
+				null);
 		int value = 1000;
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
-		try {
-			aUser.bid(anIncrementalAuction);
-		} catch (notEnoughPointsToBidException e) {
-			fail("Unexpected notEnoughPointsToBidException thrown");
-		} catch (InvalidAuctionTypeException e) {
-			fail("Unexpected InvalidAuctionTypeException thrown");
-		}
-
+		aUser.bid(anIncrementalAuction);
 		anIncrementalAuction.finish();
 
 		assertTrue(anIncrementalAuction.getStatus()
@@ -88,23 +60,14 @@ public class FinishAuctionTest {
 	}
 
 	@Test
-	public void finishIncrementalGroupAuction() {
+	public void finishIncrementalGroupAuction() throws Exception{
 		aGroup.addPoints(15000);
-		VariationRateFunction variationFunction = new VariationRateFunction(null);
+		VariationRateFunction variationFunction = new VariationRateFunction(
+				null);
 		int value = 1000;
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.GROUP, variationFunction, value);
-
-		try {
-			aGroup.bid(anIncrementalAuction);
-		} catch (notEnoughPointsToBidException e) {
-			fail("Unexpected notEnoughPointsToBidException thrown");
-		} catch (InvalidAuctionTypeException e) {
-			fail("InvalidAuctionTypeException thrown");
-		} catch (NotEnoughMembersInGroupForBidException e) {
-			fail("NotEnoughMembersInGroupForBidException thrown");
-		}
-
+		aGroup.bid(anIncrementalAuction);
 		anIncrementalAuction.finish();
 
 		assertTrue(anIncrementalAuction.getStatus()
@@ -113,28 +76,17 @@ public class FinishAuctionTest {
 	}
 
 	@Test
-	public void finishIncrementalAuctionWithSecondBid() {
+	public void finishIncrementalAuctionWithSecondBid() throws Exception{
 		int value = 1000;
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.SINGLE, new VariationRateFunction(null), value);
 
-		try {
 			aUser.bid(anIncrementalAuction);
-		} catch (notEnoughPointsToBidException e) {
-			fail("Unexpected notEnoughPointsToBidException thrown");
-		} catch (InvalidAuctionTypeException e) {
-			fail("Unexpected InvalidAuctionTypeException thrown");
-		}
 		User user = new User(31936280, "Agustina", "Bazzano");
-		user.addPoints(value+100); // le sumo una cantidad que seguro va a ser más que lo que se incermente el value del remate
-		try {
-			user.bid(anIncrementalAuction);
-		} catch (notEnoughPointsToBidException e) {
-			fail("Unexpected notEnoughPointsToBidException thrown");
-		} catch (InvalidAuctionTypeException e) {
-			fail("Unexpected InvalidAuctionTypeException thrown");
-		}
-		
+		user.addPoints(value + 100); // le sumo una cantidad que seguro va a ser
+										// más que lo que se incermente el value
+										// del remate
+		user.bid(anIncrementalAuction);
 		anIncrementalAuction.finish();
 
 		assertTrue(anIncrementalAuction.getStatus()
@@ -142,10 +94,11 @@ public class FinishAuctionTest {
 		assertTrue(aUser.getWonAuctions().isEmpty());
 		assertTrue(!user.getWonAuctions().isEmpty());
 	}
-
+	
 	@Test
 	public void testFinishIncrementalAuctionWithNoBid() {
-		VariationRateFunction variationFunction = new VariationRateFunction(null);
+		VariationRateFunction variationFunction = new VariationRateFunction(
+				null);
 		int value = 1000;
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
@@ -158,34 +111,23 @@ public class FinishAuctionTest {
 	}
 
 	@Test
-	public void testFinishIncrementalAuctionWithNoWinner() {
-		VariationRateFunction variationFunction = new VariationRateFunction(null);
+	public void testFinishIncrementalAuctionWithNoWinner() throws Exception{
+		VariationRateFunction variationFunction = new VariationRateFunction(
+				null);
 		int value = 1000;
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
 
 		User user = new User(31936280, "Agustina", "Bazzano");
-		user.addPoints(value*100);
-		try {
-			user.bid(anIncrementalAuction);
-		} catch (notEnoughPointsToBidException e) {
-			fail("Unexpected notEnoughPointsToBidException thrown");
-		} catch (InvalidAuctionTypeException e) {
-			fail("Unexpected InvalidAuctionTypeException thrown");
-		}
-		anIncrementalAuction.finish();//user gana 
+		user.addPoints(value * 100);
+		user.bid(anIncrementalAuction);
+		anIncrementalAuction.finish();// user gana
 
 		Auction anIncrementalAuction2 = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
-		try {
-			user.bid(anIncrementalAuction);
-		} catch (notEnoughPointsToBidException e) {
-			fail("Unexpected notEnoughPointsToBidException thrown");
-		} catch (InvalidAuctionTypeException e) {
-			fail("Unexpected InvalidAuctionTypeException thrown");
-		}
-		
-		anIncrementalAuction2.finish();//el user no puede ganar
+		user.bid(anIncrementalAuction);
+
+		anIncrementalAuction2.finish();// el user no puede ganar
 		assertNull(anIncrementalAuction2.getWinner());
 	}
 }

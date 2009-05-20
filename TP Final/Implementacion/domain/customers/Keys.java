@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Keys {
-	//SINGLETON
 	private Map<String, Key> keyMap;
+	//SINGLETON
 	static private Keys keys = new Keys();
 	
 	private Keys(){

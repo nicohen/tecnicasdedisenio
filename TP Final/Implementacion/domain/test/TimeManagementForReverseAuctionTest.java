@@ -13,29 +13,17 @@ import domain.utils.VariationRateFunction;
 public class TimeManagementForReverseAuctionTest {
 
 	@Test
-	public void testGetAmountForNextBid() {
+	public void testGetAmountForNextBid() throws Exception{
 		Auction rAuction = new ReverseAuction(null, new VariationRateFunction(
 				null), 10);
 		int amount = rAuction.getAmountForNextBid();
 		while (amount > 0) {
 			Date startDate = new Date();
 			System.out.print (startDate + "| " + amount + " -> ");
-			try {
-				Thread.sleep(60000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				fail("Couldn't sleep enough");
-			}
+			Thread.sleep(60000);
 			Date aDate = new Date();
 			while (aDate.getTime() < (startDate.getTime() + (60000 * ReverseAuction.STEP_SIZE_IN_MINUTES))) {
-				try {
 					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					fail("Couldn't sleep enough");
-				}
 			}
 			int anotherAmount = rAuction.getAmountForNextBid();
 			System.out.println(anotherAmount);

@@ -8,7 +8,6 @@ import domain.auctions.InvalidDonationException;
 import domain.customers.Group;
 import domain.customers.GroupSizeExceededException;
 import domain.customers.User;
-import domain.customers.UserAlreadyInGroupException;
 
 public class GroupingTest {
 
@@ -25,18 +24,17 @@ public class GroupingTest {
 		assertTrue(2 == aGroup.getAmountOfMembersOfGroup());
 	}
 
-	@Test(expected = UserAlreadyInGroupException.class)
+	@Test
 	public void suscribeToGroupFailTest() throws Exception {
 		User groupOwner = new User(65468735, "Taco", "Bell");
 		User testUser1 = new User(54335734, "User 1", "Test");
 		Group aGroup = null;
-		Group anotherGroup;
 
 		// Lo subscribo por primera vez
 		aGroup = new Group(groupOwner);
 		testUser1.suscribeToGroup(aGroup);
 		// Lo subscribo por segunda vez
-		anotherGroup = new Group(testUser1);
+		new Group(testUser1);
 	}
 
 	@Test

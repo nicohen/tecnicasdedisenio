@@ -12,12 +12,11 @@ import domain.customers.NonExistentKeyException;
 import domain.customers.User;
 
 public class ExchangeKeyTest {
-	private Key key1 ,key2;
 	private User aUser, anotherUser;
 	@Before
 	public void SetUp(){
-		this.key1 = new Key("code1", 100);
-		this.key2 = new Key("code2", 200);
+		new Key("code1", 100);
+		new Key("code2", 200);
 		this.aUser = new User(31936280, "Agustina", "Bazzano");
 		this.anotherUser = new User(31936281, "Agustin", "Bazzan");
 	}
@@ -29,50 +28,26 @@ public class ExchangeKeyTest {
 	}
 	
 	@Test
-	public void ExchangeCorrectKeyTest(){
-		try {
-			aUser.exchangeKey("code1");
-			
-		} catch (NonExistentKeyException e) {
-			fail("Unexpected NonExistentKeyException");
-		} catch (AlreadyUsedKeyException e) {
-			fail("Unexpected AlreadyUsedKeyException");
-		}
+	public void ExchangeCorrectKeyTest()throws Exception{
+		
+		aUser.exchangeKey("code1");
 		assertTrue(aUser.getPoints()==100);
 		
 	}
 	
-	@Test
-	public void ExchangeNonExistentKeyTest(){
-		try {
-			aUser.exchangeKey("code3");
-			fail("NonExistentKeyException Expected");
-		} catch (NonExistentKeyException e) {
-			assertTrue(true);
-		} catch (AlreadyUsedKeyException e) {
-			fail("Unexpected AlreadyUsedKeyException");
-		}
+	@Test(expected = NonExistentKeyException.class)
+	public void ExchangeNonExistentKeyTest()throws Exception{
+		
+		aUser.exchangeKey("code3");
 		assertTrue(aUser.getPoints()==0);
 	}
 	
-	@Test
-	public void ExchangeAlreadyUsedKeyTest(){
-		try {
-			aUser.exchangeKey("code1");
-		} catch (NonExistentKeyException e) {
-			fail("Unexpected NonExistentKeyException");
-		} catch (AlreadyUsedKeyException e) {
-			fail("Unexpected AlreadyUsedKeyException");
-		}
-		try {
-			anotherUser.exchangeKey("code1");
-			fail("AlreadyUsedKeyException Expected");
-		} catch (NonExistentKeyException e) {
-			fail("Unexpected NonExistentKeyException");
-		} catch (AlreadyUsedKeyException e) {
-			assertTrue(true);
-		}
+	@Test(expected = AlreadyUsedKeyException.class)
+	public void ExchangeAlreadyUsedKeyTest()throws Exception{
+		
+		aUser.exchangeKey("code1");
 		assertTrue(aUser.getPoints()==100);
+		anotherUser.exchangeKey("code1");
 		assertTrue(anotherUser.getPoints()==0);
 	}
 }
