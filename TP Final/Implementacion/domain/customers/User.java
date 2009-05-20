@@ -49,11 +49,11 @@ public class User extends Bidder {
 	}
 	
 
-	public Donation donate(int points) throws InvalidDonationException {
+	public void donate(int points) throws InvalidDonationException {
 		if (this.isMemberOfGroup()){
 			Group group=this.getGroupOfUser();
 			if (this.getPoints()>= points){
-				return new Donation(this, group, points);
+				new Donation(this, group, points);
 			}
 			else
 				throw new InvalidDonationException("El credito es insuficiente para ser donado");
