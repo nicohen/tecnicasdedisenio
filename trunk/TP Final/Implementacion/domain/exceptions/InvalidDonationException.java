@@ -1,4 +1,4 @@
-package domain.auctions;
+package domain.exceptions;
 
 /**
  * Esta excepción se lanza cuando un usuario pretende hacer una donación y está

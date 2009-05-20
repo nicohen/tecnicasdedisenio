@@ -4,10 +4,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import domain.auctions.InvalidDonationException;
 import domain.customers.Group;
 import domain.customers.User;
 import domain.exceptions.GroupSizeExceededException;
+import domain.exceptions.InvalidDonationException;
 
 public class GroupingTest {
 

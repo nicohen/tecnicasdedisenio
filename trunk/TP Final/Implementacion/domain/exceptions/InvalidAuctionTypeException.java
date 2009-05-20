@@ -1,4 +1,4 @@
-package domain.auctions;
+package domain.exceptions;
 
 /**
  * Esta excepción se lanza cuando un Bidder trata de ofetar en un remate que no
