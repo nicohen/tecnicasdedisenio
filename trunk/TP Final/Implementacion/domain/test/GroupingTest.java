@@ -1,7 +1,6 @@
 package domain.test;
 
 import static org.junit.Assert.assertTrue;
-import junit.framework.Assert;
 
 import org.junit.Test;
 
@@ -26,7 +25,7 @@ public class GroupingTest {
 		assertTrue(2 == aGroup.getAmountOfMembersOfGroup());
 	}
 
-	@Test (expected = UserAlreadyInGroupException.class)
+	@Test(expected = UserAlreadyInGroupException.class)
 	public void suscribeToGroupFailTest() throws Exception {
 		User groupOwner = new User(65468735, "Taco", "Bell");
 		User testUser1 = new User(54335734, "User 1", "Test");
@@ -37,7 +36,7 @@ public class GroupingTest {
 		testUser1.suscribeToGroup(aGroup);
 		// Lo subscribo por segunda vez
 		new Group(testUser1);
-		
+
 	}
 
 	@Test

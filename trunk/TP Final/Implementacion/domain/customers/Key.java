@@ -7,20 +7,24 @@ public class Key {
 	private String code;
 	private int points;
 	private boolean used;
-	
-	public Key(String code, int points){
+
+	public Key(String code, int points) {
 		this.code = code;
 		this.points = points;
 		this.used = false;
-		//add a KEYS
+		// add a KEYS
 		Keys.getInstance().addKey(code, this);
 	}
+
 	public int getPointsToExchange() throws AlreadyUsedKeyException {
-		if (!used){
+		if (!used) {
 			this.used = true;
 			return this.points;
-		}else
+		} else
 			throw new AlreadyUsedKeyException();
 	}
 
+	public String getCode() {
+		return code;
+	}
 }
