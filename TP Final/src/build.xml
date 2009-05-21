@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-<project basedir="." default="build" name="tp2">
+<project basedir="." default="build" name="rematada">
 	<property environment="env" />
 	<property name="debuglevel" value="source,lines,vars" />
 	<property name="target" value="1.6" />
@@ -8,7 +8,7 @@
 	<property name="classdir" value="${basedir}/build" />
 	<property name="junit.output.dir" value="${classdir}/test" />
 
-	<path id="tp2.classpath">
+	<path id="rematada.classpath">
 		<pathelement location="." />
 		<pathelement location="lib/junit-4.6.jar" />
 	</path>
@@ -42,7 +42,7 @@
 			<test name="src.test.ExchangeKeyTest" todir="${junit.output.dir}" />
 			<test name="src.test.BiddingTesting" todir="${junit.output.dir}" />
 			<test name="src.testTimeManagementForReverseAuctionTest" todir="${junit.output.dir}" />
-			<classpath refid="tp2.classpath" />
+			<classpath refid="rematada.classpath" />
 		</junit>
 	</target>
 
