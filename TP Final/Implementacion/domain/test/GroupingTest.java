@@ -1,4 +1,4 @@
-package test.domain;
+package domain.test;
 
 import static org.junit.Assert.assertTrue;
 
