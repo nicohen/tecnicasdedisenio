@@ -21,6 +21,9 @@ public abstract class AbstractControllerServlet extends HttpServlet {
 
 	protected abstract void execute(HttpServletRequest request,
 			HttpServletResponse response);
+	
+	protected abstract void executeView(HttpServletRequest request,
+			HttpServletResponse response);
 
 	public void service(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException {
