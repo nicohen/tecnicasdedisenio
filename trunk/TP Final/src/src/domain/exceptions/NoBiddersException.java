@@ -1,0 +1,11 @@
+package src.domain.exceptions;
+
+/**
+ * Esta excepción se lanza cuando se pide algún postor y este no existe. Puede
+ * ser el caso en que se pida el mejor postor en un remate, y que este no tenga
+ * ofertas hechas, por lo que no va a tener postores
+ */
+@SuppressWarnings("serial")
+public class NoBiddersException extends Exception {
+
+}

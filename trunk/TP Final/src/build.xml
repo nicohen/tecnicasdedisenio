@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="build" name="laRemateada">
+
+<project basedir="." default="build" name="tp2">
 	<property environment="env" />
-	<property name="ECLIPSE_HOME" value="../../../../Program Files/eclipse" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.6" />
+	<property name="source" value="1.6" />
 	<property name="junit.output.dir" value="build/test" />
-	<property name="debuglevel" value="source" />
-	<property name="target" value="1.5" />
-	<property name="source" value="1.5" />
-	<path id="laRemateada.classpath">
+	<path id="tp2.classpath">
 		<pathelement location="." />
-		<pathelement location="../../../../Program Files/eclipse/plugins/junit-4.5.jar" />
+		<pathelement location="lib/junit-4.6.jar" />
 	</path>
 	<target name="init">
 		<copy includeemptydirs="false" todir=".">
 			<fileset dir="." excludes="**/*.launch, **/*.java" />
 		</copy>
-		<mkdir dir="build/src" />
 	</target>
 	<target name="clean">
 		<delete>
@@ -22,20 +21,16 @@
 		</delete>
 	</target>
 	<target depends="clean" name="cleanall" />
-
-	<target depends="init" name="build">
-		<javac srcdir="domain" destdir="build/src" debug="true" includes="**/*.java" />
-	</target>
-
+	<target depends="build-subprojects,build-project" name="build" />
 	<target name="build-subprojects" />
 	<target depends="init" name="build-project">
 		<echo message="${ant.project.name}: ${ant.file}" />
 		<javac debug="true" debuglevel="${debuglevel}" destdir="." source="${source}" target="${target}">
 			<src path="." />
-			<classpath refid="laRemateada.classpath" />
+			<classpath refid="tp2.classpath" />
 		</javac>
 	</target>
-
+	<target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects" />
 	<target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
 		<copy todir="${ant.library.dir}">
 			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar" />
@@ -54,12 +49,13 @@
 		<mkdir dir="${junit.output.dir}" />
 		<junit fork="yes" printsummary="withOutAndErr">
 			<formatter type="xml" />
-				<test name="test.domain.GroupingTest" todir="${junit.output.dir}" />
-				<test name="test.domain.FinishAuctionTest" todir="${junit.output.dir}" />
-				<test name="test.domain.ExchangeKeyTest" todir="${junit.output.dir}" />
-				<test name="test.domain.BiddingTesting" todir="${junit.output.dir}" />
-				<test name="test.domain.TimeManagementForReverseAuctionTest" todir="${junit.output.dir}" />
-			<classpath refid="laRemateada.classpath" />
+			<test name="src.test.GroupingTest" todir="${junit.output.dir}" />
+			<test name="src.test.FinishAuctionTest" todir="${junit.output.dir}" />
+			<test name="src.test.ExchangeKeyTest" todir="${junit.output.dir}" />
+			<test name="src.test.BiddingTesting" todir="${junit.output.dir}" />
+			<test name="src.testTimeManagementForReverseAuctionTest" todir="${junit.output.dir}" />
+			<classpath refid="tp2.classpath" />
 		</junit>
 	</target>
+
 </project>
