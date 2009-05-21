@@ -13,6 +13,10 @@ import domain.exceptions.InvalidAuctionTypeException;
 import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.utils.BusinessRules;
 
+/**
+ * Clase abstracta que generaliza a los distintos tipos de postores que
+ * contempla el sistema.
+ */
 public abstract class Bidder {
 
 	protected int avaliablePoints;
@@ -36,10 +40,10 @@ public abstract class Bidder {
 	}
 
 	/**
-	 * Descuenta los puntos pasados por parametro de la cuenta del ofertante
+	 * Descuenta los puntos pasados por parametro de la cuenta del postor
 	 * 
 	 * @param points
-	 *            puntos utilizados
+	 *            puntos gastados
 	 */
 	public void spendPoints(int points) {
 		if (this.avaliablePoints < points)
@@ -55,6 +59,7 @@ public abstract class Bidder {
 	 * Valida que el tipo de remate este permitido para el bidder
 	 * 
 	 * @param type
+	 *            tipo de remate
 	 * 
 	 * @see AuctionType
 	 */
@@ -82,7 +87,6 @@ public abstract class Bidder {
 	}
 
 	/**
-	 * 
 	 * Se invoca cuando el ofertante gana el remate
 	 * 
 	 * @param auction
@@ -91,7 +95,6 @@ public abstract class Bidder {
 	 *            Oferta ganadora
 	 * 
 	 * @see Bid
-	 * 
 	 * @see Auction
 	 */
 	public void win(Auction auction, Bid winnerBid) {
@@ -99,10 +102,20 @@ public abstract class Bidder {
 		this.wonAuctions.add(auction);
 	}
 
+	/**
+	 * Devuelve la cantidad de puntos disponibles para usar
+	 * 
+	 * @return puntos disponibles
+	 */
 	public final int getPoints() {
 		return this.avaliablePoints;
 	}
 
+	/**
+	 * Devuelve una lista de remates ganados por el bidder
+	 * 
+	 * @return
+	 */
 	public final List<Auction> getWonAuctions() {
 		return new ArrayList<Auction>(this.wonAuctions);
 	}

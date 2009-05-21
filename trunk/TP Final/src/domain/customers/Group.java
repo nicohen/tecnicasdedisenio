@@ -14,6 +14,9 @@ import domain.exceptions.NotEnoughPointsToBidException;
 import domain.exceptions.UserAlreadyInGroupException;
 import domain.utils.BusinessRules;
 
+/**
+ * Es un tipo de postor; agrupa a varios usuarios que ofertarán como una unidad
+ */
 public class Group extends Bidder {
 
 	private User owner;
@@ -39,6 +42,11 @@ public class Group extends Bidder {
 	}
 
 	@Override
+	/**
+	 * Realiza una oferta sobre un remate.
+	 * 
+	 * @see Bidder.bid
+	 */
 	public void bid(Auction anAuction) throws InvalidAuctionTypeException,
 			BidException, NotEnoughMembersInGroupForBidException {
 		if (members.size() > BusinessRules.BID_MINIMUM_GROUP_SIZE - 1) {
@@ -54,6 +62,10 @@ public class Group extends Bidder {
 		}
 	}
 
+	/**
+	 * Evalúa si el tipo de remate es el adecuado para este tipo de Bidder y
+	 * lanza una excepción en caso de que no sea el apropiado
+	 */
 	public void validateAuctionType(AuctionType type)
 			throws InvalidAuctionTypeException {
 		if (!type.equals(AuctionType.GROUP)) {
@@ -62,6 +74,14 @@ public class Group extends Bidder {
 		}
 	}
 
+	/**
+	 * Agrega un nuevo miembro al grupo
+	 * 
+	 * @param member
+	 *            Nuevo miembro de tipo {@link User}
+	 * @throws GroupSizeExceededException
+	 *             Se lanza cuando el grupo ya está completo
+	 */
 	public void addMember(User member) throws GroupSizeExceededException {
 		if (this.members.size() >= BusinessRules.MAX_GROUP_SIZE) {
 			throw new GroupSizeExceededException(
@@ -70,12 +90,22 @@ public class Group extends Bidder {
 			this.members.add(member);
 	}
 
+	/**
+	 * Devuelve la cantidad de miembros del grupo
+	 * 
+	 * @return conteo de miembros
+	 */
 	public final int getAmountOfMembersOfGroup() {
 		int amount = 1; // El primero es el Owner
 		amount += members.size();
 		return amount;
 	}
 
+	/**
+	 * Devuelve el usuario administrador del grupo
+	 * 
+	 * @return usuario dueño del grupo
+	 */
 	public final User getOwner() {
 		return owner;
 	}
