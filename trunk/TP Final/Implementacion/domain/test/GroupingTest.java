@@ -26,7 +26,7 @@ public class GroupingTest {
 		assertTrue(2 == aGroup.getAmountOfMembersOfGroup());
 	}
 
-	@Test
+	@Test (expected = UserAlreadyInGroupException.class)
 	public void suscribeToGroupFailTest() throws Exception {
 		User groupOwner = new User(65468735, "Taco", "Bell");
 		User testUser1 = new User(54335734, "User 1", "Test");
@@ -36,13 +36,7 @@ public class GroupingTest {
 		aGroup = new Group(groupOwner);
 		testUser1.suscribeToGroup(aGroup);
 		// Lo subscribo por segunda vez
-		try{
-			new Group(testUser1);
-		}
-		catch(UserAlreadyInGroupException ex){
-			Assert.assertTrue(1==1);
-		}
-		
+		new Group(testUser1);
 		
 	}
 
