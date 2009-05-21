@@ -8,9 +8,9 @@ import java.util.Set;
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;
+import domain.exceptions.BidException;
 import domain.exceptions.InvalidAuctionTypeException;
 import domain.exceptions.NotEnoughMembersInGroupForBidException;
-import domain.exceptions.notEnoughPointsToBidException;
 import domain.utils.BusinessRules;
 
 public abstract class Bidder {
@@ -31,10 +31,6 @@ public abstract class Bidder {
 		this.compromisedPoints = 0;
 	}
 
-	public int getPoints() {
-		return this.avaliablePoints;
-	}
-
 	public void addPoints(int points) {
 		this.avaliablePoints += points;
 	}
@@ -51,12 +47,8 @@ public abstract class Bidder {
 		this.avaliablePoints -= points;
 	}
 
-	public List<Auction> getWonAuctions() {
-		return new ArrayList<Auction>(this.wonAuctions);
-	}
-
 	abstract public void bid(Auction anAuction)
-			throws InvalidAuctionTypeException, notEnoughPointsToBidException,
+			throws InvalidAuctionTypeException, BidException,
 			NotEnoughMembersInGroupForBidException;
 
 	/**
@@ -73,7 +65,7 @@ public abstract class Bidder {
 	 * Indica si el ofertante puede ganar el remate
 	 * 
 	 */
-	public boolean isAllowedToWin() {
+	public final boolean isAllowedToWin() {
 		return getWonAuctions().size() < BusinessRules.BIDDER_MAX_WINS;
 	}
 
@@ -106,4 +98,13 @@ public abstract class Bidder {
 		this.compromisedPoints -= winnerBid.getValue();
 		this.wonAuctions.add(auction);
 	}
+
+	public final int getPoints() {
+		return this.avaliablePoints;
+	}
+
+	public final List<Auction> getWonAuctions() {
+		return new ArrayList<Auction>(this.wonAuctions);
+	}
+
 }

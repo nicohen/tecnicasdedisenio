@@ -5,6 +5,5 @@ package domain.auctions;
  * ejemplo, sólo los grupos podría ofertar en remates grupales.
  */
 public enum AuctionType {
-
 	SINGLE, GROUP, REVERSE;
 }

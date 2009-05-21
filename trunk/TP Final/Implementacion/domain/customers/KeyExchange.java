@@ -18,15 +18,15 @@ public class KeyExchange extends Transaction {
 		History.getInstance().addKeyExchange(this);
 	}
 
-	public Key getKey() {
+	public final Key getKey() {
 		return this.myKey;
 	}
 
-	public User getUser() {
+	public final User getUser() {
 		return user;
 	}
 
-	public int getPoints() {
+	public final int getPoints() {
 		return points;
 	}
 }

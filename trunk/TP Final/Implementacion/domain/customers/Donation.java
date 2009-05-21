@@ -14,6 +14,7 @@ import domain.querys.Transaction;
  * @see Transaction
  */
 public class Donation extends Transaction {
+
 	private Group beneficiaryGroup;
 	private User donorUser;
 	private int donatedCredits;
@@ -51,21 +52,21 @@ public class Donation extends Transaction {
 	/**
 	 * @return el grupo que ecibe los puntos
 	 */
-	public Group getBenefeciary() {
+	public final Group getBenefeciary() {
 		return beneficiaryGroup;
 	}
-	
+
 	/**
 	 * @return el usuario donor
 	 */
-	public User getDonor() {
+	public final User getDonor() {
 		return donorUser;
 	}
 
 	/**
 	 * @return los créditos que se donan
 	 */
-	public int getCreditsDonate() {
+	public final int getCreditsDonate() {
 		return donatedCredits;
 	}
 }

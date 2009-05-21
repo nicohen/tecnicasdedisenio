@@ -1,4 +1,4 @@
-package domain.test;
+package test.domain;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
@@ -17,7 +17,7 @@ import domain.customers.User;
 import domain.exceptions.InvalidAuctionTypeException;
 import domain.exceptions.NoBiddersException;
 import domain.exceptions.NotEnoughMembersInGroupForBidException;
-import domain.exceptions.notEnoughPointsToBidException;
+import domain.exceptions.NotEnoughPointsToBidException;
 import domain.utils.VariationRateFunction;
 
 public class BiddingTesting {
@@ -72,7 +72,7 @@ public class BiddingTesting {
 		bidder.bid(anAuction);
 	}
 
-	@Test(expected = notEnoughPointsToBidException.class)
+	@Test(expected = NotEnoughPointsToBidException.class)
 	public void groupTakeNewBidFailureTest_NotEnoughCredit()throws Exception {
 		Auction anAuction = new IncrementalAuction(null, AuctionType.GROUP, new VariationRateFunction(null), 1000);
 		User owner = new User(31733442, "Charles", "Rain");
@@ -84,7 +84,7 @@ public class BiddingTesting {
 		bidder.bid(anAuction);
 	}
 	
-	@Test(expected = notEnoughPointsToBidException.class)
+	@Test(expected = NotEnoughPointsToBidException.class)
 	public void userTakeNewBidFailureTest_NotEnoughCredit()throws Exception {
 		Auction anAuction = new IncrementalAuction(null, AuctionType.SINGLE, new VariationRateFunction(null), 100);
 		User owner = new User(31733442, "Charles", "Rain");

@@ -1,4 +1,4 @@
-package domain.test;
+package test.domain;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;

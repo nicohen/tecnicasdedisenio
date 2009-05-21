@@ -78,8 +78,8 @@ public abstract class Auction {
 	 *             se debe chequear que se ofete la cantidad debida
 	 * @see Bid
 	 */
-	abstract void takeNewBid(Bid newBid)
-			throws IllegalBidAmountException,BidException;
+	abstract void takeNewBid(Bid newBid) throws IllegalBidAmountException,
+			BidException;
 
 	/**
 	 * De haberse definido un ganador, devuelve el usuario del que se trata, en
@@ -88,7 +88,7 @@ public abstract class Auction {
 	 * @return el ganador del remate
 	 * @see Bidder
 	 */
-	public Bidder getWinner() {
+	public final Bidder getWinner() {
 		return winner;
 	}
 
@@ -98,7 +98,7 @@ public abstract class Auction {
 	 * @return el poducto que se remata
 	 * @see Product
 	 */
-	public Product getPrize() {
+	public final Product getPrize() {
 		return this.prize;
 	}
 
@@ -109,7 +109,7 @@ public abstract class Auction {
 	 * @return El estado actual del remate
 	 * @see AuctionStatus
 	 */
-	public AuctionStatus getStatus() {
+	public final AuctionStatus getStatus() {
 		return status;
 	}
 
@@ -119,7 +119,7 @@ public abstract class Auction {
 	 * @return El tipo del remate
 	 * @see AuctionType
 	 */
-	public AuctionType getType() {
+	public final AuctionType getType() {
 		return type;
 	}
 }

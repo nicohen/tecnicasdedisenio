@@ -16,7 +16,7 @@ public class Key {
 		Keys.getInstance().addKey(code, this);
 	}
 
-	public int getPointsToExchange() throws AlreadyUsedKeyException {
+	public final int getPointsToExchange() throws AlreadyUsedKeyException {
 		if (!used) {
 			this.used = true;
 			return this.points;
@@ -24,7 +24,7 @@ public class Key {
 			throw new AlreadyUsedKeyException();
 	}
 
-	public String getCode() {
+	public final String getCode() {
 		return code;
 	}
 }

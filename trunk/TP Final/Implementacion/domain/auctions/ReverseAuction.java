@@ -2,9 +2,9 @@ package domain.auctions;
 
 import java.util.Date;
 
+import domain.customers.Bidder;
 import domain.exceptions.BidException;
 import domain.exceptions.IllegalBidAmountException;
-import domain.customers.Bidder;
 import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.utils.VariationRateFunction;
 
@@ -50,8 +50,8 @@ public class ReverseAuction extends Auction {
 	}
 
 	@Override
-	/**
-	 * Finaliza el remate
+	/*
+	 * * Finaliza el remate
 	 * 
 	 * @see Auction.finish
 	 */
@@ -63,12 +63,12 @@ public class ReverseAuction extends Auction {
 	}
 
 	@Override
-	/**
-	 * Devuelve la cantidad a ofertar necesaria para que la oferta sea válida
+	/*
+	 * * Devuelve la cantidad a ofertar necesaria para que la oferta sea válida
 	 * 
 	 * @see Auction.getAmountForNextBid
 	 */
-	public int getAmountForNextBid() {
+	public final int getAmountForNextBid() {
 		// TODO: Se debería tener un objeto Syncronizer, en un thread aparte,
 		// que dispare los eventos de actualización de este tipo de casos.
 		long startingMS = this.lastCheckedDate.getTime();
@@ -85,20 +85,19 @@ public class ReverseAuction extends Auction {
 	}
 
 	@Override
-	/**
-	 * Acepta una nueva oferta. Puede lanzar excepciones por inconsistencias en
-	 * el monto ofertado
+	/*
+	 * * Acepta una nueva oferta. Puede lanzar excepciones por inconsistencias
+	 * en el monto ofertado
 	 * 
-	 * @throws IllegalBidAmount
-	 *             se lanzará una excepción en caso de que el monto ofertado no
-	 *             sea el esperado
+	 * @throws IllegalBidAmount se lanzará una excepción en caso de que el monto
+	 * ofertado no sea el esperado
+	 * 
 	 * @see Auction.takeNewBid
 	 */
-	void takeNewBid(Bid newBid) throws IllegalBidAmountException,
-	BidException
-			 {
+	void takeNewBid(Bid newBid) throws IllegalBidAmountException, BidException {
 		if (newBid.getValue() != this.value)
-			throw new IllegalBidAmountException("El valor ofertado es incorrecto");
+			throw new IllegalBidAmountException(
+					"El valor ofertado es incorrecto");
 		if (!newBid.getOwner().isAllowedToWin()) {
 			throw new NotEnoughMembersInGroupForBidException(
 					"El usuario no esta habilitado para ofertar");
@@ -112,7 +111,7 @@ public class ReverseAuction extends Auction {
 	 * 
 	 * @return la fecha en que el remate fue creado
 	 */
-	public Date getStartingDate() {
+	public final Date getStartingDate() {
 		return startingDate;
 	}
 
@@ -121,7 +120,7 @@ public class ReverseAuction extends Auction {
 	 * 
 	 * @return el monto inicial del remate
 	 */
-	public int getStartingValue() {
+	public final int getStartingValue() {
 		return startingValue;
 	}
 }
