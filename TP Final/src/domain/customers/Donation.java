@@ -10,7 +10,6 @@ import domain.querys.Transaction;
  * puntos de un usuario a un grupo. En el momento en que se instancia, se
  * produce la transacción y sus efectos.
  * 
- * @author Matías
  * @see Transaction
  */
 public class Donation extends Transaction {
@@ -20,12 +19,11 @@ public class Donation extends Transaction {
 	private int donatedCredits;
 
 	/**
-	 * Constructor. Como es de esperarse, al ser una transacción, su lógica
-	 * fuerte se da al momento de su instanciación y construcción. Como una
-	 * donación, es el acto y efecto de donar puntos, al momento en que esta
-	 * pasa a existir es que se producen los movimientos de créditos entre
-	 * usuario y grupo, se registra la transacción en el histoial y se registra
-	 * la fecha en que sucedió
+	 * Al ser una transacción, su lógica fuerte se da al momento de su
+	 * instanciación y construcción. Como una donación, es el acto y efecto de
+	 * donar puntos, al momento en que esta pasa a existir es que se producen
+	 * los movimientos de créditos entre usuario y grupo, se registra la
+	 * transacción en el histoial y se registra la fecha en que sucedió
 	 * 
 	 * @param user
 	 *            el usuario que dona sus puntos
