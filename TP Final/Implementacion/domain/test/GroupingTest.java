@@ -1,6 +1,7 @@
 package domain.test;
 
 import static org.junit.Assert.assertTrue;
+import junit.framework.Assert;
 
 import org.junit.Test;
 
@@ -8,6 +9,7 @@ import domain.customers.Group;
 import domain.customers.User;
 import domain.exceptions.GroupSizeExceededException;
 import domain.exceptions.InvalidDonationException;
+import domain.exceptions.UserAlreadyInGroupException;
 
 public class GroupingTest {
 
@@ -34,7 +36,14 @@ public class GroupingTest {
 		aGroup = new Group(groupOwner);
 		testUser1.suscribeToGroup(aGroup);
 		// Lo subscribo por segunda vez
-		new Group(testUser1);
+		try{
+			new Group(testUser1);
+		}
+		catch(UserAlreadyInGroupException ex){
+			Assert.assertTrue(1==1);
+		}
+		
+		
 	}
 
 	@Test
