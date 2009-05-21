@@ -40,19 +40,19 @@ public class History {
 		return history;
 	}
 
-	public List<KeyExchange> getKeyExchanges() {
+	public final List<KeyExchange> getKeyExchanges() {
 		return keyExchanges;
 	}
 
-	public List<Donation> getDonations() {
+	public final List<Donation> getDonations() {
 		return donations;
 	}
 
-	public List<Bid> getBids() {
+	public final List<Bid> getBids() {
 		return bids;
 	}
 
-	public List<Query> getQuerys() {
+	public final List<Query> getQuerys() {
 		return querys;
 	}
 

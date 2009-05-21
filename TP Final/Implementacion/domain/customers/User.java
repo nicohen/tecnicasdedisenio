@@ -6,12 +6,11 @@ import domain.auctions.Bid;
 import domain.exceptions.AlreadyUsedKeyException;
 import domain.exceptions.BidException;
 import domain.exceptions.GroupSizeExceededException;
-import domain.exceptions.IllegalBidAmountException;
 import domain.exceptions.InvalidAuctionTypeException;
 import domain.exceptions.InvalidDonationException;
 import domain.exceptions.NonExistentKeyException;
+import domain.exceptions.NotEnoughPointsToBidException;
 import domain.exceptions.UserAlreadyInGroupException;
-import domain.exceptions.notEnoughPointsToBidException;
 
 public class User extends Bidder {
 	private int dni;
@@ -28,23 +27,15 @@ public class User extends Bidder {
 	}
 
 	@Override
-	public void bid(Auction anAuction) throws notEnoughPointsToBidException,
+	public void bid(Auction anAuction) throws BidException,
 			InvalidAuctionTypeException {
 
 		int amount = anAuction.getAmountForNextBid();
 		if (super.getPoints() < amount) {
-			throw new notEnoughPointsToBidException();
+			throw new NotEnoughPointsToBidException();
 		}
 		this.validateAuctionType(anAuction.getType());
-
-		try {
-			new Bid(this, anAuction, amount);
-		} catch (BidException e) {
-			
-		} catch (IllegalBidAmountException e) {
-			// Este caso no se se puede dar ya que la cantidad pasada se acaba
-			// de pedir al remate
-		}
+		new Bid(this, anAuction, amount);
 		this.compromisedPoints += amount;
 		this.avaliablePoints -= amount;
 	}
@@ -72,15 +63,15 @@ public class User extends Bidder {
 					"El usuario no pertenece a ningun grupo");
 	}
 
-	public String getLastName() {
+	public final String getLastName() {
 		return lastName;
 	}
 
-	public int getDni() {
+	public final int getDni() {
 		return dni;
 	}
 
-	public String getName() {
+	public final String getName() {
 		return name;
 	}
 
@@ -90,7 +81,7 @@ public class User extends Bidder {
 		return false;
 	}
 
-	public Group getGroupOfUser() {
+	public final Group getGroupOfUser() {
 		return memberGroup;
 	}
 
@@ -118,11 +109,7 @@ public class User extends Bidder {
 		if (myKey == null)
 			throw new NonExistentKeyException();
 		else {
-			try {
-				addPoints(myKey.getPointsToExchange());
-			} catch (AlreadyUsedKeyException e) {
-				throw e;
-			}
+			addPoints(myKey.getPointsToExchange());
 		}
 	}
 }

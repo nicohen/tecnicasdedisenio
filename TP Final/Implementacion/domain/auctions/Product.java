@@ -24,7 +24,7 @@ public class Product {
 	 * 
 	 * @return la descripción del producto
 	 */
-	public String getDescription() {
+	public final String getDescription() {
 		return description;
 	}
 }

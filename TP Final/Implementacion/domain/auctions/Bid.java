@@ -39,7 +39,7 @@ public class Bid extends Transaction {
 	 *             por el remate.
 	 */
 	public Bid(Bidder owner, Auction auction, int amountToBid)
-			throws IllegalBidAmountException,BidException {
+			throws BidException {
 		super(new Date());
 		this.owner = owner;
 		this.value = amountToBid;
@@ -48,22 +48,22 @@ public class Bid extends Transaction {
 	}
 
 	/**
-	 * Devuelve el usuario responsable de la oferta
-	 * 
-	 * @return el usuario que construyó la oferta
-	 */
-	public Bidder getOwner() {
-		return owner;
-	}
-
-	/**
 	 * Devuelve el valor del remate, siendo el valor, la última cantidad
 	 * ofertada o el valor base en caso de no haber ofertas
 	 * 
 	 * @return el valor actual del remate
 	 */
-	public int getValue() {
+	public final int getValue() {
 		return value;
+	}
+
+	/**
+	 * Devuelve el usuario responsable de la oferta
+	 * 
+	 * @return el usuario que construyó la oferta
+	 */
+	public final Bidder getOwner() {
+		return owner;
 	}
 
 	/**

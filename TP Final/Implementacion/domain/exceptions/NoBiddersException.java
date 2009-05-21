@@ -5,8 +5,7 @@ package domain.exceptions;
  * ser el caso en que se pida el mejor postor en un remate, y que este no tenga
  * ofertas hechas, por lo que no va a tener postores
  */
+@SuppressWarnings("serial")
 public class NoBiddersException extends Exception {
-
-	private static final long serialVersionUID = -8743323919556713196L;
 
 }

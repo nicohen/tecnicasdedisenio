@@ -5,12 +5,10 @@ package domain.exceptions;
  * el remate en cuestión. La cantidad debe ser deteminada por el remate mismo
  * que es el que sabe como quiere que su precio progrese.
  */
-public class IllegalBidAmountException extends Exception {
+@SuppressWarnings("serial")
+public class IllegalBidAmountException extends BidException {
 
 	public IllegalBidAmountException(String string) {
 		super(string);
 	}
-
-	private static final long serialVersionUID = 4022952046702823175L;
-
 }

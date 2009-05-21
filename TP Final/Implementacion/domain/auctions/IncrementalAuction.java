@@ -122,7 +122,7 @@ public class IncrementalAuction extends Auction {
 	 * @throws NoBiddersException
 	 *             lanza una excepción en caso de no habe ofertas
 	 */
-	public Bidder getHighestBidder() throws NoBiddersException {
+	public final Bidder getHighestBidder() throws NoBiddersException {
 		if (this.bids.isEmpty()) {
 			throw new NoBiddersException();
 		}
@@ -130,11 +130,12 @@ public class IncrementalAuction extends Auction {
 	}
 
 	@Override
-	/**
-	 * Devuelve la cantidad apropiada para ser ofetada acontinuación.
+	/*
+	 * * Devuelve la cantidad apropiada para ser ofetada acontinuación.
+	 * 
 	 * @return cantidad a ofertar
 	 */
-	public int getAmountForNextBid() {
+	public final int getAmountForNextBid() {
 		return this.nextBidValue;
 	}
 }
