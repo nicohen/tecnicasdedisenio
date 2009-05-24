@@ -6,15 +6,15 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.auctions.Auction;
-import domain.auctions.AuctionStatus;
-import domain.auctions.AuctionType;
-import domain.auctions.IncrementalAuction;
-import domain.auctions.Product;
-import domain.auctions.ReverseAuction;
-import domain.customers.Group;
-import domain.customers.User;
-import domain.utils.VariationRateFunction;
+import src.domain.auctions.Auction;
+import src.domain.auctions.AuctionStatus;
+import src.domain.auctions.AuctionType;
+import src.domain.auctions.IncrementalAuction;
+import src.domain.auctions.Product;
+import src.domain.auctions.ReverseAuction;
+import src.domain.customers.Group;
+import src.domain.customers.User;
+import src.domain.utils.VariationRateFunction;
 
 public class FinishAuctionTest {
 
