@@ -1,14 +1,14 @@
 
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 
 import org.junit.Test;
 
-import domain.auctions.Auction;
-import domain.auctions.ReverseAuction;
-import domain.utils.VariationRateFunction;
+import src.domain.auctions.Auction;
+import src.domain.auctions.ReverseAuction;
+import src.domain.utils.VariationRateFunction;
 
 public class TimeManagementForReverseAuctionTest {
 

@@ -6,19 +6,19 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import domain.auctions.Auction;
-import domain.auctions.AuctionType;
-import domain.auctions.IncrementalAuction;
-import domain.auctions.Product;
-import domain.auctions.ReverseAuction;
-import domain.customers.Bidder;
-import domain.customers.Group;
-import domain.customers.User;
-import domain.exceptions.InvalidAuctionTypeException;
-import domain.exceptions.NoBiddersException;
-import domain.exceptions.NotEnoughMembersInGroupForBidException;
-import domain.exceptions.NotEnoughPointsToBidException;
-import domain.utils.VariationRateFunction;
+import src.domain.auctions.Auction;
+import src.domain.auctions.AuctionType;
+import src.domain.auctions.IncrementalAuction;
+import src.domain.auctions.Product;
+import src.domain.auctions.ReverseAuction;
+import src.domain.customers.Bidder;
+import src.domain.customers.Group;
+import src.domain.customers.User;
+import src.domain.exceptions.InvalidAuctionTypeException;
+import src.domain.exceptions.NoBiddersException;
+import src.domain.exceptions.NotEnoughMembersInGroupForBidException;
+import src.domain.exceptions.NotEnoughPointsToBidException;
+import src.domain.utils.VariationRateFunction;
 
 public class BiddingTesting {
 
