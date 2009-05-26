@@ -5,11 +5,11 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import src.domain.customers.Key;
-import src.domain.customers.Keys;
-import src.domain.customers.User;
-import src.domain.exceptions.AlreadyUsedKeyException;
-import src.domain.exceptions.NonExistentKeyException;
+import domain.customers.Key;
+import domain.customers.Keys;
+import domain.customers.User;
+import domain.exceptions.AlreadyUsedKeyException;
+import domain.exceptions.NonExistentKeyException;
 
 public class ExchangeKeyTest {
 	private User aUser, anotherUser;

@@ -6,9 +6,9 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import src.domain.auctions.Auction;
-import src.domain.auctions.ReverseAuction;
-import src.domain.utils.VariationRateFunction;
+import domain.auctions.Auction;
+import domain.auctions.ReverseAuction;
+import domain.utils.VariationRateFunction;
 
 public class TimeManagementForReverseAuctionTest {
 

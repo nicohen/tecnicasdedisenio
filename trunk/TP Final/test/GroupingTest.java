@@ -4,11 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import src.domain.customers.Group;
-import src.domain.customers.User;
-import src.domain.exceptions.GroupSizeExceededException;
-import src.domain.exceptions.InvalidDonationException;
-import src.domain.exceptions.UserAlreadyInGroupException;
+import domain.customers.Group;
+import domain.customers.User;
+import domain.exceptions.GroupSizeExceededException;
+import domain.exceptions.InvalidDonationException;
+import domain.exceptions.UserAlreadyInGroupException;
 
 public class GroupingTest {
 
