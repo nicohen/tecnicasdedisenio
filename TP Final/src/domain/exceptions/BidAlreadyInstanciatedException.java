@@ -1,4 +1,4 @@
-package domain.auctions;
+package domain.exceptions;
 
 public class BidAlreadyInstanciatedException extends Exception {
 

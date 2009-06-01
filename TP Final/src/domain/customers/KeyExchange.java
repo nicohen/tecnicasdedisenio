@@ -4,7 +4,8 @@ import java.util.Date;
 
 import domain.auctions.Auction;
 import domain.auctions.Bid;
-import domain.auctions.BidAlreadyInstanciatedException;
+import domain.exceptions.BidAlreadyInstanciatedException;
+import domain.exceptions.KeyExchangeAlreadyInstanciatedException;
 import domain.querys.History;
 
 /**
