@@ -3,11 +3,14 @@ package domain.auctions;
 import java.util.Date;
 
 import domain.customers.Bidder;
+import domain.customers.Donation;
+import domain.customers.DonationAlreadyInstanciatedException;
+import domain.customers.Group;
+import domain.customers.User;
 import domain.exceptions.BidException;
 import domain.exceptions.IllegalBidAmountException;
 import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.querys.History;
-import domain.querys.Transaction;
 
 /**
  * Las ofertas son una clase central para el modelo resuelto; es la interacción
@@ -16,10 +19,12 @@ import domain.querys.Transaction;
  * quedan todas registradas en el historial de movimientos para ser consultados
  * eventualmente.
  */
-public class Bid extends Transaction {
+public class Bid implements Comparable<Bid> {
 
 	private Bidder owner;
 	private int value;
+	private Date occurrenceDate;
+	private Auction auction;
 
 	/**
 	 * Construye la transacción de ofertar registrando los cambios necesarios en
@@ -40,10 +45,11 @@ public class Bid extends Transaction {
 	 */
 	public Bid(Bidder owner, Auction auction, int amountToBid)
 			throws BidException {
-		super(new Date());
+		occurrenceDate = new Date();
 		this.owner = owner;
 		this.value = amountToBid;
 		auction.takeNewBid(this);
+		this.auction = auction;
 		History.getInstance().addBid(this);
 	}
 
@@ -73,11 +79,86 @@ public class Bid extends Transaction {
 	 * @return 0 if equals, -1 if this<another, 1 if this>another
 	 */
 	public int compareTo(Bid anotherBid) {
-		int res = 0;
-		if (this.value < anotherBid.value)
-			res = -1;
-		if (this.value > anotherBid.value)
-			res = 1;
+		int res = this.occurrenceDate.compareTo(anotherBid.getDate());
+		if (res == 0) {
+			return this.owner.compareTo(anotherBid.owner);
+		}
 		return res;
+	}
+
+	public Date getDate() {
+		return this.occurrenceDate;
+	}
+
+	/**
+	 * Se utiliza para la reconstrucción de objetos preexistentes. Al tener un
+	 * dominio persistible, es necesario poder volver a instanciar un objeto Bid
+	 * que por algún motivo se haya quitado de la memoria
+	 */
+	private Bid() {
+	}
+
+	/**
+	 * Se utiliza para la reconstrucción de objetos preexistentes. Al tener un
+	 * dominio persistible, es necesario poder volver a instanciar un objeto Bid
+	 * que por algún motivo se haya quitado de la memoria
+	 * 
+	 * @param owner
+	 *            the owner to set
+	 */
+	private void setOwner(Bidder owner) {
+		this.owner = owner;
+	}
+
+	/**
+	 * Se utiliza para la reconstrucción de objetos preexistentes. Al tener un
+	 * dominio persistible, es necesario poder volver a instanciar un objeto Bid
+	 * que por algún motivo se haya quitado de la memoria
+	 * 
+	 * @param value
+	 *            the value to set
+	 */
+	private void setValue(int value) {
+		this.value = value;
+	}
+
+	/**
+	 * @param auction the auction to set
+	 */
+	private void setAuction(Auction auction) {
+		this.auction = auction;
+	}
+
+	/**
+	 * Se utiliza para la reconstrucción de objetos preexistentes. Al tener un
+	 * dominio persistible, es necesario poder volver a instanciar un objeto Bid
+	 * que por algún motivo se haya quitado de la memoria
+	 * 
+	 * @param occurrenceDate
+	 *            the occurrenceDate to set
+	 */
+	private void setOccurrenceDate(Date occurrenceDate) {
+		this.occurrenceDate = occurrenceDate;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 * @param auction
+	 * @param points
+	 * @param date
+	 * @return
+	 * @throws BidAlreadyInstanciatedException
+	 */
+	public static Bid buildExistantBid(User user, Auction auction, int points, Date date) throws BidAlreadyInstanciatedException {
+		if (History.getInstance().haveBid(date, user)) {
+			throw new BidAlreadyInstanciatedException();
+		}
+		Bid aBid = new Bid();
+		aBid.setOwner(user);
+		aBid.setAuction(auction);
+		aBid.setOccurrenceDate(date);
+		aBid.setValue(points);
+		return aBid;
 	}
 }

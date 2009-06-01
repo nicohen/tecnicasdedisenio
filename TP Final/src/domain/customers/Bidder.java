@@ -17,7 +17,7 @@ import domain.utils.BusinessRules;
  * Clase abstracta que generaliza a los distintos tipos de postores que
  * contempla el sistema.
  */
-public abstract class Bidder {
+public abstract class Bidder implements Comparable<Bidder>{
 
 	protected int avaliablePoints;
 	protected int compromisedPoints;
