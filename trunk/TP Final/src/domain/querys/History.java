@@ -78,7 +78,11 @@ public class History {
 	}
 	
 	public boolean haveDonation (User user, Group group, Date date){
-		Donation[] allAvailableDonations = (Donation[]) this.donations.toArray();
+		Object[] array= this.donations.toArray();
+		Donation[] allAvailableDonations = new Donation[this.donations.size()]; 
+		for (int i=0; i<this.donations.size(); i++){
+			allAvailableDonations[i] = (Donation) array[i];
+		}
 		Arrays.sort(allAvailableDonations);
 		
 		int bottom = 0;
