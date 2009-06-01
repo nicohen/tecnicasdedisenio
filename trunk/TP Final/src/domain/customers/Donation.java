@@ -3,7 +3,6 @@ package domain.customers;
 import java.util.Date;
 
 import domain.querys.History;
-import domain.querys.Transaction;
 
 /**
  * Es el tipo de transacción que se utiliza para registrar las donaciones de
@@ -12,11 +11,12 @@ import domain.querys.Transaction;
  * 
  * @see Transaction
  */
-public class Donation extends Transaction {
+public class Donation implements Comparable<Donation> {
 
 	private Group beneficiaryGroup;
 	private User donorUser;
 	private int donatedCredits;
+	private Date occurrenceDate;
 
 	/**
 	 * Al ser una transacción, su lógica fuerte se da al momento de su
@@ -34,7 +34,7 @@ public class Donation extends Transaction {
 	 * @see History, User, Group
 	 */
 	public Donation(User user, Group group, int points) {
-		super(new Date());
+		occurrenceDate = new Date();
 		if (user == null || group == null)
 			throw new NullPointerException();
 		if (points <= 0)
@@ -66,5 +66,98 @@ public class Donation extends Transaction {
 	 */
 	public final int getCreditsDonate() {
 		return donatedCredits;
+	}
+
+	public Date getDate() {
+		return this.occurrenceDate;
+	}
+	
+	/**
+	 * Se utiliza para la reconstrucción de objetos preexistentes. Al tener un
+	 * dominio persistible, es necesario poder volver a instanciar un objeto
+	 * Donation que por algún motivo se haya quitado de la memoria
+	 */
+	private Donation() {}
+
+	/**
+	 * Se utiliza para la reconstrucción de objetos preexistentes. Al tener un
+	 * dominio persistible, es necesario poder volver a instanciar un objeto
+	 * Donation que por algún motivo se haya quitado de la memoria
+	 * 
+	 * @param beneficiaryGroup
+	 *            the beneficiaryGroup to set
+	 */
+	private void setBeneficiaryGroup(Group beneficiaryGroup) {
+		this.beneficiaryGroup = beneficiaryGroup;
+	}
+
+	/**
+	 * Se utiliza para la reconstrucción de objetos preexistentes. Al tener un
+	 * dominio persistible, es necesario poder volver a instanciar un objeto
+	 * Donation que por algún motivo se haya quitado de la memoria
+	 * 
+	 * @param donorUser
+	 *            the donorUser to set
+	 */
+	private void setDonorUser(User donorUser) {
+		this.donorUser = donorUser;
+	}
+
+	/**
+	 * Se utiliza para la reconstrucción de objetos preexistentes. Al tener un
+	 * dominio persistible, es necesario poder volver a instanciar un objeto
+	 * Donation que por algún motivo se haya quitado de la memoria
+	 * 
+	 * @param donatedCredits
+	 *            the donatedCredits to set
+	 */
+	private void setDonatedCredits(int donatedCredits) {
+		this.donatedCredits = donatedCredits;
+	}
+
+	/**
+	 * Se utiliza para la reconstrucción de objetos preexistentes. Al tener un
+	 * dominio persistible, es necesario poder volver a instanciar un objeto
+	 * Donation que por algún motivo se haya quitado de la memoria
+	 * 
+	 * @param occurrenceDate
+	 *            the occurrenceDate to set
+	 */
+	private void setOccurrenceDate(Date occurrenceDate) {
+		this.occurrenceDate = occurrenceDate;
+	}
+
+	/**
+	 * Factory method utilizado para la reconstrucción de donaciones que hayan
+	 * sido quitadas de la memoria, pero que se necesitan para volver a usarse.
+	 * 
+	 * @param user
+	 * @param group
+	 * @param points
+	 * @param date
+	 * @return
+	 * @throws DonationAlreadyInstanciatedException 
+	 */
+	public static Donation buildExistantDonation(User user, Group group, int points,
+			Date date) throws DonationAlreadyInstanciatedException {
+		if(History.getInstance().haveDonation(user, group, date)){
+			throw new DonationAlreadyInstanciatedException();
+		}
+		Donation aDonation = new Donation();
+		aDonation.setBeneficiaryGroup(group);
+		aDonation.setDonorUser(user);
+		aDonation.setDonatedCredits(points);
+		aDonation.setOccurrenceDate(date);
+		return aDonation;
+	}
+
+	@Override
+	public int compareTo(Donation other) {
+		int res = this.beneficiaryGroup.compareTo(other.beneficiaryGroup);
+		if(res!=0) return res;
+		res = this.donorUser.compareTo(other.donorUser);
+		if(res!=0) return res;
+		res = this.occurrenceDate.compareTo(other.occurrenceDate);
+		return res;
 	}
 }

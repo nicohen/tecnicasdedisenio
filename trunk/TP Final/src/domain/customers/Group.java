@@ -109,4 +109,10 @@ public class Group extends Bidder {
 	public final User getOwner() {
 		return owner;
 	}
+
+	@Override
+	public int compareTo(Bidder other) {
+		if(other.getClass() != Group.class) throw new IllegalArgumentException();
+		return this.owner.compareTo(((Group)other).owner);
+	}
 }

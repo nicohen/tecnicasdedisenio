@@ -201,4 +201,13 @@ public class User extends Bidder {
 			addPoints(myKey.getPointsToExchange());
 		}
 	}
+
+	@Override
+	public int compareTo(Bidder other) {
+		if(other.getClass() != User.class) throw new IllegalArgumentException();
+		User comparingTo = (User) other;
+		if (comparingTo.dni == this.dni) return 0;
+		if (comparingTo.dni > this.dni) return -1;
+		return 1;
+	}
 }
