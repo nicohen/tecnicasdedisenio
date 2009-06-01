@@ -4,10 +4,11 @@ import java.util.Date;
 
 import domain.customers.Bidder;
 import domain.customers.Donation;
-import domain.customers.DonationAlreadyInstanciatedException;
 import domain.customers.Group;
 import domain.customers.User;
+import domain.exceptions.BidAlreadyInstanciatedException;
 import domain.exceptions.BidException;
+import domain.exceptions.DonationAlreadyInstanciatedException;
 import domain.exceptions.IllegalBidAmountException;
 import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.querys.History;

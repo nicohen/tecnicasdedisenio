@@ -2,6 +2,7 @@ package domain.customers;
 
 import java.util.Date;
 
+import domain.exceptions.DonationAlreadyInstanciatedException;
 import domain.querys.History;
 
 /**

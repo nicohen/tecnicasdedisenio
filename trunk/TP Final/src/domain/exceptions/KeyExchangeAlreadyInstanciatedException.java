@@ -1,4 +1,4 @@
-package domain.customers;
+package domain.exceptions;
 
 public class KeyExchangeAlreadyInstanciatedException extends Exception {
 
