@@ -86,7 +86,7 @@ public class History {
 		Arrays.sort(allAvailableDonations);
 		
 		int bottom = 0;
-		int top = this.donations.size();
+		int top = this.donations.size()-1;
 		int pos= this.donations.size()/2;
 		while (top>bottom){
 			int cmpGroup = allAvailableDonations[pos].getBenefeciary().compareTo(group);
@@ -109,12 +109,16 @@ public class History {
 	}
 	
 	public boolean haveBid (Date date, User user){
-		Bid[] allAvailableBids = (Bid[]) this.bids.toArray();
+		Object[] array = this.bids.toArray();
+		Bid[] allAvailableBids = new Bid[this.bids.size()];
+		for (int i=0;i<this.bids.size(); i++){
+			allAvailableBids[i] = (Bid) array[i];
+		}
 		Arrays.sort(allAvailableBids);
 		
 		int bottom = 0;
-		int top = this.donations.size();
-		int pos= this.donations.size()/2;
+		int top = this.bids.size()-1;
+		int pos= this.bids.size()/2;
 		while (top>bottom){
 			int cmpUser = allAvailableBids[pos].getOwner().compareTo(user);
 			int cmpDate = allAvailableBids[pos].getDate().compareTo(date);
@@ -134,14 +138,18 @@ public class History {
 	}
 	
 	public boolean haveKeyExchange(String code) {
-		KeyExchange[] allAvailableBids = (KeyExchange[]) this.bids.toArray();
-		Arrays.sort(allAvailableBids);
+		Object[] array = this.keyExchanges.toArray();
+		KeyExchange[] allAvailableKeyExchanges = new KeyExchange[this.keyExchanges.size()];
+		for(int i=0; i<this.keyExchanges.size(); i++){
+			allAvailableKeyExchanges[i] = (KeyExchange) array[i];
+		}
+		Arrays.sort(allAvailableKeyExchanges);
 		
 		int bottom = 0;
-		int top = this.donations.size();
-		int pos= this.donations.size()/2;
+		int top = this.keyExchanges.size()-1;
+		int pos= this.keyExchanges.size()/2;
 		while (top>bottom){
-			int cmpCode = allAvailableBids[pos].getKey().getCode().compareTo(code);
+			int cmpCode = allAvailableKeyExchanges[pos].getKey().getCode().compareTo(code);
 			if(cmpCode<0){
 				bottom = pos+1;
 				pos = (bottom+top)/2;
@@ -152,19 +160,23 @@ public class History {
 				top = bottom = pos;
 			}
 		}
-		return (allAvailableBids[pos].getKey().getCode().compareTo(code)==0);
+		return (allAvailableKeyExchanges[pos].getKey().getCode().compareTo(code)==0);
 	}
 	
 	public boolean haveQuery(User user, Date date) {
-		Query[] allAvailableBids = (Query[]) this.bids.toArray();
-		Arrays.sort(allAvailableBids);
+		Object[] array = this.querys.toArray();
+		Query[] allAvailableQueries = new Query[this.querys.size()];
+		for (int i=0; i<this.querys.size(); i++){
+			allAvailableQueries[i] = (Query) array[i];
+		}
+		Arrays.sort(allAvailableQueries);
 		
 		int bottom = 0;
-		int top = this.donations.size();
-		int pos= this.donations.size()/2;
+		int top = this.querys.size()-1;
+		int pos= this.querys.size()/2;
 		while (top>bottom){
-			int cmpUser = allAvailableBids[pos].getUser().compareTo(user);
-			int cmpDate = allAvailableBids[pos].getDate().compareTo(date);
+			int cmpUser = allAvailableQueries[pos].getUser().compareTo(user);
+			int cmpDate = allAvailableQueries[pos].getDate().compareTo(date);
 			if(cmpUser<0 || (cmpUser==0 && cmpDate<0)){
 				bottom = pos+1;
 				pos = (bottom+top)/2;
@@ -175,8 +187,8 @@ public class History {
 				top = bottom = pos;
 			}
 		}
-		int cmpUser = allAvailableBids[pos].getUser().compareTo(user);
-		int cmpDate = allAvailableBids[pos].getDate().compareTo(date);
+		int cmpUser = allAvailableQueries[pos].getUser().compareTo(user);
+		int cmpDate = allAvailableQueries[pos].getDate().compareTo(date);
 		return (cmpDate==0 && cmpUser==0);
 	}
 }
