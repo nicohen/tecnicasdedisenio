@@ -14,6 +14,7 @@ public abstract class WebView implements View {
 	protected HttpServletRequest req;
 	protected HttpServletResponse res;
 	protected HashMap<String, Object> requestAttributes;
+	protected HashMap<String, Object> requestParameters;
 	protected ServletContext servletContext;
 	protected final String relativePath; 
 
@@ -33,6 +34,7 @@ public abstract class WebView implements View {
 		this.out = new HtmlWriter(res);
 		this.servletContext = servletContext;
 		this.relativePath = this.servletContext.getRealPath("");
+		this.requestParameters = requestParameters;
 	}
 
 	public void execute() throws Exception {

@@ -14,6 +14,10 @@ import domain.utils.VariationRateFunction;
 public class IncrementalAuction extends Auction {
 
 	private int nextBidValue;
+	public int getNextBidValue() {
+		return nextBidValue;
+	}
+
 	private Stack<Bid> bids;
 
 	/**

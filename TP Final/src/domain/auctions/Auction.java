@@ -21,6 +21,8 @@ public abstract class Auction {
 	protected VariationRateFunction variationRateFunction;
 	protected int value;
 	protected AuctionType type;
+	
+	protected long auctionId;
 
 	/**
 	 * Recibe y maneja todos los valores de atributos, e inicializa las
@@ -51,6 +53,8 @@ public abstract class Auction {
 		this.status = AuctionStatus.ACTIVE;
 		this.value = startUpValue;
 		this.type = type;
+		
+		this.auctionId = System.currentTimeMillis();
 	}
 
 	/**
@@ -121,5 +125,22 @@ public abstract class Auction {
 	 */
 	public final AuctionType getType() {
 		return type;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Auction other = (Auction)obj;
+		return this.auctionId == other.auctionId;
+	}
+	@Override
+	public int hashCode() {
+		return (int)auctionId;
+	}
+
+	public void setAuctionId(long id) {
+		this.auctionId = id;		
+	}
+	public int getValue(){
+		return value;
 	}
 }
