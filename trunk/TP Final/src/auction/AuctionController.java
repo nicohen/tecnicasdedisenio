@@ -1,4 +1,4 @@
-package test.web.bid;
+package auction;
 
 import java.util.HashMap;
 
@@ -8,18 +8,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import api.web.mvc.controller.FrontEndControllerServlet;
 import api.web.mvc.view.View;
+import auction.views.AuctionView;
 
-
-public class BidControllerServlet extends FrontEndControllerServlet {
+public class AuctionController extends FrontEndControllerServlet {
 
 	@Override
 	protected void executeView(HttpServletRequest req, HttpServletResponse res,
-			HashMap<String, Object> requestAttributes,ServletContext servletContext, HashMap<String,Object> requestParameters) throws Exception {
-
-
-		View view = new BidHtmlView(req,res,requestAttributes,servletContext, requestParameters);
-
+			HashMap<String, Object> requestAttributes,
+			ServletContext servletContext,
+			HashMap<String, Object> requestParameters) throws Exception {
+		View view = new AuctionView(req,res,requestAttributes,servletContext,requestParameters);
+		
+		
 		view.execute();
+
 	}
 
 	@Override

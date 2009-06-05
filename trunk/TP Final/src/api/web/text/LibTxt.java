@@ -15,4 +15,12 @@ public class LibTxt {
 		} else 		
 			return in;
 	}
+	
+	public static String replaceAll(String in, String find, String replace){
+		while (in.indexOf(find)>=0){
+			in = replace(in,find,replace);
+		}
+		
+		return in;
+	}
 }
