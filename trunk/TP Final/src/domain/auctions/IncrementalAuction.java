@@ -14,11 +14,12 @@ import domain.utils.VariationRateFunction;
 public class IncrementalAuction extends Auction {
 
 	private int nextBidValue;
+	private Stack<Bid> bids;
+	
 	public int getNextBidValue() {
 		return nextBidValue;
 	}
 
-	private Stack<Bid> bids;
 
 	/**
 	 * Inicializa las estructuras necesarias para la implementación de un remate
