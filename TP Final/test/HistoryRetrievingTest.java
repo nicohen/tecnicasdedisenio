@@ -1,4 +1,4 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.Date;
@@ -19,11 +19,11 @@ import domain.exceptions.UserAlreadyInGroupException;
 import domain.querys.History;
 import domain.utils.VariationRateFunction;
 
-
 public class HistoryRetrievingTest {
 
 	@Test
-	public void testHaveDonation() throws UserAlreadyInGroupException, InvalidDonationException, InterruptedException {
+	public void testHaveDonation() throws UserAlreadyInGroupException,
+			InvalidDonationException, InterruptedException {
 		History history = History.getInstance();
 		User user = new User(53648759, "Mario", "Ledesma");
 		Group group = new Group(user);
@@ -44,9 +44,11 @@ public class HistoryRetrievingTest {
 	}
 
 	@Test
-	public void testHaveBid() throws BidException, InvalidAuctionTypeException, InterruptedException {
+	public void testHaveBid() throws BidException, InvalidAuctionTypeException,
+			InterruptedException {
 		History history = History.getInstance();
-		Auction auction = new IncrementalAuction(null, AuctionType.SINGLE, new VariationRateFunction(null), 150);
+		Auction auction = new IncrementalAuction(null, AuctionType.SINGLE,
+				new VariationRateFunction(null), 150);
 		User assertUser = new User(53648759, "Mario", "Ledesma");
 		assertUser.addPoints(10000);
 		assertUser.bid(auction);

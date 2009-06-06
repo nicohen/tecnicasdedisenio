@@ -2,7 +2,6 @@ package domain.querys;
 
 import java.util.Date;
 
-import domain.customers.Donation;
 import domain.customers.User;
 
 /**
