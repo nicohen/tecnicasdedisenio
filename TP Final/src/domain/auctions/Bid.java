@@ -3,12 +3,9 @@ package domain.auctions;
 import java.util.Date;
 
 import domain.customers.Bidder;
-import domain.customers.Donation;
-import domain.customers.Group;
 import domain.customers.User;
 import domain.exceptions.BidAlreadyInstanciatedException;
 import domain.exceptions.BidException;
-import domain.exceptions.DonationAlreadyInstanciatedException;
 import domain.exceptions.IllegalBidAmountException;
 import domain.exceptions.NotEnoughMembersInGroupForBidException;
 import domain.querys.History;
@@ -73,6 +70,10 @@ public class Bid implements Comparable<Bid> {
 		return owner;
 	}
 
+	public final Auction getAuction() {
+		return auction;
+	}
+
 	/**
 	 * Compara dos ofertas por su monto ofertado
 	 * 
@@ -124,7 +125,8 @@ public class Bid implements Comparable<Bid> {
 	}
 
 	/**
-	 * @param auction the auction to set
+	 * @param auction
+	 *            the auction to set
 	 */
 	private void setAuction(Auction auction) {
 		this.auction = auction;
@@ -151,7 +153,8 @@ public class Bid implements Comparable<Bid> {
 	 * @return
 	 * @throws BidAlreadyInstanciatedException
 	 */
-	public static Bid buildExistantBid(User user, Auction auction, int points, Date date) throws BidAlreadyInstanciatedException {
+	public static Bid buildExistantBid(User user, Auction auction, int points,
+			Date date) throws BidAlreadyInstanciatedException {
 		if (History.getInstance().haveBid(date, user)) {
 			throw new BidAlreadyInstanciatedException();
 		}
