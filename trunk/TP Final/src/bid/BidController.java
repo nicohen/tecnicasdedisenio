@@ -10,6 +10,7 @@ import api.web.mvc.controller.FrontEndControllerServlet;
 import api.web.mvc.view.View;
 import bid.views.BidView;
 
+@SuppressWarnings("serial")
 public class BidController extends FrontEndControllerServlet {
 
 	@Override

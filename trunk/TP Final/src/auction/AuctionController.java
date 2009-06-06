@@ -10,6 +10,7 @@ import api.web.mvc.controller.FrontEndControllerServlet;
 import api.web.mvc.view.View;
 import auction.views.AuctionView;
 
+@SuppressWarnings("serial")
 public class AuctionController extends FrontEndControllerServlet {
 
 	@Override

@@ -13,20 +13,23 @@ import api.web.mvc.view.View;
 import api.web.session.SessionValidation;
 import api.web.session.entities.Session;
 
-
+@SuppressWarnings("serial")
 public class Login extends FrontEndControllerServlet {
 
 	@Override
 	protected void executeView(HttpServletRequest req, HttpServletResponse res,
-			HashMap<String, Object> requestAttributes,ServletContext servletContext, HashMap<String,Object> requestParameters) throws Exception {
+			HashMap<String, Object> requestAttributes,
+			ServletContext servletContext,
+			HashMap<String, Object> requestParameters) throws Exception {
 
 		String user = (String) requestParameters.get("user");
 		String password = (String) requestParameters.get("pass");
-		
-		if (validateUser(user,password,req,res)){
+
+		if (validateUser(user, password, req, res)) {
 			redirToUrl(res, requestParameters);
 		} else {
-			View view = new LoginView(req,res,requestAttributes, servletContext, requestParameters);
+			View view = new LoginView(req, res, requestAttributes,
+					servletContext, requestParameters);
 			view.execute();
 		}
 
@@ -34,18 +37,19 @@ public class Login extends FrontEndControllerServlet {
 
 	private void redirToUrl(HttpServletResponse res,
 			HashMap<String, Object> requestParameters) throws Exception {
-		String urlRedir = (String)requestParameters.get("urlredir");
+		String urlRedir = (String) requestParameters.get("urlredir");
 		res.sendRedirect(urlRedir);
 	}
 
-	private boolean validateUser(String user, String password, HttpServletRequest req, HttpServletResponse res) throws Exception {
-		//TODO VALIDAR DATOS CONTRA UNA BASE...
+	private boolean validateUser(String user, String password,
+			HttpServletRequest req, HttpServletResponse res) throws Exception {
+		// TODO VALIDAR DATOS CONTRA UNA BASE...
 		int userId = user.hashCode();
-		
+
 		Session session = SessionValidation.createSession(userId);
-		Cookie cookie = new Cookie("user",session.toString());
+		Cookie cookie = new Cookie("user", session.toString());
 		cookie.setPath("/");
-		//cookie.setMaxAge(expiry)
+		// cookie.setMaxAge(expiry)
 		res.addCookie(cookie);
 		return true;
 	}

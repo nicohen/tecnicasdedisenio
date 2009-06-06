@@ -56,6 +56,7 @@ public abstract class AbstractControllerServlet extends HttpServlet implements C
 	 * @param req
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	protected final HashMap<String, Object> loadRequestParameters(HttpServletRequest req) {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		

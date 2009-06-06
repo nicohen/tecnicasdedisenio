@@ -10,7 +10,6 @@ import api.web.cache.HtmlCache;
 import api.web.mvc.view.HtmlView;
 import api.web.text.LibTxt;
 import dao.mocks.AuctionsMock;
-import domain.auctions.Auction;
 import domain.auctions.IncrementalAuction;
 
 public class AuctionView extends HtmlView {
@@ -25,19 +24,20 @@ public class AuctionView extends HtmlView {
 	@Override
 	protected void doHtmlBody() {
 		String html = HtmlCache.getHtml(relativePath, "auction/AuctionView");
-		long auctionId = Long.parseLong((String)requestParameters.get("auctionId"));
-		IncrementalAuction auction = (IncrementalAuction)AuctionsMock.getInstance().get(auctionId);
-		
-		
-		html = LibTxt.replaceAll(html, "##AUCTION_ID##", ""+ auctionId);
-		
-		html = LibTxt.replace(html, "##AUCTION_DESC##",auction.getPrize().getDescription());
-		html = LibTxt.replaceAll(html, "##AUCTION_PRICE##", ""+auction.getNextBidValue());
-		
-		
+		long auctionId = Long.parseLong((String) requestParameters
+				.get("auctionId"));
+		IncrementalAuction auction = (IncrementalAuction) AuctionsMock
+				.getInstance().get(auctionId);
+
+		html = LibTxt.replaceAll(html, "##AUCTION_ID##", "" + auctionId);
+
+		html = LibTxt.replace(html, "##AUCTION_DESC##", auction.getPrize()
+				.getDescription());
+		html = LibTxt.replaceAll(html, "##AUCTION_PRICE##", ""
+				+ auction.getNextBidValue());
+
 		out.println(html);
-		
-		
+
 	}
 
 }

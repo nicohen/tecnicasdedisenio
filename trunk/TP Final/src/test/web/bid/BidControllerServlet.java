@@ -9,15 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 import api.web.mvc.controller.FrontEndControllerServlet;
 import api.web.mvc.view.View;
 
-
+@SuppressWarnings("serial")
 public class BidControllerServlet extends FrontEndControllerServlet {
 
 	@Override
 	protected void executeView(HttpServletRequest req, HttpServletResponse res,
-			HashMap<String, Object> requestAttributes,ServletContext servletContext, HashMap<String,Object> requestParameters) throws Exception {
+			HashMap<String, Object> requestAttributes,
+			ServletContext servletContext,
+			HashMap<String, Object> requestParameters) throws Exception {
 
-
-		View view = new BidHtmlView(req,res,requestAttributes,servletContext, requestParameters);
+		View view = new BidHtmlView(req, res, requestAttributes,
+				servletContext, requestParameters);
 
 		view.execute();
 	}

@@ -17,6 +17,7 @@ import java.util.HashMap;
 public class ObjectFactory {
 
 	private static ObjectFactory instance = new ObjectFactory(); //Singleton
+	@SuppressWarnings("unchecked")
 	private HashMap classMap = new HashMap();
 	
 	public static ObjectFactory getInstance(){
@@ -24,6 +25,7 @@ public class ObjectFactory {
 	}
 	private ObjectFactory(){} // No instanciable
 	
+	@SuppressWarnings("unchecked")
 	public static Object getObject(Class interfaceClass){
 		Object obj = null;
 		HashMap map = ObjectFactory.getInstance().getClassMap();
@@ -46,6 +48,7 @@ public class ObjectFactory {
 	 * @param interfaceClass
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	private static Class getConcreteType(HashMap map, Class interfaceClass) {
 		if (!map.containsKey(interfaceClass)){
 			try {
@@ -70,6 +73,7 @@ public class ObjectFactory {
 	/**
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public HashMap getClassMap() {
 		return classMap;
 	}

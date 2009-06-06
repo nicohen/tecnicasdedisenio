@@ -20,6 +20,7 @@ public class Session {
 	private long expiration;
 	private String type;
 	
+	@SuppressWarnings("unchecked")
 	public Session(Class loginClass, int userId, long expiration,String type) 
 				throws ForbiddenLoginClassException {
 		if (!(loginClass.equals(SessionValidation.class))){
