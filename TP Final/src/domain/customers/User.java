@@ -206,8 +206,9 @@ public class User extends Bidder {
 	public int compareTo(Bidder other) {
 		if(other.getClass() != User.class) throw new IllegalArgumentException();
 		User comparingTo = (User) other;
-		if (comparingTo.dni == this.dni) return 0;
-		if (comparingTo.dni > this.dni) return -1;
-		return 1;
+		Integer myValue = new Integer(this.dni);
+		Integer itsValue = new Integer(comparingTo.dni);
+		return myValue.compareTo(itsValue);
 	}
+
 }
