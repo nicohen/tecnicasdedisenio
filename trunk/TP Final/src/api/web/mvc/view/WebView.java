@@ -89,7 +89,7 @@ public abstract class WebView implements View {
 	}
 	protected abstract void doHtmlHeader();
 	protected abstract void doHtmlMenu();
-	protected abstract void doHtmlBody();
+	protected abstract void doHtmlBody() throws Exception;
 	protected abstract void doHtmlFooter();
 	
 	protected void setContentType(){

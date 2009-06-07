@@ -1,0 +1,42 @@
+<form action="BidController?auctionId=##AUCTION_ID##&value=##AUCTION_PRICE##" method="post">
+	<table border="0" cellpadding="0" cellspacing="0" width="768px">
+		<!--<tr>
+			<td>
+				<table border="0" cellpadding="0" cellspacing="0" width="768px">
+					<tr>
+						<td>
+							##IMAGE##
+						</td>
+						<td>
+							##TITLE##
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr> -->
+		<tr>
+			<td>
+				ID: ##AUCTION_ID##
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td>
+							Cantidad de puntos: ##AUCTION_PRICE##
+						</td>
+						<td>
+							<input type="submit" value="Ofertar" name="ofertar">
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Descripcion: ##AUCTION_DESC##
+			</td>
+		</tr>
+	</table>
+</form>
