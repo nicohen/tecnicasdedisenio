@@ -27,6 +27,6 @@ public class AuctionController extends FrontEndControllerServlet {
 
 	@Override
 	protected boolean getValidated(HttpServletRequest req) {
-		return true;
+		return false;
 	}
 }

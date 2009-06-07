@@ -25,11 +25,16 @@ public class BidView extends HtmlView {
 	}
 
 	@Override
-	protected void doHtmlBody() {
+	protected void doHtmlBody() throws Exception {
 		String html = HtmlCache.getHtml(relativePath, "bid/BidView");
 		
 		String paramAuctionId = LibWeb.getParameter(req, "auctionId");
-		long auctionId = Long.parseLong(paramAuctionId);
+		Long auctionId = null;
+		try {
+			auctionId = Long.parseLong(paramAuctionId);
+		} catch(NumberFormatException e) {
+			throw new Exception("Error obteniendo auctionId de request parameters",e);
+		}
 		IncrementalAuction auction = (IncrementalAuction)AuctionsMock.getInstance().get(auctionId);
 		
 		User aUser = new User(31733445, "Aníbal", "Lovaglio");
@@ -42,7 +47,15 @@ public class BidView extends HtmlView {
 		html = LibTxt.replaceAll(html, "##AUCTION_ID##", ""+ auctionId);
 		
 		html = LibTxt.replace(html, "##AUCTION_DESC##",auction.getPrize().getDescription());
-		Long valorOferta = Long.parseLong((String)requestParameters.get("value"));
+		
+		String paramValue = LibWeb.getParameter(req, "value");
+
+		Long valorOferta = null;
+		try {
+			valorOferta = Long.parseLong(paramValue);
+		} catch(NumberFormatException e) {
+			throw new Exception("Error obteniendo puntaje a ofertar de request parameters",e);
+		}
 		html = LibTxt.replaceAll(html, "##AUCTION_PRICE##", ""+valorOferta);
 
 

@@ -26,6 +26,7 @@ public class AuctionView extends HtmlView {
 		String html = HtmlCache.getHtml(relativePath, "auction/AuctionView");
 		long auctionId = Long.parseLong((String) requestParameters
 				.get("auctionId"));
+
 		IncrementalAuction auction = (IncrementalAuction) AuctionsMock
 				.getInstance().get(auctionId);
 
