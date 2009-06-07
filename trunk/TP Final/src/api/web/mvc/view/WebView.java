@@ -71,12 +71,12 @@ public abstract class WebView implements View {
 	}
 
 	private void bodyClose() {
-		out.println("</body>");
+		out.println("</center></body>");
 		
 	}
 
 	private void bodyOpen() {
-		out.println("<body>");		
+		out.println("<body><center>");		
 	}
 
 	private void writeHtml() {

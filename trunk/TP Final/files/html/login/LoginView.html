@@ -1,8 +1,31 @@
-
-
-<form action="/jm/web.api.login.Login" method=post>
-<input type=hidden name=urlredir value="##REDIR##">
-<input type=text name=user>
-<input type="password" name=pass>
-<input type="submit" value="Validar">
+<form action="Login" method="post">
+<table>
+	<tr>
+		<td align="right">
+			Usuario:
+		</td>
+		<td>
+			<input type="text" name="user">
+		</td>
+		<td>
+	</tr>
+	<tr>
+		<td align="right">
+			Password:
+		</td>
+		<td>
+			<input type="password" name="pass">
+		</td>
+		<td>
+	</tr>
+	<tr>
+		<td>
+		</td>
+		<td>
+			<input type="submit" value="Ingresar">
+		</td>
+		<td>
+	</tr>
+</table>
+<input type="hidden" name="urlredir" value="##REDIR##">
 </form>

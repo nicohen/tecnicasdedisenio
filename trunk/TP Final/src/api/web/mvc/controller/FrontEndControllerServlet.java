@@ -63,13 +63,14 @@ public abstract class FrontEndControllerServlet extends AbstractControllerServle
 			HttpServletResponse res, HashMap<String, Object> requestAttributes, Exception e) {
 		try { 
 			PrintWriter w = res.getWriter();
-			w.println("Exception:");
-			StackTraceElement []stacks = e.getStackTrace();
+			w.println("Exception:<br>");
+			StackTraceElement[] stacks = e.getStackTrace();
 			w.println(e);
 			for (StackTraceElement stack : stacks){
 				w.println(stack);
+				w.println("<br>");
 			}
-			e.printStackTrace();
+//			e.printStackTrace();
 		}catch (Exception we){
 			System.out.println("Error fatal, no puede escribir en Response");
 		}
