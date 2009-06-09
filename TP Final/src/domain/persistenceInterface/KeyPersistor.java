@@ -1,7 +1,7 @@
 /**
  * 
  */
-package domain.persistanceInterface;
+package domain.persistenceInterface;
 
 import domain.customers.Key;
 

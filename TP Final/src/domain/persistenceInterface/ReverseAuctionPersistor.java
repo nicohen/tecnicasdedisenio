@@ -1,4 +1,4 @@
-package domain.persistanceInterface;
+package domain.persistenceInterface;
 
 import domain.auctions.AuctionStatus;
 import domain.auctions.Product;
