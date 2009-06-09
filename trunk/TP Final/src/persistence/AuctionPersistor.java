@@ -1,7 +1,7 @@
 /**
  * 
  */
-package persistance;
+package persistence;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,8 +13,8 @@ import domain.auctions.IncrementalAuction;
 import domain.auctions.Product;
 import domain.auctions.ReverseAuction;
 import domain.customers.Bidder;
-import domain.persistanceInterface.IncrementalAuctionPersistor;
-import domain.persistanceInterface.ReverseAuctionPersistor;
+import domain.persistenceInterface.IncrementalAuctionPersistor;
+import domain.persistenceInterface.ReverseAuctionPersistor;
 
 public class AuctionPersistor implements IncrementalAuctionPersistor,
 		ReverseAuctionPersistor {

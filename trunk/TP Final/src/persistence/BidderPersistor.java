@@ -1,12 +1,12 @@
-package persistance;
+package persistence;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import domain.customers.Group;
 import domain.customers.User;
-import domain.persistanceInterface.GroupPersistor;
-import domain.persistanceInterface.UserPersistor;
+import domain.persistenceInterface.GroupPersistor;
+import domain.persistenceInterface.UserPersistor;
 
 public class BidderPersistor implements UserPersistor, GroupPersistor {
 
