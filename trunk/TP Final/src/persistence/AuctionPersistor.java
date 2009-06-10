@@ -27,12 +27,10 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 
 	private Map<Long, IncrementalAuction> incrementals;
 	private Map<Long, ReverseAuction> reverse;
-	private Set<Long> ids;
 
 	private AuctionPersistor() {
 		this.incrementals = new HashMap<Long, IncrementalAuction>();
 		this.reverse = new HashMap<Long, ReverseAuction>();
-		this.ids = new HashSet<Long>();
 	}
 	
 	public AuctionPersistor getInstance() {
@@ -49,14 +47,10 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 */
 	@Override
 	public IncrementalAuction getIncrementalAuctionById(long auctionId) {
-		if (!this.ids.contains(auctionId)) {
-			return null;
-		}
 		if (this.incrementals.containsKey(auctionId)) {
 			return this.incrementals.get(auctionId);
-		} else {
-			return null; // this.reverse.get(auctionId);
 		}
+		return null;
 	}
 
 	/*
@@ -175,12 +169,12 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 		while (it.hasNext()){
 			IncrementalAuction ia = this.incrementals.get(it.next());
 			if(ia.getStatus().equals(status)){
-				IncrementalAuction[] truncated = new IncrementalAuction[i];
-				for(int j=0; j<i; j++){
-					truncated[j] = res[j];
-				}
 				res[i++] = ia;
 			}
+		}
+		IncrementalAuction[] truncated = new IncrementalAuction[i];
+		for(int j=0; j<i; j++){
+			truncated[j] = res[j];
 		}
 		return res;
 	}
@@ -192,8 +186,7 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 */
 	@Override
 	public void saveIncrementalAuction(IncrementalAuction auction) {
-		// TODO Auto-generated method stub
-
+		this.incrementals.put(auction.getAuctionId(), auction);
 	}
 
 	/*
@@ -203,7 +196,9 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 */
 	@Override
 	public ReverseAuction getReverseAuctionById(long auctionId) {
-		// TODO Auto-generated method stub
+		if (this.incrementals.containsKey(auctionId)) {
+			return this.reverse.get(auctionId);
+		}
 		return null;
 	}
 

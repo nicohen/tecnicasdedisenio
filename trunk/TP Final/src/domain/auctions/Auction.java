@@ -137,9 +137,14 @@ public abstract class Auction {
 		return (int)auctionId;
 	}
 
+	public long getAuctionId(){
+		return this.auctionId;
+	}
+	
 	public void setAuctionId(long id) {
 		this.auctionId = id;		
 	}
+		
 	public int getValue(){
 		return value;
 	}
