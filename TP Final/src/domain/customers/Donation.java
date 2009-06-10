@@ -18,6 +18,8 @@ public class Donation implements Comparable<Donation> {
 	private User donorUser;
 	private int donatedCredits;
 	private Date occurrenceDate;
+	protected long donationId;
+	
 
 	/**
 	 * Al ser una transacción, su lógica fuerte se da al momento de su
@@ -46,6 +48,7 @@ public class Donation implements Comparable<Donation> {
 		group.addPoints(points);
 		user.spendPoints(points);
 		History.getInstance().addDonation(this);
+		this.donationId = System.currentTimeMillis();
 	}
 
 	/**
@@ -160,5 +163,9 @@ public class Donation implements Comparable<Donation> {
 		if(res!=0) return res;
 		res = this.occurrenceDate.compareTo(other.occurrenceDate);
 		return res;
+	}
+	
+	public long getDonationId(){
+		return this.donationId;
 	}
 }
