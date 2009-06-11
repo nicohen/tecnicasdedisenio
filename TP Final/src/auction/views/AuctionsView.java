@@ -6,8 +6,13 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import persistence.AuctionPersistor;
 import api.web.cache.HtmlCache;
 import api.web.mvc.view.HtmlView;
+import api.web.text.LibTxt;
+import domain.auctions.Auction;
+import domain.auctions.IncrementalAuction;
+import domain.auctions.ReverseAuction;
 
 public class AuctionsView extends HtmlView {
 
@@ -21,8 +26,36 @@ public class AuctionsView extends HtmlView {
 
 	@Override
 	protected void doHtmlBody() throws Exception {
-		String html = HtmlCache.getHtml(relativePath, "auction/AuctionsView");
+		String auctionsListView = HtmlCache.getHtml(relativePath, "auction/AuctionsListView");
 
+		IncrementalAuction[] iAuctions = AuctionPersistor.getInstance().getIncrementalAuctions();
+		ReverseAuction[] rAuctions = AuctionPersistor.getInstance().getReverseAuctions();
+
+		StringBuilder strB = new StringBuilder();
+		
+		if(iAuctions!=null) {
+			for(int i=0;i<iAuctions.length;i++) {
+				strB.append(getAuctionInfo(iAuctions[i]));
+			}
+		}
+		
+		if(rAuctions!=null) {
+			for(int i=0;i<rAuctions.length;i++) {
+				strB.append(getAuctionInfo(rAuctions[i]));
+			}
+		}
+		
+		out.println(LibTxt.replace(auctionsListView,"##AUCTIONS##",strB.toString()));
+
+	}
+
+	private String getAuctionInfo(Auction auction) {
+		String auctionListView = HtmlCache.getHtml(relativePath, "auction/AuctionListView");
+		auctionListView = LibTxt.replace(auctionListView,"##URL##",String.valueOf(auction.getAuctionId()));
+		auctionListView = LibTxt.replace(auctionListView,"##TITLE##",auction.getPrize().getDescription());
+		auctionListView = LibTxt.replace(auctionListView,"##POINTS##",String.valueOf(auction.getValue()));
+		auctionListView = LibTxt.replace(auctionListView,"##DESCRIPTION##",String.valueOf(auction.getPrize().getDescription()));
+		return auctionListView;
 	}
 
 }

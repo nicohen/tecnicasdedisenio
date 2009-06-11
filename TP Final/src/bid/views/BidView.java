@@ -52,7 +52,7 @@ public class BidView extends HtmlView {
 		}
 		html = LibTxt.replaceAll(html, "##AUCTION_ID##", ""+ auctionId);
 		
-		html = LibTxt.replace(html, "##AUCTION_DESC##",auction.getPrize().getDescription());
+		html = LibTxt.replace(html, "##DESCRIPTION##",auction.getPrize().getDescription());
 		
 		String paramValue = LibWeb.getParameter(req, "value");
 
@@ -62,7 +62,7 @@ public class BidView extends HtmlView {
 		} catch(NumberFormatException e) {
 			throw new Exception("Error obteniendo puntaje a ofertar de request parameters",e);
 		}
-		html = LibTxt.replaceAll(html, "##AUCTION_PRICE##", ""+valorOferta);
+		html = LibTxt.replaceAll(html, "##POINTS##", ""+valorOferta);
 
 
 		out.println(html);

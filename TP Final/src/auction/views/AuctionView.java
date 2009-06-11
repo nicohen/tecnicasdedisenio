@@ -37,11 +37,8 @@ public class AuctionView extends HtmlView {
 		IncrementalAuction auction = AuctionPersistor.getInstance().getIncrementalAuctionById(auctionId);
 
 		html = LibTxt.replaceAll(html, "##AUCTION_ID##", "" + auctionId);
-
-		html = LibTxt.replace(html, "##AUCTION_DESC##", auction.getPrize().getDescription());
-		
-		html = LibTxt.replaceAll(html, "##AUCTION_PRICE##", ""
-				+ auction.getNextBidValue());
+		html = LibTxt.replace(html, "##DESCRIPTION##", auction.getPrize().getDescription());
+		html = LibTxt.replaceAll(html, "##POINTS##", "" + auction.getNextBidValue());
 
 		out.println(html);
 

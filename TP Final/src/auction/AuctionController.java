@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import api.web.mvc.controller.FrontEndControllerServlet;
 import api.web.mvc.view.View;
+import api.web.text.LibWeb;
 import auction.views.AuctionView;
+import auction.views.AuctionsView;
 
 @SuppressWarnings("serial")
 public class AuctionController extends FrontEndControllerServlet {
@@ -18,8 +20,14 @@ public class AuctionController extends FrontEndControllerServlet {
 			HashMap<String, Object> requestAttributes,
 			ServletContext servletContext,
 			HashMap<String, Object> requestParameters) throws Exception {
-		View view = new AuctionView(req,res,requestAttributes,servletContext,requestParameters);
+
+		View view = null;
 		
+		if("".equals(LibWeb.getParameter(req, "auctionId"))) {
+			view = new AuctionsView(req,res,requestAttributes,servletContext,requestParameters);
+		} else {
+			view = new AuctionView(req,res,requestAttributes,servletContext,requestParameters);			
+		}
 		
 		view.execute();
 
