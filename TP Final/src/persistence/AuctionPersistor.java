@@ -3,10 +3,9 @@
  */
 package persistence;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
-
 import domain.auctions.AuctionStatus;
 import domain.auctions.IncrementalAuction;
 import domain.auctions.Product;
@@ -21,20 +20,20 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 
 	private static AuctionPersistor instance = null;
 
-	private Map<Long, IncrementalAuction> incrementals;
-	private Map<Long, ReverseAuction> reverse;
+	private AuctionPersistorTemplate<IncrementalAuction> incrementals;
+	private AuctionPersistorTemplate<ReverseAuction> reverse;
 
 	private AuctionPersistor() {
-		this.incrementals = new HashMap<Long, IncrementalAuction>();
-		this.reverse = new HashMap<Long, ReverseAuction>();
+		this.incrementals = new AuctionPersistorTemplate<IncrementalAuction>();
+		this.reverse = new AuctionPersistorTemplate<ReverseAuction>();
 	}
-	
+
 	public static AuctionPersistor getInstance() {
-		if(AuctionPersistor.instance == null){
-			AuctionPersistor.instance=new AuctionPersistor();
+		if (AuctionPersistor.instance == null) {
+			AuctionPersistor.instance = new AuctionPersistor();
 		}
 		return AuctionPersistor.instance;
-		
+
 	}
 
 	/*
@@ -43,10 +42,7 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 */
 	@Override
 	public IncrementalAuction getIncrementalAuctionById(long auctionId) {
-		if (this.incrementals.containsKey(auctionId)) {
-			return this.incrementals.get(auctionId);
-		}
-		return null;
+		return this.incrementals.getAuctionById(auctionId);
 	}
 
 	/*
@@ -56,14 +52,7 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 */
 	@Override
 	public IncrementalAuction getIncrementalAuctionForPrize(Product prize) {
-		Iterator<Long> it = this.incrementals.keySet().iterator();
-		while (it.hasNext()){
-			IncrementalAuction a = this.incrementals.get(it.next());
-			if(prize.equals(a.getPrize())){
-				return a;
-			}
-		}
-		return null;
+		return this.incrementals.getAuctionForPrize(prize);
 	}
 
 	/*
@@ -74,14 +63,7 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	@Override
 	public IncrementalAuction getIncrementalAuctionForPrize(
 			String prizeDescription) {
-		Iterator<Long> it = this.incrementals.keySet().iterator();
-		while (it.hasNext()){
-			IncrementalAuction a = this.incrementals.get(it.next());
-			if(prizeDescription.equals(a.getPrize().getDescription())){
-				return a;
-			}
-		}
-		return null;
+		return this.getIncrementalAuctionForPrize(prizeDescription);
 	}
 
 	/*
@@ -91,16 +73,7 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 */
 	@Override
 	public IncrementalAuction getIncrementalAuctionForWinner(Bidder bidder) {
-		Iterator<Long> it = this.incrementals.keySet().iterator();
-		while (it.hasNext()){
-			IncrementalAuction a = this.incrementals.get(it.next());
-			if((a.getStatus()==AuctionStatus.CLOSED)
-					&&(a.getWinner()!=null)
-					&&(bidder.equals(a.getWinner()))){
-				return a;
-			}
-		}
-		return null;
+		return this.incrementals.getAuctionForWinner(bidder);
 	}
 
 	/*
@@ -109,16 +82,8 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 * @see domain.persistanceInterface.IncrementalAuctionPersistor#getIncrementalAuctions()
 	 */
 	@Override
-	public IncrementalAuction[] getIncrementalAuctions() {
-		if(this.incrementals.size()==0)
-			return null;
-		Iterator<Long> it = this.incrementals.keySet().iterator();
-		IncrementalAuction[] res = new IncrementalAuction[this.incrementals.size()];
-		int i=0;
-		while (it.hasNext()){
-			res[i++] = this.incrementals.get(it.next());
-		}
-		return res;
+	public ArrayList<IncrementalAuction> getIncrementalAuctions() {
+		return this.incrementals.getAuctions();
 	}
 
 	/*
@@ -127,24 +92,21 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 * @see domain.persistanceInterface.IncrementalAuctionPersistor#getIncrementalAuctionsForHighestBidder(domain.customers.Bidder)
 	 */
 	@Override
-	public IncrementalAuction[] getIncrementalAuctionsForHighestBidder(
+	public ArrayList<IncrementalAuction> getIncrementalAuctionsForHighestBidder(
 			Bidder bidder) {
-		if(this.incrementals.size()==0)
+		Map<Long, IncrementalAuction> incrementalAuctions = this.incrementals
+				.getPersitenceMap();
+		if (incrementalAuctions.size() == 0)
 			return null;
-		Iterator<Long> it = this.incrementals.keySet().iterator();
-		IncrementalAuction[] res = new IncrementalAuction[this.incrementals.size()];
-		int i=0;
-		while (it.hasNext()){
-			IncrementalAuction ia = this.incrementals.get(it.next());
+		Iterator<Long> it = incrementalAuctions.keySet().iterator();
+		ArrayList<IncrementalAuction> res = new ArrayList<IncrementalAuction>();
+		while (it.hasNext()) {
+			IncrementalAuction ia = incrementalAuctions.get(it.next());
 			try {
-				if(ia.getHighestBidder().equals(bidder)){
-					res[i++] = ia;
+				if (ia.getHighestBidder().equals(bidder)) {
+					res.add(ia);
 				}
 			} catch (NoBiddersException e) {}
-		}
-		IncrementalAuction[] truncated = new IncrementalAuction[i];
-		for(int j=0; j<i; j++){
-			truncated[j] = res[j];
 		}
 		return res;
 	}
@@ -155,24 +117,9 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 * @see domain.persistanceInterface.IncrementalAuctionPersistor#getIncrementalAuctionsForStatus(domain.auctions.AuctionStatus)
 	 */
 	@Override
-	public IncrementalAuction[] getIncrementalAuctionsForStatus(
+	public ArrayList<IncrementalAuction> getIncrementalAuctionsForStatus(
 			AuctionStatus status) {
-		if(this.incrementals.size()==0)
-			return null;
-		Iterator<Long> it = this.incrementals.keySet().iterator();
-		IncrementalAuction[] res = new IncrementalAuction[this.incrementals.size()];
-		int i=0;
-		while (it.hasNext()){
-			IncrementalAuction ia = this.incrementals.get(it.next());
-			if(ia.getStatus().equals(status)){
-				res[i++] = ia;
-			}
-		}
-		IncrementalAuction[] truncated = new IncrementalAuction[i];
-		for(int j=0; j<i; j++){
-			truncated[j] = res[j];
-		}
-		return res;
+		return this.incrementals.getAuctionsForStatus(status);
 	}
 
 	/*
@@ -182,7 +129,7 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 */
 	@Override
 	public void saveIncrementalAuction(IncrementalAuction auction) {
-		this.incrementals.put(auction.getAuctionId(), auction);
+		this.incrementals.saveAuction(auction);
 	}
 
 	/*
@@ -192,10 +139,7 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 */
 	@Override
 	public ReverseAuction getReverseAuctionById(long auctionId) {
-		if (this.incrementals.containsKey(auctionId)) {
-			return this.reverse.get(auctionId);
-		}
-		return null;
+		return this.reverse.getAuctionById(auctionId);
 	}
 
 	/*
@@ -205,14 +149,7 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 */
 	@Override
 	public ReverseAuction getReverseAuctionForPrize(Product prize) {
-		Iterator<Long> it = this.reverse.keySet().iterator();
-		while (it.hasNext()){
-			ReverseAuction a = this.reverse.get(it.next());
-			if(prize.equals(a.getPrize())){
-				return a;
-			}
-		}
-		return null;
+		return this.reverse.getAuctionForPrize(prize);
 	}
 
 	/*
@@ -222,14 +159,7 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 */
 	@Override
 	public ReverseAuction getReverseAuctionForPrize(String prizeDescription) {
-		Iterator<Long> it = this.reverse.keySet().iterator();
-		while (it.hasNext()){
-			ReverseAuction a = this.reverse.get(it.next());
-			if(prizeDescription.equals(a.getPrize().getDescription())){
-				return a;
-			}
-		}
-		return null;
+		return this.reverse.getAuctionForPrize(prizeDescription);
 	}
 
 	/*
@@ -239,8 +169,7 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 */
 	@Override
 	public ReverseAuction getReverseAuctionForWinner(Bidder bidder) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.reverse.getAuctionForWinner(bidder);
 	}
 
 	/*
@@ -249,9 +178,8 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 * @see domain.persistanceInterface.ReverseAuctionPersistor#getReverseAuctions()
 	 */
 	@Override
-	public ReverseAuction[] getReverseAuctions() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<ReverseAuction> getReverseAuctions() {
+		return this.reverse.getAuctions();
 	}
 
 	/*
@@ -260,9 +188,9 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 * @see domain.persistanceInterface.ReverseAuctionPersistor#getReverseAuctionsForStatus(domain.auctions.AuctionStatus)
 	 */
 	@Override
-	public ReverseAuction[] getReverseAuctionsForStatus(AuctionStatus status) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<ReverseAuction> getReverseAuctionsForStatus(
+			AuctionStatus status) {
+		return this.reverse.getAuctionsForStatus(status);
 	}
 
 	/*
@@ -272,8 +200,7 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	 */
 	@Override
 	public void saveReverseAuction(ReverseAuction auction) {
-		// TODO Auto-generated method stub
-
+		this.reverse.saveAuction(auction);
 	}
 
 }
