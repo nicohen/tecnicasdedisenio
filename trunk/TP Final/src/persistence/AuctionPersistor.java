@@ -3,14 +3,10 @@
  */
 package persistence;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
-import domain.auctions.Auction;
 import domain.auctions.AuctionStatus;
 import domain.auctions.IncrementalAuction;
 import domain.auctions.Product;
@@ -33,7 +29,7 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 		this.reverse = new HashMap<Long, ReverseAuction>();
 	}
 	
-	public AuctionPersistor getInstance() {
+	public static AuctionPersistor getInstance() {
 		if(AuctionPersistor.instance == null){
 			AuctionPersistor.instance=new AuctionPersistor();
 		}

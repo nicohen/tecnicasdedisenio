@@ -21,7 +21,7 @@ public class DonationsPersistor implements DonationPersistor{
 		this.donations = new HashMap<Long, Donation>();
 	}
 	
-	public DonationsPersistor getDonationsPersistorInstance(){
+	public static DonationsPersistor getDonationsPersistorInstance(){
 		if(DonationsPersistor.instance==null){
 			DonationsPersistor.instance = new DonationsPersistor();
 		}

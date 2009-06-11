@@ -26,7 +26,7 @@ public class BidsPersistor implements BidPersistor{
 		this.groupBids = new HashMap<Long, Bid>();
 	}
 	
-	public BidsPersistor getBidsPersistorInstance(){
+	public static BidsPersistor getBidsPersistorInstance(){
 		if(BidsPersistor.instance==null){
 			BidsPersistor.instance = new BidsPersistor();
 		}
