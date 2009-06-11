@@ -10,6 +10,7 @@ import persistence.AuctionPersistor;
 import api.web.cache.HtmlCache;
 import api.web.mvc.view.HtmlView;
 import api.web.text.LibTxt;
+import api.web.text.LibWeb;
 import domain.auctions.AuctionType;
 import domain.auctions.IncrementalAuction;
 import domain.auctions.Product;
@@ -30,10 +31,13 @@ public class AuctionView extends HtmlView {
 		long auctionId = Long.parseLong((String) requestParameters
 				.get("auctionId"));
 
-		Product p = new Product("Sony W50");
-		VariationRateFunction vrf = new VariationRateFunction(null);
-		IncrementalAuction ia = new IncrementalAuction(p,AuctionType.SINGLE,vrf,1);
-		AuctionPersistor.getInstance().saveIncrementalAuction(ia);
+		
+		if("Y".equals(LibWeb.getParameter(req, "cargarProd"))) {
+			Product p = new Product("Sony W50");
+			VariationRateFunction vrf = new VariationRateFunction(null);
+			IncrementalAuction ia = new IncrementalAuction(p,AuctionType.SINGLE,vrf,1);
+			AuctionPersistor.getInstance().saveIncrementalAuction(ia);
+		}
 		IncrementalAuction auction = AuctionPersistor.getInstance().getIncrementalAuctionById(auctionId);
 
 		html = LibTxt.replaceAll(html, "##AUCTION_ID##", "" + auctionId);

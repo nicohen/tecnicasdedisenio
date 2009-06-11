@@ -1,5 +1,6 @@
 package auction.views;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.ServletContext;
@@ -28,20 +29,20 @@ public class AuctionsView extends HtmlView {
 	protected void doHtmlBody() throws Exception {
 		String auctionsListView = HtmlCache.getHtml(relativePath, "auction/AuctionsListView");
 
-		IncrementalAuction[] iAuctions = AuctionPersistor.getInstance().getIncrementalAuctions();
-		ReverseAuction[] rAuctions = AuctionPersistor.getInstance().getReverseAuctions();
+		ArrayList<IncrementalAuction> iAuctions = AuctionPersistor.getInstance().getIncrementalAuctions();
+		ArrayList<ReverseAuction> rAuctions = AuctionPersistor.getInstance().getReverseAuctions();
 
 		StringBuilder strB = new StringBuilder();
 		
 		if(iAuctions!=null) {
-			for(int i=0;i<iAuctions.length;i++) {
-				strB.append(getAuctionInfo(iAuctions[i]));
+			for(IncrementalAuction iAuction : iAuctions) {
+				strB.append(getAuctionInfo(iAuction));
 			}
 		}
 		
 		if(rAuctions!=null) {
-			for(int i=0;i<rAuctions.length;i++) {
-				strB.append(getAuctionInfo(rAuctions[i]));
+			for(ReverseAuction rAuction : rAuctions) {
+				strB.append(getAuctionInfo(rAuction));
 			}
 		}
 		

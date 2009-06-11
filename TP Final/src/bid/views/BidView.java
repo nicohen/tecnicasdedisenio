@@ -3,9 +3,11 @@ package bid.views;
 import java.util.HashMap;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import persistence.BidderPersistor;
 import api.web.cache.HtmlCache;
 import api.web.mvc.view.HtmlView;
 import api.web.text.LibTxt;
@@ -37,10 +39,24 @@ public class BidView extends HtmlView {
 		} catch(NumberFormatException e) {
 			throw new Exception("Error obteniendo auctionId de request parameters",e);
 		}
+
 		IncrementalAuction auction = (IncrementalAuction)AuctionsMock.getInstance().get(auctionId);
+
+		String userName = null;
+		Cookie[] c = req.getCookies();
+		for(int i=0;i<c.length;i++) {
+			if("userName".equals(c[i].getName())) {
+				userName = c[i].getValue();
+			}
+		}
 		
-		User aUser = new User(31733445, "Aníbal", "Lovaglio");
-		aUser.addPoints(20000);
+		User aUser2 = new User(31252197,"nacho","nacho");
+		aUser2.addPoints(20000);
+		BidderPersistor.getBidderPersistorInstance().saveUser(aUser2);
+		
+		User aUser = null;
+		aUser = BidderPersistor.getBidderPersistorInstance().getUser(userName);
+		
 		try {
 			aUser.bid(auction);
 		} catch (BidException e){
@@ -55,7 +71,6 @@ public class BidView extends HtmlView {
 		html = LibTxt.replace(html, "##DESCRIPTION##",auction.getPrize().getDescription());
 		
 		String paramValue = LibWeb.getParameter(req, "value");
-
 		Long valorOferta = null;
 		try {
 			valorOferta = Long.parseLong(paramValue);

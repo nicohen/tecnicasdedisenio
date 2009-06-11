@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import api.web.cache.HtmlCache;
+import api.web.text.LibTxt;
 
 
 public abstract class HtmlView extends WebView {
@@ -29,7 +30,8 @@ public abstract class HtmlView extends WebView {
 
 	@Override
 	protected void doHtmlMenu() {
-		out.println(HtmlCache.getHtml(relativePath,"MenuDefault"));
+		String menu = HtmlCache.getHtml(relativePath,"MenuDefault");
+		out.println(LibTxt.replace(menu, "##LOGO##", "files/html/logo.jpg"));
 	}
 
 }
