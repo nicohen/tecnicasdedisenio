@@ -20,7 +20,7 @@ public class BidderPersistor implements UserPersistor, GroupPersistor {
 		this.groups = new HashMap<String, Group>();
 	}
 	
-	public BidderPersistor getBidderPersistorInstance(){
+	public static BidderPersistor getBidderPersistorInstance(){
 		if(BidderPersistor.instance==null){
 			BidderPersistor.instance = new BidderPersistor();
 		}

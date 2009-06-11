@@ -13,6 +13,8 @@ import api.web.text.LibWeb;
 import dao.mocks.AuctionsMock;
 import domain.auctions.IncrementalAuction;
 import domain.customers.User;
+import domain.exceptions.BidException;
+import domain.exceptions.InvalidAuctionTypeException;
 
 public class BidView extends HtmlView {
 
@@ -41,8 +43,12 @@ public class BidView extends HtmlView {
 		aUser.addPoints(20000);
 		try {
 			aUser.bid(auction);
-		} catch (Exception e){
-			html += "EE";
+		} catch (BidException e){
+			html += "Error al ofertar";
+			e.printStackTrace();
+		} catch (InvalidAuctionTypeException e){
+			html += "Tipo de Subasta invalida";
+			e.printStackTrace();
 		}
 		html = LibTxt.replaceAll(html, "##AUCTION_ID##", ""+ auctionId);
 		
