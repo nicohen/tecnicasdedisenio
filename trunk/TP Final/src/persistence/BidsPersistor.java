@@ -57,8 +57,14 @@ public class BidsPersistor implements BidPersistor{
 
 	@Override
 	public ArrayList<Bid> getBidsForGroup(Group group) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Bid> bidsForGroup = new ArrayList<Bid>();
+		Iterator<Long> it = this.groupBids.keySet().iterator();
+		while(it.hasNext()){
+			Bid b = this.groupBids.get(it.next());
+			if(b.getOwner().equals(group))
+				bidsForGroup.add(b);
+		}
+		return bidsForGroup;
 	}
 
 	@Override
@@ -76,8 +82,14 @@ public class BidsPersistor implements BidPersistor{
 
 	@Override
 	public ArrayList<Bid> getBidsForUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Bid> bidsForUser = new ArrayList<Bid>();
+		Iterator<Long> it = this.userBids.keySet().iterator();
+		while(it.hasNext()){
+			Bid b = this.userBids.get(it.next());
+			if(b.getOwner().equals(user))
+				bidsForUser.add(b);
+		}
+		return bidsForUser;
 	}
 
 	@Override
