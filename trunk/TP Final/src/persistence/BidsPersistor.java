@@ -37,20 +37,18 @@ public class BidsPersistor implements BidPersistor{
 	@Override
 	public ArrayList<Bid> getBidsForAuction(Auction auction) {
 		ArrayList<Bid> bidsForAuction = new ArrayList<Bid>();
-		if(auction.getType()==AuctionType.SINGLE||auction.getType()==AuctionType.REVERSE){
-			Iterator<Long> it = this.userBids.keySet().iterator();
-			while(it.hasNext()){
-				Bid b = this.userBids.get(it.next());
-				if(b.getAuction().equals(auction))
-					bidsForAuction.add(b);
-			}
-		}else{
-			Iterator<Long> it = this.groupBids.keySet().iterator();
-			while(it.hasNext()){
-				Bid b = this.groupBids.get(it.next());
-				if(b.getAuction().equals(auction))
-					bidsForAuction.add(b);
-			}
+		Map<Long, Bid> myMap = null;
+		if (auction.getType() == AuctionType.SINGLE
+				|| auction.getType() == AuctionType.REVERSE) {
+			myMap = this.userBids;
+		} else {
+			myMap = this.userBids;
+		}
+		Iterator<Long> it = myMap.keySet().iterator();
+		while (it.hasNext()) {
+			Bid b = myMap.get(it.next());
+			if (b.getAuction().equals(auction))
+				bidsForAuction.add(b);
 		}
 		return bidsForAuction;
 	}

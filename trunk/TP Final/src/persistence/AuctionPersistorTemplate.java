@@ -18,6 +18,10 @@ public class AuctionPersistorTemplate<T extends Auction> {
 		this.auctions = new HashMap<Long, T>();
 	}
 
+	Map<Long, T> getPersitenceMap() {
+		return this.auctions;
+	}
+
 	/*
 	 * (non-Javadoc) // TODO: debe haber un método que devuelva un remate o el
 	 * otro indistintamente
