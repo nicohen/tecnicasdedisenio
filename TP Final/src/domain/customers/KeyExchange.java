@@ -15,6 +15,9 @@ public class KeyExchange implements Comparable<KeyExchange> {
 	private User user;
 	private int points;
 	private Date occurrenceDate;
+	private long keyExchangeId;
+
+	
 
 	/**
 	 * Inicializa los datos, invoca al constructor de la clase ancestra
@@ -31,6 +34,7 @@ public class KeyExchange implements Comparable<KeyExchange> {
 		this.user = user;
 		myKey = Keys.getInstance().getKeyForExchange(code);
 		History.getInstance().addKeyExchange(this);
+		this.keyExchangeId = System.currentTimeMillis();
 	}
 
 	/**
@@ -68,7 +72,10 @@ public class KeyExchange implements Comparable<KeyExchange> {
 	public Date getDate() {
 		return this.occurrenceDate;
 	}
-
+	
+	public long getKeyExchangeId() {
+		return keyExchangeId;
+	}
 	/**
 	 * Se utiliza para la reconstrucción de objetos preexistentes. Al tener un
 	 * dominio persistible, es necesario poder volver a instanciar un objeto
