@@ -2,6 +2,8 @@ package domain.auctions;
 
 import java.util.Date;
 
+import persistence.AuctionPersistor;
+
 import domain.customers.Bidder;
 import domain.customers.User;
 import domain.exceptions.BidAlreadyInstanciatedException;
@@ -49,6 +51,9 @@ public class Bid implements Comparable<Bid> {
 		auction.takeNewBid(this);
 		this.auction = auction;
 		History.getInstance().addBid(this);
+		if(auction.getType().equals(AuctionType.SINGLE)) {
+			AuctionPersistor.getInstance().saveIncrementalAuction((IncrementalAuction)auction);
+		}
 	}
 
 	/**

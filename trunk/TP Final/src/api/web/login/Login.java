@@ -44,13 +44,13 @@ public class Login extends FrontEndControllerServlet {
 	private boolean validateUser(String user, String password,
 			HttpServletRequest req, HttpServletResponse res) throws Exception {
 		// TODO VALIDAR DATOS CONTRA UNA BASE...
-		int userId = user.hashCode();
-
-		Session session = SessionValidation.createSession(userId);
-		Cookie cookie = new Cookie("user", session.toString());
-		cookie.setPath("/");
-		// cookie.setMaxAge(expiry)
-		res.addCookie(cookie);
+		Session session = SessionValidation.createSession(user.hashCode());
+		Cookie cookieUserId = new Cookie("user", session.toString());
+		cookieUserId.setPath("/");
+		res.addCookie(cookieUserId);
+		Cookie cookieUserName = new Cookie("userName", user);
+		cookieUserName.setPath("/");
+		res.addCookie(cookieUserName);
 		return true;
 	}
 
