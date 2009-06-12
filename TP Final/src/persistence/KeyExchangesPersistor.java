@@ -80,4 +80,9 @@ public class KeyExchangesPersistor implements KeyExchangePersistor {
 		return null;
 	}
 
+	public Map<Long, KeyExchange> getExchanges() {
+		return exchanges;
+	}
+
+
 }
