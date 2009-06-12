@@ -3,7 +3,6 @@ package persistence;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import domain.auctions.Auction;
@@ -28,23 +27,40 @@ public class QuerysPersistor implements QueryPersistor{
 		}
 		return QuerysPersistor.instance;
 	}
+	
+	@Override
+	public void saveQuery(Query query) {
+		this.querys.put(query.getQueryId(), query);
+		
+	}
+
+	@Override
+	public ArrayList<Query> getQueriesForAuction(final Auction auction) {
+		SearchSolver<Query> solver = new SearchSolver<Query>(){
+			@Override
+			public boolean getCondition(Query t) {
+				return t.getAuction().equals(auction);
+			}
+		};
+		return solver.solveCollection(querys);
+	}
+
+	@Override
+	public ArrayList<Query> getQueriesForUser(final User user) {
+		SearchSolver<Query> solver = new SearchSolver<Query>(){
+			@Override
+			public boolean getCondition(Query t) {
+				return t.getUser().equals(user);
+			}
+		};
+		return solver.solveCollection(querys);
+	}
+
 	@Override
 	public ArrayList<Query> getQueriesBetweenDates(Date dateSince,
 			Date dateUntill) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public ArrayList<Query> getQueriesForAuction(Auction auction) {
-		ArrayList<Query> querysForAuction = new ArrayList<Query>();
-		Iterator<Long> it = this.querys.keySet().iterator();
-		while(it.hasNext()){
-			Query q = this.querys.get(it.next());
-			if(q.getAuction().equals(auction))
-				querysForAuction.add(q);
-		}
-		return querysForAuction;
 	}
 
 	@Override
@@ -55,28 +71,11 @@ public class QuerysPersistor implements QueryPersistor{
 	}
 
 	@Override
-	public ArrayList<Query> getQueriesForUser(User user) {
-		ArrayList<Query> querysForUser = new ArrayList<Query>();
-		Iterator<Long> it = this.querys.keySet().iterator();
-		while(it.hasNext()){
-			Query q = this.querys.get(it.next());
-			if(q.getUser().equals(user))
-				querysForUser.add(q);
-		}
-		return querysForUser;
-	}
-
-	@Override
 	public ArrayList<Query> getQueriesForUserBetweenDates(User user,
 			Date dateSince, Date dateUntill) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public void saveQuery(Query query) {
-		this.querys.put(query.getQueryId(), query);
-		
-	}
 
 }

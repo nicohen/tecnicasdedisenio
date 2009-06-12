@@ -3,7 +3,6 @@ package persistence;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import domain.customers.Key;
@@ -27,42 +26,44 @@ public class KeyExchangesPersistor implements KeyExchangePersistor {
 		}
 		return KeyExchangesPersistor.instance;
 	}
+
 	@Override
-	public KeyExchange getKeyExchangeForKey(String key) {
-		Iterator<Long> it = this.exchanges.keySet().iterator();
-		KeyExchange k = null;
-		boolean flag = true;
-		while(it.hasNext()&& flag){
-			k= this.exchanges.get(it.next());
-			if(k.getKey().getCode().equals(key))
-				flag = false;
-		}
-		return k;
+	public void saveKeyExchange(KeyExchange keyExchange) {
+		this.exchanges.put(keyExchange.getKeyExchangeId(), keyExchange);
+		
+	}
+	
+	@Override
+	public KeyExchange getKeyExchangeForKey(final String key) {
+		SearchSolver<KeyExchange> solver = new SearchSolver<KeyExchange>() {
+			@Override
+			public boolean getCondition(KeyExchange t) {
+				return t.getKey().getCode().equals(key);
+			}
+		};
+		return solver.solveUnique(exchanges);
 	}
 
 	@Override
-	public KeyExchange getKeyExchangeForKey(Key key) {
-		Iterator<Long> it = this.exchanges.keySet().iterator();
-		KeyExchange k = null;
-		boolean flag = true;
-		while(it.hasNext()&& flag){
-			k= this.exchanges.get(it.next());
-			if(k.getKey().equals(key))
-				flag = false;
-		}
-		return k;
+	public KeyExchange getKeyExchangeForKey(final Key key) {
+		SearchSolver<KeyExchange> solver = new SearchSolver<KeyExchange>() {
+			@Override
+			public boolean getCondition(KeyExchange t) {
+				return t.getKey().equals(key);
+			}
+		};
+		return solver.solveUnique(exchanges);
 	}
 
 	@Override
-	public ArrayList<KeyExchange> getKeyExchangesForUser(User user) {
-		ArrayList<KeyExchange> keyEchangesForUser = new ArrayList<KeyExchange>();
-		Iterator<Long> it = this.exchanges.keySet().iterator();
-		while(it.hasNext()){
-			KeyExchange k= this.exchanges.get(it.next());
-			if(k.getUser().equals(user))
-				keyEchangesForUser.add(k);
-		}
-		return keyEchangesForUser;
+	public ArrayList<KeyExchange> getKeyExchangesForUser(final User user) {
+		SearchSolver<KeyExchange> solver = new SearchSolver<KeyExchange>() {
+			@Override
+			public boolean getCondition(KeyExchange t) {
+				return t.getUser().equals(user);
+			}
+		};
+		return solver.solveCollection(exchanges);
 	}
 
 	@Override
@@ -77,12 +78,6 @@ public class KeyExchangesPersistor implements KeyExchangePersistor {
 			Date dateSince) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void saveKeyExchange(KeyExchange keyExchange) {
-		this.exchanges.put(keyExchange.getKeyExchangeId(), keyExchange);
-		
 	}
 
 }
