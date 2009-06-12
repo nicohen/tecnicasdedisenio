@@ -32,37 +32,54 @@ public class BidsPersistor implements BidPersistor{
 		}
 		return BidsPersistor.instance;
 	}
-	
+
+	@Override
+	public void saveBid(Bid bid) {
+		if(bid.getOwner().getClass()== User.class){
+			this.userBids.put(bid.getBidId(), bid);
+		}else{
+			this.groupBids.put(bid.getBidId(), bid);
+		}
+	}
 	
 	@Override
-	public ArrayList<Bid> getBidsForAuction(Auction auction) {
-		ArrayList<Bid> bidsForAuction = new ArrayList<Bid>();
+	public ArrayList<Bid> getBidsForAuction(final Auction auction) {
 		Map<Long, Bid> myMap = null;
 		if (auction.getType() == AuctionType.SINGLE
 				|| auction.getType() == AuctionType.REVERSE) {
 			myMap = this.userBids;
 		} else {
-			myMap = this.userBids;
+			myMap = this.groupBids;
 		}
-		Iterator<Long> it = myMap.keySet().iterator();
-		while (it.hasNext()) {
-			Bid b = myMap.get(it.next());
-			if (b.getAuction().equals(auction))
-				bidsForAuction.add(b);
-		}
-		return bidsForAuction;
+		SearchSolver<Bid> solver = new SearchSolver<Bid>(){
+			@Override
+			public boolean getCondition(Bid t) {
+				return t.getAuction().equals(auction);
+			}
+		};
+		return solver.solveCollection(myMap);
 	}
 
 	@Override
-	public ArrayList<Bid> getBidsForGroup(Group group) {
-		ArrayList<Bid> bidsForGroup = new ArrayList<Bid>();
-		Iterator<Long> it = this.groupBids.keySet().iterator();
-		while(it.hasNext()){
-			Bid b = this.groupBids.get(it.next());
-			if(b.getOwner().equals(group))
-				bidsForGroup.add(b);
-		}
-		return bidsForGroup;
+	public ArrayList<Bid> getBidsForGroup(final Group group) {
+		SearchSolver<Bid> solver = new SearchSolver<Bid>(){
+			@Override
+			public boolean getCondition(Bid t) {
+				return t.getOwner().equals(group);
+			}
+		};
+		return solver.solveCollection(groupBids);
+	}
+
+	@Override
+	public ArrayList<Bid> getBidsForUser(final User user) {
+		SearchSolver<Bid> solver = new SearchSolver<Bid>(){
+			@Override
+			public boolean getCondition(Bid t) {
+				return t.getOwner().equals(user);
+			}
+		};
+		return solver.solveCollection(userBids);
 	}
 
 	@Override
@@ -79,18 +96,6 @@ public class BidsPersistor implements BidPersistor{
 	}
 
 	@Override
-	public ArrayList<Bid> getBidsForUser(User user) {
-		ArrayList<Bid> bidsForUser = new ArrayList<Bid>();
-		Iterator<Long> it = this.userBids.keySet().iterator();
-		while(it.hasNext()){
-			Bid b = this.userBids.get(it.next());
-			if(b.getOwner().equals(user))
-				bidsForUser.add(b);
-		}
-		return bidsForUser;
-	}
-
-	@Override
 	public ArrayList<Bid> getBidsForUserBetweenDates(User user, Date dateFrom,
 			Date dateUntill) {
 		// TODO Auto-generated method stub
@@ -101,12 +106,6 @@ public class BidsPersistor implements BidPersistor{
 	public ArrayList<Bid> getBidsForUserSinceDate(User user, Date dateFrom) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void saveBid(Bid bid) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

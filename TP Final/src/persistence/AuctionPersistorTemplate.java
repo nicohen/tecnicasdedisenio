@@ -38,15 +38,14 @@ public class AuctionPersistorTemplate<T extends Auction> {
 	 * 
 	 * @see domain.persistanceInterface.IncrementalAuctionPersistor#getIncrementalAuctionForPrize(domain.auctions.Product)
 	 */
-	public T getAuctionForPrize(Product prize) {
-		Iterator<Long> it = this.auctions.keySet().iterator();
-		while (it.hasNext()) {
-			T a = this.auctions.get(it.next());
-			if (prize.equals(a.getPrize())) {
-				return a;
+	public T getAuctionForPrize(final Product prize) {
+		SearchSolver<T> solver = new SearchSolver<T>(){
+			@Override
+			public boolean getCondition(T t) {
+				return t.getPrize().equals(prize);
 			}
-		}
-		return null;
+		};
+		return solver.solveUnique(auctions);
 	}
 
 	/*
@@ -54,15 +53,14 @@ public class AuctionPersistorTemplate<T extends Auction> {
 	 * 
 	 * @see domain.persistanceInterface.IncrementalAuctionPersistor#getIncrementalAuctionForPrize(java.lang.String)
 	 */
-	public T getAuctionForPrize(String prizeDescription) {
-		Iterator<Long> it = this.auctions.keySet().iterator();
-		while (it.hasNext()) {
-			T a = this.auctions.get(it.next());
-			if (prizeDescription.equals(a.getPrize().getDescription())) {
-				return a;
+	public T getAuctionForPrize(final String prizeDescription) {
+		SearchSolver<T> solver = new SearchSolver<T>(){
+			@Override
+			public boolean getCondition(T t) {
+				return t.getPrize().getDescription().equals(prizeDescription);
 			}
-		}
-		return null;
+		};
+		return solver.solveUnique(auctions);
 	}
 
 	/*
@@ -70,17 +68,17 @@ public class AuctionPersistorTemplate<T extends Auction> {
 	 * 
 	 * @see domain.persistanceInterface.IncrementalAuctionPersistor#getIncrementalAuctionForWinner(domain.customers.Bidder)
 	 */
-	public T getAuctionForWinner(Bidder bidder) {
-		Iterator<Long> it = this.auctions.keySet().iterator();
-		while (it.hasNext()) {
-			T a = this.auctions.get(it.next());
-			if ((a.getStatus() == AuctionStatus.CLOSED)
-					&& (a.getWinner() != null)
-					&& (bidder.equals(a.getWinner()))) {
-				return a;
+	public T getAuctionForWinner(final Bidder bidder) {
+		SearchSolver<T> solver = new SearchSolver<T>(){
+			@Override
+			public boolean getCondition(T t) {
+				return (t.getStatus() == AuctionStatus.CLOSED)
+				&& (t.getWinner() != null)
+				&& (bidder.equals(t.getWinner()));
 			}
-		}
-		return null;
+		};
+		return solver.solveUnique(auctions);
+		
 	}
 
 	/*
@@ -104,18 +102,15 @@ public class AuctionPersistorTemplate<T extends Auction> {
 	 * 
 	 * @see domain.persistanceInterface.IncrementalAuctionPersistor#getIncrementalAuctionsForStatus(domain.auctions.AuctionStatus)
 	 */
-	public ArrayList<T> getAuctionsForStatus(AuctionStatus status) {
-		if (this.auctions.size() == 0)
-			return null;
-		Iterator<Long> it = this.auctions.keySet().iterator();
-		ArrayList<T> res = new ArrayList<T>();
-		while (it.hasNext()) {
-			T ia = this.auctions.get(it.next());
-			if (ia.getStatus().equals(status)) {
-				res.add(ia);
+	public ArrayList<T> getAuctionsForStatus(final AuctionStatus status) {
+		SearchSolver<T> solver = new SearchSolver<T>(){
+			@Override
+			public boolean getCondition(T t) {
+				return t.getStatus().equals(status);
 			}
-		}
-		return res;
+		};
+		return solver.solveCollection(auctions);
+		
 	}
 
 	/*
