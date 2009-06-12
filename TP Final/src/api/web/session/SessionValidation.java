@@ -1,7 +1,9 @@
 package api.web.session;
 
+import api.web.login.admin.AdminLogin;
 import api.web.session.entities.Session;
 import api.web.session.entities.SessionKey;
+import api.web.session.exception.ForbiddenLoginClassException;
 
 public class SessionValidation {
 
@@ -21,6 +23,20 @@ public class SessionValidation {
 		return sess;
 	}
 
+	public static Session createAdminSession(int userId, Class c) throws Exception {
+		if (!c.equals(AdminLogin.class)){
+			throw new ForbiddenLoginClassException("Intento crear una sesion de administrador desde "+c.getName());
+		}
+		long time = System.currentTimeMillis();
+		long expTime = time + SessionValidation.DAY_MILLIS;
+		
+		Session sess = new Session(SessionValidation.class,userId, expTime, SessionValidation.ADMIN_USER_SESSION);
+		
+		addSession(sess);
+		
+		return sess;
+		
+	}
 
 	private static void addSession(Session sess) {
 		SessionCache.getInstance().addSession(new SessionKey(sess.getUserId(),sess.getType()),sess);
