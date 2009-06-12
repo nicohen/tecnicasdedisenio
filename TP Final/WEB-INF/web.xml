@@ -30,6 +30,14 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>api.web.login.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TestAdmin</servlet-name>
+        <servlet-class>test.web.admin.TestAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminLogin</servlet-name>
+        <servlet-class>api.web.login.admin.AdminLogin</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>BidControllerServlet</servlet-name>
@@ -50,4 +58,14 @@
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>TestAdmin</servlet-name>
+        <url-pattern>/TestAdmin</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>AdminLogin</servlet-name>
+        <url-pattern>/AdminLogin</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
