@@ -25,6 +25,8 @@ public class Bid implements Comparable<Bid> {
 	private int value;
 	private Date occurrenceDate;
 	private Auction auction;
+	protected long bidId;
+	
 
 	/**
 	 * Construye la transacción de ofertar registrando los cambios necesarios en
@@ -54,6 +56,7 @@ public class Bid implements Comparable<Bid> {
 		if(auction.getType().equals(AuctionType.SINGLE)) {
 			AuctionPersistor.getInstance().saveIncrementalAuction((IncrementalAuction)auction);
 		}
+		this.bidId = System.currentTimeMillis();
 	}
 
 	/**
@@ -95,6 +98,10 @@ public class Bid implements Comparable<Bid> {
 
 	public Date getDate() {
 		return this.occurrenceDate;
+	}
+	
+	public long getBidId() {
+		return this.bidId;
 	}
 
 	/**
@@ -170,4 +177,5 @@ public class Bid implements Comparable<Bid> {
 		aBid.setValue(points);
 		return aBid;
 	}
+
 }
