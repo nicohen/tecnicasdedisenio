@@ -7,7 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import api.web.login.views.LoginView;
+import login.views.LoginView;
 import api.web.mvc.view.View;
 import api.web.session.SessionValidation;
 
