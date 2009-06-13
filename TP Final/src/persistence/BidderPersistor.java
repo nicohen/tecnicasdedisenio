@@ -71,8 +71,12 @@ public class BidderPersistor implements UserPersistor, GroupPersistor {
 
 	@Override
 	public User getUserWithPassword(String nickName, String password){
-		if(this.users.containsKey(nickName)&&(this.users.get(nickName)).getPassword().equals(password)){
+		if(this.users.containsKey(nickName)){
+			User user=users.get(nickName);
+			if (user.getPassword().equals(password))
 			return this.users.get(nickName);
+			else
+				return null;
 		}else{
 			return null;
 		}
