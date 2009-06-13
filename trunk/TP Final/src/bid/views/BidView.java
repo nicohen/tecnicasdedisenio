@@ -50,12 +50,8 @@ public class BidView extends HtmlView {
 			}
 		}
 		
-		User aUser2 = new User(31252197,"nacho","nacho");
-		aUser2.addPoints(20000);
-		BidderPersistor.getBidderPersistorInstance().saveUser(aUser2);
 		
-		User aUser = null;
-		aUser = BidderPersistor.getBidderPersistorInstance().getUser(userName);
+		User aUser = BidderPersistor.getBidderPersistorInstance().getUser(userName);
 		
 		try {
 			aUser.bid(auction);

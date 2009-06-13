@@ -32,12 +32,12 @@ public class AuctionView extends HtmlView {
 				.get("auctionId"));
 
 		
-		if("Y".equals(LibWeb.getParameter(req, "cargarProd"))) {
+		/*if("Y".equals(LibWeb.getParameter(req, "cargarProd"))) {
 			Product p = new Product("Sony W50");
 			VariationRateFunction vrf = new VariationRateFunction(null);
 			IncrementalAuction ia = new IncrementalAuction(p,AuctionType.SINGLE,vrf,1);
 			AuctionPersistor.getInstance().saveIncrementalAuction(ia);
-		}
+		}*/
 		IncrementalAuction auction = AuctionPersistor.getInstance().getIncrementalAuctionById(auctionId);
 
 		html = LibTxt.replaceAll(html, "##AUCTION_ID##", "" + auctionId);
