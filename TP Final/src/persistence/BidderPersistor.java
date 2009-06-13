@@ -28,46 +28,54 @@ public class BidderPersistor implements UserPersistor, GroupPersistor {
 	}
 	
 	@Override
-	public void deleteUser(String name) {
-		if(this.users.containsKey(name)){
-			this.users.remove(name);
+	public void deleteUser(String nickName) {
+		if(this.users.containsKey(nickName)){
+			this.users.remove(nickName);
 		}
 	}
 
 	@Override
-	public User getUser(String name) {
-		if(!this.users.containsKey(name)){
+	public User getUser(String nickName) {
+		if(!this.users.containsKey(nickName)){
 			return null;
 		}else{
-			return this.users.get(name);
+			return this.users.get(nickName);
 		}
 	}
 
 	@Override
 	public void saveUser(User savingUser) {
-		this.users.put(savingUser.getName(), savingUser);
+		this.users.put(savingUser.getNickName(), savingUser);
 	}
 
 	@Override
-	public void deleteGroup(String ownerName) {
-		if(this.groups.containsKey(ownerName)){
-			this.groups.remove(ownerName);
+	public void deleteGroup(String ownerNickName) {
+		if(this.groups.containsKey(ownerNickName)){
+			this.groups.remove(ownerNickName);
 		}
 	}
 
 	@Override
-	public Group getGroup(String ownerName) {
-		if(!this.groups.containsKey(ownerName)){
+	public Group getGroup(String ownerNickName) {
+		if(!this.groups.containsKey(ownerNickName)){
 			return null;
 		}else{
-			return this.groups.get(ownerName);
+			return this.groups.get(ownerNickName);
 		}
 	}
 
 	@Override
 	public void saveGroup(Group savingGroup) {
-		this.groups.put(savingGroup.getOwner().getName(), savingGroup);
+		this.groups.put(savingGroup.getOwner().getNickName(), savingGroup);
 	}
 
-	
+	@Override
+	public User getUserWithPassword(String nickName, String password){
+		if(this.users.containsKey(nickName)&&(this.users.get(nickName)).getPassword().equals(password)){
+			return this.users.get(nickName);
+		}else{
+			return null;
+			
+		}
+	}
 }
