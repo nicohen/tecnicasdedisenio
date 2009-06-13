@@ -17,8 +17,8 @@ public class ExchangeKeyTest {
 	public void SetUp(){
 		new Key("code1", 100);
 		new Key("code2", 200);
-		this.aUser = new User(31936280, "Agustina", "Bazzano");
-		this.anotherUser = new User(31936281, "Agustin", "Bazzan");
+		this.aUser = new User(31936280, "Agustina", "Bazzano", null, null, null, null);
+		this.anotherUser = new User(31936281, "Agustin", "Bazzan", null, null, null, null);
 	}
 	
 	@Test
