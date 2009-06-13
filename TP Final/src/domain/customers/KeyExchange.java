@@ -1,7 +1,6 @@
 package domain.customers;
 
 import java.util.Date;
-import java.util.Random;
 
 import domain.exceptions.KeyExchangeAlreadyInstanciatedException;
 import domain.querys.History;
@@ -36,7 +35,6 @@ public class KeyExchange implements Comparable<KeyExchange> {
 		myKey = Keys.getInstance().getKeyForExchange(code);
 		History.getInstance().addKeyExchange(this);
 		this.keyExchangeId = System.currentTimeMillis();
-		//this.keyExchangeId = new Random().nextLong();
 	}
 
 	/**
