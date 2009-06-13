@@ -30,8 +30,11 @@ public class StartupController extends FrontEndControllerServlet {
 		aUser2.addPoints(20000);
 		BidderPersistor.getBidderPersistorInstance().saveUser(aUser2);
 		Product p = new Product("Sony W50");
+		Product p2 = new Product("Samsung 40' LCD");
 		VariationRateFunction vrf = new VariationRateFunction(null);
 		IncrementalAuction ia = new IncrementalAuction(p,AuctionType.SINGLE,vrf,1);
+		AuctionPersistor.getInstance().saveIncrementalAuction(ia);
+		ia = new IncrementalAuction(p2,AuctionType.SINGLE,vrf,1);
 		AuctionPersistor.getInstance().saveIncrementalAuction(ia);
 	}
 }
