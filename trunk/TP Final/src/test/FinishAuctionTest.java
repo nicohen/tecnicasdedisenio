@@ -24,8 +24,8 @@ public class FinishAuctionTest {
 
 	@Before
 	public void setUp() throws Exception {
-		aUser = new User(31733445, "Aníbal", "Lovaglio");
-		anotherUser = new User(31733445, "Aníbal", "Lovaglio");
+		aUser = new User(31733445, "Aníbal", "Lovaglio", null, null, null, null);
+		anotherUser = new User(31733445, "Aníbal", "Lovaglio", null, null, null, null);
 		prize = new Product("Malboro");
 		aGroup = new Group(aUser);
 		anotherUser.suscribeToGroup(aGroup);
@@ -82,7 +82,7 @@ public class FinishAuctionTest {
 				AuctionType.SINGLE, new VariationRateFunction(null), value);
 
 			aUser.bid(anIncrementalAuction);
-		User user = new User(31936280, "Agustina", "Bazzano");
+		User user = new User(31936280, "Agustina", "Bazzano", null, null, null, null);
 		user.addPoints(value + 100); // le sumo una cantidad que seguro va a ser
 										// más que lo que se incermente el value
 										// del remate
@@ -118,7 +118,7 @@ public class FinishAuctionTest {
 		Auction anIncrementalAuction = new IncrementalAuction(prize,
 				AuctionType.SINGLE, variationFunction, value);
 
-		User user = new User(31936280, "Agustina", "Bazzano");
+		User user = new User(31936280, "Agustina", "Bazzano", null, null, null, null);
 		user.addPoints(value * 100);
 		user.bid(anIncrementalAuction);
 		anIncrementalAuction.finish();// user gana

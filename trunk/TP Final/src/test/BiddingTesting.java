@@ -24,7 +24,7 @@ public class BiddingTesting {
 
 	@Test
 	public void bidOnIncrementalAuctionTest() throws Exception {
-		User aUser = new User(31733445, "Aníbal", "Lovaglio");
+		User aUser = new User(31733445, "Aníbal", "Lovaglio", null, null, null, null);
 		aUser.addPoints(15000);
 		Product prize = null;
 		VariationRateFunction variationFunction = new VariationRateFunction(
@@ -51,9 +51,9 @@ public class BiddingTesting {
 	public void takeNewBidFailureTest_IncompatibleBidder() throws Exception {
 		Auction anAuction = new ReverseAuction(null, new VariationRateFunction(
 				null), 1000);
-		User owner = new User(31733442, "Charles", "Rain");
+		User owner = new User(31733442, "Charles", "Rain", null, null, null, null);
 		owner.addPoints(10000);
-		User member = new User(45456587, "Lois", "Lane");
+		User member = new User(45456587, "Lois", "Lane", null, null, null, null);
 		Bidder bidder = null;
 		bidder = new Group(owner);
 		member.suscribeToGroup((Group) bidder);
@@ -67,7 +67,7 @@ public class BiddingTesting {
 	public void takeNewBidFailureTest_EmptyGroupBidder() throws Exception {
 		Auction anAuction = new IncrementalAuction(null, AuctionType.GROUP,
 				new VariationRateFunction(null), 100);
-		User owner = new User(31733442, "Charles", "Rain");
+		User owner = new User(31733442, "Charles", "Rain", null, null, null, null);
 		owner.addPoints(10000);
 		Bidder bidder = null;
 		bidder = new Group(owner);
@@ -80,8 +80,8 @@ public class BiddingTesting {
 	public void groupTakeNewBidFailureTest_NotEnoughCredit() throws Exception {
 		Auction anAuction = new IncrementalAuction(null, AuctionType.GROUP,
 				new VariationRateFunction(null), 1000);
-		User owner = new User(31733442, "Charles", "Rain");
-		User member = new User(54314564, "Mario", "Ledesma");
+		User owner = new User(31733442, "Charles", "Rain", null, null, null, null);
+		User member = new User(54314564, "Mario", "Ledesma", null, null, null, null);
 		Group bidder = null;
 		bidder = new Group(owner);
 		member.suscribeToGroup(bidder);
@@ -93,16 +93,16 @@ public class BiddingTesting {
 	public void userTakeNewBidFailureTest_NotEnoughCredit() throws Exception {
 		Auction anAuction = new IncrementalAuction(null, AuctionType.SINGLE,
 				new VariationRateFunction(null), 100);
-		User owner = new User(31733442, "Charles", "Rain");
+		User owner = new User(31733442, "Charles", "Rain", null, null, null, null);
 
 		owner.bid(anAuction);
 	}
 
 	@Test
 	public void takeNewBidTest_ReleaseingCompromisedPoints() throws Exception {
-		User aUser1 = new User(31733445, "Aníbal", "Lovaglio");
-		User aUser2 = new User(31733445, "German", "Mendez");
-		User aUser3 = new User(31733445, "Martin", "De luca");
+		User aUser1 = new User(31733445, "Aníbal", "Lovaglio", null, null, null, null);
+		User aUser2 = new User(31733445, "German", "Mendez", null, null, null, null);
+		User aUser3 = new User(31733445, "Martin", "De luca", null, null, null, null);
 		aUser1.addPoints(1000);
 		aUser2.addPoints(1000);
 		aUser3.addPoints(1000);
