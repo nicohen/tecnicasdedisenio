@@ -23,7 +23,7 @@ public class LoginView extends HtmlView {
 	protected void doHtmlBody() {
 		String html = HtmlCache.getHtml(relativePath,"login/LoginView");
 		String urlRedir = (String)requestParameters.get("urlredir"); 
-		if (urlRedir == null){
+		if (urlRedir == null || urlRedir.length()==0){
 			urlRedir = req.getRequestURI();
 
 			String queryString = req.getQueryString();
