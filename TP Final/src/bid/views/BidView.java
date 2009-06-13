@@ -7,6 +7,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import persistence.AuctionPersistor;
 import persistence.BidderPersistor;
 import api.web.cache.HtmlCache;
 import api.web.mvc.view.HtmlView;
@@ -40,7 +41,7 @@ public class BidView extends HtmlView {
 			throw new Exception("Error obteniendo auctionId de request parameters",e);
 		}
 
-		IncrementalAuction auction = (IncrementalAuction)AuctionsMock.getInstance().get(auctionId);
+		IncrementalAuction auction = AuctionPersistor.getInstance().getIncrementalAuctionById(auctionId);
 
 		String userName = null;
 		Cookie[] c = req.getCookies();
