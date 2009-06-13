@@ -23,8 +23,10 @@ public abstract class SearchSolver<T extends Object> {
 		Iterator<Long> it = table.keySet().iterator();
 		while (it.hasNext()&& flag) {
 			T t = table.get(it.next());
-			if (getCondition(t))
+			if (getCondition(t)){
+				result = t;
 				flag = false;
+			}
 		}
 		return result;
 	}
