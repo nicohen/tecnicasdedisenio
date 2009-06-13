@@ -26,17 +26,12 @@ public class StartupController extends FrontEndControllerServlet {
 		
 		//aca cargar todo lo necesario en memoria
 		
-		User aUser2 = new User(31252197,"nacho","nacho");
+		User aUser2 = new User(31165251,"berta1108","roberto","herman","","","123456");
 		aUser2.addPoints(20000);
 		BidderPersistor.getBidderPersistorInstance().saveUser(aUser2);
 		Product p = new Product("Sony W50");
 		VariationRateFunction vrf = new VariationRateFunction(null);
 		IncrementalAuction ia = new IncrementalAuction(p,AuctionType.SINGLE,vrf,1);
 		AuctionPersistor.getInstance().saveIncrementalAuction(ia);
-	}
-
-	@Override
-	protected boolean getValidated(HttpServletRequest req) {
-		return true;
 	}
 }

@@ -37,6 +37,13 @@ public class User extends Bidder {
 	 * @param lastName
 	 *            Apellido de la persona usuaria
 	 */
+	public User(int dni, String nickName, String lastName) {
+		super();
+		this.dni = dni;
+		this.nickName = nickName;
+		memberGroup = null;
+	}
+
 	public User(int dni, String nickName, String name, String lastName, String address, String email, String password) {
 		super();
 		this.dni = dni;
@@ -48,7 +55,6 @@ public class User extends Bidder {
 		this.password = password;
 		memberGroup = null;
 	}
-
 	@Override
 	/*
 	 * * Realiza una oferta sobre un remate.

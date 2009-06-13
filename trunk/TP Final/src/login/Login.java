@@ -29,14 +29,14 @@ public class Login extends FrontEndControllerServlet {
 		String user = (String) requestParameters.get("user");
 		String password = (String) requestParameters.get("pass");
 		
-		if (user == null || user.length()==0 || password == null || password.length()==0){
+		if(validateUser(user, password, req, res)) {
+			redirToUrl(res, requestParameters);
+		}
+		else {
 			View view = new LoginView(req, res, requestAttributes,
 					servletContext, requestParameters);
 			view.execute();
 		}
-		else if(validateUser(user, password, req, res)) {
-			redirToUrl(res, requestParameters);
-		} 
 	}
 
 	private void redirToUrl(HttpServletResponse res,
@@ -49,14 +49,24 @@ public class Login extends FrontEndControllerServlet {
 			HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
 		//TODO: aca llamar al persistor de users
-		Session session = SessionValidation.createSession(user.hashCode());
-		Cookie cookieUserId = new Cookie("user", session.toString());
-		cookieUserId.setPath("/");
-		res.addCookie(cookieUserId);
-		Cookie cookieUserName = new Cookie("userName", user);
-		cookieUserName.setPath("/");
-		res.addCookie(cookieUserName);
-		return true;
+		BidderPersistor bidderPersistor= BidderPersistor.getBidderPersistorInstance();
+		
+		if (user == null || user.length()==0 || password == null || password.length()==0)
+			return false;
+		
+		if (bidderPersistor.getUserWithPassword(user, password)!=null){
+			Session session = SessionValidation.createSession(user.hashCode());
+			Cookie cookieUserId = new Cookie("user", session.toString());
+			cookieUserId.setPath("/");
+			res.addCookie(cookieUserId);
+			Cookie cookieUserName = new Cookie("userName", user);
+			cookieUserName.setPath("/");
+			res.addCookie(cookieUserName);
+			return true;
+		}
+		else
+			return false;
+		
 	}
 
 }
