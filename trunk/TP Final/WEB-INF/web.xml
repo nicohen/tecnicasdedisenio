@@ -18,12 +18,12 @@
 
     <servlet>
         <servlet-name>BidController</servlet-name>
-        <servlet-class>bid.BidController</servlet-class>
+        <servlet-class>api.web.bid.BidController</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>AuctionController</servlet-name>
-        <servlet-class>auction.AuctionController</servlet-class>
+        <servlet-class>api.web.auction.AuctionController</servlet-class>
     </servlet>
 
     <servlet>
