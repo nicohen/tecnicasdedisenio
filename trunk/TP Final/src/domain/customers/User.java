@@ -18,8 +18,12 @@ import domain.exceptions.UserAlreadyInGroupException;
  */
 public class User extends Bidder {
 	private int dni;
+	private String nickName;
 	private String name;
 	private String lastName;
+	private String address;
+	private String email;
+	private String password;
 	private Group memberGroup;
 
 	/**
@@ -33,11 +37,15 @@ public class User extends Bidder {
 	 * @param lastName
 	 *            Apellido de la persona usuaria
 	 */
-	public User(int dni, String name, String lastName) {
+	public User(int dni, String nickName, String name, String lastName, String address, String email, String password) {
 		super();
 		this.dni = dni;
+		this.nickName = nickName;
 		this.name = name;
 		this.lastName = lastName;
+		this.address = address;
+		this.email = email; 
+		this.password = password;
 		memberGroup = null;
 	}
 
@@ -210,5 +218,22 @@ public class User extends Bidder {
 		Integer itsValue = new Integer(comparingTo.dni);
 		return myValue.compareTo(itsValue);
 	}
+	public String getAddress() {
+		return address;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getNickName() {
+		return this.nickName;
+	}
+
+	
 
 }
