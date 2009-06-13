@@ -1,4 +1,4 @@
-package bid.views;
+package api.web.bid.views;
 
 import java.util.HashMap;
 

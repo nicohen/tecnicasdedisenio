@@ -1,4 +1,4 @@
-package auction.views;
+package api.web.auction.views;
 
 import java.util.ArrayList;
 import java.util.HashMap;
