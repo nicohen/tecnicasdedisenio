@@ -7,6 +7,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import persistence.BidderPersistor;
+import domain.customers.User;
+
 import login.views.LoginView;
 
 import api.web.mvc.controller.FrontEndControllerServlet;
@@ -25,15 +28,15 @@ public class Login extends FrontEndControllerServlet {
 
 		String user = (String) requestParameters.get("user");
 		String password = (String) requestParameters.get("pass");
-
-		if (validateUser(user, password, req, res)) {
-			redirToUrl(res, requestParameters);
-		} else {
+		
+		if (user == null || user.length()==0 || password == null || password.length()==0){
 			View view = new LoginView(req, res, requestAttributes,
 					servletContext, requestParameters);
 			view.execute();
 		}
-
+		else if(validateUser(user, password, req, res)) {
+			redirToUrl(res, requestParameters);
+		} 
 	}
 
 	private void redirToUrl(HttpServletResponse res,
@@ -44,7 +47,8 @@ public class Login extends FrontEndControllerServlet {
 
 	private boolean validateUser(String user, String password,
 			HttpServletRequest req, HttpServletResponse res) throws Exception {
-		// TODO VALIDAR DATOS CONTRA UNA BASE...
+		
+		//TODO: aca llamar al persistor de users
 		Session session = SessionValidation.createSession(user.hashCode());
 		Cookie cookieUserId = new Cookie("user", session.toString());
 		cookieUserId.setPath("/");

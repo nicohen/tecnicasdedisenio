@@ -8,17 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import persistence.AuctionPersistor;
 import persistence.BidderPersistor;
+import api.web.mvc.controller.FrontEndControllerServlet;
 import domain.auctions.AuctionType;
 import domain.auctions.IncrementalAuction;
 import domain.auctions.Product;
 import domain.customers.User;
 import domain.utils.VariationRateFunction;
-
-import bid.views.BidView;
-
-import api.web.mvc.controller.FrontEndControllerServlet;
-import api.web.mvc.view.View;
-import api.web.text.LibWeb;
 
 @SuppressWarnings("serial")
 public class StartupController extends FrontEndControllerServlet {
