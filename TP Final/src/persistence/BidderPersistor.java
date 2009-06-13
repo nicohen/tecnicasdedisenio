@@ -75,7 +75,6 @@ public class BidderPersistor implements UserPersistor, GroupPersistor {
 			return this.users.get(nickName);
 		}else{
 			return null;
-			
 		}
 	}
 }
