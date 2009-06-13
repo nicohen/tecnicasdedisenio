@@ -34,10 +34,15 @@ public class PersistorTest {
 		anotherUser = new User(31936281, "Agustin", "Bazzan", null, null, null, null);
 		
 		aUser.exchangeKey("code1");
+		Thread.sleep(100);
 		aUser.exchangeKey("code2");
+		Thread.sleep(100);
 		aUser.exchangeKey("code3");
+		Thread.sleep(100);
 		aUser.exchangeKey("code4");
+		Thread.sleep(100);
 		anotherUser.exchangeKey("code5");
+		Thread.sleep(100);
 		anotherUser.exchangeKey("code6");
 		
 		persistor = KeyExchangesPersistor.getKeyExchangesPersistorInstance();
