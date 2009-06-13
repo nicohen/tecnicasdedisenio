@@ -6,7 +6,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import api.web.login.admin.views.AdminExceptionView;
+import login.admin.views.AdminExceptionView;
 import api.web.mvc.view.View;
 import api.web.session.SessionValidation;
 import api.web.session.exception.InvalidSessionAccessException;

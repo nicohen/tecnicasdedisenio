@@ -69,7 +69,7 @@ public class BidView extends HtmlView {
 		html = LibTxt.replaceAll(html, "##AUCTION_ID##", ""+ auctionId);
 		
 		html = LibTxt.replace(html, "##DESCRIPTION##",auction.getPrize().getDescription());
-		
+ 		 
 		String paramValue = LibWeb.getParameter(req, "value");
 		Long valorOferta = null;
 		try {

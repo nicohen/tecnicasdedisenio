@@ -1,6 +1,6 @@
 package api.web.session;
 
-import api.web.login.admin.AdminLogin;
+import login.admin.AdminLogin;
 import api.web.session.entities.Session;
 import api.web.session.entities.SessionKey;
 import api.web.session.exception.ForbiddenLoginClassException;
