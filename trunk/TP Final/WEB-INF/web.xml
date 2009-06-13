@@ -10,6 +10,15 @@
     </description>
     <display-name>LaRematada</display-name>
 
+	<servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>home.Home</servlet-class>
+	</servlet>
+	
+	<servlet>
+        <servlet-name>StartupController</servlet-name>
+        <servlet-class>startup.StartupController</servlet-class>
+	</servlet>
 
     <servlet>
         <servlet-name>BidControllerServlet</servlet-name>
@@ -39,6 +48,17 @@
         <servlet-class>login.admin.AdminLogin</servlet-class>
     </servlet>
 
+    
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/Home</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>StartupController</servlet-name>
+        <url-pattern>/StartupController</url-pattern>
+    </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>BidControllerServlet</servlet-name>
         <url-pattern>/BidControllerServlet</url-pattern>
