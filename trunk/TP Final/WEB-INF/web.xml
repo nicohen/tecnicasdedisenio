@@ -18,6 +18,7 @@
 	<servlet>
         <servlet-name>StartupController</servlet-name>
         <servlet-class>startup.StartupController</servlet-class>
+        <load-at-startup>startup.StartupController</load-at-startup>
 	</servlet>
 
     <servlet>
@@ -51,7 +52,7 @@
     
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
-        <url-pattern>/Home</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>
