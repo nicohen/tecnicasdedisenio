@@ -13,22 +13,22 @@
 
     <servlet>
         <servlet-name>BidControllerServlet</servlet-name>
-        <servlet-class>test.web.bid.BidControllerServlet</servlet-class>
+        <servlet-class>bid.BidControllerServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>BidController</servlet-name>
-        <servlet-class>api.web.bid.BidController</servlet-class>
+        <servlet-class>bid.BidController</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>AuctionController</servlet-name>
-        <servlet-class>api.web.auction.AuctionController</servlet-class>
+        <servlet-class>auction.AuctionController</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>api.web.login.Login</servlet-class>
+        <servlet-class>login.Login</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TestAdmin</servlet-name>
@@ -36,7 +36,7 @@
     </servlet>
     <servlet>
         <servlet-name>AdminLogin</servlet-name>
-        <servlet-class>api.web.login.admin.AdminLogin</servlet-class>
+        <servlet-class>login.admin.AdminLogin</servlet-class>
     </servlet>
 
     <servlet-mapping>
