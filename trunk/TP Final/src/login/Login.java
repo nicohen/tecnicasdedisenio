@@ -48,7 +48,6 @@ public class Login extends FrontEndControllerServlet {
 	private boolean validateUser(String user, String password,
 			HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
-		//TODO: aca llamar al persistor de users
 		BidderPersistor bidderPersistor= BidderPersistor.getBidderPersistorInstance();
 		
 		if (user == null || user.length()==0 || password == null || password.length()==0)
