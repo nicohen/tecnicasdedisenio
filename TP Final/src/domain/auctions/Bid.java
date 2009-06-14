@@ -2,7 +2,7 @@ package domain.auctions;
 
 import java.util.Date;
 
-import persistence.AuctionPersistor;
+import persistence.AuctionPersistorImplementation;
 
 import domain.customers.Bidder;
 import domain.customers.User;
@@ -54,7 +54,7 @@ public class Bid implements Comparable<Bid> {
 		this.auction = auction;
 		History.getInstance().addBid(this);
 		if(auction.getType().equals(AuctionType.SINGLE)) {
-			AuctionPersistor.getInstance().saveIncrementalAuction((IncrementalAuction)auction);
+			AuctionPersistorImplementation.getInstance().saveIncrementalAuction((IncrementalAuction)auction);
 		}
 		this.bidId = System.currentTimeMillis();
 	}
