@@ -1,5 +1,7 @@
 package domain.auctions;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 import domain.customers.Bidder;
@@ -15,11 +17,10 @@ public class IncrementalAuction extends Auction {
 
 	private int nextBidValue;
 	private Stack<Bid> bids;
-	
+
 	public int getNextBidValue() {
 		return nextBidValue;
 	}
-
 
 	/**
 	 * Inicializa las estructuras necesarias para la implementación de un remate
@@ -142,5 +143,9 @@ public class IncrementalAuction extends Auction {
 	 */
 	public final int getAmountForNextBid() {
 		return this.nextBidValue;
+	}
+
+	public List<Bid> getBids() {
+		return new ArrayList<Bid>(bids);
 	}
 }

@@ -10,6 +10,7 @@ import java.util.Map;
 import domain.auctions.Auction;
 import domain.auctions.AuctionStatus;
 import domain.auctions.AuctionType;
+import domain.auctions.Bid;
 import domain.auctions.IncrementalAuction;
 import domain.auctions.Product;
 import domain.auctions.ReverseAuction;
@@ -243,7 +244,15 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	@Override
 	public ArrayList<IncrementalAuction> getIncrementalAuctionsForBidder(
 			Bidder bidder) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<IncrementalAuction> list = new ArrayList<IncrementalAuction>();
+		for (IncrementalAuction auction : incrementals.getAuctions()) {
+			for (Bid bid : auction.getBids()) {
+				if (bid.getOwner().equals(bidder)) {
+					list.add(auction);
+					break;
+				}
+			}
+		}
+		return list;
 	}
 }
