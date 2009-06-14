@@ -3,7 +3,6 @@ package domain.auctions;
 import java.util.Date;
 
 import persistence.AuctionPersistorImplementation;
-
 import domain.customers.Bidder;
 import domain.customers.User;
 import domain.exceptions.BidAlreadyInstanciatedException;

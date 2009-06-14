@@ -1,5 +1,7 @@
 package domain.customers;
 
+import javax.transaction.Transaction;
+
 import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.Bid;

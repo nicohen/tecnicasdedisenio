@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import api.web.mvc.view.BackEndHtmlView;
-import api.web.text.LibTxt;
 
 public class AdminExceptionView extends BackEndHtmlView {
 

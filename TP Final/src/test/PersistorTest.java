@@ -1,14 +1,14 @@
 package test;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.Iterator;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import persistence.KeyExchangesPersistor;
-
 import domain.customers.Key;
 import domain.customers.KeyExchange;
 import domain.customers.User;
