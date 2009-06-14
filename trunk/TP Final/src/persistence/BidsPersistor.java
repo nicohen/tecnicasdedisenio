@@ -12,21 +12,20 @@ import domain.customers.Group;
 import domain.customers.User;
 import domain.persistenceInterface.BidPersistor;
 
-public class BidsPersistor implements BidPersistor{
+public class BidsPersistor implements BidPersistor {
 
-	private static BidsPersistor instance=null;
-	
+	private static BidsPersistor instance = null;
+
 	private Map<Long, Bid> userBids;
 	private Map<Long, Bid> groupBids;
-	
-	
-	private BidsPersistor (){
+
+	private BidsPersistor() {
 		this.userBids = new HashMap<Long, Bid>();
 		this.groupBids = new HashMap<Long, Bid>();
 	}
-	
-	public static BidsPersistor getBidsPersistorInstance(){
-		if(BidsPersistor.instance==null){
+
+	public static BidsPersistor getBidsPersistorInstance() {
+		if (BidsPersistor.instance == null) {
 			BidsPersistor.instance = new BidsPersistor();
 		}
 		return BidsPersistor.instance;
@@ -34,13 +33,13 @@ public class BidsPersistor implements BidPersistor{
 
 	@Override
 	public void saveBid(Bid bid) {
-		if(bid.getOwner().getClass()== User.class){
+		if (bid.getOwner().getClass() == User.class) {
 			this.userBids.put(bid.getBidId(), bid);
-		}else{
+		} else {
 			this.groupBids.put(bid.getBidId(), bid);
 		}
 	}
-	
+
 	@Override
 	public ArrayList<Bid> getBidsForAuction(final Auction auction) {
 		Map<Long, Bid> myMap = null;
@@ -50,7 +49,7 @@ public class BidsPersistor implements BidPersistor{
 		} else {
 			myMap = this.groupBids;
 		}
-		SearchSolver<Bid> solver = new SearchSolver<Bid>(){
+		SearchSolver<Bid> solver = new SearchSolver<Bid>() {
 			@Override
 			public boolean getCondition(Bid t) {
 				return t.getAuction().equals(auction);
@@ -61,7 +60,7 @@ public class BidsPersistor implements BidPersistor{
 
 	@Override
 	public ArrayList<Bid> getBidsForGroup(final Group group) {
-		SearchSolver<Bid> solver = new SearchSolver<Bid>(){
+		SearchSolver<Bid> solver = new SearchSolver<Bid>() {
 			@Override
 			public boolean getCondition(Bid t) {
 				return t.getOwner().equals(group);
@@ -72,7 +71,7 @@ public class BidsPersistor implements BidPersistor{
 
 	@Override
 	public ArrayList<Bid> getBidsForUser(final User user) {
-		SearchSolver<Bid> solver = new SearchSolver<Bid>(){
+		SearchSolver<Bid> solver = new SearchSolver<Bid>() {
 			@Override
 			public boolean getCondition(Bid t) {
 				return t.getOwner().equals(user);
@@ -82,28 +81,24 @@ public class BidsPersistor implements BidPersistor{
 	}
 
 	@Override
-	public ArrayList<Bid> getBidsForGroupBetweenDates(Group group, Date dateFrom,
-			Date dateUntill) {
-		// TODO Auto-generated method stub
+	public ArrayList<Bid> getBidsForGroupBetweenDates(Group group,
+			Date dateFrom, Date dateUntill) {
 		return null;
 	}
 
 	@Override
 	public ArrayList<Bid> getBidsForGroupSinceDate(Group group, Date dateFrom) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ArrayList<Bid> getBidsForUserBetweenDates(User user, Date dateFrom,
 			Date dateUntill) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ArrayList<Bid> getBidsForUserSinceDate(User user, Date dateFrom) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

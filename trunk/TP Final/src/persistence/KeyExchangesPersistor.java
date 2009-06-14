@@ -12,16 +12,16 @@ import domain.persistenceInterface.KeyExchangePersistor;
 
 public class KeyExchangesPersistor implements KeyExchangePersistor {
 
-	private static KeyExchangesPersistor instance=null;
-	
+	private static KeyExchangesPersistor instance = null;
+
 	private Map<Long, KeyExchange> exchanges;
-	
-	private KeyExchangesPersistor (){
+
+	private KeyExchangesPersistor() {
 		this.exchanges = new HashMap<Long, KeyExchange>();
 	}
-	
-	public static KeyExchangesPersistor getKeyExchangesPersistorInstance(){
-		if(KeyExchangesPersistor.instance==null){
+
+	public static KeyExchangesPersistor getKeyExchangesPersistorInstance() {
+		if (KeyExchangesPersistor.instance == null) {
 			KeyExchangesPersistor.instance = new KeyExchangesPersistor();
 		}
 		return KeyExchangesPersistor.instance;
@@ -30,9 +30,9 @@ public class KeyExchangesPersistor implements KeyExchangePersistor {
 	@Override
 	public void saveKeyExchange(KeyExchange keyExchange) {
 		this.exchanges.put(keyExchange.getKeyExchangeId(), keyExchange);
-		
+
 	}
-	
+
 	@Override
 	public KeyExchange getKeyExchangeForKey(final String key) {
 		SearchSolver<KeyExchange> solver = new SearchSolver<KeyExchange>() {
@@ -69,20 +69,16 @@ public class KeyExchangesPersistor implements KeyExchangePersistor {
 	@Override
 	public ArrayList<KeyExchange> getKeyExchangesForUserBetweenDates(User user,
 			Date dateSince, Date dateTo) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ArrayList<KeyExchange> getKeyExchangesForUserSinceDate(User user,
 			Date dateSince) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public Map<Long, KeyExchange> getExchanges() {
 		return exchanges;
 	}
-
-
 }

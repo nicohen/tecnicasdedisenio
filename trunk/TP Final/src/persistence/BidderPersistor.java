@@ -10,35 +10,35 @@ import domain.persistenceInterface.UserPersistor;
 
 public class BidderPersistor implements UserPersistor, GroupPersistor {
 
-	private static BidderPersistor instance=null;
-	
+	private static BidderPersistor instance = null;
+
 	private Map<String, User> users;
 	private Map<String, Group> groups;
-	
-	private BidderPersistor (){
+
+	private BidderPersistor() {
 		this.users = new HashMap<String, User>();
 		this.groups = new HashMap<String, Group>();
 	}
-	
-	public static BidderPersistor getBidderPersistorInstance(){
-		if(BidderPersistor.instance==null){
+
+	public static BidderPersistor getBidderPersistorInstance() {
+		if (BidderPersistor.instance == null) {
 			BidderPersistor.instance = new BidderPersistor();
 		}
 		return BidderPersistor.instance;
 	}
-	
+
 	@Override
 	public void deleteUser(String nickName) {
-		if(this.users.containsKey(nickName)){
+		if (this.users.containsKey(nickName)) {
 			this.users.remove(nickName);
 		}
 	}
 
 	@Override
 	public User getUser(String nickName) {
-		if(!this.users.containsKey(nickName)){
+		if (!this.users.containsKey(nickName)) {
 			return null;
-		}else{
+		} else {
 			return this.users.get(nickName);
 		}
 	}
@@ -50,16 +50,16 @@ public class BidderPersistor implements UserPersistor, GroupPersistor {
 
 	@Override
 	public void deleteGroup(String ownerNickName) {
-		if(this.groups.containsKey(ownerNickName)){
+		if (this.groups.containsKey(ownerNickName)) {
 			this.groups.remove(ownerNickName);
 		}
 	}
 
 	@Override
 	public Group getGroup(String ownerNickName) {
-		if(!this.groups.containsKey(ownerNickName)){
+		if (!this.groups.containsKey(ownerNickName)) {
 			return null;
-		}else{
+		} else {
 			return this.groups.get(ownerNickName);
 		}
 	}
@@ -70,14 +70,14 @@ public class BidderPersistor implements UserPersistor, GroupPersistor {
 	}
 
 	@Override
-	public User getUserWithPassword(String nickName, String password){
-		if(this.users.containsKey(nickName)){
-			User user=users.get(nickName);
+	public User getUserWithPassword(String nickName, String password) {
+		if (this.users.containsKey(nickName)) {
+			User user = users.get(nickName);
 			if (user.getPassword().equals(password))
-			return this.users.get(nickName);
+				return this.users.get(nickName);
 			else
 				return null;
-		}else{
+		} else {
 			return null;
 		}
 	}

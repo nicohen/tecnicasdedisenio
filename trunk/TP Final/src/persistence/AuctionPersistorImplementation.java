@@ -49,7 +49,8 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see domain.persistanceInterface.IncrementalAuctionPersistor#getIncrementalAuctionForPrize(domain.auctions.Product)
+	 * @seedomain.persistanceInterface.IncrementalAuctionPersistor#
+	 * getIncrementalAuctionForPrize(domain.auctions.Product)
 	 */
 	@Override
 	public IncrementalAuction getIncrementalAuctionForPrize(Product prize) {
@@ -59,7 +60,8 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see domain.persistanceInterface.IncrementalAuctionPersistor#getIncrementalAuctionForPrize(java.lang.String)
+	 * @seedomain.persistanceInterface.IncrementalAuctionPersistor#
+	 * getIncrementalAuctionForPrize(java.lang.String)
 	 */
 	@Override
 	public IncrementalAuction getIncrementalAuctionForPrize(
@@ -70,7 +72,8 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see domain.persistanceInterface.IncrementalAuctionPersistor#getIncrementalAuctionForWinner(domain.customers.Bidder)
+	 * @seedomain.persistanceInterface.IncrementalAuctionPersistor#
+	 * getIncrementalAuctionForWinner(domain.customers.Bidder)
 	 */
 	@Override
 	public IncrementalAuction getIncrementalAuctionForWinner(Bidder bidder) {
@@ -80,7 +83,8 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see domain.persistanceInterface.IncrementalAuctionPersistor#getIncrementalAuctions()
+	 * @seedomain.persistanceInterface.IncrementalAuctionPersistor#
+	 * getIncrementalAuctions()
 	 */
 	@Override
 	public ArrayList<IncrementalAuction> getIncrementalAuctions() {
@@ -90,7 +94,8 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see domain.persistanceInterface.IncrementalAuctionPersistor#getIncrementalAuctionsForHighestBidder(domain.customers.Bidder)
+	 * @seedomain.persistanceInterface.IncrementalAuctionPersistor#
+	 * getIncrementalAuctionsForHighestBidder(domain.customers.Bidder)
 	 */
 	@Override
 	public ArrayList<IncrementalAuction> getIncrementalAuctionsForHighestBidder(
@@ -116,7 +121,8 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see domain.persistanceInterface.IncrementalAuctionPersistor#getIncrementalAuctionsForStatus(domain.auctions.AuctionStatus)
+	 * @seedomain.persistanceInterface.IncrementalAuctionPersistor#
+	 * getIncrementalAuctionsForStatus(domain.auctions.AuctionStatus)
 	 */
 	@Override
 	public ArrayList<IncrementalAuction> getIncrementalAuctionsForStatus(
@@ -127,7 +133,8 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see domain.persistanceInterface.IncrementalAuctionPersistor#saveIncrementalAuction(domain.auctions.IncrementalAuction)
+	 * @seedomain.persistanceInterface.IncrementalAuctionPersistor#
+	 * saveIncrementalAuction(domain.auctions.IncrementalAuction)
 	 */
 	@Override
 	public void saveIncrementalAuction(IncrementalAuction auction) {
@@ -137,7 +144,9 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see domain.persistanceInterface.ReverseAuctionPersistor#getReverseAuctionById(long)
+	 * @see
+	 * domain.persistanceInterface.ReverseAuctionPersistor#getReverseAuctionById
+	 * (long)
 	 */
 	@Override
 	public ReverseAuction getReverseAuctionById(long auctionId) {
@@ -147,7 +156,9 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see domain.persistanceInterface.ReverseAuctionPersistor#getReverseAuctionForPrize(domain.auctions.Product)
+	 * @see
+	 * domain.persistanceInterface.ReverseAuctionPersistor#getReverseAuctionForPrize
+	 * (domain.auctions.Product)
 	 */
 	@Override
 	public ReverseAuction getReverseAuctionForPrize(Product prize) {
@@ -157,7 +168,9 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see domain.persistanceInterface.ReverseAuctionPersistor#getReverseAuctionForPrize(java.lang.String)
+	 * @see
+	 * domain.persistanceInterface.ReverseAuctionPersistor#getReverseAuctionForPrize
+	 * (java.lang.String)
 	 */
 	@Override
 	public ReverseAuction getReverseAuctionForPrize(String prizeDescription) {
@@ -167,7 +180,8 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see domain.persistanceInterface.ReverseAuctionPersistor#getReverseAuctionForWinner(domain.customers.Bidder)
+	 * @seedomain.persistanceInterface.ReverseAuctionPersistor#
+	 * getReverseAuctionForWinner(domain.customers.Bidder)
 	 */
 	@Override
 	public ReverseAuction getReverseAuctionForWinner(Bidder bidder) {
@@ -177,7 +191,8 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see domain.persistanceInterface.ReverseAuctionPersistor#getReverseAuctions()
+	 * @see
+	 * domain.persistanceInterface.ReverseAuctionPersistor#getReverseAuctions()
 	 */
 	@Override
 	public ArrayList<ReverseAuction> getReverseAuctions() {
@@ -187,7 +202,8 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see domain.persistanceInterface.ReverseAuctionPersistor#getReverseAuctionsForStatus(domain.auctions.AuctionStatus)
+	 * @seedomain.persistanceInterface.ReverseAuctionPersistor#
+	 * getReverseAuctionsForStatus(domain.auctions.AuctionStatus)
 	 */
 	@Override
 	public ArrayList<ReverseAuction> getReverseAuctionsForStatus(
@@ -198,7 +214,9 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see domain.persistanceInterface.ReverseAuctionPersistor#saveReverseAuction(domain.auctions.ReverseAuction)
+	 * @see
+	 * domain.persistanceInterface.ReverseAuctionPersistor#saveReverseAuction
+	 * (domain.auctions.ReverseAuction)
 	 */
 	@Override
 	public void saveReverseAuction(ReverseAuction auction) {
@@ -208,17 +226,17 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	@Override
 	public Auction getAuctionById(long id) {
 		Auction res = this.incrementals.getAuctionById(id);
-		if(res==null) res = this.reverse.getAuctionById(id);
+		if (res == null)
+			res = this.reverse.getAuctionById(id);
 		return res;
 	}
 
 	@Override
 	public void saveAuction(Auction auction) {
-		if(auction.getType()==AuctionType.REVERSE){
+		if (auction.getType() == AuctionType.REVERSE) {
 			this.reverse.saveAuction((ReverseAuction) auction);
 		} else {
 			this.incrementals.saveAuction((IncrementalAuction) auction);
 		}
 	}
-
 }
