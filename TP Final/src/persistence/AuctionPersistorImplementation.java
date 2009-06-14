@@ -6,33 +6,34 @@ package persistence;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+
+import domain.auctions.Auction;
 import domain.auctions.AuctionStatus;
+import domain.auctions.AuctionType;
 import domain.auctions.IncrementalAuction;
 import domain.auctions.Product;
 import domain.auctions.ReverseAuction;
 import domain.customers.Bidder;
 import domain.exceptions.NoBiddersException;
-import domain.persistenceInterface.IncrementalAuctionPersistor;
-import domain.persistenceInterface.ReverseAuctionPersistor;
+import domain.persistenceInterface.AuctionPersistor;
 
-public class AuctionPersistor implements IncrementalAuctionPersistor,
-		ReverseAuctionPersistor {
+public class AuctionPersistorImplementation implements AuctionPersistor {
 
-	private static AuctionPersistor instance = null;
+	private static AuctionPersistorImplementation instance = null;
 
 	private AuctionPersistorTemplate<IncrementalAuction> incrementals;
 	private AuctionPersistorTemplate<ReverseAuction> reverse;
 
-	private AuctionPersistor() {
+	private AuctionPersistorImplementation() {
 		this.incrementals = new AuctionPersistorTemplate<IncrementalAuction>();
 		this.reverse = new AuctionPersistorTemplate<ReverseAuction>();
 	}
 
-	public static AuctionPersistor getInstance() {
-		if (AuctionPersistor.instance == null) {
-			AuctionPersistor.instance = new AuctionPersistor();
+	public static AuctionPersistorImplementation getInstance() {
+		if (AuctionPersistorImplementation.instance == null) {
+			AuctionPersistorImplementation.instance = new AuctionPersistorImplementation();
 		}
-		return AuctionPersistor.instance;
+		return AuctionPersistorImplementation.instance;
 
 	}
 
@@ -106,7 +107,8 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 				if (ia.getHighestBidder().equals(bidder)) {
 					res.add(ia);
 				}
-			} catch (NoBiddersException e) {}
+			} catch (NoBiddersException e) {
+			}
 		}
 		return res;
 	}
@@ -201,6 +203,22 @@ public class AuctionPersistor implements IncrementalAuctionPersistor,
 	@Override
 	public void saveReverseAuction(ReverseAuction auction) {
 		this.reverse.saveAuction(auction);
+	}
+
+	@Override
+	public Auction getAuctionById(long id) {
+		Auction res = this.incrementals.getAuctionById(id);
+		if(res==null) res = this.reverse.getAuctionById(id);
+		return res;
+	}
+
+	@Override
+	public void saveAuction(Auction auction) {
+		if(auction.getType()==AuctionType.REVERSE){
+			this.reverse.saveAuction((ReverseAuction) auction);
+		} else {
+			this.incrementals.saveAuction((IncrementalAuction) auction);
+		}
 	}
 
 }
