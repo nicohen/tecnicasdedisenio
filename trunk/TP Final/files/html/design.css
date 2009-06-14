@@ -1,5 +1,6 @@
+<style TYPE="text/css">
 
-@charset "utf-8";
+
 body{
 	text-align: center;
 	background:url(../images/gfx/bg.gif);
@@ -242,70 +243,7 @@ legend{
 	font-weight:bold;
 }
 
-.down{ 
-	font-size:9px; 
-	color:#AAAAAA; 
-	width:900px; 
-	text-align:center;
-	padding-left: 25px;
-}
 
-ul.pro{
-margin-left:25px;
-padding:0;
-margin-top:5px;
-margin-bottom:10px;
-font-size:10px;
-color:#017FF7;}
-
-ul.pro li{
-margin-top:5px;
-margin-bottom:5px;
-list-style-image:url('../images/gfx/dot.gif');
-}
-
-ul.pro li a:link {
-color: #333333;  
-text-decoration: none;
-font-weight:bold;
-}
-ul.pro li a:visited {
-color: #333333; 
-text-decoration: none;
-font-weight:bold;
-}
-ul.pro li a:hover { 
-color: #cccccc; 
-text-decoration: none;
-font-weight:bold;
-}
-
-ul.dx{
-margin-left:25px;
-padding:0;
-margin-top:5px;
-margin-bottom:10px;
-font-size:10px;
-color:#017FF7;}
-
-ul.dx li{
-margin-top:5px;
-margin-bottom:5px;
-list-style-image:url('../images/gfx/dot2.gif');
-}
-
-ul.dx li a:link {
-color: #017FF7;  
-text-decoration: underline;
-}
-ul.dx li a:visited {
-color: #017FF7; 
-text-decoration: underline;
-}
-ul.dx li a:hover { 
-color: #cccccc; 
-text-decoration: underline;
-}
 blu_up {
 	height:25px;
 	width:720px;
@@ -332,28 +270,6 @@ blu_up_hp {
 	padding-left:10px;
 	text-align:left;
 }
-
-
-
-
-.item_thumb
-{
-	width: 60px;
-	margin-right: 15px;
-	border: 1px solid #bbbbbb;
-	background-color: #ffffff;
-}
-.item_thumb_big
-{
-	margin-left: 5px;
-	margin-right: 8px;
-}
-
-.home_thumb
-{
-	margin-right: 5px;
-}
-
 
 Stile1 {
 	font-size: 14px;
@@ -386,19 +302,11 @@ p {
 }
 
 
-
 td {
 	font-size: 12px;
 	text-align : center;
 	color : #586885;
 }
-
-
-
-
-
-
-
 
 
 table.primary-flash
@@ -436,7 +344,6 @@ table.primary-flash
 	height: 25px;
 }
 
-.green,
 .green .small_price
 { 
 	color: #92d006;
@@ -453,12 +360,6 @@ table.primary-flash
 	font-weight: bold;
 }
 
-.footershadow
-{
-	background-image:url(../images/gfx/dw_main.gif);
-	background-position: 235px top;
-	background-repeat: no-repeat;
-}
 body.large .footershadow
 {
 	text-align: left;
@@ -475,10 +376,7 @@ tr.last-bid
 }
 
 
-
-
-
-
+</style >
 
 
 
