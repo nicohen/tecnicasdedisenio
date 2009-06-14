@@ -40,7 +40,9 @@ public abstract class WebView implements View {
 	public void execute() throws Exception {
 		doHttpHeader();
 		htmlOpen();
+		doHeaderOpen();
 		doHtmlHeader();
+		doHeaderClose();
 		bodyOpen();
 		doHtmlMenu();
 		doHtmlBody();
@@ -51,6 +53,14 @@ public abstract class WebView implements View {
 		writeHtml();
 	}
 	
+	private void doHeaderClose() {
+		out.println("</head>");
+	}
+
+	private void doHeaderOpen() {
+		out.println("<head>");
+	}
+
 	private void htmlOpen() {
 		out.println("<html>");
 		
