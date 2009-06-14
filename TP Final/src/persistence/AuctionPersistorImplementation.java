@@ -239,4 +239,11 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 			this.incrementals.saveAuction((IncrementalAuction) auction);
 		}
 	}
+
+	@Override
+	public ArrayList<IncrementalAuction> getIncrementalAuctionsForBidder(
+			Bidder bidder) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

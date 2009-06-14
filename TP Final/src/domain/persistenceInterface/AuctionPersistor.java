@@ -23,6 +23,8 @@ public interface AuctionPersistor {
 	public IncrementalAuction getIncrementalAuctionForWinner (Bidder bidder);
 	public IncrementalAuction getIncrementalAuctionForPrize (Product prize);
 	public IncrementalAuction getIncrementalAuctionForPrize (String prizeDescription);
+	
+	public ArrayList<IncrementalAuction> getIncrementalAuctionsForBidder(Bidder bidder);
 
 	public void saveReverseAuction(ReverseAuction auction);
 	
