@@ -10,7 +10,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import persistence.AuctionPersistor;
+import persistence.AuctionPersistorImplementation;
 import persistence.BidderPersistor;
 import api.web.mvc.controller.FrontEndControllerServlet;
 import domain.auctions.AuctionType;
@@ -50,8 +50,8 @@ public class StartupController extends FrontEndControllerServlet {
 		VariationRateFunction vrf = new VariationRateFunction(null);
 		IncrementalAuction ia = new IncrementalAuction(p, AuctionType.SINGLE,
 				vrf, 1);
-		AuctionPersistor.getInstance().saveIncrementalAuction(ia);
+		AuctionPersistorImplementation.getInstance().saveIncrementalAuction(ia);
 		ia = new IncrementalAuction(p2, AuctionType.SINGLE, vrf, 1);
-		AuctionPersistor.getInstance().saveIncrementalAuction(ia);
+		AuctionPersistorImplementation.getInstance().saveIncrementalAuction(ia);
 	}
 }

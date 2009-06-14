@@ -7,7 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import persistence.AuctionPersistor;
+import persistence.AuctionPersistorImplementation;
 import api.web.cache.HtmlCache;
 import api.web.mvc.view.HtmlView;
 import api.web.text.LibTxt;
@@ -29,8 +29,8 @@ public class AuctionsView extends HtmlView {
 	protected void doHtmlBody() throws Exception {
 		String auctionsListView = HtmlCache.getHtml(relativePath, "auction/AuctionsListView");
 
-		ArrayList<IncrementalAuction> iAuctions = AuctionPersistor.getInstance().getIncrementalAuctions();
-		ArrayList<ReverseAuction> rAuctions = AuctionPersistor.getInstance().getReverseAuctions();
+		ArrayList<IncrementalAuction> iAuctions = AuctionPersistorImplementation.getInstance().getIncrementalAuctions();
+		ArrayList<ReverseAuction> rAuctions = AuctionPersistorImplementation.getInstance().getReverseAuctions();
 
 		StringBuilder strB = new StringBuilder();
 		

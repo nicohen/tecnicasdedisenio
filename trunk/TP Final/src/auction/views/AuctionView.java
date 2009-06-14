@@ -6,7 +6,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import persistence.AuctionPersistor;
+import persistence.AuctionPersistorImplementation;
 import api.web.cache.HtmlCache;
 import api.web.mvc.view.HtmlView;
 import api.web.text.LibTxt;
@@ -38,7 +38,7 @@ public class AuctionView extends HtmlView {
 			IncrementalAuction ia = new IncrementalAuction(p,AuctionType.SINGLE,vrf,1);
 			AuctionPersistor.getInstance().saveIncrementalAuction(ia);
 		}*/
-		IncrementalAuction auction = AuctionPersistor.getInstance().getIncrementalAuctionById(auctionId);
+		IncrementalAuction auction = AuctionPersistorImplementation.getInstance().getIncrementalAuctionById(auctionId);
 
 		html = LibTxt.replaceAll(html, "##AUCTION_ID##", "" + auctionId);
 		html = LibTxt.replace(html, "##DESCRIPTION##", auction.getPrize().getDescription());

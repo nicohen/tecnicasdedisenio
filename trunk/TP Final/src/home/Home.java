@@ -11,7 +11,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import persistence.AuctionPersistor;
+import persistence.AuctionPersistorImplementation;
 import persistence.BidderPersistor;
 import startup.StartupController;
 import domain.auctions.AuctionType;
@@ -61,8 +61,8 @@ public class Home extends FrontEndControllerServlet {
 		VariationRateFunction vrf = new VariationRateFunction(null);
 		IncrementalAuction ia = new IncrementalAuction(p, AuctionType.SINGLE,
 				vrf, 1);
-		AuctionPersistor.getInstance().saveIncrementalAuction(ia);
+		AuctionPersistorImplementation.getInstance().saveIncrementalAuction(ia);
 		ia = new IncrementalAuction(p2, AuctionType.SINGLE, vrf, 1);
-		AuctionPersistor.getInstance().saveIncrementalAuction(ia);
+		AuctionPersistorImplementation.getInstance().saveIncrementalAuction(ia);
 	}
 }
