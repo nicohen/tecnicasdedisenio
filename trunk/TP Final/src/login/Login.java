@@ -7,11 +7,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import persistence.BidderPersistor;
-import domain.customers.User;
-
 import login.views.LoginView;
-
+import persistence.BidderPersistor;
 import api.web.mvc.controller.FrontEndControllerServlet;
 import api.web.mvc.view.View;
 import api.web.session.SessionValidation;

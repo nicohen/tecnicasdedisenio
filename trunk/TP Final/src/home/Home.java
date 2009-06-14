@@ -7,25 +7,18 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import persistence.AuctionPersistorImplementation;
 import persistence.BidderPersistor;
-import startup.StartupController;
+import api.web.mvc.controller.FrontEndControllerServlet;
+import api.web.mvc.view.View;
 import domain.auctions.AuctionType;
 import domain.auctions.IncrementalAuction;
 import domain.auctions.Product;
 import domain.customers.User;
 import domain.utils.VariationRateFunction;
-
-import login.views.LoginView;
-
-import api.web.mvc.controller.FrontEndControllerServlet;
-import api.web.mvc.view.View;
-import api.web.session.SessionValidation;
-import api.web.session.entities.Session;
 
 @SuppressWarnings("serial")
 public class Home extends FrontEndControllerServlet {

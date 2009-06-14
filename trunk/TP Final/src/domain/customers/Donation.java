@@ -2,6 +2,8 @@ package domain.customers;
 
 import java.util.Date;
 
+import javax.transaction.Transaction;
+
 import domain.exceptions.DonationAlreadyInstanciatedException;
 import domain.querys.History;
 

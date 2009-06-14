@@ -10,11 +10,7 @@ import persistence.AuctionPersistorImplementation;
 import api.web.cache.HtmlCache;
 import api.web.mvc.view.HtmlView;
 import api.web.text.LibTxt;
-import api.web.text.LibWeb;
-import domain.auctions.AuctionType;
 import domain.auctions.IncrementalAuction;
-import domain.auctions.Product;
-import domain.utils.VariationRateFunction;
 
 public class AuctionView extends HtmlView {
 
