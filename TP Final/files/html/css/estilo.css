@@ -1,14 +1,14 @@
-<style TYPE="text/css">BODY {font-size: 8pt ; font-family: Verdana, Helvetica, Arial}
+<style TYPE="text/css">body {font-size: 8pt ; font-family: Verdana, Helvetica, Arial; background-color: #d8da3d}
 
-.verde1 {font-size: 8pt;
+.verde1 {font-size: 20pt;
 	     font-family: Verdana, Arial, Helvetica, sans-serif;
-	     line-height: 9pt;
-	     color: #666600;
-	     text-decoration: none;
+	     line-height: 20pt;
+	     color: #669933;
+	     text-decoration: bold;
 	     font-weight: normal;
          }
 .verde1:hover {color: #003300;}
-.verde1:link {color: #666600;}
+.verde1:link {color: #669933;}
 
 
 .verde2 {font-size: 8pt;
@@ -43,5 +43,10 @@
 .verde4:hover {color: #003300;}
 .verde4:link {color: #006633;}
 
+
+.stdtable{
+    width: 766px;
+	border: 0px;
+}
 
 </style>
