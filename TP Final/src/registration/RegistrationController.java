@@ -40,13 +40,20 @@ public class RegistrationController extends FrontEndControllerServlet {
 			User newUser = new User(Integer.parseInt(dni), user, name,
 					lastname, address, email, pass);
 			BidderPersistor.getBidderPersistorInstance().saveUser(newUser);
+			redirToUrl(res, requestParameters);
 		} else {
 			View view = new RegistrationView(req, res, requestAttributes,
 					servletContext, requestParameters);
 			view.execute();
 		}
 	}
-
+	
+	private void redirToUrl(HttpServletResponse res,
+			HashMap<String, Object> requestParameters) throws Exception {
+		String urlRedir = (String) requestParameters.get("urlredir");
+		res.sendRedirect(urlRedir);
+	}
+	
 	private boolean validateNewUser(String user, String password,
 			HttpServletRequest req, HttpServletResponse res) throws Exception {
 
