@@ -3,20 +3,14 @@ package registration;
 import java.util.HashMap;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import persistence.BidderPersistor;
 import registration.views.RegistrationView;
-import domain.customers.User;
-
-import login.views.LoginView;
-
 import api.web.mvc.controller.FrontEndControllerServlet;
 import api.web.mvc.view.View;
-import api.web.session.SessionValidation;
-import api.web.session.entities.Session;
+import domain.customers.User;
 
 @SuppressWarnings("serial")
 public class RegistrationController extends FrontEndControllerServlet {
