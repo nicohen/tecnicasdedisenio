@@ -53,20 +53,16 @@ public class DonationsPersistor implements DonationPersistor {
 		};
 		return solver.solveCollection(donations);
 	}
-	
+
 	@Override
 	public ArrayList<Donation> getDonationsForGroupSinceDate(Group group,
 			Date dateFrom) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 	@Override
 	public ArrayList<Donation> getDonationsForUserSinceDate(User user,
 			Date dateFrom) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
