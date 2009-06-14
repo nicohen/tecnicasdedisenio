@@ -32,7 +32,7 @@
 
 	<servlet>
         <servlet-name>Registration</servlet-name>
-        <servlet-class>registration.RegistrationController</servlet-class>
+        <servlet-class>customers.registration.RegistrationController</servlet-class>
 	</servlet>
 	
     <servlet>
