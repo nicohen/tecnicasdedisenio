@@ -30,6 +30,11 @@
         <servlet-class>bid.BidController</servlet-class>
     </servlet>
 
+	<servlet>
+        <servlet-name>Registration</servlet-name>
+        <servlet-class>registration.RegistrationController</servlet-class>
+	</servlet>
+	
     <servlet>
         <servlet-name>AuctionController</servlet-name>
         <servlet-class>auction.AuctionController</servlet-class>
@@ -67,6 +72,11 @@
     <servlet-mapping>
         <servlet-name>BidController</servlet-name>
         <url-pattern>/BidController</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Registration</servlet-name>
+        <url-pattern>/RegistrationController</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>
