@@ -18,6 +18,7 @@ import domain.auctions.IncrementalAuction;
 import domain.customers.User;
 import domain.exceptions.BidException;
 import domain.exceptions.InvalidAuctionTypeException;
+import domain.exceptions.NotEnoughPointsToBidException;
 
 public class BidView extends HtmlView {
 
@@ -34,6 +35,7 @@ public class BidView extends HtmlView {
 		String html = HtmlCache.getHtml(relativePath, "bid/BidView");
 		
 		String paramAuctionId = LibWeb.getParameter(req, "auctionId");
+		boolean errorFlag=false;
 		Long auctionId = null;
 		try {
 			auctionId = Long.parseLong(paramAuctionId);
@@ -56,13 +58,23 @@ public class BidView extends HtmlView {
 		
 		try {
 			aUser.bid(auction);
-		} catch (BidException e){
-			html += "Error al ofertar";
+		} catch (NotEnoughPointsToBidException e){
+			html += "Error al ofertar: El usuario no posee credito suficiente.";
 			e.printStackTrace();
+			errorFlag=true;
+		} catch (BidException e){
+				html += "Error al ofertar";
+				e.printStackTrace();
+				errorFlag=true;
 		} catch (InvalidAuctionTypeException e){
 			html += "Tipo de Subasta invalida";
 			e.printStackTrace();
+			errorFlag=true;
 		}
+		
+		if (!errorFlag)
+			html+="Oferta aceptada. Gracias por ofertar!";
+		
 		html = LibTxt.replaceAll(html, "##AUCTION_ID##", ""+ auctionId);
 		
 		html = LibTxt.replace(html, "##DESCRIPTION##",auction.getPrize().getDescription());

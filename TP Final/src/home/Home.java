@@ -54,7 +54,7 @@ public class Home extends FrontEndControllerServlet {
 	private void initialize() {
 		User aUser2 = new User(31165251, "berta1108", "roberto", "herman", "",
 				"", "123456");
-		aUser2.addPoints(20000);
+		aUser2.addPoints(2);
 		BidderPersistor.getBidderPersistorInstance().saveUser(aUser2);
 		Product p = new Product("Sony W50");
 		Product p2 = new Product("Samsung 40' LCD");
