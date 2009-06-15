@@ -108,6 +108,13 @@
 
 .stdtable td:link {color: #669933;}
 
+tr {
+	font-size: 12px;
+	text-align : center;
+	color : #586885;
+}
+
+
 .menu{
 	width: 766px;
 }
