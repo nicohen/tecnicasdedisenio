@@ -12,6 +12,7 @@ public class Key {
 	private String code;
 	private int points;
 	private boolean used;
+	private Long keyId;
 
 	/**
 	 * Inicializa la estructura y registra la clave en lacolección de todas las
@@ -26,6 +27,7 @@ public class Key {
 		this.code = code;
 		this.points = points;
 		this.used = false;
+		this.keyId = System.currentTimeMillis();
 		// add a KEYS
 		Keys.getInstance().addKey(this);
 	}
@@ -52,5 +54,9 @@ public class Key {
 	 */
 	public final String getCode() {
 		return code;
+	}
+
+	public Long getKeyId() {
+		return this.keyId;
 	}
 }
