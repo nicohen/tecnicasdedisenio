@@ -34,6 +34,8 @@ public abstract class HtmlView extends WebView {
 		menu=LibTxt.replace(menu, "##LOGO##","files/images/logo.jpg");
 		menu=LibTxt.replace(menu, "##AUCTIONS##","files/images/logomenu.jpg");
 		menu=LibTxt.replace(menu, "##HOME##","files/images/home.jpg");
+		menu=LibTxt.replace(menu, "##MYAUCTIONS##","files/images/remate_en_vivo.jpg");
+		menu=LibTxt.replace(menu, "##REGISTER##","files/images/registrarse.jpg");
 		out.println(LibTxt.replace(menu, "##MATE##","files/images/mate.jpg"));
 	}
 

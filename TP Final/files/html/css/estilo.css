@@ -71,27 +71,25 @@
 }
 
 .navigtable{
-    width: 766px;
+    width: 550px;
 	border: 0px;
 	margin-bottom: 35px;
+	height: 100px;
 }
 
 .navigtable td{
-			width: 25%;
+			width: 10%;
 			text-align: center;
-			font-size: 12pt;
+			font-size: 11pt;
 			font-family: Verdana, Arial, Helvetica, sans-serif;
-			color: #669933;
 			text-decoration: none;
 			font-weight: normal;
-			margin-bottom: 20px;
 }
-.navigtable td:link {color: #669933;}
 
 .stdtable{
     width: 766px;
-	border: 0px;
-	background-color: #FFFFEE;
+	border: 1pt solid #FFFFFF;
+	background-color: #FEFE96;
 	border: 1pt;
 	border-color: #FFFFFF;
 	padding-top: 20px;
@@ -106,7 +104,7 @@
 			font-weight: normal;
 }
 
-.stdtable td:link {color: #669933;}
+.stdtable:link {color: #FFFFFF;}
 
 tr {
 	font-size: 12px;
