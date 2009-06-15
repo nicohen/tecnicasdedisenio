@@ -113,7 +113,7 @@ public class RegistrationController extends FrontEndControllerServlet {
 		
 		if (password == null || password.length() < 6){
 			validationErrors.put("password", "El password debe poseer 6 o mas caracteres");
-		}	
+		}
 		
 		if (validationErrors.size()==0)
 			return true;
