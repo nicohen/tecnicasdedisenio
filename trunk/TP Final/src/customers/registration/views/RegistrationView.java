@@ -13,6 +13,7 @@ import api.web.text.LibTxt;
 
 public class RegistrationView extends HtmlView {
 
+	
 	public RegistrationView(HttpServletRequest req, HttpServletResponse res,
 			HashMap<String, Object> requestAttributes, ServletContext servletContext, HashMap<String,Object> requestParameters) throws Exception {
 		super(req, res, requestAttributes, servletContext,requestParameters);
@@ -31,7 +32,54 @@ public class RegistrationView extends HtmlView {
 				urlRedir+="?"+ queryString;
 			}
 		}
-		html = LibTxt.replace(html, "/LaRematada/Home", urlRedir);
+		
+		if(requestParameters.get("errors")!=null)
+			LibTxt.replace(html, "##USER##",(String) requestParameters.get("user"));
+		else
+			LibTxt.replace(html, "##USER##","");
+		
+		if(requestParameters.get("errors")!=null)
+			LibTxt.replace(html, "##PASS##",(String) requestParameters.get("pass"));
+		else
+			LibTxt.replace(html, "##PASS##","");
+		
+		if(requestParameters.get("errors")!=null)
+			LibTxt.replace(html, "##PASS2##",(String) requestParameters.get("pass2"));
+		else
+			LibTxt.replace(html, "##PASS2##","");
+		
+		if(requestParameters.get("errors")!=null)
+			LibTxt.replace(html, "##TELEPHONE##",(String) requestParameters.get("telephone"));
+		else
+			LibTxt.replace(html, "##TELEPHONE##","");
+		
+		if(requestParameters.get("errors")!=null)
+			LibTxt.replace(html, "##ADDRESS##",(String) requestParameters.get("address"));
+		else
+			LibTxt.replace(html, "##ADDRESS##","");
+		
+		if(requestParameters.get("errors")!=null)
+			LibTxt.replace(html, "##DNI##",(String) requestParameters.get("dni"));
+		else
+			LibTxt.replace(html, "##DNI##","");
+		
+		if(requestParameters.get("errors")!=null)
+			LibTxt.replace(html, "##NAME##",(String) requestParameters.get("name"));
+		else
+			LibTxt.replace(html, "##NAME##","");
+		
+		if(requestParameters.get("errors")!=null)
+			LibTxt.replace(html, "##LASTNAME##",(String) requestParameters.get("lastname"));
+		else
+			LibTxt.replace(html, "##LASTNAME##","");
+		
+		if(requestParameters.get("errors")!=null)
+			LibTxt.replace(html, "##EMAIL##",(String) requestParameters.get("email"));
+		else
+			LibTxt.replace(html, "##EMAIL##","");
+		
+		html= LibTxt.replace(html, "##ERRORS##",(String) requestParameters.get("errors"));
+			html = LibTxt.replace(html,"##REDIR##" , "/LaRematada/Home");
 		
 		out.println(html);
 	}
