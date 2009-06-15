@@ -31,7 +31,7 @@ public class UserAuctionsView extends HtmlView {
 
 	@Override
 	protected void doHtmlBody() throws Exception {
-		String auctionsListView = HtmlCache.getHtml(relativePath, "customers/UserAuctionsListView");
+		String auctionsListView = HtmlCache.getHtml(relativePath, "customers/auctions/UserAuctionsListView");
 		
 		String userName = null;
 		Cookie[] c = req.getCookies();
@@ -56,7 +56,7 @@ public class UserAuctionsView extends HtmlView {
 	}
 
 	private String getAuctionInfo(Auction auction) {
-		String auctionListView = HtmlCache.getHtml(relativePath, "customers/UserAuctionListView");
+		String auctionListView = HtmlCache.getHtml(relativePath, "customers/auctions/UserAuctionListView");
 		auctionListView = LibTxt.replace(auctionListView,"##URL##",String.valueOf(auction.getAuctionId()));
 		auctionListView = LibTxt.replace(auctionListView,"##TITLE##",auction.getPrize().getDescription());
 		auctionListView = LibTxt.replace(auctionListView,"##POINTS##",String.valueOf(auction.getValue()));
