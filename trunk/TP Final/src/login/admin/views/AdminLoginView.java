@@ -25,4 +25,16 @@ public class AdminLoginView extends BackEndHtmlView {
 
 	}
 
+	
+	//El login maneja su propio HTML.
+	@Override
+	protected String getAdminName() {
+		return "Ingreso al administrador";
+	}
+
+	@Override
+	protected String getContent() {
+		return null;
+	}
+
 }

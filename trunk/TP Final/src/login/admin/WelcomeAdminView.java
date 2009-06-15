@@ -15,13 +15,18 @@ public class WelcomeAdminView extends BackEndHtmlView {
 			ServletContext servletContext,
 			HashMap<String, Object> requestParameters) throws Exception {
 		super(req, res, requestAttributes, servletContext, requestParameters);
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
-	protected void doHtmlBody() {
-		out.println("Bienvenido a los administradores de La Rematada");
+	protected String getContent() {
+		return "<div style='font-family: Arial; font-size:24px; font-weight:bold;'>Bienvenido a los administradores de La Rematada</div>";
 
+	}
+
+	@Override
+	protected String getAdminName() {
+		return "Administradores de La Rematada";
 	}
 
 }

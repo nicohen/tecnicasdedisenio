@@ -15,13 +15,18 @@ public class TestAdminView extends BackEndHtmlView {
 			ServletContext servletContext,
 			HashMap<String, Object> requestParameters) throws Exception {
 		super(req, res, requestAttributes, servletContext, requestParameters);
-		// TODO Auto-generated constructor stub
+
+	}
+
+
+	@Override
+	protected String getAdminName() {
+		return "Prueba de administrador";
 	}
 
 	@Override
-	protected void doHtmlBody() {
-		out.println("Logueado al administrador");
-
+	protected String getContent() {
+		return "Logueado al administrador";
 	}
 
 }
