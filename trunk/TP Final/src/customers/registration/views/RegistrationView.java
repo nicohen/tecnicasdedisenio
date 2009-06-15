@@ -43,31 +43,18 @@ public class RegistrationView extends HtmlView {
 		String email = (String) requestParameters.get("email");
 		String errors = (String) requestParameters.get("errors");
 		
-//		if(requestParameters.get("errors")!=null){
-			html = LibTxt.replace(html, "##USER##",user!=null?user:"");
-			html = LibTxt.replace(html, "##PASS##",pass!=null?pass:"");
-			html = LibTxt.replace(html, "##PASS2##",pass2!=null?pass2:"");
-			html = LibTxt.replace(html, "##TELEPHONE##",telephone!=null?telephone:"");
-			html = LibTxt.replace(html, "##ADDRESS##",address!=null?address:"");
-			html = LibTxt.replace(html, "##DNI##",dni!=null?dni:"");
-			html = LibTxt.replace(html, "##NAME##",name!=null?name:"");
-			html = LibTxt.replace(html, "##LASTNAME##",lastname!=null?lastname:"");
-			html = LibTxt.replace(html, "##EMAIL##",email!=null?email:"");
-			html= LibTxt.replace(html, "##ERRORS##",errors!=null?errors:"");
-			
-//		} else {
-//			html = LibTxt.replace(html, "##USER##","");
-//			html = LibTxt.replace(html, "##PASS##","");
-//			html = LibTxt.replace(html, "##PASS2##","");
-//			html = LibTxt.replace(html, "##TELEPHONE##","");
-//			html = LibTxt.replace(html, "##ADDRESS##","");
-//			html = LibTxt.replace(html, "##DNI##","");
-//			html = LibTxt.replace(html, "##NAME##","");
-//			html = LibTxt.replace(html, "##LASTNAME##","");
-//			html = LibTxt.replace(html, "##EMAIL##","");
-//			html= LibTxt.replace(html, "##ERRORS##","");
-//		
-//		}
+
+		html = LibTxt.replace(html, "##USER##",user!=null?user:"");
+		html = LibTxt.replace(html, "##PASS##",pass!=null?pass:"");
+		html = LibTxt.replace(html, "##PASS2##",pass2!=null?pass2:"");
+		html = LibTxt.replace(html, "##TELEPHONE##",telephone!=null?telephone:"");
+		html = LibTxt.replace(html, "##ADDRESS##",address!=null?address:"");
+		html = LibTxt.replace(html, "##DNI##",dni!=null?dni:"");
+		html = LibTxt.replace(html, "##NAME##",name!=null?name:"");
+		html = LibTxt.replace(html, "##LASTNAME##",lastname!=null?lastname:"");
+		html = LibTxt.replace(html, "##EMAIL##",email!=null?email:"");
+		html= LibTxt.replace(html, "##ERRORS##",errors!=null?errors:"");
+
 		
 		html = LibTxt.replace(html,"##REDIR##" , "/LaRematada/Home");
 		
