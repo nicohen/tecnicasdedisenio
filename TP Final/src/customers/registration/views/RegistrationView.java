@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import api.web.cache.HtmlCache;
 import api.web.mvc.view.HtmlView;
+import api.web.text.LibTxt;
 
 
 public class RegistrationView extends HtmlView {
@@ -30,8 +31,7 @@ public class RegistrationView extends HtmlView {
 				urlRedir+="?"+ queryString;
 			}
 		}
-		//TODO: ver que onda esto
-		//html = LibTxt.replace(html, "##REDIR##", urlRedir);
+		html = LibTxt.replace(html, "/LaRematada/Home", urlRedir);
 		
 		out.println(html);
 	}

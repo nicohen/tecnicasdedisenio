@@ -32,7 +32,7 @@ public class RegistrationView extends HtmlView {
 			}
 		}
 		//TODO: ver que onda esto
-		//html = LibTxt.replace(html, "##REDIR##", urlRedir);
+		html = LibTxt.replace(html, "##REDIR##", urlRedir);
 		
 		out.println(html);
 	}
