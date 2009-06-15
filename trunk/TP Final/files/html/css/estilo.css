@@ -47,7 +47,7 @@
 .headtable{
     width: 766px;
 	border: 0px;
-	background-color: #669933;
+	background-color: #336600;
 }
 
 .headtable td{
@@ -91,18 +91,20 @@
 .stdtable{
     width: 766px;
 	border: 0px;
+	background-color: #FFFFEE;
+	border: 1pt;
+	border-color: #FFFFFF;
 }
 
 .stdtable td{
-			text-align: right;
 			width: 20%;
-			font-size: 12pt;
+			font-size: 10pt;
 			font-family: Verdana, Arial, Helvetica, sans-serif;
-			color: #669933;
 			text-decoration: none;
 			font-weight: normal;
 }
-.stdtable:link {color: #669933;}
+
+.stdtable td:link {color: #669933;}
 
 .menu{
 	width: 766px;
