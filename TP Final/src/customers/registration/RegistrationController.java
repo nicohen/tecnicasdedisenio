@@ -19,7 +19,7 @@ import domain.customers.User;
 @SuppressWarnings("serial")
 public class RegistrationController extends FrontEndControllerServlet {
 
-	private HashMap<String,Object> validationErrors=new HashMap<String,Object>();
+	
 	
 	@Override
 	protected void executeView(HttpServletRequest req, HttpServletResponse res,
@@ -27,9 +27,28 @@ public class RegistrationController extends FrontEndControllerServlet {
 			ServletContext servletContext,
 			HashMap<String, Object> requestParameters) throws Exception {
 
+		HashMap<String,Object> validationErrors=new HashMap<String,Object>();
+		
+		String action = (String)requestParameters.get("act");
+		if (action == null){
+			action = "form";
+		}
+		
+		if ("form".equals(action)){
+			showForm(req,res,requestAttributes,servletContext,requestParameters);
+		} else if ("validate".equals(action)){
+			validateData(req,res,requestAttributes,servletContext,requestParameters);
+		}
+	}
+	
+	private void validateData(HttpServletRequest req, HttpServletResponse res,
+			HashMap<String, Object> requestAttributes,
+			ServletContext servletContext,
+			HashMap<String, Object> requestParameters) throws Exception {
+		HashMap<String,Object> validationErrors=new HashMap<String,Object>();
 		validationErrors.clear();
 		
-		String lastname = (String) requestParameters.get("lastname");
+		String lastname = (String) requestParameters.get("lastName");
 		String name = (String) requestParameters.get("name");
 		String dni = (String) requestParameters.get("dni");
 		String address = (String) requestParameters.get("address");
@@ -38,14 +57,14 @@ public class RegistrationController extends FrontEndControllerServlet {
 		String user = (String) requestParameters.get("user");
 		String pass = (String) requestParameters.get("pass");
 
-		if (validateNewUser(user, pass, req, res)) {
+		if (validateNewUser(user, pass, req, res,validationErrors)) {
 			User newUser = new User(Integer.parseInt(dni), user, name,
 					lastname, address, email, pass);
 			BidderPersistor.getBidderPersistorInstance().saveUser(newUser);
 			redirToUrl(res, requestParameters);
 		} else {
 			
-			Collection<Object> c = this.validationErrors.values();
+			Collection<Object> c = validationErrors.values();
 			Iterator<Object> itr = c.iterator();
 			String errors = "";
 			while(itr.hasNext()){
@@ -56,8 +75,19 @@ public class RegistrationController extends FrontEndControllerServlet {
 					servletContext, requestParameters);
 			view.execute();
 		}
+
+		
 	}
-	
+
+	private void showForm(HttpServletRequest req, HttpServletResponse res,
+			HashMap<String, Object> requestAttributes,
+			ServletContext servletContext,
+			HashMap<String, Object> requestParameters) throws Exception {
+		View view = new RegistrationView(req, res, requestAttributes,
+				servletContext, requestParameters);
+		view.execute();		
+	}
+
 	private void redirToUrl(HttpServletResponse res,
 			HashMap<String, Object> requestParameters) throws Exception {
 		String urlRedir = (String) requestParameters.get("urlredir");
@@ -65,7 +95,7 @@ public class RegistrationController extends FrontEndControllerServlet {
 	}
 	
 	private boolean validateNewUser(String user, String password,
-			HttpServletRequest req, HttpServletResponse res) throws Exception {
+			HttpServletRequest req, HttpServletResponse res,HashMap<String,Object> validationErrors) throws Exception {
 		
 		if((user==null) && (password==null)){
 			return false;
@@ -73,19 +103,19 @@ public class RegistrationController extends FrontEndControllerServlet {
 			
 		
 		if (user == null || user.length() == 0){
-			this.validationErrors.put("user", "Por favor, ingrese un nombre de usuario");
+			validationErrors.put("user", "Por favor, ingrese un nombre de usuario");
 		}
 		else{
 			if(BidderPersistor.getBidderPersistorInstance().getUser(user)!=null){
-				this.validationErrors.put("user", "El usuario ingresado ya existe");
+				validationErrors.put("user", "El usuario ingresado ya existe");
 			}
 		}
 		
 		if (password == null || password.length() < 6){
-			this.validationErrors.put("password", "El password debe poseer 6 o mas caracteres");
+			validationErrors.put("password", "El password debe poseer 6 o mas caracteres");
 		}	
 		
-		if (this.validationErrors.size()==0)
+		if (validationErrors.size()==0)
 			return true;
 		else
 			return false;
