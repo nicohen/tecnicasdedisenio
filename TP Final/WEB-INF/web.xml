@@ -35,6 +35,16 @@
         <servlet-class>customers.CustomerMenuController</servlet-class>
     </servlet>
     
+    <servlet>
+        <servlet-name>UserAuctionsController</servlet-name>
+        <servlet-class>customers.auctions.UserAuctionsController</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>KeyExchangeController</servlet-name>
+        <servlet-class>customers.keyexchange.KeyExchangeController</servlet-class>
+    </servlet>
+    
 	<servlet>
         <servlet-name>Registration</servlet-name>
         <servlet-class>customers.registration.RegistrationController</servlet-class>
@@ -83,7 +93,17 @@
         <servlet-name>BidController</servlet-name>
         <url-pattern>/BidController</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>UserAuctionsController</servlet-name>
+        <url-pattern>/UserAuctionsController</url-pattern>
+    </servlet-mapping>
     
+	<servlet-mapping>
+        <servlet-name>KeyExchangeController</servlet-name>
+        <url-pattern>/KeyExchangeController</url-pattern>
+    </servlet-mapping>      
+
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/RegistrationController</url-pattern>
