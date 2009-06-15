@@ -31,7 +31,8 @@ public abstract class HtmlView extends WebView {
 	@Override
 	protected void doHtmlMenu() {
 		String menu = HtmlCache.getHtml(relativePath,"MenuDefault");
-		out.println(LibTxt.replace(menu, "##LOGO##","files/images/logo.jpg"));
+		menu=LibTxt.replace(menu, "##LOGO##","files/images/logo.jpg");
+		out.println(LibTxt.replace(menu, "##MATE##","files/images/mate.jpg"));
 	}
 
 }
