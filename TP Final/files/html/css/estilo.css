@@ -67,11 +67,13 @@
 	color: #006633;
 	text-decoration: none;
 	font-weight: normal;
+	margin-top: 35px;
 }
 
 .navigtable{
     width: 766px;
 	border: 0px;
+	margin-bottom: 35px;
 }
 
 .navigtable td{
@@ -82,8 +84,9 @@
 			color: #669933;
 			text-decoration: none;
 			font-weight: normal;
+			margin-bottom: 20px;
 }
-.navigtable:link {color: #669933;}
+.navigtable td:link {color: #669933;}
 
 .stdtable{
     width: 766px;
