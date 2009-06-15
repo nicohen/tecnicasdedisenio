@@ -28,7 +28,7 @@ public class KeyExchangeView extends HtmlView {
 	@Override
 	protected void doHtmlBody() {
 		String html = HtmlCache.getHtml(relativePath,
-				"keyexchange/KeyExchangeView");
+				"customers/keyexchange/KeyExchange");
 
 		String userName = null;
 		Cookie[] c = req.getCookies();
