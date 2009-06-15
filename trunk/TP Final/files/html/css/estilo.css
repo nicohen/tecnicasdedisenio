@@ -94,6 +94,8 @@
 	background-color: #FFFFEE;
 	border: 1pt;
 	border-color: #FFFFFF;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 .stdtable td{
