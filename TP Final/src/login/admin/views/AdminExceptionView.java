@@ -30,12 +30,15 @@ public class AdminExceptionView extends BackEndHtmlView {
 	}
 
 	@Override
-	protected void doHtmlBody() {
+	protected String getContent() {
 
-		out.println(adminException.getMessage());
-		out.println("<!-- STACK: \n");
-		out.println(formatException());
-		out.println("-->");
+		StringBuffer out = new StringBuffer();
+		out.append(adminException.getMessage());
+		out.append("<!-- STACK: \n");
+		out.append(formatException());
+		out.append("-->");
+		
+		return out.toString();
 	}
 
 	private String formatException() {
@@ -53,6 +56,12 @@ public class AdminExceptionView extends BackEndHtmlView {
 			} else {
 				return "";
 			}
+	}
+
+	@Override
+	protected String getAdminName() {
+		// TODO Auto-generated method stub
+		return "Ingreso al administrador";
 	}
 
 }
