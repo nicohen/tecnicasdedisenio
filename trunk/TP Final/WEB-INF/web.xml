@@ -30,6 +30,11 @@
         <servlet-class>bid.BidController</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>DonationController</servlet-name>
+        <servlet-class>customers.donations.DonationController</servlet-class>
+    </servlet>
+
 	<servlet>
         <servlet-name>CustomerMenu</servlet-name>
         <servlet-class>customers.CustomerMenuController</servlet-class>
@@ -87,6 +92,11 @@
     <servlet-mapping>
         <servlet-name>BidControllerServlet</servlet-name>
         <url-pattern>/BidControllerServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DonationController</servlet-name>
+        <url-pattern>/DonationController</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
