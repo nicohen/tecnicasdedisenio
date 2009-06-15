@@ -6,6 +6,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import customers.auctions.views.UserAuctionsView;
+
 import api.web.mvc.controller.FrontEndControllerServlet;
 import api.web.mvc.view.View;
 import api.web.text.LibWeb;
@@ -23,11 +25,7 @@ public class UserAuctionsController extends FrontEndControllerServlet {
 
 		View view = null;
 		
-		if("".equals(LibWeb.getParameter(req, "auctionId"))) {
-			view = new AuctionsView(req,res,requestAttributes,servletContext,requestParameters);
-		} else {
-			view = new AuctionView(req,res,requestAttributes,servletContext,requestParameters);			
-		}
+		view = new UserAuctionsView(req,res,requestAttributes,servletContext,requestParameters);
 		
 		view.execute();
 
