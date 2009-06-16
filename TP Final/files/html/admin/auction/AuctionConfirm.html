@@ -1,0 +1,35 @@
+<style type="text/css">
+.txtMstr{
+	font-family: Arial,Helvetica;
+	font-decoration: italic;
+	color:#3333AA;
+}
+</style>
+<form action="AdminAltaRemate">
+<input type=hidden name="act" value="validate">
+<input type=hidden name="subAct" value="save">
+
+<input type=hidden name="price" value="##PRICE##">
+<input type=hidden name="auction_type" value="##AUCTION_TYPE##">
+<input type=hidden name="title" value="##TITLE_VALUE##">
+
+<table width=400 border=1 cellpadding=3 cellspacing="0">
+<tr>
+<td width=100> Título</td> <td><div class="txtMstr">##TITLE_VALUE##</div> </td>
+</tr>
+<tr>
+	<td width=100> Tipo de subasta</td> 
+	<td><div class="txtMstr"><input type=radio name="auction_type_bis" disabled value="normal"> Normal<br>
+		<input type=radio name="auction_type_bis" disabled value="group"> Grupal<br>
+		<input type=radio name="auction_type_bis" disabled value="reverse"> Inversa
+		</div>
+	</td>
+</tr>
+<tr>
+<td width=100> Valor inicial</td> <td><div class="txtMstr">##PRICE##</div> </td>
+</tr>
+</table>
+<div style="color: red; text-align:left;" align="left">##ERRORS##</div>
+<div style="width:400px; text-align:right"><input type=submit value="Confirmar"></div>
+
+</form>
