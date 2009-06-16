@@ -2,6 +2,7 @@ package customers.auctions.views;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
@@ -15,9 +16,11 @@ import api.web.cache.HtmlCache;
 import api.web.mvc.view.HtmlView;
 import api.web.text.LibTxt;
 import domain.auctions.Auction;
+import domain.auctions.AuctionStatus;
 import domain.auctions.IncrementalAuction;
 import domain.auctions.ReverseAuction;
 import domain.customers.Bidder;
+import domain.customers.User;
 
 public class UserAuctionsView extends HtmlView {
 
@@ -42,16 +45,24 @@ public class UserAuctionsView extends HtmlView {
 		}
 		Bidder bidder= BidderPersistor.getBidderPersistorInstance().getUser(userName);
 		ArrayList<IncrementalAuction> auctions = AuctionPersistorImplementation.getInstance().getIncrementalAuctionsForBidder(bidder);
-
+		List<Auction> wonAuctions = bidder.getWonAuctions();
 		StringBuilder strB = new StringBuilder();
+		StringBuilder strW = new StringBuilder();
 		
 		if(auctions!=null) {
 			for(IncrementalAuction auction : auctions) {
 				strB.append(getAuctionInfo(auction));
 			}
 		}
-
-		out.println(LibTxt.replace(auctionsListView,"##AUCTIONS##",strB.toString()));
+		
+		if(wonAuctions!=null) {
+			for(Auction auction : wonAuctions) {
+				strW.append(getAuctionInfo(auction));
+			}
+		}
+		
+		auctionsListView=LibTxt.replace(auctionsListView,"##AUCTIONS##",strB.toString());
+		out.println(LibTxt.replace(auctionsListView,"##WONAUCTIONS##",strW.toString()));
 
 	}
 
