@@ -41,7 +41,6 @@ public class CustomerMenuView extends HtmlView {
 			}
 		}
 		
-		
 		User aUser = BidderPersistor.getBidderPersistorInstance().getUser(userName);
 		
 		html = LibTxt.replaceAll(html, "##USER##", ""+ aUser.getLastName() + "," + aUser.getName());
