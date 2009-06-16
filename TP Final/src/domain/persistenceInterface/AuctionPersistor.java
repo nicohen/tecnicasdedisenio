@@ -18,6 +18,7 @@ public interface AuctionPersistor {
 
 	public IncrementalAuction getIncrementalAuctionById(long auctionId);
 	public ArrayList<IncrementalAuction> getIncrementalAuctions();
+	public ArrayList<IncrementalAuction> getIncrementalActiveAuctions();
 	public ArrayList<IncrementalAuction> getIncrementalAuctionsForStatus(AuctionStatus status);
 	public ArrayList<IncrementalAuction> getIncrementalAuctionsForHighestBidder(Bidder bidder);
 	public IncrementalAuction getIncrementalAuctionForWinner (Bidder bidder);

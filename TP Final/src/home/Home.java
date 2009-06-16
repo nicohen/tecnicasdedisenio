@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import persistence.AuctionPersistorImplementation;
 import persistence.BidderPersistor;
 import persistence.KeysPersistor;
+import service.AuctionService;
 import api.web.mvc.controller.FrontEndControllerServlet;
 import api.web.mvc.view.View;
 import domain.auctions.AuctionType;
@@ -59,13 +60,13 @@ public class Home extends FrontEndControllerServlet {
 		AuctionPersistorImplementation.getInstance().saveIncrementalAuction(ia);
 		ia = new IncrementalAuction(p2, AuctionType.SINGLE, vrf, 1);
 		AuctionPersistorImplementation.getInstance().saveIncrementalAuction(ia);
-		KeysPersistor key=KeysPersistor.getKeysPersistorInstance();
-		Key keyExchange=new Key("abcd",1000);
-		
+		KeysPersistor key = KeysPersistor.getKeysPersistorInstance();
+		Key keyExchange = new Key("abcd", 1000);
+
 		key.saveKey(keyExchange);
-		
-		
-		
-		
+
+		AuctionService service = new AuctionService();
+		service.programar();
+
 	}
 }

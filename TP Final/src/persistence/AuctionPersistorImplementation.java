@@ -92,6 +92,11 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 		return this.incrementals.getAuctions();
 	}
 
+	@Override
+	public ArrayList<IncrementalAuction> getIncrementalActiveAuctions() {
+		return this.incrementals.getAuctionsForStatus(AuctionStatus.ACTIVE);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -255,4 +260,5 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 		}
 		return list;
 	}
+
 }
