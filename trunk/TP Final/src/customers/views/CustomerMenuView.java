@@ -7,17 +7,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import persistence.AuctionPersistorImplementation;
 import persistence.BidderPersistor;
 import api.web.cache.HtmlCache;
 import api.web.mvc.view.HtmlView;
 import api.web.text.LibTxt;
-import api.web.text.LibWeb;
-import domain.auctions.Auction;
 import domain.customers.User;
-import domain.exceptions.BidException;
-import domain.exceptions.InvalidAuctionTypeException;
-import domain.exceptions.NotEnoughPointsToBidException;
 
 public class CustomerMenuView extends HtmlView {
 
@@ -44,6 +38,7 @@ public class CustomerMenuView extends HtmlView {
 		User aUser = BidderPersistor.getBidderPersistorInstance().getUser(userName);
 		
 		html = LibTxt.replaceAll(html, "##USER##", ""+ aUser.getLastName() + "," + aUser.getName());
+		html = LibTxt.replace(html, "##POINTS##", ""+ aUser.getPoints());
 		
 		out.println(html);
 	}
