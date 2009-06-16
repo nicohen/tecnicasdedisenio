@@ -1,5 +1,8 @@
 package domain.auctions;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import domain.customers.Bidder;
 import domain.exceptions.BidException;
 import domain.exceptions.IllegalBidAmountException;
@@ -21,8 +24,9 @@ public abstract class Auction {
 	protected VariationRateFunction variationRateFunction;
 	protected int value;
 	protected AuctionType type;
-	
+
 	protected long auctionId;
+	protected Date endDate;
 
 	/**
 	 * Recibe y maneja todos los valores de atributos, e inicializa las
@@ -53,8 +57,11 @@ public abstract class Auction {
 		this.status = AuctionStatus.ACTIVE;
 		this.value = startUpValue;
 		this.type = type;
-		
+
 		this.auctionId = System.currentTimeMillis();
+
+		this.endDate = new Date(
+				Calendar.getInstance().getTimeInMillis() + 10000);
 	}
 
 	/**
@@ -126,26 +133,31 @@ public abstract class Auction {
 	public final AuctionType getType() {
 		return type;
 	}
-	
+
 	@Override
-	public boolean equals(Object obj) {
-		Auction other = (Auction)obj;
+	public final boolean equals(Object obj) {
+		Auction other = (Auction) obj;
 		return this.auctionId == other.auctionId;
 	}
+
 	@Override
-	public int hashCode() {
-		return (int)auctionId;
+	public final int hashCode() {
+		return (int) auctionId;
 	}
 
-	public long getAuctionId(){
+	public final long getAuctionId() {
 		return this.auctionId;
 	}
-	
-	public void setAuctionId(long id) {
-		this.auctionId = id;		
+
+	public final void setAuctionId(long id) {
+		this.auctionId = id;
 	}
-		
-	public int getValue(){
+
+	public final int getValue() {
 		return value;
+	}
+
+	public final Date getEndDate() {
+		return endDate;
 	}
 }
