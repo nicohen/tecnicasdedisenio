@@ -20,6 +20,11 @@
         <servlet-class>startup.StartupController</servlet-class>
  	</servlet>
 
+	<servlet>
+        <servlet-name>GroupController</servlet-name>
+        <servlet-class>customers.groups.GroupController</servlet-class>
+ 	</servlet>
+
     <servlet>
         <servlet-name>BidControllerServlet</servlet-name>
         <servlet-class>bid.BidControllerServlet</servlet-class>
@@ -92,6 +97,11 @@
     <servlet-mapping>
         <servlet-name>BidControllerServlet</servlet-name>
         <url-pattern>/BidControllerServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>GroupController</servlet-name>
+        <url-pattern>/GroupController</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
