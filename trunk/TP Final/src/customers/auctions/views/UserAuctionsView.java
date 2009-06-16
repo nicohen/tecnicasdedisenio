@@ -61,6 +61,7 @@ public class UserAuctionsView extends HtmlView {
 		auctionListView = LibTxt.replace(auctionListView,"##TITLE##",auction.getPrize().getDescription());
 		auctionListView = LibTxt.replace(auctionListView,"##POINTS##",String.valueOf(auction.getValue()));
 		auctionListView = LibTxt.replace(auctionListView,"##DESCRIPTION##",String.valueOf(auction.getPrize().getDescription()));
+		auctionListView = LibTxt.replace(auctionListView,"##STATUS##",String.valueOf(auction.getStatus().toString()));
 		return auctionListView;
 	}
 
