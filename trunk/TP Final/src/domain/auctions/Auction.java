@@ -61,7 +61,7 @@ public abstract class Auction {
 		this.auctionId = System.currentTimeMillis();
 
 		this.endDate = new Date(
-				Calendar.getInstance().getTimeInMillis() + 1000000000);
+				Calendar.getInstance().getTimeInMillis() + 10000000);
 	}
 
 	/**
