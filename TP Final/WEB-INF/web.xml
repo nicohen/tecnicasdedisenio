@@ -77,6 +77,10 @@
         <servlet-name>AdminLogin</servlet-name>
         <servlet-class>login.admin.AdminLogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminAltaRemate</servlet-name>
+        <servlet-class>admin.auction.AdminPublishAuctionController</servlet-class>
+    </servlet>
 
     
     <servlet-mapping>
@@ -143,9 +147,13 @@
         <servlet-name>TestAdmin</servlet-name>
         <url-pattern>/TestAdmin</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AdminLogin</servlet-name>
         <url-pattern>/AdminLogin</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>AdminAltaRemate</servlet-name>
+        <url-pattern>/AdminAltaRemate</url-pattern>
     </servlet-mapping>
     
 </web-app>
