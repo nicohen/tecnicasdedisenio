@@ -94,8 +94,8 @@ class AdminUsers {
 	private AdminUsers() {
 		users = new HashMap<String,String>();
 		
-		users.put("admin", "lradmin");
-		users.put("manager", "lrmanager");
+		users.put("admin", "admin");
+		users.put("manager", "manager");
 	}
 	public static AdminUsers getInstance(Class c) throws ForbiddenLoginClassException {
 		if (!AdminLogin.class.equals(c)){
