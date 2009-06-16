@@ -25,41 +25,39 @@ public class KeyExchangeController extends FrontEndControllerServlet {
 			ServletContext servletContext,
 			HashMap<String, Object> requestParameters) throws Exception {
 
-		
-			
 			View view = new KeyExchangeView(req, res, requestAttributes,
 					servletContext, requestParameters);
 			view.execute();
 		}
 	
-	private boolean exchangeKey(HttpServletRequest req,String key) {
-		
-		KeyExchangesPersistor persistor= KeyExchangesPersistor.getKeyExchangesPersistorInstance();
-		String userName="";
-		
-		Cookie[] c = req.getCookies();
-		for(int i=0;i<c.length;i++) {
-			if("userName".equals(c[i].getName())) {
-				userName = c[i].getValue();
-			}
-		}
-		User user = BidderPersistor.getBidderPersistorInstance().getUser(userName);
-		KeyExchange exchange=persistor.getKeyExchangeForKey(key);
-		if (exchange!=null){
-			user.addPoints(exchange.getPoints());
-			persistor.saveKeyExchange(exchange);
-			return true;
-		}
-		else
-			return false;
-	}
-	
-	private void redirToUrl(HttpServletResponse res,
-			HashMap<String, Object> requestParameters) throws Exception {
-		String urlRedir = (String) requestParameters.get("urlredir");
-		res.sendRedirect(urlRedir);
-	}
-	
+//	private boolean exchangeKey(HttpServletRequest req,String key) {
+//		
+//		KeyExchangesPersistor persistor= KeyExchangesPersistor.getKeyExchangesPersistorInstance();
+//		String userName="";
+//		
+//		Cookie[] c = req.getCookies();
+//		for(int i=0;i<c.length;i++) {
+//			if("userName".equals(c[i].getName())) {
+//				userName = c[i].getValue();
+//			}
+//		}
+//		User user = BidderPersistor.getBidderPersistorInstance().getUser(userName);
+//		KeyExchange exchange=persistor.getKeyExchangeForKey(key);
+//		if (exchange!=null){
+//			user.addPoints(exchange.getPoints());
+//			persistor.saveKeyExchange(exchange);
+//			return true;
+//		}
+//		else
+//			return false;
+//	}
+//	
+//	private void redirToUrl(HttpServletResponse res,
+//			HashMap<String, Object> requestParameters) throws Exception {
+//		String urlRedir = (String) requestParameters.get("urlredir");
+//		res.sendRedirect(urlRedir);
+//	}
+//	
 	@Override
 	protected boolean getValidated(HttpServletRequest req) {
 		return true;
