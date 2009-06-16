@@ -1,0 +1,21 @@
+<form action="AdminPublishAuctionController">
+<input type=hidden name="act" value="validate">
+<input type=hidden name="subAct" value="preview">
+
+<table width=400 border=1 cellpadding=3 cellspacing="0">
+<tr>
+<td width=100> Título</td> <td><input type=text name="title" value="##TITLE_VALUE##"> </td>
+</tr>
+<tr>
+	<td width=100> Tipo de subasta</td> 
+	<td><input type=radio name="auction_type" value="normal"> Normal<br>
+		<input type=radio name="auction_type" value="group"> Grupal<br>
+		<input type=radio name="auction_type" value="reverse"> Inversa
+	</td>
+</tr>
+<tr>
+<td width=100> Valor inicial</td> <td><input type=text name="price" value="##PRICE##"> </td>
+</tr>
+</table>
+
+</form>
