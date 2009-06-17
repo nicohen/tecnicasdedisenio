@@ -40,12 +40,7 @@ public class DonationController extends FrontEndControllerServlet {
 				}
 			}
 			User aUser = BidderPersistor.getBidderPersistorInstance().getUser(userName);
-
-			try {
-				Donation.buildExistantDonation(aUser, aUser.getGroupOfUser(), points, new Date(System.currentTimeMillis()));
-			} catch(DonationAlreadyInstanciatedException e) {
-				throw new RuntimeException("La donacion ya fue instanciada anteriormente",e);
-			}
+			aUser.donate(points);
 		} catch(NumberFormatException e) {
 			View view = new DonationView(req, res, requestParameters, servletContext, requestParameters);
 			view.execute();
