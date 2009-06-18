@@ -59,4 +59,17 @@ public class Key {
 	public Long getKeyId() {
 		return this.keyId;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof Key)){
+			return false;
+		}
+		Key cKey = (Key)obj;
+		return this.code.equals(cKey.code);
+	}
+	@Override
+	public int hashCode() {
+		return this.code.hashCode();
+	}
 }

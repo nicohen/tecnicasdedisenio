@@ -1,0 +1,36 @@
+<script type="text/javascript">
+function validateFields(){
+	var qty = document.getElementById("keys_qty").value;
+	var valor = document.getElementById("keys_value").value;
+
+	try {
+		if (qty != parseInt(qty) && valor != parseInt(valor)){
+			alert("Ingrese solo numeros para Cantidad de claves y Valor");
+			return false;
+		} else if (qty != parseInt(qty)){
+			alert("Ingrese solo numeros para Cantidad de claves");
+			return false;
+		}else if (valor != parseInt(valor)){
+			alert("Ingrese solo numeros para Valor de claves");
+			return false;
+		} else if (qty <= 0 || valor<=0){
+			alert("Ingrese numeros mayores a 0 (cero) para Cantidad de claves y Valor");
+		}
+	} catch (e) {
+		alert("Ingrese solo numeros para Cantidad de claves y Valor");
+		return false;
+	}
+
+	return true;
+}
+</script>
+<center>
+<div style="width:400; height:100; text-align:rigth;">
+<form action="AdminClaveAlfa" method=GET onsubmit="return validateFields()">
+Cantidad de claves: <input type="text" id="keys_qty" name="keys_qty" value=100><br>
+Valor de claves:<input type="text" id="keys_value" name="keys_value" value=10><br>
+<input type=hidden name=act value=save>
+<input type=submit value="Crear claves">
+</form>
+</div>
+</center>
