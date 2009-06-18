@@ -40,7 +40,9 @@ public class DonationController extends FrontEndControllerServlet {
 				}
 			}
 			User aUser = BidderPersistor.getBidderPersistorInstance().getUser(userName);
+			
 			aUser.donate(points);
+			
 		} catch(NumberFormatException e) {
 			View view = new DonationView(req, res, requestParameters, servletContext, requestParameters);
 			view.execute();
