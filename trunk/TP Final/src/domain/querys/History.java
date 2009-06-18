@@ -86,7 +86,7 @@ public class History {
 
 		int bottom = 0;
 		int top = this.donations.size() - 1;
-		int pos = this.donations.size() / 2;
+		int pos = top / 2;
 		while (top > bottom) {
 			int cmpGroup = allAvailableDonations[pos].getBenefeciary()
 					.compareTo(group);
