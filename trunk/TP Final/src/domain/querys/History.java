@@ -121,7 +121,7 @@ public class History {
 
 		int bottom = 0;
 		int top = this.bids.size() - 1;
-		int pos = this.bids.size() / 2;
+		int pos = top / 2;
 		while (top > bottom) {
 			int cmpUser = allAvailableBids[pos].getOwner().compareTo(user);
 			int cmpDate = allAvailableBids[pos].getDate().compareTo(date);
@@ -151,7 +151,7 @@ public class History {
 
 		int bottom = 0;
 		int top = this.keyExchanges.size() - 1;
-		int pos = this.keyExchanges.size() / 2;
+		int pos = top / 2;
 		while (top > bottom) {
 			int cmpCode = allAvailableKeyExchanges[pos].getKey().getCode()
 					.compareTo(code);
@@ -179,7 +179,7 @@ public class History {
 
 		int bottom = 0;
 		int top = this.querys.size() - 1;
-		int pos = this.querys.size() / 2;
+		int pos = top / 2;
 		while (top > bottom) {
 			int cmpUser = allAvailableQueries[pos].getUser().compareTo(user);
 			int cmpDate = allAvailableQueries[pos].getDate().compareTo(date);
