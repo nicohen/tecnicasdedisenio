@@ -106,7 +106,7 @@ public class AdminPublishAuctionController extends BackEndControllerServlet {
 		else
 			ia=new IncrementalAuction(p,type,vrf, initialValue);
 		
-		AuctionPersistorImplementation.getInstance().saveIncrementalAuction(ia);
+		AuctionPersistorImplementation.getInstance().saveAuction(ia);
 
 		View view = new AdminPublishAuctionFormView(req,res,requestAttributes,servletContext,requestParameters);
 		((AdminPublishAuctionFormView)view).setHtmlTemplate("AuctionSaved");
