@@ -204,7 +204,7 @@ public class AuctionPersistorImplementation implements AuctionPersistor {
 	public ArrayList<ReverseAuction> getReverseAuctions() {
 		return this.reverse.getAuctions();
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
