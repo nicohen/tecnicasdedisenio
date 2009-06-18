@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import api.web.mvc.view.BackEndHtmlView;
+import api.web.session.exception.InvalidSessionAccessException;
+import api.web.session.exception.NotLoggedInException;
 
 public class AdminExceptionView extends BackEndHtmlView {
 
@@ -38,6 +40,10 @@ public class AdminExceptionView extends BackEndHtmlView {
 		out.append(formatException());
 		out.append("-->");
 		
+		if (adminException instanceof InvalidSessionAccessException ||
+				adminException instanceof NotLoggedInException){
+			out.append("<br><a href='AdminLogin'>Ingresar</a>");
+		}
 		return out.toString();
 	}
 

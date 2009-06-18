@@ -10,10 +10,10 @@ public class KeysPersistor implements KeyPersistor {
 
 	private static KeysPersistor instance = null;
 
-	private Map<Long, Key> keys;
+	private Map<String, Key> keys;
 
 	private KeysPersistor() {
-		this.keys = new HashMap<Long, Key>();
+		this.keys = new HashMap<String, Key>();
 	}
 
 	public static KeysPersistor getKeysPersistorInstance() {
@@ -24,19 +24,20 @@ public class KeysPersistor implements KeyPersistor {
 	}
 	
 	@Override
-	public Key getKeyForAlphanumeric(final String alphanumeric) {
-		SearchSolver<Key> solver = new SearchSolver<Key>() {
-			@Override
-			public boolean getCondition(Key t) {
-				return t.getCode().equals(alphanumeric);
-			}
-		};
-		return solver.solveUnique(keys);
+	public Key getKeyForAlphanumeric(String alphanumeric) {
+//		SearchSolver<Key> solver = new SearchSolver<Key>() {
+//			@Override
+//			public boolean getCondition(Key t) {
+//				return t.getCode().equals(alphanumeric);
+//			}
+//		};
+//		return solver.solveUnique(keys);
+		return this.keys.get(alphanumeric);
 	}
 
 	@Override
 	public void saveKey(Key key) {
-		this.keys.put(key.getKeyId(), key);
+		this.keys.put(key.getCode(), key);
 	}
 
 }

@@ -81,6 +81,10 @@
         <servlet-name>AdminAltaRemate</servlet-name>
         <servlet-class>admin.auction.AdminPublishAuctionController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminClaveAlfa</servlet-name>
+        <servlet-class>admin.keys.AdminKeyGenerator</servlet-class>
+    </servlet>
 
     
     <servlet-mapping>
@@ -151,9 +155,13 @@
         <servlet-name>AdminLogin</servlet-name>
         <url-pattern>/AdminLogin</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+	<servlet-mapping>
         <servlet-name>AdminAltaRemate</servlet-name>
         <url-pattern>/AdminAltaRemate</url-pattern>
+    </servlet-mapping>
+	<servlet-mapping>
+        <servlet-name>AdminClaveAlfa</servlet-name>
+        <url-pattern>/AdminClaveAlfa</url-pattern>
     </servlet-mapping>
     
 </web-app>
