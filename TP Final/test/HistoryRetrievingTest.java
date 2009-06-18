@@ -3,6 +3,7 @@ import static org.junit.Assert.fail;
 
 import java.util.Date;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import domain.auctions.Auction;
@@ -38,9 +39,12 @@ public class HistoryRetrievingTest {
 		Thread.sleep(10);
 		user.donate(500);
 		Object[] donations = history.getDonations().toArray();
-		Donation donation = (Donation) donations[0];
+		Donation donation = (Donation) donations[4];
 		Date date = donation.getDate();
 		assertTrue(history.haveDonation(user, group, date));
+		Thread.sleep(10);
+		date = new Date();
+		assertTrue(!history.haveDonation(user, group, date));
 	}
 
 	@Test
