@@ -10,6 +10,8 @@ import persistence.AuctionPersistorImplementation;
 import api.web.cache.HtmlCache;
 import api.web.mvc.view.HtmlView;
 import api.web.text.LibTxt;
+import domain.auctions.Auction;
+import domain.auctions.AuctionType;
 import domain.auctions.IncrementalAuction;
 
 public class AuctionView extends HtmlView {
@@ -34,12 +36,21 @@ public class AuctionView extends HtmlView {
 			IncrementalAuction ia = new IncrementalAuction(p,AuctionType.SINGLE,vrf,1);
 			AuctionPersistor.getInstance().saveIncrementalAuction(ia);
 		}*/
-		IncrementalAuction auction = AuctionPersistorImplementation.getInstance().getIncrementalAuctionById(auctionId);
+		
+		Auction auction = AuctionPersistorImplementation.getInstance().getAuctionById((auctionId));
+
+		if(auction.getType()==AuctionType.SINGLE || (auction.getType()==AuctionType.GROUP))
+			auction=AuctionPersistorImplementation.getInstance().getIncrementalAuctionById(auctionId);
+		if(auction.getType()==AuctionType.REVERSE)
+			auction=AuctionPersistorImplementation.getInstance().getReverseAuctionById(auctionId);
 
 		html = LibTxt.replaceAll(html, "##AUCTION_ID##", "" + auctionId);
 		html = LibTxt.replace(html, "##DESCRIPTION##", auction.getPrize().getDescription());
-		html = LibTxt.replaceAll(html, "##POINTS##", "" + auction.getNextBidValue());
-
+		if(auction.getType()==AuctionType.SINGLE || (auction.getType()==AuctionType.GROUP))
+		html = LibTxt.replaceAll(html, "##POINTS##", "" + AuctionPersistorImplementation.getInstance().getIncrementalAuctionById(auctionId).getNextBidValue());
+		else
+			html = LibTxt.replaceAll(html, "##POINTS##", "" + auction.getValue());
+		
 		out.println(html);
 
 	}
