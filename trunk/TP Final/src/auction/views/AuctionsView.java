@@ -12,6 +12,7 @@ import api.web.cache.HtmlCache;
 import api.web.mvc.view.HtmlView;
 import api.web.text.LibTxt;
 import domain.auctions.Auction;
+import domain.auctions.AuctionStatus;
 import domain.auctions.IncrementalAuction;
 import domain.auctions.ReverseAuction;
 
@@ -33,7 +34,7 @@ public class AuctionsView extends HtmlView {
 		ArrayList<IncrementalAuction> iAuctions = AuctionPersistorImplementation
 				.getInstance().getIncrementalActiveAuctions();
 		ArrayList<ReverseAuction> rAuctions = AuctionPersistorImplementation
-				.getInstance().getReverseAuctions();
+				.getInstance().getReverseAuctionsForStatus(AuctionStatus.ACTIVE);
 
 		StringBuilder strB = new StringBuilder();
 
