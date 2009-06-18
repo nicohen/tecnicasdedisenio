@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import persistence.AuctionPersistorImplementation;
+import domain.auctions.Auction;
 import domain.auctions.AuctionType;
 import domain.auctions.IncrementalAuction;
 import domain.auctions.Product;
+import domain.auctions.ReverseAuction;
 import domain.utils.VariationRateFunction;
 
 import admin.auction.views.AdminPublishAuctionFormView;
