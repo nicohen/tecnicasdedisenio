@@ -98,8 +98,11 @@ public class AdminPublishAuctionController extends BackEndControllerServlet {
 			type = AuctionType.REVERSE;
 		
 		Integer initialValue = Integer.parseInt((String)requestParameters.get("price"));
-		IncrementalAuction ia = new IncrementalAuction(p,type,
-				vrf, initialValue);
+		Auction ia=null;
+		if(type==AuctionType.REVERSE)
+			ia=new ReverseAuction(p,vrf,initialValue);
+		else
+			ia=new IncrementalAuction(p,type,vrf, initialValue);
 		
 		AuctionPersistorImplementation.getInstance().saveIncrementalAuction(ia);
 
