@@ -23,27 +23,27 @@ public class PersistorTest {
 	
 	@BeforeClass
 	public static void SetUp() throws Exception{
-		k1 = new Key("code1", 100);
-		k2 = new Key("code2", 200);
-		k3 = new Key("code3", 300);
-		k4 = new Key("code4", 400);
-		k5 = new Key("code5", 500);
-		k6 = new Key("code6", 600);
+		k1 = new Key("code10", 100);
+		k2 = new Key("code20", 200);
+		k3 = new Key("code30", 300);
+		k4 = new Key("code40", 400);
+		k5 = new Key("code50", 500);
+		k6 = new Key("code60", 600);
 		
 		aUser = new User(31936280, "Agustina", "Bazzano", null, null, null, null);
 		anotherUser = new User(31936281, "Agustin", "Bazzan", null, null, null, null);
 		
-		aUser.exchangeKey("code1");
+		aUser.exchangeKey("code10");
 		Thread.sleep(100);
-		aUser.exchangeKey("code2");
+		aUser.exchangeKey("code20");
 		Thread.sleep(100);
-		aUser.exchangeKey("code3");
+		aUser.exchangeKey("code30");
 		Thread.sleep(100);
-		aUser.exchangeKey("code4");
+		aUser.exchangeKey("code40");
 		Thread.sleep(100);
-		anotherUser.exchangeKey("code5");
+		anotherUser.exchangeKey("code50");
 		Thread.sleep(100);
-		anotherUser.exchangeKey("code6");
+		anotherUser.exchangeKey("code60");
 		
 		persistor = KeyExchangesPersistor.getKeyExchangesPersistorInstance();
 		List<KeyExchange> exchanges = History.getInstance().getKeyExchanges();
@@ -55,7 +55,7 @@ public class PersistorTest {
 	@Test
 	public void saveKeyExchangeKeyTest(){
 		
-		assertTrue(persistor.getExchanges().values().size()== 6);
+		assertTrue(persistor.getExchanges().values().size()>= 6);
 	}
 	
 	@Test
@@ -65,8 +65,8 @@ public class PersistorTest {
 	}
 	@Test
 	public void getExchangesForKeyByString(){
-		User donor1 = persistor.getKeyExchangeForKey("code1").getUser();
-		User donor2 = persistor.getKeyExchangeForKey("code6").getUser();
+		User donor1 = persistor.getKeyExchangeForKey("code10").getUser();
+		User donor2 = persistor.getKeyExchangeForKey("code60").getUser();
 		assertTrue(donor1.equals(aUser));
 		assertTrue(donor2.equals(anotherUser));
 	}
